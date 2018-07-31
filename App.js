@@ -152,26 +152,26 @@ const CurrentVideoImage = styled.Image`
   
   width: 290;
   height: 500; 
-  border-radius: 20;
+  borderRadius: 20;
 
 `;
 
 const ThumbnailBackgroundView = styled.View`
- 
-  justify-content: center;
-  align-items: center;
+  
+  justifyContent: center;
+  alignItems: center;
   width: 290; 
   height: 500;
-  
 
 `;
 
 const CurrentVideoTO = styled.TouchableOpacity`;
 `
 const CarouselBackgroundView = styled.View`
-
+flex-direction: row
   height: 100%;
   width: 100%;
+  
 `;
 
 const styleText = StyleSheet.create({
@@ -215,7 +215,7 @@ const stylesButton = StyleSheet.create({
   button: {
     
     padding: 10,
-    // marginBottom: 20,
+    marginBottom: 20,
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     // shadowRadius: 10,

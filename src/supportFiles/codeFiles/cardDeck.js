@@ -157,7 +157,8 @@ const CurrentVideoImage = styled.Image`
 const ThumbnailBackgroundView = styled.View`
 top: 75;
    
-  align-items: center;
+  justifyContent: center;
+  alignItems: center;
   width: 290; 
   height: 500;
   
@@ -167,19 +168,15 @@ top: 75;
 const CurrentVideoTO = styled.TouchableOpacity`;
 `
 const CarouselBackgroundView = styled.View`
+
+flex-direction: row
  backgroundColor: pink
   height: 100%;
   width: 100%;
 `;
 
 const styleText = StyleSheet.create({
-  textTopNumber: {
-    top: -10,
-    color: 'gray',
-    fontWeight: '500',
-    fontSize: 20,
-    height: 20,
-  },
+  
   textCardTitle: {
     top: 20,
     color: 'gray',
