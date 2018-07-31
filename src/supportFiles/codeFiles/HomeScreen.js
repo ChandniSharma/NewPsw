@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image} from 'react-native';
+import {View, Text, StyleSheet, TextInput,TouchableOpacity} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
-import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
-import { createStackNavigator } from 'react-navigation';
+//import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
+import {StackNavigator} from 'react-navigation';
+//import CardDeck from './src/supportFiles/codeFiles/cardDeck';
 
-import CardDeck from './src/supportFiles/codeFiles/cardDeck';
-
-class ThumbnailCarousel extends Component {
+ class ThumbnailCarousel extends React.Component {
 
   static navigationOptions =
  {
-    title: 'Home',
+    title: 'ThumbnailCarousel',
  };
  
  FunctionToOpenSecondActivity = () =>
  {
-    this.props.navigation.navigate('CardDeck');
+    this.props.navigation.navigate('Second');
     
  }
   constructor(props){
@@ -37,18 +36,18 @@ class ThumbnailCarousel extends Component {
       videos: [
         {
           id: "WpIAc9by5iU",
-          thumbnail: require('./first.png'),
+          thumbnail: "file:///Users/chandnisharma/Downloads/AWT/NewPsw/src/supportFiles/img/second.png",
           title: "Create your own group of words."
           
           
         }, {
           id: "sNPnbI1arSE",
-          thumbnail: require('./second.png'),
+          thumbnail: "file:///Users/chandnisharma/Downloads/AWT/NewPsw/src/supportFiles/img/second.png",
           title: "These are the most common words found in the children's books."
 
         }, {
           id: "VOgFZfRVaww",
-          thumbnail: require('./third.png'),
+          thumbnail: "file:///Users/chandnisharma/Downloads/AWT/NewPsw/src/supportFiles/img/third.png",
           title: "These words are used to describe an action."
 
         }
@@ -82,14 +81,14 @@ class ThumbnailCarousel extends Component {
           >
             <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'} />
             <View style={styleText.viewProp}>
-            <TextInput  multiline = {true} 
+            <TextInput  multiline = {true}
                 editable={false}
                 numberOfLines = {3}
                style={styleText.textCardDetail}>{item.title}</TextInput>
-               <TouchableOpacity style={stylesButton.button} onPress ={() => this.props.navigation.navigate('Details')}>
-                
-                <Image  style={stylesButton.image} source={require('./arrownext.png')} />
-             </TouchableOpacity>
+               <TouchableOpacity style={stylesButton.button} onPress = { this.FunctionToOpenSecondActivity }>
+                <Text> Move to next View </Text>
+        
+        </TouchableOpacity>
             </View>
            
           </CurrentVideoTO>
@@ -107,7 +106,7 @@ class ThumbnailCarousel extends Component {
     return (
       <View>
         <HeaderCustom />
-        <TextInput style={styleText.textTopNumber} value="01"/>
+        <TextInput value="01"/>
           <CarouselBackgroundView>
            <Carousel
           ref={ (c) => { this._carousel = c; } }
@@ -123,21 +122,6 @@ class ThumbnailCarousel extends Component {
       </View>
       
     );
-  }
-}
-const RootStack = createStackNavigator(
-  {
-    Home: ThumbnailCarousel,
-    Details: CardDeck,
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
   }
 }
 
@@ -181,7 +165,6 @@ const styleText = StyleSheet.create({
     fontWeight: '500',
     fontSize: 20,
     height: 20,
-    marginLeft:12,
   },
   textCardTitle: {
     top: -10,
@@ -195,7 +178,7 @@ const styleText = StyleSheet.create({
     color: 'white',
     fontWeight: '300',
     fontSize: 20,
-    height: 150,
+    height: 70,
    alignItems:'center'
 
   },
@@ -213,7 +196,8 @@ const styleText = StyleSheet.create({
 const stylesButton = StyleSheet.create({
  
   button: {
-    
+    borderColor: "gray",
+    borderRadius: 20,
     padding: 10,
     // marginBottom: 20,
     shadowColor: '#303838',
@@ -221,8 +205,5 @@ const stylesButton = StyleSheet.create({
     // shadowRadius: 10,
     shadowOpacity: 0.35,
   },
-  image:{
-    width: 50,
-    height: 50,
-  },
+  
 });

@@ -6,8 +6,11 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
 
 
 
-export default class CardDeck extends Component {
-
+ export default class CardDeck extends React.Component {
+  static navigationOptions =
+  {
+     title: 'CardDeck',
+  };
   constructor(props){
     super();
     this.state = {
@@ -134,6 +137,8 @@ export default class CardDeck extends Component {
   }
 }
 
+
+   
 //const { width, height } = Dimensions.get('window'); // cs
 
 const VideoTitleText = styled.Text`
@@ -151,7 +156,7 @@ const CurrentVideoImage = styled.Image`
 
 const ThumbnailBackgroundView = styled.View`
 top: 75;
-   borderColor: blue;
+   
   align-items: center;
   width: 290; 
   height: 500;
@@ -176,11 +181,14 @@ const styleText = StyleSheet.create({
     height: 20,
   },
   textCardTitle: {
-    top: 5,
+    top: 20,
     color: 'gray',
     fontWeight: '500',
     fontSize: 20,
     height: 20,
+    position:'absolute',
+    alignSelf: 'flex-start',
+    marginLeft:2,
   },
   textCardDetail: {
     
@@ -200,6 +208,7 @@ const styleText = StyleSheet.create({
     height: 400, 
     alignItems: 'center', 
     justifyContent: 'center',
+    
      },
 });
 const stylesButton = StyleSheet.create({

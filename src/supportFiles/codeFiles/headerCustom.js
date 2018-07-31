@@ -8,8 +8,7 @@ class HeaderCustom extends Component{
     return(
         <View style={stylesButton.containerButton}>
         <TouchableOpacity style={stylesButton.button} onPress={()=>{alert("Coming Soon")}}>
-        <Text> Settings </Text>
-
+         <Image  style={stylesButton.image} source={require('./settingswheel.png')} />
         </TouchableOpacity>
       </View>
     );
@@ -19,13 +18,13 @@ const stylesButton = StyleSheet.create({
     containerButton: {
       ...StyleSheet.absoluteFillObject,
       alignSelf: 'flex-end',
-      marginTop: 20,
+      marginTop: 2,
       position: 'relative', // add if dont work with above
       
     },
     button: {
-      borderColor: "gray",
-      borderRadius: 20,
+      
+      
       padding: 10,
       // marginBottom: 20,
       shadowColor: '#303838',
@@ -34,8 +33,8 @@ const stylesButton = StyleSheet.create({
       shadowOpacity: 0.35,
     },
     image:{
-      width: 20,
-      height: 20,
+      width: 25,
+      height: 25,
     },
   });
  export default HeaderCustom;

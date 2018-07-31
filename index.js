@@ -5,13 +5,16 @@ import {name as appName} from './app.json';
 import CardDeck from './src/supportFiles/codeFiles/cardDeck';
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet } from 'react-native';
+import cardDeckTop from './src/supportFiles/codeFiles/cardDeckTop';
 
-export default class MainClass extends Component {
+class MainClass extends Component {
     render() {
       return (
-        <CardDeck />
-        
+       // <CardDeck />
+       <cardDeckTop />
       );
     }
   }
-AppRegistry.registerComponent(appName, () => MainClass);
+
+  
+AppRegistry.registerComponent(appName, () => App);
