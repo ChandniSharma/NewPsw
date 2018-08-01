@@ -86,11 +86,12 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
           <CurrentVideoTO
              onPress={ () => { 
                 console.log("clicked to index", index)
-                this._carousel.snapToItem(index);
+                this._carousel.snapToNext(index);
               }}
           >
             <CurrentVideoImage source={require('./whitecard.png')} resizeMode={'cover'} />
-            <View style={styleText.viewProp}>
+            {
+              <View style={styleText.viewProp}>
             <TextInput  
                 editable={false}
                 numberOfLines = {1}
@@ -100,7 +101,8 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
                 numberOfLines = {1}
                style={styleText.textCardDetail}>{item.title}</TextInput>
                
-            </View>
+            </View> 
+            }
            
           </CurrentVideoTO>
 
@@ -127,7 +129,7 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
           sliderWidth={360}
           itemWidth={290} //256
            layout={'tinder'}
-           layoutCardOffset={16}
+            layoutCardOffset={16} //For showing card deck height.
                 />
       </CarouselBackgroundView>
      
@@ -156,27 +158,29 @@ const CurrentVideoImage = styled.Image`
 
 const ThumbnailBackgroundView = styled.View`
 top: 75;
-   
-  justifyContent: center;
-  alignItems: center;
   width: 290; 
   height: 500;
   
 
 `;
 
-const CurrentVideoTO = styled.TouchableOpacity`;
+const CurrentVideoTO = styled.TouchableOpacity`
+
+;
 `
 const CarouselBackgroundView = styled.View`
 
-flex-direction: row
+transform: rotate(180deg);
+flex-direction: column;
+justifyContent: center;
+alignItems: center;
  backgroundColor: pink
   height: 100%;
   width: 100%;
 `;
 
 const styleText = StyleSheet.create({
-  
+
   textCardTitle: {
     top: 20,
     color: 'gray',
@@ -197,7 +201,8 @@ const styleText = StyleSheet.create({
 
   },
   viewProp: 
-  { position: 'absolute',
+  { transform: [{ rotate: '180deg'}],
+    position: 'absolute',
   aspectRatio: 1,
    top: 0, 
    left: 10, 
