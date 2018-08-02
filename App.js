@@ -7,7 +7,8 @@ import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
 
 
-import CardDeck from './src/supportFiles/codeFiles/cardDeck';
+
+import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
 
 class ThumbnailCarousel extends Component {
 
@@ -102,7 +103,7 @@ class ThumbnailCarousel extends Component {
 
   _renderItem = ( {item, index} ) => {
     console.log("rendering,", index)
-    if (deviceHeight==667) {
+    if (deviceHeight===667) {
       return (
       
         <ThumbnailBackgroundView_iPhone6>
@@ -169,7 +170,7 @@ class ThumbnailCarousel extends Component {
   render = () => {
   
     console.log("videos: updating")
-if (deviceHeight==667) {
+if (deviceHeight===667) {
   return (
     <View>
       <HeaderCustom />
@@ -221,7 +222,7 @@ if (deviceHeight==667) {
 const RootStack = createStackNavigator(
   {
     Home: ThumbnailCarousel,
-    Details: CardDeck,
+    Details: CardDeckNew,
   },
   {
     initialRouteName: 'Home',
