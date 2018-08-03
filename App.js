@@ -172,10 +172,14 @@ class ThumbnailCarousel extends Component {
         }
         return (
             <View style={{flex: 1}}>
-              <HeaderCustom />
-                <TextInput style={styleText.textTopNumber} value={temp}/>
+
+<HeaderCustom />
+                
+
                 {console.log(" ************* value is" + this.state.numberValue + "")}
+
                 <CarouselBackgroundView style={styles.content}>
+                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
                     <Carousel
                         ref={(c) => {
                             this._carousel = c;
@@ -183,7 +187,7 @@ class ThumbnailCarousel extends Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={390}
+                        sliderWidth={350}
                         itemWidth={290} //256
                         layout={'default'}
                         firstItem={0}
@@ -362,14 +366,13 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    alignSelf: 'flex-start',
+    top: '1%',
+    left: '1%',
     color: 'gray',
     fontWeight: '500',
     fontSize: 27,
-    
-    marginTop:'5%',
-    marginBottom: '0.5%',
-    position: 'relative',
+position: 'absolute',
+   
    
   },
   textCardTitle: {

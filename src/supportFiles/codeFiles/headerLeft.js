@@ -24,8 +24,7 @@ const stylesButton = StyleSheet.create({
       
     },
     button: {
-      
-      
+
       padding: 10,
       // marginBottom: 20,
       shadowColor: '#303838',
