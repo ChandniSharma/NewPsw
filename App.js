@@ -11,6 +11,7 @@ import { Dimensions } from 'react-native';
 
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
+import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
 
 class ThumbnailCarousel extends Component {
 
@@ -118,8 +119,8 @@ class ThumbnailCarousel extends Component {
 
         return (
 
-            <View style={{flex:1}}>
-                <View  style={{marginTop:20}}activeOpacity={1} onPress={() => {
+            <View style={styles.card}>
+                <View  activeOpacity={1} onPress={() => {
                     console.log("clicked to index", index)
                     this._carousel.snapToItem(index);
 
@@ -127,10 +128,10 @@ class ThumbnailCarousel extends Component {
 
                 }}>
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
-                        <View style={styleText.viewProp}>
+                        <View >
 
-                            {imageTitle}
-                            <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
+                            <View style={styles.container}>{imageTitle}</View>
+                            <TextInput marginTop={'5%'} editable={false} style={styleText.textCardTitle}>{item.title}</TextInput>
                             <TextInput multiline={true}
                                        editable={false}
                                        numberOfLines={3}
@@ -139,8 +140,10 @@ class ThumbnailCarousel extends Component {
                                        style={styleText.textCardDetail}
                                        marginLeft={'15%'}
                                        marginRight={'15%'}
-                            >{item.detail}</TextInput>
+                            >{item.detail}
+                            </TextInput>
                             <TouchableOpacity marginTop={'35%'}
+                                              marginLeft={'50%'}
                                               onPress={() => this.props.navigation.navigate('Details')}>
                                 {imageBottom}
                             </TouchableOpacity>
@@ -175,8 +178,9 @@ class ThumbnailCarousel extends Component {
                 <TextInput style={styleText.textTopNumber} value={temp}/>
 
                 {console.log(" ************* value is" + this.state.numberValue + "")}
-                <CarouselBackgroundView>
+                <CarouselBackgroundView style={styles.content}>
                     <Carousel
+
                         ref={(c) => {
                             this._carousel = c;
                         }}
@@ -198,7 +202,7 @@ class ThumbnailCarousel extends Component {
 const RootStack = createStackNavigator(
   {
     Home: ThumbnailCarousel,
-    Details: CardDeckNew,
+    Details: CardDeck,
   },
   {
     initialRouteName: 'Home',
@@ -215,6 +219,7 @@ export default class App extends React.Component {
 
 const {height, width} = Dimensions.get('window'); 
 const deviceHeight = height;
+let deviceWidth  = width;
 
 console.log("aspect ratio is"+deviceHeight+"Value");
 
@@ -283,9 +288,7 @@ flex-direction: row;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#f2f2f2',
+        left:deviceWidth/2,
     },
     content:{
         flex: 5,
@@ -374,7 +377,7 @@ const styleText = StyleSheet.create({
    
   },
   textCardTitle: {
-    
+
     color: 'white',
     fontWeight: '500',
     fontSize: 23,

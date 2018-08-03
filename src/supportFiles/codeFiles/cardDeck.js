@@ -1,185 +1,198 @@
 
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, Dimensions} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
-import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
+import Carousel from 'react-native-snap-carousel';
+import {createStackNavigator} from "react-navigation"; // Version can be specified in package.json
 
 
 
 export default class CardDeck extends React.Component {
-  static navigationOptions =
-  {
-     title: 'CardDeck',
-     headerMode: 'none',
-  };
-  constructor(props){
-    super();
-    this.state = {
-      numberValue: '01'
-    }
-    this.state = {
-       errors: []
-    }
-    this.props = props;
-    this._carousel = {};
-    this.init();
-  }
 
-  init(){
-    this.state = {
-      videos: [
+    static navigationOptions =
         {
-          id: "WpIAc9by5iU",
-          thumbnail: `require('./src/supportFiles/codeFiles/whitecard.png')`,
-          title: "a",
-          slideNumber: "1"
-          
-        }, {
-          id: "sNPnbI1arSE",
-          thumbnail: `require('./whitecard.png')`,
-          title: "the",
-          slideNumber: "2"
-        }, {
-          id: "VOgFZfRVaww",
-          thumbnail: `require('./whitecard.png')`,
-          title: "come",
-          slideNumber: "3"
+            title: 'CardDeck',
+        };
 
-        }, 
-        {
-            id: "VOgFZfRVawp",
-            thumbnail: `require('./whitecard.png')`,
-            title: "on",
-            slideNumber: "4"
-  
-          },
-           {
-            id: "VOgFZfRVawq",
-            thumbnail: `require('./whitecard.png')`,
-            title: "see",
-            slideNumber: "5"
-  
-          }, 
-          {
-            id: "VOgFZfRVaw3",
-            thumbnail: `require('./whitecard.png')`,
-            title: "go",
-            slideNumber: "6"
-  
-          },
-      ],
-      
-    };
 
-    console.log("ThumbnailCarousel Props: ", this.props)
-  }
 
-  handleSnapToItem(index){
-    console.log("snapped to ", index)
-  }
+    constructor(props) {
+        super();
+        this.state = {
+            numberValue: "01"
+        }
+        this.state = {
+            errors: []
+        }
+        this.props = props;
+        this._carousel = {};
+        this.init();
+    }
 
-  _renderItem = ( {item, index} ) => {
-    console.log("rendering,", index, item)
-    return (
-        <View style={{flex:1}}>
-              
+    init() {
+        this.state = {
+            videos: [
+                {
+                    id: "WpIAc9by5iU",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "a",
+                    slideNumber: "1"
 
-          <CurrentVideoTO
-              style={styles.content}
-             onPress={ () => { 
-                console.log("clicked to index", index)
-                this._carousel.snapToNext(index);
-              }}
-          >
-            <CurrentVideoImage style={styleText.card} source={require('./whitecard.png')} resizeMode={'cover'} />
-            {
-              <View style={styleText.viewProp}>
-            <TextInput  
-                editable={false}
-                numberOfLines = {1}
-               style={styleText.textCardTitle}>{item.slideNumber}</TextInput>
-            <TextInput  multiline = {true}
-                editable={false}
-                numberOfLines = {1}
-               style={styleText.textCardDetail}>{item.title}</TextInput>
-               
-            </View> 
-            }
-           
-          </CurrentVideoTO>
+                }, {
+                    id: "sNPnbI1arSE",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "the",
+                    slideNumber: "2"
+                }, {
+                    id: "VOgFZfRVaww",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "come",
+                    slideNumber: "3"
 
-            {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
-            
-        </View>
-    );
-  }
+                },
+                {
+                    id: "VOgFZfRVawp",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "on",
+                    slideNumber: "4"
 
-  render = () => {
-  
-    console.log("videos: updating")
+                },
+                {
+                    id: "VOgFZfRVawq",
+                    thumbnail: `require('./whitecard.png')`,
+                    title: "see",
+                    slideNumber: "5"
 
-    return (
-      <View backgroundColor={'pink'}>
-      
-      <TouchableOpacity style={stylesButton.button}  onPress={() => this.props.navigation.navigate('Home')}>
-         <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-        </TouchableOpacity>
+                },
+                {
+                    id: "VOgFZfRVaw3",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "go",
+                    slideNumber: "6"
 
-        <CarouselBackgroundView style={styles.content}>
-      
-           <Carousel
-          ref={ (c) => { this._carousel = c; } }
-          data={this.state.videos}
-          renderItem={this._renderItem.bind(this)}
-           onPress={() => { this._carousel.snapToNext(); }}
-          sliderWidth={360}
-          itemWidth={290} //256
-           layout={'tinder'}
-            layoutCardOffset={16} //For showing card deck height.
-                />
-      </CarouselBackgroundView>
-     
-      </View>
-      
-    );
-  }
+                },
+            ],
+
+        };
+
+
+    }
+
+    handleSnapToItem(index) {
+        console.log("snapped to ", index)
+        // if (index>= 0 && index<= 5) {
+
+        this.setState({numberValue: String(index + 1)});
+        // }
+    }
+
+    _renderItem = ({item, index}) => {
+
+
+        return (
+
+            <View style={styles.card}>
+                <View  style={{marginTop:20}} activeOpacity={1} onPress={() => {
+                    console.log("clicked to index", index)
+                    this._carousel.snapToItem(index);
+
+                    this.setState({numberValue: String(index + 1)});
+
+                }}>
+                    <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
+                        <View>
+
+
+                            <TextInput  multiline = {true}
+                                        editable={false}
+                                        numberOfLines = {1}
+                                        style={styleText.textCardDetail}>{item.title}</TextInput>
+                            {/*<TouchableOpacity marginTop={'35%'}
+                                             >
+                                {imageBottom}
+                            </TouchableOpacity>*/}
+                        </View>
+                    </CurrentVideoImage>
+                </View>
+
+                {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
+
+            </View>
+        );
+
+    }
+
+
+    render = () => {
+
+        console.log("videos: updating")
+
+
+        let temp;
+        if (this.state.numberValue >= 0) {
+            temp = "0" + String(this.state.numberValue)
+        } else {
+            temp = "01"
+        }
+        return (
+
+            <View style={{flex: 1}}>
+
+
+                <TouchableOpacity style={stylesButton.button}  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                </TouchableOpacity>
+
+                {console.log(" ************* value is" + this.state.numberValue + "")}
+                <CarouselBackgroundView style={styles.content}>
+                    <Carousel
+                        ref={(c) => {
+                            this._carousel = c;
+                        }}
+                        data={this.state.videos}
+                        renderItem={this._renderItem.bind(this)}
+                        onSnapToItem={this.handleSnapToItem.bind(this)}
+                        sliderWidth={390}
+                        itemWidth={290} //256
+                        layout={'tinder'}
+                        firstItem={0}
+                    />
+                </CarouselBackgroundView>
+            </View>
+
+        );
+    }
 }
 
+const {height, width} = Dimensions.get('window');
+const deviceHeight = height;
 
-   
-//const { width, height } = Dimensions.get('window'); // cs
+console.log("aspect ratio is"+deviceHeight+"Value");
 
-const VideoTitleText = styled.Text`
- color: black;
- 
-  justify-content: center;
-`
-const CurrentVideoImage = styled.Image`
-  
-  width: 290;
-  height: 500; 
-  border-radius: 20;
 
+// ios greater than 6 5.5 inch
+const CurrentVideoImage = styled.ImageBackground`
+
+        width: 320;
+        height: 470;
+        borderRadius: 5;
+        shadowColor: 'rgba(0,0,0,0.5)';
+        shadowOffset: {
+            width: 0,
+            height: 1
+        };
+        shadowOpacity:0.5;
 `;
 
-const ThumbnailBackgroundView = styled.View`
 
-  width: 290; 
-  height: 500;
-`;
-
-const CurrentVideoTO = styled.TouchableOpacity`
-;
-`
 const CarouselBackgroundView = styled.View`
+justify-content: center;
 
-transform: rotate(180deg);
-
-flex-direction: column;
+flex-direction: row;
   height: 100%;
   width: 100%;
+  
 `;
-
 
 const styles = StyleSheet.create({
     container: {
@@ -204,7 +217,12 @@ const styles = StyleSheet.create({
         },
         shadowOpacity:0.5,
     },
-
+    card1: {
+        backgroundColor: '#FE474C',
+    },
+    card2: {
+        backgroundColor: '#FEB12C',
+    },
     label: {
         lineHeight: 400,
         textAlign: 'center',
@@ -263,46 +281,78 @@ const styles = StyleSheet.create({
 });
 
 const styleText = StyleSheet.create({
+    textTopNumber: {
+        alignSelf: 'flex-start',
+        color: 'gray',
+        fontWeight: '500',
+        fontSize: 27,
 
-  textCardTitle: {
-    top: 20,
-    color: 'gray',
-    fontWeight: '500',
-    fontSize: 20,
-    height: 20,
-    position:'absolute',
-    alignSelf: 'flex-start',
-    marginLeft:2,
-  },
-  textCardDetail: {
+        marginLeft:'5%',
+        marginBottom: '0.5%',
+        position: 'relative',
 
-      lineHeight: 400,
-      textAlign: 'center',
-      fontSize: 55,
-      fontFamily: 'System',
-      color: '#000000',
-      backgroundColor: 'transparent',
+    },
+    textCardTitle: {
 
-  },
-  viewProp: 
-  { transform: [{ rotate: '180deg'}],
-    
-    flex:1,
-    alignItems: 'center', 
-    justifyContent: 'center',
-    
-     },
+        color: 'white',
+        fontWeight: '500',
+        fontSize: 23,
+        height: Platform.OS === 'ios' ? 30 : 50,
+        // backgroundColor: 'yellow'
+
+    },
+    textCardDetail: {
+
+        color: '#000000',
+        fontWeight: '300',
+        fontSize: 20,
+        // backgroundColor: 'green',
+        height: Platform.OS === 'ios' ? 75 : 90,
+        //  alignItems:'center'
+
+    },
+    viewProp: {
+        flex: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
 });
+
+const stylesImage = StyleSheet.create({
+    imageTop:{
+        marginTop: '15%',
+        width: 40,
+        height: 40,
+    },
+    imageCamera:{
+        marginTop: '15%',
+        width: 44,
+        height: 39,
+    },
+    imageVerb:{
+        marginTop: '15%',
+        width: 70,
+        height: 39,
+    },
+    imageBottomLock:{
+        marginTop: '9%',
+        width: 30,
+        height:39,
+    },
+    imageBottomArrow:{
+        marginTop: '9%',
+        width: 50,
+        height:50,
+    }
+
+});
+
 const stylesButton = StyleSheet.create({
- 
-  button: {
-    marginTop: 10,
-    position: 'relative',
-  },
-  
-  imageLeft:{
-    width: 50,
-    height: 50,
-  },
-});
 
+
+    imageLeft:{
+        width: 50,
+        height: 50,
+    },
+});
