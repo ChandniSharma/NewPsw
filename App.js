@@ -120,7 +120,7 @@ class ThumbnailCarousel extends Component {
         return (
 
             <View style={styles.card}>
-                <View  activeOpacity={1} onPress={() => {
+                <CurrentVideoTO  activeOpacity={1} onPress={() => {
                     console.log("clicked to index", index)
                     this._carousel.snapToItem(index);
 
@@ -149,7 +149,7 @@ class ThumbnailCarousel extends Component {
                             </TouchableOpacity>
                         </View>
                     </CurrentVideoImage>
-                </View>
+                </CurrentVideoTO>
 
                 {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
 
@@ -171,17 +171,16 @@ class ThumbnailCarousel extends Component {
             temp = "01"
         }
         return (
-
             <View style={{flex: 1}}>
 
-
-                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
+<HeaderCustom />
+                
 
                 {console.log(" ************* value is" + this.state.numberValue + "")}
 
                 <CarouselBackgroundView style={styles.content}>
+                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
                     <Carousel
-
                         ref={(c) => {
                             this._carousel = c;
                         }}
@@ -280,7 +279,7 @@ const CurrentVideoTO = styled.TouchableOpacity`;
 `
 const CarouselBackgroundView = styled.View`
 justify-content: center;
-
+backgroundColor: pink;
 flex-direction: row;
   height: 100%;
   width: 100%;
@@ -367,14 +366,13 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    alignSelf: 'flex-start',
+    top: '1%',
+    left: '1%',
     color: 'gray',
     fontWeight: '500',
     fontSize: 27,
-    
-    marginTop:'5%',
-    marginBottom: '0.5%',
-    position: 'relative',
+position: 'absolute',
+   
    
   },
   textCardTitle: {
@@ -426,17 +424,18 @@ const stylesImage = StyleSheet.create({
     height: 39,
   },
   imageVerb:{
+      
     marginTop: '15%',
     width: 70,
     height: 39,
   },
   imageBottomLock:{
-    marginTop: '9%',
+    marginTop: Platform.OS === 'ios' ? '9%' : '0.5%',
     width: 30,
     height:39,
   },
   imageBottomArrow:{
-    marginTop: '9%',
+    marginTop: Platform.OS === 'ios' ? '9%' : '0.5%',
     width: 50,
     height:50,
   }
