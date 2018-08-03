@@ -175,9 +175,10 @@ class ThumbnailCarousel extends Component {
             <View style={{flex: 1}}>
 
 
-                <TextInput style={styleText.textTopNumber} value={temp}/>
+                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
 
                 {console.log(" ************* value is" + this.state.numberValue + "")}
+
                 <CarouselBackgroundView style={styles.content}>
                     <Carousel
 
@@ -187,7 +188,7 @@ class ThumbnailCarousel extends Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={390}
+                        sliderWidth={350}
                         itemWidth={290} //256
                         layout={'default'}
                         firstItem={0}

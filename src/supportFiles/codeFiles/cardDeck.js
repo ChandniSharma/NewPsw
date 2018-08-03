@@ -24,6 +24,11 @@ export default class CardDeck extends React.Component {
         this.state = {
             errors: []
         }
+
+        this.state = {
+            isView: false,
+        }
+
         this.props = props;
         this._carousel = {};
         this.init();
@@ -92,25 +97,22 @@ export default class CardDeck extends React.Component {
         return (
 
             <View style={styles.card}>
-                <View  style={{marginTop:20}} activeOpacity={1} onPress={() => {
+                <View  activeOpacity={1} onPress={() => {
                     console.log("clicked to index", index)
                     this._carousel.snapToItem(index);
-
-                    this.setState({numberValue: String(index + 1)});
-
                 }}>
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
                         <View>
 
 
-                            <TextInput  multiline = {true}
-                                        editable={false}
-                                        numberOfLines = {1}
-                                        style={styleText.textCardDetail}>{item.title}</TextInput>
-                            {/*<TouchableOpacity marginTop={'35%'}
-                                             >
-                                {imageBottom}
-                            </TouchableOpacity>*/}
+                            <Text
+                                style={styles.label}>{item.title}</Text>
+
+                            <TouchableOpacity
+                                              style={styles.container}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('../../../arrownext.png')} style={stylesButton.imageCamera}/>
+                            </TouchableOpacity>
                         </View>
                     </CurrentVideoImage>
                 </View>
@@ -128,18 +130,14 @@ export default class CardDeck extends React.Component {
         console.log("videos: updating")
 
 
-        let temp;
-        if (this.state.numberValue >= 0) {
-            temp = "0" + String(this.state.numberValue)
-        } else {
-            temp = "01"
-        }
-        return (
+        const isView = this.state.isView;
+
+        return(
 
             <View style={{flex: 1}}>
 
 
-                <TouchableOpacity style={stylesButton.button}  onPress={() => this.props.navigation.navigate('Home')}>
+                <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
                 </TouchableOpacity>
 
@@ -152,12 +150,24 @@ export default class CardDeck extends React.Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={390}
+                        sliderWidth={350}
                         itemWidth={290} //256
                         layout={'tinder'}
                         firstItem={0}
                     />
                 </CarouselBackgroundView>
+
+                <View>
+                    {isView ? <View style={{width:"100%",height:"100%"}}>
+                        <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                            <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                        </TouchableOpacity>
+
+                        <Image style={{height:'50%',width:'100%'}} source={require('../../../orange.png')} />
+                    </View>   : null}
+                </View>
+
+
             </View>
 
         );
@@ -196,9 +206,7 @@ flex-direction: row;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#f2f2f2',
+        left:140
     },
     content:{
         flex: 5,
@@ -208,7 +216,6 @@ const styles = StyleSheet.create({
     card:{
         width: 320,
         height: 470,
-        backgroundColor: '#FE474C',
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
@@ -228,7 +235,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 55,
         fontFamily: 'System',
-        color: '#ffffff',
+        color: '#000000',
         backgroundColor: 'transparent',
     },
     footer:{
@@ -351,8 +358,13 @@ const stylesImage = StyleSheet.create({
 const stylesButton = StyleSheet.create({
 
 
+
     imageLeft:{
         width: 50,
         height: 50,
+    },
+    imageCamera:{
+        width: 44,
+        height: 39,
     },
 });
