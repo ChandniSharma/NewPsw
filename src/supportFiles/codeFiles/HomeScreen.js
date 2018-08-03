@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image,Platform} from 'react-native';
+import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
@@ -9,8 +9,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
 
 
-
-import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
+import CardDeck from './src/supportFiles/codeFiles/cardDeck';
 
 class ThumbnailCarousel extends Component {
 
@@ -91,10 +90,7 @@ class ThumbnailCarousel extends Component {
 
   handleSnapToItem(index){
     console.log("snapped to ", index)
-   // if (index>= 0 && index<= 5) {
-                  
-      this.setState({numberValue:String(index+1)});
-   // }
+    this.setState({numberValue:String(index+1)});
   }
 
   _renderItem = ( {item, index} ) => {
@@ -102,7 +98,7 @@ class ThumbnailCarousel extends Component {
     let imageBottom;
 
     if(index === 1){
-      imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageCamera} />
+      imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageTop} />
       imageBottom = <Image source={require('./arrownext.png')} style={stylesImage.imageBottomArrow} />
 
     }else
@@ -116,35 +112,24 @@ class ThumbnailCarousel extends Component {
 
     }
 
-   
-    if (deviceHeight===667) {
-
 
       return (
-
         <ThumbnailBackgroundView_iPhone6>
              <CurrentVideoTO onPress={ () => { 
                 console.log("clicked to index", index)
                 this._carousel.snapToItem(index);
-                
-                  this.setState({numberValue:String(index+1)});
-               
+                this.setState({numberValue:String(index+1)});
               }}>
             <CurrentVideoImage_iPhone6 source={item.thumbnail} resizeMode={'cover'}>
             <View style={styleText.viewProp}>
             
               {imageTitle}
-              <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
+              <TextInput style={styleText.textCardTitle}>{item.title}</TextInput>
               <TextInput  multiline = {true} 
                 editable={false}
                 numberOfLines = {3}
-                marginTop={'25%'}
-                marginBottom={'25%'}
-                style={styleText.textCardDetail}
-                marginLeft={'15%'}
-                marginRight={'15%'}
-               >{item.detail}</TextInput>
-               <TouchableOpacity marginTop={'35%'}  onPress ={() => this.props.navigation.navigate('Details')}>
+               style={styleText.textCardDetail}>{item.detail}</TextInput>
+               <TouchableOpacity style={stylesButton.buttonBottom} onPress ={() => this.props.navigation.navigate('Details')}>
                {imageBottom}
              </TouchableOpacity>
             </View>
@@ -155,64 +140,16 @@ class ThumbnailCarousel extends Component {
             
         </ThumbnailBackgroundView_iPhone6>
     );
-    } else {
-      return (
-        <ThumbnailBackgroundView>
-             <CurrentVideoTO onPress={ () => { 
-                console.log("clicked to index", index)
-                this._carousel.snapToItem(index);
-                this.setState({numberValue:String(index+1)});
-              }}>
-            <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
-            <View style={styleText.viewProp}>
-            
-              {imageTitle}
-              <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
-              <TextInput  multiline = {true} 
-                editable={false}
-                numberOfLines = {3}
-                marginTop={'25%'}
-                marginBottom={'25%'}
-                style={styleText.textCardDetail}
-                marginLeft={'15%'}
-                marginRight={'15%'}
-               >{item.detail}</TextInput>
-               <TouchableOpacity marginTop={'35%'}  onPress ={() => this.props.navigation.navigate('Details')}>
-               {imageBottom}
-             </TouchableOpacity>
-            </View>
-           </CurrentVideoImage>
-          </CurrentVideoTO>
 
-            {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
-            
-        </ThumbnailBackgroundView>
-    );
-    }
-    
   }
 
   render = () => {
   
     console.log("videos: updating")
-
-if (deviceHeight===667) {
-
-    let temp;
-      if (this.state.numberValue>= 0) {
-         temp =  "0"+String(this.state.numberValue)       
-       }else{
-         temp = "01"
-       }
 if (deviceHeight==667) {
-  
-
   return (
-    
     <View>
-
-      
-        <TextInput style={styleText.textTopNumber} value={temp} /> 
+        <TextInput style={styleText.textTopNumber} value={String(this.state.numberValue)} /> 
 
        {console.log(" ************* value is"+this.state.numberValue+"")}
         <CarouselBackgroundView>
@@ -233,8 +170,8 @@ if (deviceHeight==667) {
 } else {
   return (
     <View>
-
-      <TextInput style={styleText.textTopNumber} value={temp} /> 
+      <HeaderCustom />
+      <TextInput style={styleText.textTopNumber} value="01"/>
         <CarouselBackgroundView>
          <Carousel
         ref={ (c) => { this._carousel = c; } }
@@ -248,13 +185,16 @@ if (deviceHeight==667) {
       />
     </CarouselBackgroundView>
     </View>
+    
   );
 }
+   
+  }
 }
 const RootStack = createStackNavigator(
   {
     Home: ThumbnailCarousel,
-    Details: CardDeckNew,
+    Details: CardDeck,
   },
   {
     initialRouteName: 'Home',
@@ -290,80 +230,65 @@ const ThumbnailBackgroundView_iPhone6 = styled.View`
   height: 500;
   
 `;
-// ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
 
    width: 350; 
-   height: 550;
-   border-radius: 20;
+   height: 500;
+
 `;
 
 const ThumbnailBackgroundView = styled.View`
   width: 350; 
-  
-  height: 550;
-  border-radius: 20;
+  height: 500;
+
 `;
-
-// For android 
-const CurrentVideoImage_Android = styled.ImageBackground`
-
-   width: 300; 
-   height: 550;
-   border-radius: 20;
-`;
-
-const ThumbnailBackgroundView_Android = styled.View`
-  width: 300; 
-  
-  height: 550;
-  border-radius: 20;
-`;
-
 const CurrentVideoTO = styled.TouchableOpacity`;
 `
 const CarouselBackgroundView = styled.View`
-justify-content: center;
 
+justify-content: center;
+align-item: center;
 flex-direction: row;
   height: 100%;
   width: 100%;
   
 `;
 
+
+
 const styleText = StyleSheet.create({
   textTopNumber: {
-    alignSelf: 'flex-start',
+    top: -10,
     color: 'gray',
     fontWeight: '500',
-    fontSize: 27,
-    
-    marginLeft:'5%',
-    marginBottom: '0.5%',
+    fontSize: 20,
+    height: 30,
+    marginLeft:12,
     position: 'relative',
-   
+    
   },
   textCardTitle: {
     
     color: 'white',
     fontWeight: '500',
     fontSize: 23,
-    height: Platform.OS === 'ios' ? 30 : 50,
-   // backgroundColor: 'yellow'
+    height: 30,
     
   },
   textCardDetail: {
-    
+    padding:15,
     color: 'white',
     fontWeight: '300',
     fontSize: 20,
-   // backgroundColor: 'green',
-    height: Platform.OS === 'ios' ? 75 : 90,
+    height: 75,
+    
   //  alignItems:'center'
 
   },
   viewProp: { 
     flex: 1,
+    
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'column',
     
@@ -382,29 +307,22 @@ const stylesButton = StyleSheet.create({
 });
 const stylesImage = StyleSheet.create({
   imageTop:{
-    marginTop: '15%',
-    width: 40,
-    height: 40,
-  },
-  imageCamera:{
-    marginTop: '15%',
-    width: 44,
-    height: 39,
+    top:5,
+    width: 35,
+    height: 35,
   },
   imageVerb:{
-    marginTop: '15%',
+    top:5,
     width: 70,
     height: 39,
   },
   imageBottomLock:{
-    marginTop: '9%',
     width: 30,
     height:39,
   },
   imageBottomArrow:{
-    marginTop: '9%',
-    width: 50,
-    height:50,
+    width: 40,
+    height:40,
   }
 
 });
