@@ -166,19 +166,24 @@ export default class CardDeck extends React.Component {
 
             </View>
             <View>
-            {isView ? <View style={{width:"100%",height:"100%"}}>
-                    <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
-                        <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-                    </TouchableOpacity>
+            {isView ?
+                <CarouselBackgroundView style={{marginTop:20}}>
+                    <ImageBackground  source={require('./whitecard.png')} style={styles.card}>
+                        <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                            <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                        </TouchableOpacity>
 
-                    <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
-                           source={require('../../../orange.png')} />
+                        <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
+                               source={require('../../../orange.png')} />
 
-                    <ImageBackground style={{height:'40%',width:'100%',marginTop:10}} source={require('./whitecard.png')}>
-                        <Text
-                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+
+                            <Text
+                                style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+
                     </ImageBackground>
-                </View>   : null}
+
+                </CarouselBackgroundView>
+                : null}
             </View>
             </View>
 
@@ -229,6 +234,11 @@ const styles = StyleSheet.create({
         flex: 5,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    content2:{
+        flex: 5,
+        top:-120,
+        alignItems: 'center',
     },
     card:{
         width: 320,
