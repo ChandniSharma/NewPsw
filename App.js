@@ -12,9 +12,13 @@ import { Dimensions } from 'react-native';
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
 import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
+// For not showing warning in the bottom
+console.disableYellowBox = true;
 
 class ThumbnailCarousel extends Component {
 
+    
+    
     static navigationOptions =
         {
             title: 'Home',
@@ -217,6 +221,7 @@ export default class App extends React.Component {
   }
 }
 
+
 const {height, width} = Dimensions.get('window'); 
 const deviceHeight = height;
 let deviceWidth  = width;
@@ -390,7 +395,7 @@ position: 'absolute',
     fontWeight: '300',
     fontSize: 20,
    // backgroundColor: 'green',
-    height: Platform.OS === 'ios' ? 75 : 90,
+    height: Platform.OS === 'ios' ? 85 : 90,
   //  alignItems:'center'
 
   },
