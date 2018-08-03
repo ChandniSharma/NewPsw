@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 
@@ -10,6 +10,7 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
   static navigationOptions =
   {
      title: 'CardDeck',
+     headerMode: 'none',
   };
   constructor(props){
     super();
@@ -117,10 +118,14 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
     console.log("videos: updating")
 
     return (
-      <View>
-       
+      <View backgroundColor={'pink'}>
+      
+      <TouchableOpacity style={stylesButton.button}  onPress={() => this.props.navigation.navigate('Home')}>
+         <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+        </TouchableOpacity>
+
         <CarouselBackgroundView>
-         
+      
            <Carousel
           ref={ (c) => { this._carousel = c; } }
           data={this.state.videos}
@@ -157,24 +162,19 @@ const CurrentVideoImage = styled.Image`
 `;
 
 const ThumbnailBackgroundView = styled.View`
-top: 75;
+
   width: 290; 
   height: 500;
-  
-
 `;
 
 const CurrentVideoTO = styled.TouchableOpacity`
-
 ;
 `
 const CarouselBackgroundView = styled.View`
 
 transform: rotate(180deg);
+
 flex-direction: column;
-justifyContent: center;
-alignItems: center;
- backgroundColor: pink
   height: 100%;
   width: 100%;
 `;
@@ -202,12 +202,8 @@ const styleText = StyleSheet.create({
   },
   viewProp: 
   { transform: [{ rotate: '180deg'}],
-    position: 'absolute',
-  aspectRatio: 1,
-   top: 0, 
-   left: 10, 
-   right: 10,
-    height: 400, 
+    
+    flex:1,
     alignItems: 'center', 
     justifyContent: 'center',
     
@@ -216,14 +212,13 @@ const styleText = StyleSheet.create({
 const stylesButton = StyleSheet.create({
  
   button: {
-    borderColor: "gray",
-    borderRadius: 20,
-    padding: 10,
-    // marginBottom: 20,
-    shadowColor: '#303838',
-    shadowOffset: { width: 0, height: 5 },
-    // shadowRadius: 10,
-    shadowOpacity: 0.35,
+    marginTop: 10,
+    position: 'relative',
   },
   
+  imageLeft:{
+    width: 50,
+    height: 50,
+  },
 });
+

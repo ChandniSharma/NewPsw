@@ -3,12 +3,12 @@ import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
 // <Image source={require('./Assets/settingsWheel.png')} style={stylesButton.image}/>
 
-class HeaderCustom extends Component{
+class HeaderLeft extends Component{
     render(){
     return(
         <View style={stylesButton.containerButton}>
-        <TouchableOpacity onPress={()=>{alert("Coming Soon")}}>
-         <Image  style={stylesButton.image} source={require('./settingswheel.png')} />
+        <TouchableOpacity style={stylesButton.button} onPress={()=>{alert("Coming Soon")}}>
+         <Image  style={stylesButton.image} source={require('./arrowRight.png')} />
         </TouchableOpacity>
       </View>
     );
@@ -16,18 +16,26 @@ class HeaderCustom extends Component{
 }
 const stylesButton = StyleSheet.create({
     containerButton: {
-      
+      ...StyleSheet.absoluteFillObject,
       alignSelf: 'flex-end',
-      marginTop: '8%',
-      right:'5%',
+      marginTop: 10,
+      right:10,
       position: 'relative', // add if dont work with above
-      justifyContent: 'center',
-      alignItems: 'center',
+      
     },
-   
+    button: {
+      
+      
+      padding: 10,
+      // marginBottom: 20,
+      shadowColor: '#303838',
+      shadowOffset: { width: 0, height: 5 },
+      // shadowRadius: 10,
+      shadowOpacity: 0.35,
+    },
     image:{
       width: 25,
       height: 25,
     },
   });
- export default HeaderCustom;
+ export default HeaderLeft;
