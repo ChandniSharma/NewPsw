@@ -14,243 +14,187 @@ import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
 
 class ThumbnailCarousel extends Component {
 
-  static navigationOptions =
- {
-    title: 'Home',
- };
- 
- FunctionToOpenSecondActivity = () =>
- {
-    this.props.navigation.navigate('CardDeck');
-    
- }
-  constructor(props){
-    super();
-    this.state = {
-      numberValue: "01"
-    }
-    this.state = {
-       errors: []
-    }
-    this.props = props;
-    this._carousel = {};
-    this.init();
-  }
-
-  init(){
-    this.state = {
-      videos: [
+    static navigationOptions =
         {
-          id: "WpIAc9by5iU",
-          thumbnail: require('./greenview.png'),
-          detail: "Create your own group of words.",
-          icon: require('./smiley.png'),
-          title: "my words",
-          iconToMoveNextView: require('./lockSmall.png')
-        },
-        {
-          id: "WpIAc9by5iU",
-          thumbnail: require('./blue.png'),
-          detail: "These are the most common words found in children's books",
-          icon: require('./camera.png'),
-          title: "sight words",
-          iconToMoveNextView: require('./arrownext.png')
-          
-        }, 
-        {
-          id: "WpIAc9by5iU",
-          thumbnail: require('./orange.png'),
-          detail: "These words are used to describe an action",
-          icon: require('./verbs.png'),
-          title: "verbs",
-          iconToMoveNextView: require('./lockSmall.png')
-          
-        },
-        {
-          id: "VOgFZfRVaww",
-          thumbnail: require('./yellow.png'),
-          detail: "Create your own group of words.",
-          icon: require('./smiley.png'),
-          title: "nouns",
-          iconToMoveNextView: require('./lockSmall.png')
-        },
-        {
-          id: "sNPnbI1arSE",
-          thumbnail: require('./purple.png'),
-          detail: "Create your own group of words.",
-          icon: require('./smiley.png'),
-          title: "phonics",
-          iconToMoveNextView: require('./lockSmall.png')
-        }, 
-      ],
-      
-    };
+            title: 'Home',
+        };
 
-    
-  }
-
-  handleSnapToItem(index){
-    console.log("snapped to ", index)
-   // if (index>= 0 && index<= 5) {
-                  
-      this.setState({numberValue:String(index+1)});
-   // }
-  }
-
-  _renderItem = ( {item, index} ) => {
-    let imageTitle;
-    let imageBottom;
-
-    if(index === 1){
-      imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageCamera} />
-      imageBottom = <Image source={require('./arrownext.png')} style={stylesImage.imageBottomArrow} />
-
-    }else
-      if (index===2) {
-      imageTitle = <Image source={require('./verbs.png')} style={stylesImage.imageVerb} />
-      imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock} />
-
-       } else {
-      imageTitle = <Image source={require('./smiley.png')} style={stylesImage.imageTop} />
-      imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock} />
+    FunctionToOpenSecondActivity = () => {
+        this.props.navigation.navigate('CardDeck');
 
     }
 
-   
-    if (deviceHeight===667) {
+    constructor(props) {
+        super();
+        this.state = {
+            numberValue: "01"
+        }
+        this.state = {
+            errors: []
+        }
+        this.props = props;
+        this._carousel = {};
+        this.init();
+    }
+
+    init() {
+        this.state = {
+            videos: [
+                {
+                    id: "WpIAc9by5iU",
+                    thumbnail: require('./greenview.png'),
+                    detail: "Create your own group of words.",
+                    icon: require('./smiley.png'),
+                    title: "my words",
+                    iconToMoveNextView: require('./lockSmall.png')
+                },
+                {
+                    id: "WpIAc9by5iU",
+                    thumbnail: require('./blue.png'),
+                    detail: "These are the most common words found in children's books",
+                    icon: require('./camera.png'),
+                    title: "sight words",
+                    iconToMoveNextView: require('./arrownext.png')
+
+                },
+                {
+                    id: "WpIAc9by5iU",
+                    thumbnail: require('./orange.png'),
+                    detail: "These words are used to describe an action",
+                    icon: require('./verbs.png'),
+                    title: "verbs",
+                    iconToMoveNextView: require('./lockSmall.png')
+
+                },
+                {
+                    id: "VOgFZfRVaww",
+                    thumbnail: require('./yellow.png'),
+                    detail: "Create your own group of words.",
+                    icon: require('./smiley.png'),
+                    title: "nouns",
+                    iconToMoveNextView: require('./lockSmall.png')
+                },
+                {
+                    id: "sNPnbI1arSE",
+                    thumbnail: require('./purple.png'),
+                    detail: "Create your own group of words.",
+                    icon: require('./smiley.png'),
+                    title: "phonics",
+                    iconToMoveNextView: require('./lockSmall.png')
+                },
+            ],
+
+        };
 
 
-      return (
+    }
 
-        <ThumbnailBackgroundView_iPhone6>
-             <CurrentVideoTO  activeOpacity={1} onPress={ () => { 
-                console.log("clicked to index", index)
-                this._carousel.snapToItem(index);
-                
-                  this.setState({numberValue:String(index+1)});
-               
-              }}>
-            <CurrentVideoImage_iPhone6 source={item.thumbnail} resizeMode={'cover'}>
-            <View style={styleText.viewProp}>
-            
-              {imageTitle}
-              <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
-              <TextInput  multiline = {true} 
-                editable={false}
-                numberOfLines = {3}
-                marginTop={'25%'}
-                marginBottom={'25%'}
-                style={styleText.textCardDetail}
-                marginLeft={'15%'}
-                marginRight={'15%'}
-               >{item.detail}</TextInput>
-               <TouchableOpacity marginTop={'35%'}  onPress ={() => this.props.navigation.navigate('Details')}>
-               {imageBottom}
-             </TouchableOpacity>
+    handleSnapToItem(index) {
+        console.log("snapped to ", index)
+        // if (index>= 0 && index<= 5) {
+
+        this.setState({numberValue: String(index + 1)});
+        // }
+    }
+
+    _renderItem = ({item, index}) => {
+        let imageTitle;
+        let imageBottom;
+
+        if (index === 1) {
+            imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageCamera}/>
+            imageBottom = <Image source={require('./arrownext.png')} style={stylesImage.imageBottomArrow}/>
+
+        } else if (index === 2) {
+            imageTitle = <Image source={require('./verbs.png')} style={stylesImage.imageVerb}/>
+            imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock}/>
+
+        } else {
+            imageTitle = <Image source={require('./smiley.png')} style={stylesImage.imageTop}/>
+            imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock}/>
+
+        }
+
+
+        return (
+
+            <View style={{flex:1}}>
+                <View  style={{marginTop:20}}activeOpacity={1} onPress={() => {
+                    console.log("clicked to index", index)
+                    this._carousel.snapToItem(index);
+
+                    this.setState({numberValue: String(index + 1)});
+
+                }}>
+                    <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
+                        <View style={styleText.viewProp}>
+
+                            {imageTitle}
+                            <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
+                            <TextInput multiline={true}
+                                       editable={false}
+                                       numberOfLines={3}
+                                       marginTop={'25%'}
+                                       marginBottom={'25%'}
+                                       style={styleText.textCardDetail}
+                                       marginLeft={'15%'}
+                                       marginRight={'15%'}
+                            >{item.detail}</TextInput>
+                            <TouchableOpacity marginTop={'35%'}
+                                              onPress={() => this.props.navigation.navigate('Details')}>
+                                {imageBottom}
+                            </TouchableOpacity>
+                        </View>
+                    </CurrentVideoImage>
+                </View>
+
+                {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
+
             </View>
-           </CurrentVideoImage_iPhone6>
-          </CurrentVideoTO>
+        );
 
-            {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
-            
-        </ThumbnailBackgroundView_iPhone6>
-    );
-    } else {
-      return (
-        <ThumbnailBackgroundView>
-             <CurrentVideoTO activeOpacity={1} onPress={ () => { 
-                console.log("clicked to index", index)
-                this._carousel.snapToItem(index);
-                this.setState({numberValue:String(index+1)});
-              }}>
-            <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
-            <View style={styleText.viewProp}>
-            
-              {imageTitle}
-              <TextInput marginTop={'5%'} style={styleText.textCardTitle}>{item.title}</TextInput>
-              <TextInput  multiline = {true} 
-                editable={false}
-                numberOfLines = {3}
-                marginTop={'25%'}
-                marginBottom={'25%'}
-                style={styleText.textCardDetail}
-                marginLeft={'15%'}
-                marginRight={'15%'}
-               >{item.detail}</TextInput>
-               <TouchableOpacity marginTop={'35%'}  onPress ={() => this.props.navigation.navigate('Details')}>
-               {imageBottom}
-             </TouchableOpacity>
-            </View>
-           </CurrentVideoImage>
-          </CurrentVideoTO>
-
-            {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
-            
-        </ThumbnailBackgroundView>
-    );
     }
-    
-  }
 
-  render = () => {
-  
-    console.log("videos: updating")
 
-if (deviceHeight===667) {
+    render = () => {
 
-    let temp;
-      if (this.state.numberValue>= 0) {
-         temp =  "0"+String(this.state.numberValue)       
-       }else{
-         temp = "01"
-       }
-if (deviceHeight==667) {
-  
+        console.log("videos: updating")
 
-  return (
-    
-    <View>
 
-      
-        <TextInput style={styleText.textTopNumber} value={temp} /> 
+        let temp;
+        if (this.state.numberValue >= 0) {
+            temp = "0" + String(this.state.numberValue)
+        } else {
+            temp = "01"
+        }
+        return (
 
-       {console.log(" ************* value is"+this.state.numberValue+"")}
-        <CarouselBackgroundView>
-         <Carousel
-        ref={ (c) => { this._carousel = c; } }
-        data={this.state.videos}
-        renderItem={this._renderItem.bind(this)}
-        onSnapToItem={this.handleSnapToItem.bind(this)}
-        sliderWidth={390}
-        itemWidth={290} //256
-        layout={'default'}
-        firstItem={0}
-      />
-    </CarouselBackgroundView>
-    </View>
-    
-  );
-} else {
-  return (
-    <View>
+            <View style={{flex: 1}}>
 
-      <TextInput style={styleText.textTopNumber} value={temp} /> 
-        <CarouselBackgroundView>
-         <Carousel
-        ref={ (c) => { this._carousel = c; } }
-        data={this.state.videos}
-        renderItem={this._renderItem.bind(this)}
-        onSnapToItem={this.handleSnapToItem.bind(this)}
-        sliderWidth={390}
-        itemWidth={325} //256
-        layout={'default'}
-        firstItem={0}
-      />
-    </CarouselBackgroundView>
-    </View>
-  );
+
+                <TextInput style={styleText.textTopNumber} value={temp}/>
+
+                {console.log(" ************* value is" + this.state.numberValue + "")}
+                <CarouselBackgroundView>
+                    <Carousel
+                        ref={(c) => {
+                            this._carousel = c;
+                        }}
+                        data={this.state.videos}
+                        renderItem={this._renderItem.bind(this)}
+                        onSnapToItem={this.handleSnapToItem.bind(this)}
+                        sliderWidth={390}
+                        itemWidth={290} //256
+                        layout={'default'}
+                        firstItem={0}
+                    />
+                </CarouselBackgroundView>
+            </View>
+
+        );
+    }
 }
-}
+
 const RootStack = createStackNavigator(
   {
     Home: ThumbnailCarousel,
@@ -293,9 +237,15 @@ const ThumbnailBackgroundView_iPhone6 = styled.View`
 // ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
 
-   width: 350; 
-   height: 550;
-   border-radius: 20;
+        width: 320;
+        height: 470;
+        borderRadius: 5;
+        shadowColor: 'rgba(0,0,0,0.5)';
+        shadowOffset: {
+            width: 0,
+            height: 1
+        };
+        shadowOpacity:0.5;
 `;
 
 const ThumbnailBackgroundView = styled.View`
@@ -305,7 +255,7 @@ const ThumbnailBackgroundView = styled.View`
   border-radius: 20;
 `;
 
-// For android 
+// For android
 const CurrentVideoImage_Android = styled.ImageBackground`
 
    width: 300; 
@@ -330,6 +280,86 @@ flex-direction: row;
   width: 100%;
   
 `;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#f2f2f2',
+    },
+    content:{
+        flex: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    card:{
+        width: 320,
+        height: 470,
+        borderRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+    },
+
+    label: {
+        lineHeight: 400,
+        textAlign: 'center',
+        fontSize: 55,
+        fontFamily: 'System',
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
+    footer:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    buttonContainer:{
+        width:220,
+        flexDirection:'row',
+        justifyContent: 'space-between',
+    },
+    button:{
+        shadowColor: 'rgba(0,0,0,0.3)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+        backgroundColor:'#fff',
+        alignItems:'center',
+        justifyContent:'center',
+        zIndex: 0,
+    },
+    orange:{
+        width:55,
+        height:55,
+        borderWidth:6,
+        borderColor:'rgb(246,190,66)',
+        borderWidth:4,
+        borderRadius:55,
+        marginTop:-15
+    },
+    green:{
+        width:75,
+        height:75,
+        backgroundColor:'#fff',
+        borderRadius:75,
+        borderWidth:6,
+        borderColor:'#01df8a',
+    },
+    red:{
+        width:75,
+        height:75,
+        backgroundColor:'#fff',
+        borderRadius:75,
+        borderWidth:6,
+        borderColor:'#fd267d',
+    }
+});
 
 const styleText = StyleSheet.create({
   textTopNumber: {
@@ -362,10 +392,10 @@ const styleText = StyleSheet.create({
   //  alignItems:'center'
 
   },
-  viewProp: { 
-    flex: 1,
-    alignItems: 'center',
-    flexDirection: 'column',
+  viewProp: {
+      flex: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
     
      },
 });

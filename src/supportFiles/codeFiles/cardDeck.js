@@ -6,7 +6,7 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
 
 
 
- export default class CardDeck extends React.Component {
+export default class CardDeck extends React.Component {
   static navigationOptions =
   {
      title: 'CardDeck',
@@ -91,7 +91,7 @@ import Carousel from 'react-native-snap-carousel'; // Version can be specified i
                 this._carousel.snapToNext(index);
               }}
           >
-            <CurrentVideoImage source={require('./whitecard.png')} resizeMode={'cover'} />
+            <CurrentVideoImage style={styleText.card} source={require('./whitecard.png')} resizeMode={'cover'} />
             {
               <View style={styleText.viewProp}>
             <TextInput  
@@ -204,12 +204,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity:0.5,
     },
-    card1: {
-        backgroundColor: '#FE474C',
-    },
-    card2: {
-        backgroundColor: '#FEB12C',
-    },
+
     label: {
         lineHeight: 400,
         textAlign: 'center',
@@ -280,12 +275,13 @@ const styleText = StyleSheet.create({
     marginLeft:2,
   },
   textCardDetail: {
-    
-    color: 'black',
-    fontWeight: '900',
-    fontSize: 40,
-    height: 60,
-   alignItems:'center'
+
+      lineHeight: 400,
+      textAlign: 'center',
+      fontSize: 55,
+      fontFamily: 'System',
+      color: '#000000',
+      backgroundColor: 'transparent',
 
   },
   viewProp: 
