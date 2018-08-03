@@ -1,6 +1,9 @@
 
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, Dimensions} from 'react-native';
+import {
+    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, Dimensions,
+    ImageBackground
+} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel';
 import {createStackNavigator} from "react-navigation"; // Version can be specified in package.json
@@ -134,6 +137,7 @@ export default class CardDeck extends React.Component {
 
         return(
 
+            <View style={styles.container1} >
             <View style={{flex: 1}}>
 
 
@@ -157,17 +161,25 @@ export default class CardDeck extends React.Component {
                     />
                 </CarouselBackgroundView>
 
-                <View>
-                    {isView ? <View style={{width:"100%",height:"100%"}}>
-                        <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
-                            <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-                        </TouchableOpacity>
-
-                        <Image style={{height:'50%',width:'100%'}} source={require('../../../orange.png')} />
-                    </View>   : null}
-                </View>
 
 
+
+            </View>
+            <View>
+            {isView ? <View style={{width:"100%",height:"100%"}}>
+                    <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                        <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                    </TouchableOpacity>
+
+                    <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
+                           source={require('../../../orange.png')} />
+
+                    <ImageBackground style={{height:'40%',width:'100%',marginTop:10}} source={require('./whitecard.png')}>
+                        <Text
+                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+                    </ImageBackground>
+                </View>   : null}
+            </View>
             </View>
 
         );
@@ -185,7 +197,7 @@ const CurrentVideoImage = styled.ImageBackground`
 
         width: 320;
         height: 470;
-        borderRadius: 5;
+        borderRadius: 10;
         shadowColor: 'rgba(0,0,0,0.5)';
         shadowOffset: {
             width: 0,
@@ -205,6 +217,11 @@ flex-direction: row;
 `;
 
 const styles = StyleSheet.create({
+    container1: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#f2f2f2',
+    },
     container: {
         left:140
     },
@@ -216,7 +233,7 @@ const styles = StyleSheet.create({
     card:{
         width: 320,
         height: 470,
-        borderRadius: 5,
+        borderRadius: 10,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
             width: 0,
@@ -237,6 +254,16 @@ const styles = StyleSheet.create({
         fontFamily: 'System',
         color: '#000000',
         backgroundColor: 'transparent',
+    },
+    label1: {
+        lineHeight:50,
+        textAlign: 'center',
+        fontSize: 20,
+        fontFamily: 'System',
+        color: '#000000',
+        backgroundColor: 'transparent',
+        marginLeft:10,
+        marginRight:10
     },
     footer:{
         flex:1,
