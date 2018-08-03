@@ -177,9 +177,7 @@ class ThumbnailCarousel extends Component {
         return (
             <View style={{flex: 1}}>
 
-<HeaderCustom />
-                
-
+           <HeaderCustom />
                 {console.log(" ************* value is" + this.state.numberValue + "")}
 
                 <CarouselBackgroundView style={styles.content}>
@@ -284,7 +282,6 @@ const CurrentVideoTO = styled.TouchableOpacity`;
 `
 const CarouselBackgroundView = styled.View`
 justify-content: center;
-backgroundColor: pink;
 flex-direction: row;
   height: 100%;
   width: 100%;

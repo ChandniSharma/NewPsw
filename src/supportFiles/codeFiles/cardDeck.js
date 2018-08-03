@@ -106,9 +106,7 @@ export default class CardDeck extends React.Component {
                 }}>
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
                         <View>
-
-
-                            <Text
+                               <Text 
                                 style={styles.label}>{item.title}</Text>
 
                             <TouchableOpacity
@@ -141,12 +139,9 @@ export default class CardDeck extends React.Component {
             <View style={{flex: 1}}>
 
 
-                <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.props.navigation.navigate('Home')}>
-                    <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-                </TouchableOpacity>
-
                 {console.log(" ************* value is" + this.state.numberValue + "")}
                 <CarouselBackgroundView style={styles.content}>
+                
                     <Carousel
                         ref={(c) => {
                             this._carousel = c;
@@ -158,31 +153,33 @@ export default class CardDeck extends React.Component {
                         itemWidth={290} //256
                         layout={'tinder'}
                         firstItem={0}
+                        layoutCardOffset={16} //For showing card deck height.
                     />
+
+                     <TouchableOpacity style={[stylesButton.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                </TouchableOpacity>
+
                 </CarouselBackgroundView>
-
-
-
-
             </View>
             <View>
             {isView ?
-                <CarouselBackgroundView style={{marginTop:20}}>
-                    <ImageBackground  source={require('./whitecard.png')} style={styles.card}>
+                <ViewPopup>
+                    <CurrentVideoImage  source={require('./whitecard.png')} resizeMode={'cover'} >
                         <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                             <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
                         </TouchableOpacity>
 
                         <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
-                               source={require('../../../orange.png')} />
+                               source={require('../../../blue.png')} />
 
 
                             <Text
                                 style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
 
-                    </ImageBackground>
+                    </CurrentVideoImage>
 
-                </CarouselBackgroundView>
+                </ViewPopup>
                 : null}
             </View>
             </View>
@@ -199,6 +196,18 @@ console.log("aspect ratio is"+deviceHeight+"Value");
 
 // ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
+  
+  width: 290;
+  height: 500; 
+  border-radius: 20;
+`;
+const ThumbnailBackgroundView = styled.View`
+top: 75;
+  width: 290; 
+  height: 500;
+  
+`;
+/* const CurrentVideoImage = styled.ImageBackground`
 
         width: 320;
         height: 470;
@@ -209,17 +218,35 @@ const CurrentVideoImage = styled.ImageBackground`
             height: 1
         };
         shadowOpacity:0.5;
-`;
-
+`; */
 
 const CarouselBackgroundView = styled.View`
-justify-content: center;
+transform: rotate(180deg);
+flex-direction: column;
+justifyContent: center;
+alignItems: center;
+ 
+  height: 100%;
+  width: 100%;
+`;
+const ViewPopup = styled.View`
 
+flex-direction: column;
+justifyContent: center;
+alignItems: center;
+ 
+  height: 100%;
+  width: 100%;
+`;
+
+/* const CarouselBackgroundView = styled.View`
+transform: rotate(180deg);
+justify-content: center;
 flex-direction: row;
   height: 100%;
   width: 100%;
   
-`;
+`; */
 
 const styles = StyleSheet.create({
     container1: {
@@ -258,6 +285,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FEB12C',
     },
     label: {
+        transform: [{ rotate: '180deg'}],
         lineHeight: 400,
         textAlign: 'center',
         fontSize: 55,
@@ -355,12 +383,22 @@ const styleText = StyleSheet.create({
         //  alignItems:'center'
 
     },
-    viewProp: {
+       viewProp: {
+        transform: [{ rotate: '180deg'}],
         flex: 5,
         alignItems: 'center',
         justifyContent: 'center',
 
-    },
+     },
+//     viewProp: 
+//   { transform: [{ rotate: '180deg'}],
+//     position: 'relative',
+//     flex:1,
+//     height: 400, 
+//     alignItems: 'center', 
+//     justifyContent: 'center',
+    
+//      },
 });
 
 const stylesImage = StyleSheet.create({
@@ -394,7 +432,10 @@ const stylesImage = StyleSheet.create({
 
 const stylesButton = StyleSheet.create({
 
-
+    buttonBack: {
+        marginRight:'2%',
+        position:'relative',
+      },
 
     imageLeft:{
         width: 50,
