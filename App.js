@@ -131,19 +131,19 @@ class ThumbnailCarousel extends Component {
                         <View >
 
                             <View style={styles.container}>{imageTitle}</View>
-                            <TextInput marginTop={'5%'} editable={false} style={styleText.textCardTitle}>{item.title}</TextInput>
+                            <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput>
                             <TextInput multiline={true}
                                        editable={false}
                                        numberOfLines={3}
                                        marginTop={'25%'}
                                        marginBottom={'25%'}
-                                       style={styleText.textCardDetail}
+                                       style={[styleText.textCardDetail,{textAlign:'center'}]}
                                        marginLeft={'15%'}
                                        marginRight={'15%'}
                             >{item.detail}
                             </TextInput>
                             <TouchableOpacity marginTop={'35%'}
-                                              marginLeft={'50%'}
+                                              style={styles.container}
                                               onPress={() => this.props.navigation.navigate('Details')}>
                                 {imageBottom}
                             </TouchableOpacity>
@@ -288,7 +288,7 @@ flex-direction: row;
 
 const styles = StyleSheet.create({
     container: {
-        left:deviceWidth/2,
+        left:140,
     },
     content:{
         flex: 5,
@@ -371,7 +371,7 @@ const styleText = StyleSheet.create({
     fontWeight: '500',
     fontSize: 27,
     
-    marginLeft:'5%',
+    marginTop:'5%',
     marginBottom: '0.5%',
     position: 'relative',
    
