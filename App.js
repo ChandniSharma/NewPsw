@@ -121,7 +121,7 @@ class ThumbnailCarousel extends Component {
       return (
 
         <ThumbnailBackgroundView_iPhone6>
-             <CurrentVideoTO onPress={ () => { 
+             <CurrentVideoTO  activeOpacity={1} onPress={ () => { 
                 console.log("clicked to index", index)
                 this._carousel.snapToItem(index);
                 
@@ -156,7 +156,7 @@ class ThumbnailCarousel extends Component {
     } else {
       return (
         <ThumbnailBackgroundView>
-             <CurrentVideoTO onPress={ () => { 
+             <CurrentVideoTO activeOpacity={1} onPress={ () => { 
                 console.log("clicked to index", index)
                 this._carousel.snapToItem(index);
                 this.setState({numberValue:String(index+1)});
