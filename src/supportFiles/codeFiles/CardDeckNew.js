@@ -23,6 +23,50 @@ export default class CardDeckNew extends React.Component {
             numberValue: '01'
         }
         this.state = {
+            videos: [
+                {
+                    id: "WpIAc9by5iU",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "a",
+                    slideNumber: "1"
+
+                }, {
+                    id: "sNPnbI1arSE",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "the",
+                    slideNumber: "2"
+                }, {
+                    id: "VOgFZfRVaww",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "come",
+                    slideNumber: "3"
+
+                },
+                {
+                    id: "VOgFZfRVawp",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "on",
+                    slideNumber: "4"
+
+                },
+                {
+                    id: "VOgFZfRVawq",
+                    thumbnail: `require('./whitecard.png')`,
+                    title: "see",
+                    slideNumber: "5"
+
+                },
+                {
+                    id: "VOgFZfRVaw3",
+                    thumbnail: require('../../img/whitecard.png'),
+                    title: "go",
+                    slideNumber: "6"
+
+                },
+            ],
+
+        };
+        this.state = {
             errors: []
         }
         this.props = props;
@@ -43,11 +87,11 @@ export default class CardDeckNew extends React.Component {
                     onSwiped={() => console.log('onSwiped')}
                     onSwipedLeft={() => console.log('onSwipedLeft')}
                 >
-                    <Card style={[styles.card, styles.card1]}><Text style={styles.label}>A</Text></Card>
-                    <Card style={[styles.card, styles.card2]}><Text style={styles.label}>B</Text></Card>
-                    <Card style={[styles.card, styles.card1]}><Text style={styles.label}>C</Text></Card>
-                    <Card style={[styles.card, styles.card2]}><Text style={styles.label}>D</Text></Card>
-                    <Card style={[styles.card, styles.card1]}><Text style={styles.label}>E</Text></Card>
+                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>A</Text></Card>
+                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>B</Text></Card>
+                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>C</Text></Card>
+                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>D</Text></Card>
+                    <Card style={styles.card}><Text style={styles.label}>E</Text></Card>
 
                 </CardStack>
 
@@ -72,7 +116,7 @@ const styles = StyleSheet.create({
     card:{
         width: 320,
         height: 470,
-        backgroundColor: '#FE474C',
+        backgroundColor: '#ffffff',
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
@@ -92,7 +136,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 55,
         fontFamily: 'System',
-        color: '#ffffff',
+        color: '#000000',
         backgroundColor: 'transparent',
     },
     footer:{

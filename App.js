@@ -189,8 +189,8 @@ class ThumbnailCarousel extends Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={350}
-                        itemWidth={290} //256
+                        sliderWidth={deviceWidth}
+                        itemWidth={310} //256
                         layout={'default'}
                         firstItem={0}
                     />
@@ -204,7 +204,7 @@ class ThumbnailCarousel extends Component {
 const RootStack = createStackNavigator(
   {
     Home: ThumbnailCarousel,
-    Details: CardDeck,
+    Details: CardDeckNew,
   },
   {
     initialRouteName: 'Home',
@@ -247,7 +247,7 @@ const CurrentVideoImage = styled.ImageBackground`
 
         width: 320;
         height: 470;
-        borderRadius: 5;
+        borderRadius: 20;
         shadowColor: 'rgba(0,0,0,0.5)';
         shadowOffset: {
             width: 0,
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     card:{
         width: 320,
         height: 470,
-        borderRadius: 5,
+        borderRadius: 10,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
             width: 0,
@@ -368,11 +368,11 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    top: '1%',
-    left: '1%',
+    top: Platform.OS === 'ios' ? '4%' : '-10%',
+    left: '11.5%',
     color: 'gray',
     fontWeight: '500',
-    fontSize: 27,
+    fontSize: 35,
 position: 'absolute',
    
    

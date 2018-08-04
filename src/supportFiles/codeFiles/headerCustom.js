@@ -18,8 +18,8 @@ const stylesButton = StyleSheet.create({
     containerButton: {
       
       alignSelf: 'flex-end',
-      marginTop: '8%',
-      right:'5%',
+      marginTop: '10%',
+      right:'2%',
       position: 'relative', // add if dont work with above
       justifyContent: 'center',
       alignItems: 'center',
