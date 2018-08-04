@@ -106,14 +106,14 @@ export default class CardDeck extends React.Component {
                 }}>
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
                         <View>
-                        <TouchableOpacity 
-                              style={[styles.container,{marginTop:20}]}
+                             <TouchableOpacity
+                                              style={styles.container}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
                                 <Image source={require('../../../arrownext.png')} style={stylesButton.imageCamera}/>
                             </TouchableOpacity>
-
                                <Text 
                                 style={styles.label}>{item.title}</Text>
+
                            
                         </View>
                     </CurrentVideoImage>
@@ -152,20 +152,20 @@ export default class CardDeck extends React.Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={width}
+                        sliderWidth={350}
                         itemWidth={290} //256
-                        containerCustomStyle={{ overflow: 'visible' }}
-                       contentContainerCustomStyle={{ overflow: 'visible' }}
                         layout={'tinder'}
                         firstItem={0}
                         layoutCardOffset={16} //For showing card deck height.
                     />
 
+                     
+
                 </CarouselBackgroundView>
             </View>
             <View>
             {isView ?
-                <ViewPopup justifyContent= 'center' alignItems= 'center'>
+                <ViewPopup>
                     <CurrentVideoImage  source={require('./whitecard.png')} resizeMode={'cover'} >
 
                         <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
