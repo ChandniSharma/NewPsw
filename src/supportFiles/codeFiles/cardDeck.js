@@ -106,14 +106,15 @@ export default class CardDeck extends React.Component {
                 }}>
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
                         <View>
-                               <Text 
-                                style={styles.label}>{item.title}</Text>
-
-                            <TouchableOpacity
-                                              style={styles.container}
+                        <TouchableOpacity 
+                              style={[styles.container,{marginTop:20}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
                                 <Image source={require('../../../arrownext.png')} style={stylesButton.imageCamera}/>
                             </TouchableOpacity>
+
+                               <Text 
+                                style={styles.label}>{item.title}</Text>
+                           
                         </View>
                     </CurrentVideoImage>
                 </View>
@@ -137,7 +138,9 @@ export default class CardDeck extends React.Component {
 
             <View style={styles.container1} >
             <View style={{flex: 1}}>
-
+            <TouchableOpacity style={[stylesButton.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                </TouchableOpacity>
 
                 {console.log(" ************* value is" + this.state.numberValue + "")}
                 <CarouselBackgroundView style={styles.content}>
@@ -149,34 +152,30 @@ export default class CardDeck extends React.Component {
                         data={this.state.videos}
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
-                        sliderWidth={350}
+                        sliderWidth={width}
                         itemWidth={290} //256
+                        containerCustomStyle={{ overflow: 'visible' }}
+                       contentContainerCustomStyle={{ overflow: 'visible' }}
                         layout={'tinder'}
                         firstItem={0}
                         layoutCardOffset={16} //For showing card deck height.
                     />
 
-                     <TouchableOpacity style={[stylesButton.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                    <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-                </TouchableOpacity>
-
                 </CarouselBackgroundView>
             </View>
             <View>
             {isView ?
-                <ViewPopup>
+                <ViewPopup justifyContent= 'center' alignItems= 'center'>
                     <CurrentVideoImage  source={require('./whitecard.png')} resizeMode={'cover'} >
-                        <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
-                            <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
-                        </TouchableOpacity>
 
                         <Image style={{height:'50%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2}}
                                source={require('../../../blue.png')} />
 
-
                             <Text
                                 style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
-
+                         <TouchableOpacity style={[stylesButton.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                            <Image  style={stylesButton.imageLeft} source={require('./arrowRight.png')} />
+                        </TouchableOpacity>
                     </CurrentVideoImage>
 
                 </ViewPopup>
@@ -434,7 +433,7 @@ const stylesButton = StyleSheet.create({
 
     buttonBack: {
         marginRight:'2%',
-        position:'relative',
+        position:'absolute',
       },
 
     imageLeft:{
