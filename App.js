@@ -11,7 +11,7 @@ import { Dimensions } from 'react-native';
 
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
-import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
+//import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
 // For not showing warning in the bottom
 console.disableYellowBox = true;
 
@@ -25,8 +25,7 @@ class ThumbnailCarousel extends Component {
         };
 
     FunctionToOpenSecondActivity = () => {
-        this.props.navigation.navigate('CardDeck');
-
+        this.props.navigation.navigate('CardDeckNew');
     }
 
     constructor(props) {
@@ -120,7 +119,6 @@ class ThumbnailCarousel extends Component {
 
         }
 
-
         return (
 
             <View style={styles.card}>
@@ -131,6 +129,8 @@ class ThumbnailCarousel extends Component {
                     this.setState({numberValue: String(index + 1)});
 
                 }}>
+
+
                     <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
                         <View >
 
@@ -153,6 +153,9 @@ class ThumbnailCarousel extends Component {
                             </TouchableOpacity>
                         </View>
                     </CurrentVideoImage>
+
+
+
                 </CurrentVideoTO>
 
                 {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
@@ -245,9 +248,9 @@ const ThumbnailBackgroundView_iPhone6 = styled.View`
 // ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
 
-        width: 320;
-        height: 470;
-        borderRadius: 20;
+        width: 310;
+        height: 500;
+        borderRadius: 30;
         shadowColor: 'rgba(0,0,0,0.5)';
         shadowOffset: {
             width: 0,

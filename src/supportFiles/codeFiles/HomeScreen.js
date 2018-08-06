@@ -7,9 +7,10 @@ import HeaderLeft from './src/supportFiles/codeFiles/headerLeft';
 
 import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
+import CardDeckNew from './CardDeckNew';
 
 
-import CardDeck from './src/supportFiles/codeFiles/cardDeck';
+//import CardDeck from './src/supportFiles/codeFiles/cardDeck';
 
 class ThumbnailCarousel extends Component {
 
@@ -19,7 +20,7 @@ class ThumbnailCarousel extends Component {
         };
 
     FunctionToOpenSecondActivity = () => {
-        this.props.navigation.navigate('CardDeck');
+       // this.props.navigation.navigate('CardDeck');
 
     }
 
@@ -198,7 +199,7 @@ class ThumbnailCarousel extends Component {
 const RootStack = createStackNavigator(
     {
         Home: ThumbnailCarousel,
-        Details: CardDeck,
+        Details: CardDeckNew,
     },
     {
         initialRouteName: 'Home',

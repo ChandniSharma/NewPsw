@@ -5,6 +5,7 @@ import {
     View,
     TouchableOpacity,
     Image,
+    ImageBackground
 } from 'react-native';
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
@@ -73,8 +74,10 @@ export default class CardDeckNew extends React.Component {
     }
     render() {
         return (
-            <View style={{flex:1}}>
-
+            <View style={{flex:1, flexDirection:'column', justifyContent:'center'}}>
+ <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
+                </TouchableOpacity>
 
                 <CardStack
                     style={styles.content}
@@ -83,15 +86,45 @@ export default class CardDeckNew extends React.Component {
                     ref={swiper => {
                         this.swiper = swiper
                     }}
-
+                    disableTopSwipe = {true}
+                    disableBottomSwipe = {true}
                     onSwiped={() => console.log('onSwiped')}
                     onSwipedLeft={() => console.log('onSwipedLeft')}
+                    
+                    onSwipedTop={() => console.log('onSwipedTop')}
+                    onSwipedBottom={() => console.log('onSwipedBottom')}
+
                 >
-                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>A</Text></Card>
-                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>B</Text></Card>
-                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>C</Text></Card>
-                    <Card style={[styles.card,{marginTop:30}]}><Text style={styles.label}>D</Text></Card>
-                    <Card style={styles.card}><Text style={styles.label}>E</Text></Card>
+                    <Card style={[styles.card6]}>
+                    <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>a</Text>
+                      </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card5]}>
+                    <ImageBackground style={{ width: 280, height: 390, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>the</Text>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card4]}>
+                    <ImageBackground style={{ width: 290, height: 410, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>come</Text>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card3]}>
+                    <ImageBackground style={{ width: 300, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>on</Text>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card2]}>
+                    <ImageBackground style={{ width: 310, height: 450, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>see</Text>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card1]}>
+                    <ImageBackground style={{ width: 320, height: 470, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>go</Text>
+                    </ImageBackground>
+                    </Card>
 
                 </CardStack>
 
@@ -115,8 +148,8 @@ const styles = StyleSheet.create({
     },
     card:{
         width: 320,
-        height: 470,
-        backgroundColor: '#ffffff',
+        height: 550,
+        backgroundColor: 'pink',
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
@@ -126,11 +159,85 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card1: {
-        backgroundColor: '#FE474C',
+       
+        width: 320,
+        height: 470,
+        marginTop:100,
+        borderRadius: 20,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
     },
     card2: {
-        backgroundColor: '#FEB12C',
+       
+        width: 310,
+        height: 450,
+        marginTop:120,
+        borderRadius: 15,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
     },
+    card3: {
+        
+        width: 300,
+        
+        height: 430,
+        marginTop:140,
+        borderRadius: 10,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+    },
+    card4: {
+       
+        width: 290,
+        height: 410,
+        marginTop:160,
+        borderRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+    },
+    card5: {
+        
+        width: 280,
+        height: 390,
+        marginTop:180,
+        borderRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+    },
+    card6: {
+       
+        width: 270,
+        height: 370,
+        marginTop:200,
+        borderRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.5,
+    },
+
     label: {
         lineHeight: 400,
         textAlign: 'center',
@@ -185,5 +292,15 @@ const styles = StyleSheet.create({
         borderRadius:75,
         borderWidth:6,
         borderColor:'#fd267d',
-    }
+    },
+        buttonBack: {
+            marginTop:'2%',
+            marginRight:'2%',
+            position:'relative',
+          },
+    
+        imageLeft:{
+            width: 50,
+            height: 50,
+        }
 });
