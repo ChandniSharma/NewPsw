@@ -146,7 +146,7 @@ class ThumbnailCarousel extends Component {
                                        marginRight={'15%'}
                             >{item.detail}
                             </TextInput>
-                            <TouchableOpacity marginTop={'35%'}
+                            <TouchableOpacity
                                               style={styles.container}
                                               onPress={() => this.props.navigation.navigate('Details')}>
                                 {imageBottom}
@@ -229,27 +229,12 @@ let deviceWidth  = width;
 
 console.log("aspect ratio is"+deviceHeight+"Value");
 
-const VideoTitleText = styled.Text`
- color: white;
-  justify-content: center;
-`
 
-const CurrentVideoImage_iPhone6 = styled.ImageBackground`
-  
-width: 290; 
-   height: 500;
-`;
-
-const ThumbnailBackgroundView_iPhone6 = styled.View` 
-  width: 290; 
-  height: 500;
-  
-`;
 // ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
 
         width: 310;
-        height: 500;
+        height: auto;
         borderRadius: 30;
         shadowColor: 'rgba(0,0,0,0.5)';
         shadowOffset: {
@@ -259,27 +244,7 @@ const CurrentVideoImage = styled.ImageBackground`
         shadowOpacity:0.5;
 `;
 
-const ThumbnailBackgroundView = styled.View`
-  width: 350; 
-  
-  height: 550;
-  border-radius: 20;
-`;
 
-// For android
-const CurrentVideoImage_Android = styled.ImageBackground`
-
-   width: 300; 
-   height: 550;
-   border-radius: 20;
-`;
-
-const ThumbnailBackgroundView_Android = styled.View`
-  width: 300; 
-  
-  height: 550;
-  border-radius: 20;
-`;
 
 const CurrentVideoTO = styled.TouchableOpacity`;
 `
@@ -293,6 +258,7 @@ flex-direction: row;
 
 const styles = StyleSheet.create({
     container: {
+        bottom:10,
         left:140,
     },
     content:{

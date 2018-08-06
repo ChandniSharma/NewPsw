@@ -74,15 +74,13 @@ export default class CardDeckNew extends React.Component {
     }
     render() {
         return (
-            <View style={{flex:1, flexDirection:'column', justifyContent:'center'}}>
- <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+            <View style={{flex:1}}>
+                    <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
                 </TouchableOpacity>
 
                 <CardStack
                     style={styles.content}
-
-                    renderNoMoreCards={() => <Text style={{fontWeight:'700', fontSize:18, color:'gray'}}>No more cards :(</Text>}
                     ref={swiper => {
                         this.swiper = swiper
                     }}
@@ -101,27 +99,27 @@ export default class CardDeckNew extends React.Component {
                       </ImageBackground>
                     </Card>
                     <Card style={[styles.card5]}>
-                    <ImageBackground style={{ width: 280, height: 390, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>the</Text>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card4]}>
-                    <ImageBackground style={{ width: 290, height: 410, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 280, height: 400, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>come</Text>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card3]}>
-                    <ImageBackground style={{ width: 300, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>on</Text>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card2]}>
-                    <ImageBackground style={{ width: 310, height: 450, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 290, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>see</Text>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card1]}>
-                    <ImageBackground style={{ width: 320, height: 470, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
                     </ImageBackground>
                     </Card>
@@ -142,6 +140,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f2f2f2',
     },
     content:{
+        bottom:100,
         flex: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -159,9 +158,9 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card1: {
-       
-        width: 320,
-        height: 470,
+
+        width: 295,
+        height: 445,
         marginTop:100,
         borderRadius: 20,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -172,9 +171,8 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card2: {
-       
-        width: 310,
-        height: 450,
+
+        width: 290, height: 430,
         marginTop:120,
         borderRadius: 15,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -185,10 +183,8 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card3: {
-        
-        width: 300,
-        
-        height: 430,
+
+        width: 285, height: 415,
         marginTop:140,
         borderRadius: 10,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -199,9 +195,8 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card4: {
-       
-        width: 290,
-        height: 410,
+
+        width: 280, height: 400,
         marginTop:160,
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -212,9 +207,8 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card5: {
-        
-        width: 280,
-        height: 390,
+
+        width: 275, height: 385,
         marginTop:180,
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -225,9 +219,8 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card6: {
-       
-        width: 270,
-        height: 370,
+
+        width: 270, height: 370,
         marginTop:200,
         borderRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -294,7 +287,8 @@ const styles = StyleSheet.create({
         borderColor:'#fd267d',
     },
         buttonBack: {
-            marginTop:'2%',
+            zIndex:50,
+            marginTop:'5%',
             marginRight:'2%',
             position:'relative',
           },
