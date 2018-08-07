@@ -5,11 +5,11 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ImageBackground
+    ImageBackground, Animated
 } from 'react-native';
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
-
+import CardFlip from 'react-native-card-flip';
 
 export default class CardDeckNew extends React.Component {
 
@@ -26,7 +26,9 @@ export default class CardDeckNew extends React.Component {
         this.state = {
             isView: false,
         }
-
+       this.state = {
+            fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
+          }
         this.state = {
             videos: [
                 {
@@ -77,13 +79,38 @@ export default class CardDeckNew extends React.Component {
         this.props = props;
     }
 
+flipCurrentView( card,){
+    this.card.flip()
+    this.setState({isView:!this.state.isView});
+    
+}
 
+getInitialState() {
+    return { absoluteChangeX: new Animated.Value(0) };
+  }
+
+fadeAnimationStart() {
+    this.setState({isView:!this.state.isView})
+    Animated.timing(                  // Animate over time
+      this.state.fadeAnim,            // The animated value to drive
+      {
+        toValue: 1,                   // Animate to opacity: 1 (opaque)
+        duration: 10000,              // Make it take a while
+      }
+    ).start();                        // Starts the animation
+  }
+  fadeAnimationStop() {
+    this.setState({isView:!this.state.isView})
+    this.getInitialState();                        // Starts the animation
+  }
     handleLeftForLastCard(){
         console.log('Left Swipe')
 
     }
     render() {
         const isView = this.state.isView;
+        
+        
         return (
             
             <View style={{flex:1}}>
@@ -108,16 +135,18 @@ export default class CardDeckNew extends React.Component {
                     onSwipedBottom={() => console.log('onSwipedBottom')}
 
                 >
+                
                     <Card style={[styles.card6]}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>a</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() =>  this.setState({isView:!this.state.isView})}>
                                 <Image source={require('./bulb.png')} style={styles.imageBulb}/>
                             </TouchableOpacity>
                       </ImageBackground>
                     </Card>
+                    
                     <Card style={[styles.card5]}>
                     <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>the</Text>
@@ -172,7 +201,7 @@ export default class CardDeckNew extends React.Component {
                 </CardStack>
 
     <View>
-            {isView ? <View style={{width:"100%",height:"100%",backgroundColor:'yellow'}}>
+            {isView ? <Animated.View style={{width:"100%",height:"100%"}}>
                     
                    <View style={styles.viewPopupBckgnd}>
                     <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
@@ -190,7 +219,7 @@ export default class CardDeckNew extends React.Component {
                             style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
                     </ImageBackground> */}
                     </View>
-                </View>   : null}
+                </Animated.View>   : null}
             </View>
             
 

@@ -9,6 +9,7 @@
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-card-flip": "^1.0.3",
     "react-native-card-stack-swiper": "^1.0.8",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-swipeable-view-stack": "^1.0.4",
