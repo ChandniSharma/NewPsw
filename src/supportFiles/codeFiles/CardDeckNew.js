@@ -158,7 +158,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card4]}>
-                    <ImageBackground style={{ width: 280, height: 400, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>come</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -168,7 +168,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card3]}>
-                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>on</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -178,7 +178,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card2]}>
-                    <ImageBackground style={{ width: 290, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>see</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -188,7 +188,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card1]}>
-                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -203,7 +203,7 @@ fadeAnimationStart() {
     <View>
             {isView ? <Animated.View style={{width:"100%",height:"100%"}}>
                     
-                   <View style={styles.viewPopupBckgnd}>
+                   <ImageBackground style={styles.viewPopupBckgnd} source={require('./Dog5BackgroundOpacity.png')}>
                     <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
                            source={require('./Dog5.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
@@ -218,7 +218,7 @@ fadeAnimationStart() {
                         <Text
                             style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
                     </ImageBackground> */}
-                    </View>
+                    </ImageBackground>
                 </Animated.View>   : null}
             </View>
             
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         flexDirection:'column',
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#00000088'
     },
     content:{
         bottom:100,
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
             backgroundColor: 'white',
             marginLeft:10,
             marginRight:10,
-            
+            borderRadius:20
            
         },
 });
