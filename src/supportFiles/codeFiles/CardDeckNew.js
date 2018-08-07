@@ -24,6 +24,10 @@ export default class CardDeckNew extends React.Component {
             numberValue: '01'
         }
         this.state = {
+            isView: false,
+        }
+
+        this.state = {
             videos: [
                 {
                     id: "WpIAc9by5iU",
@@ -72,12 +76,21 @@ export default class CardDeckNew extends React.Component {
         }
         this.props = props;
     }
+
+
+    handleLeftForLastCard(){
+        console.log('Left Swipe')
+
+    }
     render() {
+        const isView = this.state.isView;
         return (
+            
             <View style={{flex:1}}>
+            {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
-                </TouchableOpacity>
+                </TouchableOpacity>:null}
 
                 <CardStack
                     style={styles.content}
@@ -86,9 +99,11 @@ export default class CardDeckNew extends React.Component {
                     }}
                     disableTopSwipe = {true}
                     disableBottomSwipe = {true}
-                    onSwiped={() => console.log('onSwiped')}
+                    // onSwiped={() => this.swiper._goBack()}
                     onSwipedLeft={() => console.log('onSwipedLeft')}
-                    
+                    onswipedRight={() => 
+                        console.log('RightSwipe')
+                   }
                     onSwipedTop={() => console.log('onSwipedTop')}
                     onSwipedBottom={() => console.log('onSwipedBottom')}
 
@@ -96,37 +111,88 @@ export default class CardDeckNew extends React.Component {
                     <Card style={[styles.card6]}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>a</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                       </ImageBackground>
                     </Card>
                     <Card style={[styles.card5]}>
                     <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>the</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card4]}>
                     <ImageBackground style={{ width: 280, height: 400, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>come</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card3]}>
                     <ImageBackground style={{ width: 285, height: 415, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>on</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card2]}>
                     <ImageBackground style={{ width: 290, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>see</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card1]}>
                     <ImageBackground style={{ width: 295, height: 445, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                            </TouchableOpacity>
                     </ImageBackground>
                     </Card>
 
                 </CardStack>
 
+    <View>
+            {isView ? <View style={{width:"100%",height:"100%",backgroundColor:'yellow'}}>
+                    
+                   <View style={styles.viewPopupBckgnd}>
+                    <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
+                           source={require('../../../blue.png')}>
+                             <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                        <Image style={styles.imageCross} source={require('./cross.png')} />
+                    </TouchableOpacity>
 
+                            </ImageBackground>
+                           <Text
+                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+
+                    {/* <ImageBackground style={{height:'40%',width:'100%',marginTop:10}} source={require('./whitecard.png')}>
+                        <Text
+                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+                    </ImageBackground> */}
+                    </View>
+                </View>   : null}
+            </View>
+            
 
             </View>
         );
@@ -136,7 +202,16 @@ export default class CardDeckNew extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
+        
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor: 'transparent',
+    },
+    viewPopupBckgnd: {
+        flex: 1,
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'column',
         backgroundColor: '#f2f2f2',
     },
     content:{
@@ -232,12 +307,13 @@ const styles = StyleSheet.create({
     },
 
     label: {
-        lineHeight: 400,
+        lineHeight: 300,
         textAlign: 'center',
-        fontSize: 55,
+        fontSize: 60,
         fontFamily: 'System',
         color: '#000000',
         backgroundColor: 'transparent',
+       // backgroundColor: 'green',
     },
     footer:{
         flex:1,
@@ -250,16 +326,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     button:{
-        shadowColor: 'rgba(0,0,0,0.3)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-        backgroundColor:'#fff',
-        alignItems:'center',
-        justifyContent:'center',
-        zIndex: 0,
+        alignSelf: 'flex-end',
+      marginTop: '10%',
+      right:'5%',
+      position: 'relative', // add if dont work with above
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     orange:{
         width:55,
@@ -287,14 +359,42 @@ const styles = StyleSheet.create({
         borderColor:'#fd267d',
     },
         buttonBack: {
-            zIndex:50,
-            marginTop:'5%',
-            marginRight:'2%',
-            position:'relative',
+
+      alignSelf: 'flex-start',
+      zIndex:50,
+      marginTop: '10%',
+      left:'5%',
+      position: 'relative', // add if dont work with above
+      justifyContent: 'center',
+      alignItems: 'center',
+            // zIndex:50,
+            // marginTop:'5%',
+            // marginLeft:'2%',
+            // position:'relative',
           },
     
         imageLeft:{
             width: 50,
             height: 50,
-        }
+        },
+        imageBulb:{
+            width: 26,
+            height: 36,
+        },
+        imageCross:{
+            width: 32,
+            height: 32,
+        },
+        label1: {
+            lineHeight:50,
+            textAlign: 'center',
+            fontSize: 20,
+            fontFamily: 'System',
+            color: '#000000',
+            backgroundColor: 'white',
+            marginLeft:10,
+            marginRight:10,
+            
+           
+        },
 });

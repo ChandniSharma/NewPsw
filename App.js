@@ -94,13 +94,22 @@ class ThumbnailCarousel extends Component {
     }
 
     handleSnapToItem(index) {
-        console.log("snapped to ", index)
+        
         // if (index>= 0 && index<= 5) {
 
         this.setState({numberValue: String(index + 1)});
         // }
     }
 
+    moveToNextView(index){
+        
+        this.props.navigation.navigate('Details')
+        if (index===1) {
+            this.props.navigation.navigate('Details')
+        } else {
+            
+        }
+    }
     _renderItem = ({item, index}) => {
         let imageTitle;
         let imageBottom;
@@ -123,7 +132,7 @@ class ThumbnailCarousel extends Component {
 
             <View style={styles.card}>
                 <CurrentVideoTO  activeOpacity={1} onPress={() => {
-                    console.log("clicked to index", index)
+                    
                     this._carousel.snapToItem(index);
 
                     this.setState({numberValue: String(index + 1)});
@@ -148,7 +157,7 @@ class ThumbnailCarousel extends Component {
                             </TextInput>
                             <TouchableOpacity
                                               style={styles.container}
-                                              onPress={() => this.props.navigation.navigate('Details')}>
+                                              onPress={() => this.moveToNextView(index)}>
                                 {imageBottom}
                             </TouchableOpacity>
                         </View>
@@ -168,10 +177,7 @@ class ThumbnailCarousel extends Component {
 
     render = () => {
 
-        console.log("videos: updating")
-
-
-        let temp;
+          let temp;
         if (this.state.numberValue >= 0) {
             temp = "0" + String(this.state.numberValue)
         } else {
@@ -181,8 +187,7 @@ class ThumbnailCarousel extends Component {
             <View style={{flex: 1}}>
 
            <HeaderCustom />
-                {console.log(" ************* value is" + this.state.numberValue + "")}
-
+            
                 <CarouselBackgroundView style={styles.content}>
                 <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
                     <Carousel
@@ -227,7 +232,7 @@ const {height, width} = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth  = width;
 
-console.log("aspect ratio is"+deviceHeight+"Value");
+
 
 
 // ios greater than 6 5.5 inch
