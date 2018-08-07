@@ -205,7 +205,7 @@ fadeAnimationStart() {
                     
                    <View style={styles.viewPopupBckgnd}>
                     <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
-                           source={require('../../../blue.png')}>
+                           source={require('./Dog5.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
