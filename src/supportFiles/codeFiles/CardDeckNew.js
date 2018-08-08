@@ -152,13 +152,10 @@ onClickBulb(indexArrayImage){
 
     render() {
         const isView = this.state.isView;
-       
-        
-
-         console.log(' image name '+'     '+this.state.imageNameBackground);
+            
         return (
             
-            <ImageBackground style={{flex:1, backgroundColor:'red'}} source={imageNameBackground}>
+            <ImageBackground style={{flex:1, backgroundColor:'transparent'}} source={require('./back5.png')}>
             {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
@@ -246,24 +243,23 @@ onClickBulb(indexArrayImage){
                 </CardStack>
 
     <View>
-            {isView ? <Animated.View style={{width:"100%",height:"100%"}}>
-                    
-                   <ImageBackground style={styles.viewPopupBckgnd} source={require('./back5.png')}>
-                    <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
+            {isView ?
+                <Animated.View style={{width:"100%",height:"100%"}}>
+                <View style={styles.viewPopupBckgnd}>
+                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./back5.png')}>
+                       <View style={styles.card}>
+                    <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
                            source={require('./Dog5.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
 
-                            </ImageBackground>
-                           <Text
-                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
-
-                    {/* <ImageBackground style={{height:'40%',width:'100%',marginTop:10}} source={require('./whitecard.png')}>
+                    </ImageBackground>
                         <Text
                             style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
-                    </ImageBackground> */}
-                    </ImageBackground>
+                    </View>
+                   </ImageBackground>
+                </View>
                 </Animated.View>   : null}
             </View>
             
@@ -282,10 +278,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     viewPopupBckgnd: {
-        flex: 1,
-        alignItems:'center',
-        justifyContent:'center',
-        flexDirection:'column',
+        height:'100%',
+        width: '100%',
         backgroundColor: '#00000088'
     },
     content:{
@@ -297,9 +291,9 @@ const styles = StyleSheet.create({
     },
     card:{
         width: 320,
-        height: 550,
-        backgroundColor: 'pink',
-        borderRadius: 5,
+        height: 500,
+        borderRadius: 20,
+        backgroundColor:"#ffffff",
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
             width: 0,
@@ -461,16 +455,11 @@ backgroundColor: 'red',
             height: 32,
         },
         label1: {
-            lineHeight:50,
             textAlign: 'center',
             fontSize: 20,
             fontFamily: 'System',
             color: '#000000',
             backgroundColor: 'white',
-            marginLeft:10,
-            marginRight:10,
-            borderRadius:20,
-            
            
         },
 });
