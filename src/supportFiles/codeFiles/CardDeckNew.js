@@ -158,7 +158,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card4]}>
-                    <ImageBackground style={{ width: 280, height: 400, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>come</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -168,7 +168,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card3]}>
-                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>on</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -178,7 +178,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card2]}>
-                    <ImageBackground style={{ width: 290, height: 430, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>see</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -188,7 +188,7 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
                     <Card style={[styles.card1]}>
-                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -201,24 +201,23 @@ fadeAnimationStart() {
                 </CardStack>
 
     <View>
-            {isView ? <Animated.View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
-                    
-                   <View style={[styles.viewPopupBckgnd,styles.card]}>
-                    <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
+            {isView ?
+                <Animated.View style={{width:"100%",height:"100%"}}>
+                <View style={styles.viewPopupBckgnd}>
+                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./Dog5BackgroundOpacity.png')}>
+                       <View style={styles.card}>
+                    <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
                            source={require('./Dog5.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
 
-                            </ImageBackground>
-                           <Text
-                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
-
-                    {/* <ImageBackground style={{height:'40%',width:'100%',marginTop:10}} source={require('./whitecard.png')}>
+                    </ImageBackground>
                         <Text
                             style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
-                    </ImageBackground> */}
                     </View>
+                   </ImageBackground>
+                </View>
                 </Animated.View>   : null}
             </View>
             
@@ -237,11 +236,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     viewPopupBckgnd: {
-        flex: 1,
-        alignItems:'center',
-        justifyContent:'center',
-        flexDirection:'column',
-        backgroundColor: '#f2f2f2',
+        height:'100%',
+        width: '100%',
+        backgroundColor: '#00000088'
     },
     content:{
         bottom:100,
@@ -251,9 +248,9 @@ const styles = StyleSheet.create({
     },
     card:{
         width: 320,
-        height: 550,
-        backgroundColor: 'pink',
-        borderRadius: 5,
+        height: 500,
+        borderRadius: 20,
+        backgroundColor:"#ffffff",
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
             width: 0,
@@ -415,15 +412,11 @@ const styles = StyleSheet.create({
             height: 32,
         },
         label1: {
-            lineHeight:50,
             textAlign: 'center',
             fontSize: 20,
             fontFamily: 'System',
             color: '#000000',
             backgroundColor: 'white',
-            marginLeft:10,
-            marginRight:10,
-            
            
         },
 });
