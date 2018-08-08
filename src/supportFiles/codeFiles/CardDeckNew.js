@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
+//import imagesCardDeckNew from 'imagesCardDeckNew';
 import CardFlip from 'react-native-card-flip';
 
 export default class CardDeckNew extends React.Component {
     
-    
+   
     static navigationOptions =
         {
             title: 'CardDeckNew',
@@ -21,6 +22,7 @@ export default class CardDeckNew extends React.Component {
 
     constructor(props){
         super();
+       
         this.state = {
             numberValue: '01'
         }
@@ -28,8 +30,10 @@ export default class CardDeckNew extends React.Component {
             isView: false,
         }
         this.state = {
-            imageNameBackground: require('./back1.png'),
+         
+            imageNameBackground: './back1.png',
         }
+        super()
        this.state = {
             fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
           }
@@ -81,8 +85,10 @@ export default class CardDeckNew extends React.Component {
             errors: []
         }
 
-        // Add card image and background image 
-        this.state = {
+        // Add card image and background image
+    
+
+     /* this.state = {
             arrayImages: [
                 {
                     backgndImage: require('./back1.png'),
@@ -110,7 +116,7 @@ export default class CardDeckNew extends React.Component {
                 },
             ],
 
-        };
+      }; */
     
 
         this.props = props;
@@ -146,16 +152,33 @@ fadeAnimationStart() {
     
 onClickBulb(indexArrayImage){
     this.setState({isView:!this.state.isView});
-    this.setState({imageNameBackground:this.state.arrayImages[indexArrayImage].backgndImage});
+    var imageName1 = './back1.png';
+        var imageName2 = './back2.png';
+        var imageName3 = './back3.png';
+     
+    
+    if (indexArrayImage === 0) {
+        this.setState({imageNameBackground:'./back1.png'});
+    } else {
+        this.setState({imageNameBackground:'./back2.png'});
+
+    }
+    console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
     
 }
 
     render() {
         const isView = this.state.isView;
-            
+        var imageName1 = './back1.png';
+       //  this.setState({imageNameBackground: imagesCardDeckNew.back1.uri})  ;
+     
         return (
+        
+           // console.log('Chandni Imge name bckgnd '+' '+ JSON.stringify(this.state.arrayImages)),
+            console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground),
             
-            <ImageBackground style={{flex:1, backgroundColor:'transparent'}} source={require('./back5.png')}>
+     
+            <ImageBackground style={{flex:1, backgroundColor:'transparent'}} source={require(imageName1)}>
             {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
@@ -167,6 +190,7 @@ onClickBulb(indexArrayImage){
                         this.swiper = swiper
                     }}
                     disableTopSwipe = {true}
+                    
                     disableBottomSwipe = {true}
                     // onSwiped={() => this.swiper._goBack()}
                     onSwipedLeft={() => console.log('onSwipedLeft')}
@@ -178,7 +202,9 @@ onClickBulb(indexArrayImage){
      
                 >
                 
-                    <Card style={[styles.card6]}>
+                    <Card style={[styles.card6]} onswipedRight={() => 
+                        console.log('RightSwipe')
+                   }>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>a</Text>
                     <TouchableOpacity
@@ -363,7 +389,7 @@ const styles = StyleSheet.create({
         shadowOpacity:0.5,
     },
     card6: {
-backgroundColor: 'red',
+
         width: 270, height: 370,
         marginTop:200,
         borderRadius: 5,
