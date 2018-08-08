@@ -201,9 +201,9 @@ fadeAnimationStart() {
                 </CardStack>
 
     <View>
-            {isView ? <Animated.View style={{width:"100%",height:"100%"}}>
+            {isView ? <Animated.View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
                     
-                   <View style={styles.viewPopupBckgnd}>
+                   <View style={[styles.viewPopupBckgnd,styles.card]}>
                     <ImageBackground style={{height:'80%',width:'100%',shadowColor:"#123456",shadowOpacity:0.5,zIndex:2,borderRadius:10}}
                            source={require('./Dog5.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
