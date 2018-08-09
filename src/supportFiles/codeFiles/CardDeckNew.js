@@ -5,7 +5,8 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ImageBackground, Animated
+    ImageBackground, Animated,
+    TextInput
 } from 'react-native';
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
@@ -33,54 +34,11 @@ export default class CardDeckNew extends React.Component {
          
             imageNameBackground: './back1.png',
         }
-        super()
+        
        this.state = {
             fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
           }
-        this.state = {
-            videos: [
-                {
-                    id: "WpIAc9by5iU",
-                    thumbnail: require('../../img/whitecard.png'),
-                    title: "a",
-                    slideNumber: "1"
-
-                }, {
-                    id: "sNPnbI1arSE",
-                    thumbnail: require('../../img/whitecard.png'),
-                    title: "the",
-                    slideNumber: "2"
-                }, {
-                    id: "VOgFZfRVaww",
-                    thumbnail: require('../../img/whitecard.png'),
-                    title: "come",
-                    slideNumber: "3"
-
-                },
-                {
-                    id: "VOgFZfRVawp",
-                    thumbnail: require('../../img/whitecard.png'),
-                    title: "on",
-                    slideNumber: "4"
-
-                },
-                {
-                    id: "VOgFZfRVawq",
-                    thumbnail: `require('./whitecard.png')`,
-                    title: "see",
-                    slideNumber: "5"
-
-                },
-                {
-                    id: "VOgFZfRVaw3",
-                    thumbnail: require('../../img/whitecard.png'),
-                    title: "go",
-                    slideNumber: "6"
-
-                },
-            ],
-
-        };
+     
         this.state = {
             errors: []
         }
@@ -150,9 +108,19 @@ fadeAnimationStart() {
     this.getInitialState();                        // Starts the animation
   }
     
+counter(indexArrayImage){
+    
+        this.setState({
+            numberValue : indexArrayImage
+        });
+   
+}
+
+
 onClickBulb(indexArrayImage){
      this.setState({isView:!this.state.isView});
-     this.setState({numberValue:(indexArrayImage)});
+     let temp = ''+indexArrayImage;
+     this.setState({numberValue:temp});
 
      console.log('Chandni  indexArrayImage'+indexArrayImage+'number value  '+' '+this.state.numberValue);
 
@@ -171,36 +139,45 @@ onClickBulb(indexArrayImage){
    // console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
     
 }
-/*
+
 onCardSwipedRight(indexArrayImage){
 
-    this.setState({numberValue: String(indexArrayImage + 1)});
-    console.log('Chandni number value  '+' '+String(indexArrayImage + 1));
+    
+    let temp = ''+(indexArrayImage+1);
+    this.setState({numberValue:temp});
+
+    console.log('Chandni  on swipe right'+indexArrayImage+'number value  '+' '+this.state.numberValue);
+
+
+    
 }
 
 onCardSwipedLeft(indexArrayImage){
 
-    this.setState({numberValue: String(indexArrayImage - 1)});
-    console.log('Chandni number value  '+' '+String(indexArrayImage - 1));
+    let temp = ''+(indexArrayImage-1);
+    this.setState({numberValue:temp});
+
+    console.log('Chandni  on swipe left '+indexArrayImage+'number value  '+' '+this.state.numberValue);
+
 }
-*/
+
     render() {
         const isView = this.state.isView;
         var imageName1 = './back1.png';
         // For showing number below to the card.
         let temp;
         if (this.state.numberValue >= 0) {
-            temp =  String(this.state.numberValue)+' of 220'
+            temp = String(this.state.numberValue)+' of 220';
         } else {
-            temp = "1" +' of 220'
+            temp = '1' +' of 220';
         }
+       
         console.log('number value '+temp)
         return (
         
         
             <ImageBackground style={{ backgroundColor:'transparent', flex: 1,flexDirection:'column',alignItems:'center',justifyContent:'space-between'}} source={require(imageName1)}>
-            
-           
+             
             {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
@@ -236,7 +213,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>a</Text>
                     <TouchableOpacity
                                               style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                                              onPress={() =>this.onClickBulb(1)}>
+                                              onPress={() =>this.onCardSwipedLeft(10)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                       </ImageBackground>
@@ -257,7 +234,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>come</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() => this.onClickBulb(3)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
@@ -267,7 +244,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>on</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() => this.onClickBulb(4)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
@@ -277,7 +254,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>see</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() => this.onClickBulb(5)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
@@ -287,7 +264,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>go</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() => this.onClickBulb(6)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
@@ -295,10 +272,11 @@ onCardSwipedLeft(indexArrayImage){
 
                 </CardStack> : null} 
                  <TouchableOpacity style={[{width:30,height:20,paddingTop:'15%'}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() =>this.onClickBulb(7)}>
                                 <Image source={require('./audio_off.png')} style={{height:30, width:20}}/>
                             </TouchableOpacity>
-                 <Text style={{textAlign: 'center',bottom:'2%',position:'absolute'}}> 1 of 220 </Text>
+                 
+                 <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute'}} value={temp}/>
     <View>
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
