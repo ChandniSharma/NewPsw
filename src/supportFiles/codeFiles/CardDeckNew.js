@@ -30,7 +30,7 @@ export default class CardDeckNew extends React.Component {
         }
         this.cardCount = 1 ,
        
-      this.imageNameBackground = require('./back1.png'),
+      this.imageNameBackground = require('./Dog_background.png'),
 
         this.state = {
             isView: false,
@@ -46,40 +46,66 @@ export default class CardDeckNew extends React.Component {
         }
         
         // Add card image and background image
-      
+      this.arrayWords = [
+          'a','ran','come','up','see','was','the','jump','on','ten','go','two'
+      ],
 
       this.arrayImages = [
                 {
-                    backgndImage: require('./back1.png'),
-                    frontImage: require('./back1.png')
+                    backgndImage: require('./Dog_background.png'),
+                    frontImage: require('./Dog_background.png')
                 },
                 {
-                    backgndImage: require('./back2.png'),
-                    frontImage: require('./back2.png')
+                    backgndImage: require('./Zebra_background.png'),
+                    frontImage: require('./Zebra_background.png')
                 },
                 {
-                    backgndImage: require('./back3.png'),
-                    frontImage: require('./back3.png')
+                    backgndImage: require('./Rainbow_background.png'),
+                    frontImage: require('./Rainbow_background.png')
                 },
                 {
-                    backgndImage: require('./back4.png'),
-                    frontImage: require('./back4.png')
+                    backgndImage: require('./Tiger_yawning_background_bw.png'),
+                    frontImage: require('./Tiger_yawning_background_bw.png')
                 },
                 {
-                    backgndImage: require('./back5.png'),
-                    frontImage: require('./back5.png')
+                    backgndImage: require('./Boat_background.png'),
+                    frontImage: require('./Boat_background.png')
                 },
                 {
-                    backgndImage: require('./back6.png'),
-                    frontImage: require('./back6.png')
+                    backgndImage: require('./Tiger_sleeping_background.png'),
+                    frontImage: require('./Tiger_sleeping_background.png')
                 },
                 {
-                    backgndImage: require('./back1.png'),
-                    frontImage: require('./back6.png')
+                    backgndImage: require('./Beachball_background.png'),
+                    frontImage: require('./Beachball_background.png')
                 },
                 {
-                    backgndImage: require('./back2.png'),
-                    frontImage: require('./back6.png')
+                    backgndImage: require('./Leopard_background.png'),
+                    frontImage: require('./Leopard_background.png')
+                },
+                {
+                    backgndImage: require('./Bicycle_background.png'),
+                    frontImage: require('./Bicycle_background.png')
+                },
+                {
+                    backgndImage: require('./Kangaroos_background.png'),
+                    frontImage: require('./Kangaroos_background.png')
+                },
+                {
+                    backgndImage: require('./Kangaroos_background.png'),
+                    frontImage: require('./Kangaroos_background.png')
+                },
+                {
+                    backgndImage: require('./Fishing_background.png'),
+                    frontImage: require('./Fishing_background.png')
+                },
+                {
+                    backgndImage: require('./Tigercubs_background.png'),
+                    frontImage: require('./Tigercubs_background.png')
+                },
+                {
+                    backgndImage: require('./Fishing_background.png'),
+                    frontImage: require('./Fishing_background.png')
                 },
             ],
 
@@ -210,7 +236,7 @@ onCardSwipedLeft(){
                 
                     <Card style={[styles.card6]}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>a</Text>
+                    <Text style={styles.label}>this.arrayWords[0]</Text>
                     <TouchableOpacity
                                               style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
                                               onPress={() =>this.onCardSwipedLeft(10)}>
@@ -281,10 +307,10 @@ onCardSwipedLeft(){
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
                 <View style={styles.viewPopupBckgnd}>
-                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./back5.png')}>
+                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./Dog_background.png')}>
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
-                           source={require('./Dog5.png')}>
+                           source={require('./Dog_background.png')}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
