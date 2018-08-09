@@ -24,7 +24,7 @@ export default class CardDeckNew extends React.Component {
         super();
        
         this.state = {
-            numberValue: '01'
+            numberValue:  0
         }
         this.state = {
             isView: false,
@@ -151,7 +151,12 @@ fadeAnimationStart() {
   }
     
 onClickBulb(indexArrayImage){
-    this.setState({isView:!this.state.isView});
+     this.setState({isView:!this.state.isView});
+     this.setState({numberValue:(indexArrayImage)});
+
+     console.log('Chandni  indexArrayImage'+indexArrayImage+'number value  '+' '+this.state.numberValue);
+
+    ///* background img try 
     var imageName1 = './back1.png';
         var imageName2 = './back2.png';
         var imageName3 = './back3.png';
@@ -163,29 +168,51 @@ onClickBulb(indexArrayImage){
         this.setState({imageNameBackground:'./back2.png'});
 
     }
-    console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
+   // console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
     
 }
+/*
+onCardSwipedRight(indexArrayImage){
 
+    this.setState({numberValue: String(indexArrayImage + 1)});
+    console.log('Chandni number value  '+' '+String(indexArrayImage + 1));
+}
+
+onCardSwipedLeft(indexArrayImage){
+
+    this.setState({numberValue: String(indexArrayImage - 1)});
+    console.log('Chandni number value  '+' '+String(indexArrayImage - 1));
+}
+*/
     render() {
         const isView = this.state.isView;
         var imageName1 = './back1.png';
-       //  this.setState({imageNameBackground: imagesCardDeckNew.back1.uri})  ;
-     
+        // For showing number below to the card.
+        let temp;
+        if (this.state.numberValue >= 0) {
+            temp =  String(this.state.numberValue)+' of 220'
+        } else {
+            temp = "1" +' of 220'
+        }
+        console.log('number value '+temp)
         return (
         
-           // console.log('Chandni Imge name bckgnd '+' '+ JSON.stringify(this.state.arrayImages)),
-            console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground),
+        
+            <ImageBackground style={{ backgroundColor:'transparent', flex: 1,flexDirection:'column',alignItems:'center',justifyContent:'space-between'}} source={require(imageName1)}>
             
-     
-            <ImageBackground style={{flex:1, backgroundColor:'transparent'}} source={require(imageName1)}>
+           
             {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                     <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
                 </TouchableOpacity>:null}
 
+               {!isView ? <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 20}}>sightwords</Text>:null}
+                {/* <Text style={{textAlign: 'center', color:'pink',backgroundColor:'red', marginTop: 50}}>sightwords</Text> */}
+
+               
+{!isView ?
                 <CardStack
-                    style={styles.content}
+                 style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
                     ref={swiper => {
                         this.swiper = swiper
                     }}
@@ -208,9 +235,9 @@ onClickBulb(indexArrayImage){
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>a</Text>
                     <TouchableOpacity
-                                              style={[styles.container,{marginTop:2}]}
-                                              onPress={() =>this.onClickBulb(2)}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                              style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
+                                              onPress={() =>this.onClickBulb(1)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                       </ImageBackground>
                     </Card>
@@ -220,8 +247,8 @@ onClickBulb(indexArrayImage){
                     <Text style={styles.label}>the</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                              onPress={() => this.onClickBulb(2)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
@@ -231,7 +258,7 @@ onClickBulb(indexArrayImage){
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
@@ -241,7 +268,7 @@ onClickBulb(indexArrayImage){
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
@@ -251,7 +278,7 @@ onClickBulb(indexArrayImage){
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
@@ -261,13 +288,17 @@ onClickBulb(indexArrayImage){
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
-                                <Image source={require('./bulb.png')} style={styles.imageBulb}/>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
 
-                </CardStack>
-
+                </CardStack> : null} 
+                 <TouchableOpacity style={[{width:30,height:20,paddingTop:'15%'}]}
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                <Image source={require('./audio_off.png')} style={{height:30, width:20}}/>
+                            </TouchableOpacity>
+                 <Text style={{textAlign: 'center',bottom:'2%',position:'absolute'}}> 1 of 220 </Text>
     <View>
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
@@ -298,7 +329,7 @@ onClickBulb(indexArrayImage){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        
+        backgroundColor: 'red',
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: 'transparent',
@@ -309,11 +340,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#00000088'
     },
     content:{
-        bottom:100,
+       //DR bottom:100,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'transparent',
+       /// backgroundColor: 'transparent',
+       backgroundColor: 'green',
     },
     card:{
         width: 320,
@@ -402,11 +434,12 @@ const styles = StyleSheet.create({
     },
 
     label: {
+        marginTop:'0%',
         lineHeight: 300,
         textAlign: 'center',
         fontSize: 60,
         fontFamily: 'System',
-        color: '#000000',
+        color: '#4a90e2',
         backgroundColor: 'transparent',
        // backgroundColor: 'green',
     },
@@ -473,8 +506,13 @@ const styles = StyleSheet.create({
             height: 50,
         },
         imageBulb:{
-            width: 26,
-            height: 36,
+            width: 32,
+            height: 32,
+        },
+        imageQuestionMark:{
+            width: 48,
+            height: 48,
+            bottom: 30,
         },
         imageCross:{
             width: 32,
