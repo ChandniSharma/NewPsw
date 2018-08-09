@@ -25,15 +25,17 @@ export default class CardDeckNew extends React.Component {
         super();
        
         this.state = {
-            numberValue:  0
+            numberValue:  0,
+            
         }
+        this.cardCount = 1 ,
+       
+      this.imageNameBackground = require('./back1.png'),
+
         this.state = {
             isView: false,
         }
-        this.state = {
-         
-            imageNameBackground: './back1.png',
-        }
+        
         
        this.state = {
             fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
@@ -42,12 +44,11 @@ export default class CardDeckNew extends React.Component {
         this.state = {
             errors: []
         }
-
+        
         // Add card image and background image
-    
+      
 
-     /* this.state = {
-            arrayImages: [
+      this.arrayImages = [
                 {
                     backgndImage: require('./back1.png'),
                     frontImage: require('./back1.png')
@@ -72,16 +73,21 @@ export default class CardDeckNew extends React.Component {
                     backgndImage: require('./back6.png'),
                     frontImage: require('./back6.png')
                 },
+                {
+                    backgndImage: require('./back1.png'),
+                    frontImage: require('./back6.png')
+                },
+                {
+                    backgndImage: require('./back2.png'),
+                    frontImage: require('./back6.png')
+                },
             ],
 
-      }; */
-    
-
         this.props = props;
+
+        
     }
     
-        
-      
 
 flipCurrentView( card,){
     this.card.flip()
@@ -107,14 +113,6 @@ fadeAnimationStart() {
     this.setState({isView:!this.state.isView})
     this.getInitialState();                        // Starts the animation
   }
-    
-counter(indexArrayImage){
-    
-        this.setState({
-            numberValue : indexArrayImage
-        });
-   
-}
 
 
 onClickBulb(indexArrayImage){
@@ -140,24 +138,27 @@ onClickBulb(indexArrayImage){
     
 }
 
-onCardSwipedRight(indexArrayImage){
+onCardSwipedRight(){
 
-    
-    let temp = ''+(indexArrayImage+1);
-    this.setState({numberValue:temp});
-
-    console.log('Chandni  on swipe right'+indexArrayImage+'number value  '+' '+this.state.numberValue);
-
-
-    
+    console.log('Card Count initial Right '+this.cardCount);
+    if (this.cardCount>0) {
+        this.cardCount = this.cardCount-1;  
+        let temp = ''+(this.cardCount);
+        this.setState({numberValue:temp});
+   
+    } 
+     console.log('Chandni  on swipe right'+this.cardCount+'number value  '+' '+this.state.numberValue);
 }
 
-onCardSwipedLeft(indexArrayImage){
+onCardSwipedLeft(){
 
-    let temp = ''+(indexArrayImage-1);
-    this.setState({numberValue:temp});
+     console.log('Card Count initial '+this.cardCount);
+     this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
 
-    console.log('Chandni  on swipe left '+indexArrayImage+'number value  '+' '+this.state.numberValue);
+     this.cardCount = this.cardCount+1;  
+     let temp = ''+(this.cardCount);
+     this.setState({numberValue:temp});
+    console.log('Chandni  on swipe left '+this.cardCount+'number value  '+' '+this.state.numberValue+'Image name is '+this.imageNameBackground);
 
 }
 
@@ -176,7 +177,7 @@ onCardSwipedLeft(indexArrayImage){
         return (
         
         
-            <ImageBackground style={{ backgroundColor:'transparent', flex: 1,flexDirection:'column',alignItems:'center',justifyContent:'space-between'}} source={require(imageName1)}>
+            <ImageBackground style={{ backgroundColor:'transparent', flex: 1,flexDirection:'column',alignItems:'center',justifyContent:'space-between'}} source={this.imageNameBackground}>
              
             {!isView ?
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
@@ -197,18 +198,17 @@ onCardSwipedLeft(indexArrayImage){
                     
                     disableBottomSwipe = {true}
                     // onSwiped={() => this.swiper._goBack()}
-                    onSwipedLeft={() => console.log('onSwipedLeft')}
+                    onSwipedLeft={() => 
+                        this.onCardSwipedLeft()}
                     onswipedRight={() => 
-                        console.log('RightSwipe')
+                        this.onCardSwipedRight()()
                    }
                     onSwipedTop={() => console.log('onSwipedTop')}
                     onSwipedBottom={() => console.log('onSwipedBottom')}
      
                 >
                 
-                    <Card style={[styles.card6]} onswipedRight={() => 
-                        console.log('RightSwipe')
-                   }>
+                    <Card style={[styles.card6]}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>a</Text>
                     <TouchableOpacity
@@ -224,7 +224,7 @@ onCardSwipedLeft(indexArrayImage){
                     <Text style={styles.label}>the</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.onClickBulb(2)}>
+                                              onPress={() => this.setState({isView:!this.state.isView})}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
