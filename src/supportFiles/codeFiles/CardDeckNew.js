@@ -155,6 +155,8 @@ fadeAnimationStart() {
     onCardSwipedRight(){
 
         console.log('Card Count initial Right '+this.cardCount);
+
+        this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
         if (this.cardCount>0) {
             this.cardCount = this.cardCount-1;
             let temp = ''+(this.cardCount);
@@ -189,39 +191,38 @@ fadeAnimationStart() {
        
         console.log('number value '+temp, this.imageNameBackground)
         return (
+            <View>
         
-        
-            <ImageBackground style={{ backgroundColor:'transparent', flex: 1,flexDirection:'column',alignItems:'center',justifyContent:'space-between'}} source={this.imageNameBackground}>
-             
-            {!isView ?
-                    <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                    <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
-                </TouchableOpacity>:null}
+                <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088',justifyContent:'center',alignItems:'center'}} source={this.imageNameBackground}>
 
-               {!isView ? <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 20}}>sightwords</Text>:null}
+
+                <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                    <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
+                </TouchableOpacity>
+
+               <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 20}}>sightwords</Text>
                 {/* <Text style={{textAlign: 'center', color:'pink',backgroundColor:'red', marginTop: 50}}>sightwords</Text> */}
 
-               
-{!isView ?
+
                 <CardStack
                  style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
                     ref={swiper => {
                         this.swiper = swiper
                     }}
                     disableTopSwipe = {true}
-                    
+
                     disableBottomSwipe = {true}
                     // onSwiped={() => this.swiper._goBack()}
-                    onSwipedLeft={() => 
+                    onSwipedLeft={() =>
                         this.onCardSwipedLeft()}
-                    onswipedRight={() => 
+                    onswipedRight={() =>
                         this.onCardSwipedRight()()
                    }
                     onSwipedTop={() => console.log('onSwipedTop')}
                     onSwipedBottom={() => console.log('onSwipedBottom')}
-     
+
                 >
-                
+
                     <Card style={[styles.card6]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{this.arrayWords[0]}</Text>
@@ -232,7 +233,7 @@ fadeAnimationStart() {
                             </TouchableOpacity>
                       </ImageBackground>
                     </Card>
-                    
+
                     <Card style={[styles.card5]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>the</Text>
@@ -284,18 +285,19 @@ fadeAnimationStart() {
                     </ImageBackground>
                     </Card>
 
-                </CardStack> : null} 
+                </CardStack>
                  <TouchableOpacity style={[{width:30,height:20,paddingTop:'15%'}]}
                                               onPress={() =>this.onClickBulb(7)}>
                                 <Image source={require('./audio_off.png')} style={{height:30, width:20}}/>
                             </TouchableOpacity>
-                 
+
                  <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute'}} value={temp}/>
-    <View>
+
+            </ImageBackground>
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
                 <View style={styles.viewPopupBckgnd}>
-                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={this.imageNameBackground}>
+                   <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088',justifyContent:'center',alignItems:'center'}} source={this.imageNameBackground}>
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
                            source={this.imageNameBackground}>
@@ -310,10 +312,9 @@ fadeAnimationStart() {
                    </ImageBackground>
                 </View>
                 </Animated.View>   : null}
-            </View>
             
+            </View>
 
-            </ImageBackground>
         );
     }
 }
