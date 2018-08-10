@@ -30,7 +30,7 @@ export default class CardDeckNew extends React.Component {
         this.cardCount = 1 ,
        
       this.imageNameBackground = require('./Dog_background.png'),
-      this.imageNameForeground = require('./Dog_background.png'),
+
      
         this.state = {
             isView: false,
@@ -51,9 +51,10 @@ export default class CardDeckNew extends React.Component {
       ],
 
       this.arrayImages = [
-                {   index: 1,
-                    word: 'a',
-                    sentence: 'I saw a dog.',
+                {
+                    index:1,
+                    title:'a',
+                    sentence: 'The zebra ran away.',
                     backgndImage: require('./Dog_background.png'),
                     frontImage: require('./Dog_background.png')
                 },
@@ -249,9 +250,6 @@ fadeAnimationStart() {
                         // onSwiped={() => this.swiper._goBack()}
                         onSwipedLeft={() =>
                             this.onCardSwipedLeft()}
-                        onswipedRight={() =>
-                            this.onCardSwipedRight()()
-                        }
                         onSwipedTop={() => console.log('onSwipedTop')}
                         onSwipedBottom={() => console.log('onSwipedBottom')}
 
