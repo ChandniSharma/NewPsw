@@ -32,7 +32,7 @@ export default class CardDeckNew extends React.Component {
        
       this.imageNameBackground = require('./Dog_background.png'),
       this.imageNameForeground = require('./Dog_background.png'),
-
+     
         this.state = {
             isView: false,
         }
@@ -77,6 +77,10 @@ export default class CardDeckNew extends React.Component {
                     frontImage: require('./Tiger_sleeping_background.png')
                 },
                 {
+                    backgndImage: require('./whitecard.png'),
+                    frontImage: require('./whitecard.png')
+                },
+              /*  {
                     backgndImage: require('./Beachball_background.png'),
                     frontImage: require('./Beachball_background.png')
                 },
@@ -107,7 +111,7 @@ export default class CardDeckNew extends React.Component {
                 {
                     backgndImage: require('./Fishing_background.png'),
                     frontImage: require('./Fishing_background.png')
-                },
+                },*/
             ],
 
         this.props = props;
@@ -141,6 +145,9 @@ fadeAnimationStart() {
     this.getInitialState();                        // Starts the animation
   }
 
+  forChildRightSwipeAction(){
+    console.log('Child right swipe ');
+  }
 
     onClickBulb(indexArrayImage){
          this.setState({isView:!this.state.isView});
@@ -201,7 +208,7 @@ fadeAnimationStart() {
                         <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
                     </TouchableOpacity>
 
-                    <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>Sightwords</Text>
+                    <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
                     {/* <Text style={{textAlign: 'center', color:'pink',backgroundColor:'red', marginTop: 50}}>sightwords</Text> */}
 
                     <View style={{width:"100%",height:"50%",justifyContent:'center',alignItems:'center'}}>
