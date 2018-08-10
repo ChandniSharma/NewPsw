@@ -141,52 +141,40 @@ fadeAnimationStart() {
   }
 
 
-onClickBulb(indexArrayImage){
-     this.setState({isView:!this.state.isView});
-     let temp = ''+indexArrayImage;
-     this.setState({numberValue:temp});
+    onClickBulb(indexArrayImage){
+         this.setState({isView:!this.state.isView});
+         let temp = ''+indexArrayImage;
+         this.setState({numberValue:temp});
 
-     console.log('Chandni  indexArrayImage'+indexArrayImage+'number value  '+' '+this.state.numberValue);
+         console.log('Chandni  indexArrayImage'+indexArrayImage+'number value  '+' '+this.state.numberValue);
 
-    ///* background img try 
-    var imageName1 = './back1.png';
-        var imageName2 = './back2.png';
-        var imageName3 = './back3.png';
-     
-    
-    if (indexArrayImage === 0) {
-        this.setState({imageNameBackground:'./back1.png'});
-    } else {
-        this.setState({imageNameBackground:'./back2.png'});
+       // console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
 
     }
-   // console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
-    
-}
 
-onCardSwipedRight(){
+    onCardSwipedRight(){
 
-    console.log('Card Count initial Right '+this.cardCount);
-    if (this.cardCount>0) {
-        this.cardCount = this.cardCount-1;  
-        let temp = ''+(this.cardCount);
-        this.setState({numberValue:temp});
-   
-    } 
-     console.log('Chandni  on swipe right'+this.cardCount+'number value  '+' '+this.state.numberValue);
-}
+        console.log('Card Count initial Right '+this.cardCount);
+        if (this.cardCount>0) {
+            this.cardCount = this.cardCount-1;
+            let temp = ''+(this.cardCount);
+            this.setState({numberValue:temp});
 
-onCardSwipedLeft(){
+        }
+         console.log('Chandni  on swipe right'+this.cardCount+'number value  '+' '+this.state.numberValue);
+    }
 
-     console.log('Card Count initial '+this.cardCount);
-     this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
+    onCardSwipedLeft(){
 
-     this.cardCount = this.cardCount+1;  
-     let temp = ''+(this.cardCount);
-     this.setState({numberValue:temp});
-    console.log('Chandni  on swipe left '+this.cardCount+'number value  '+' '+this.state.numberValue+'Image name is '+this.imageNameBackground);
+         console.log('Card Count initial '+this.cardCount);
+         this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
 
-}
+         this.cardCount = this.cardCount+1;
+         let temp = ''+(this.cardCount);
+         this.setState({numberValue:temp});
+        console.log('Chandni  on swipe left '+this.cardCount+'number value  '+' '+this.state.numberValue+'Image name is '+this.imageNameBackground);
+
+    }
 
     render() {
         const isView = this.state.isView;
@@ -199,7 +187,7 @@ onCardSwipedLeft(){
             temp = '1' +' of 220';
         }
        
-        console.log('number value '+temp)
+        console.log('number value '+temp, this.imageNameBackground)
         return (
         
         
@@ -234,28 +222,28 @@ onCardSwipedLeft(){
      
                 >
                 
-                    <Card style={[styles.card6]}>
+                    <Card style={[styles.card6]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>this.arrayWords[0]</Text>
+                    <Text style={styles.label}>{this.arrayWords[0]}</Text>
                     <TouchableOpacity
                                               style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                                              onPress={() =>this.onCardSwipedLeft(10)}>
+                                              onPress={() =>this.onClickBulb(1)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                       </ImageBackground>
                     </Card>
                     
-                    <Card style={[styles.card5]}>
+                    <Card style={[styles.card5]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>the</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
-                                              onPress={() => this.setState({isView:!this.state.isView})}>
+                                              onPress={() => this.onClickBulb(2)}>
                                 <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
-                    <Card style={[styles.card4]}>
+                    <Card style={[styles.card4]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>come</Text>
                     <TouchableOpacity
@@ -265,7 +253,7 @@ onCardSwipedLeft(){
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
-                    <Card style={[styles.card3]}>
+                    <Card style={[styles.card3]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>on</Text>
                     <TouchableOpacity
@@ -275,7 +263,7 @@ onCardSwipedLeft(){
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
-                    <Card style={[styles.card2]}>
+                    <Card style={[styles.card2]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>see</Text>
                     <TouchableOpacity
@@ -285,7 +273,7 @@ onCardSwipedLeft(){
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
-                    <Card style={[styles.card1]}>
+                    <Card style={[styles.card1]} onSwipedRight={()=>this.onCardSwipedRight()}>
                     <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
                     <TouchableOpacity
@@ -307,17 +295,17 @@ onCardSwipedLeft(){
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
                 <View style={styles.viewPopupBckgnd}>
-                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./Dog_background.png')}>
+                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={this.imageNameBackground}>
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
-                           source={require('./Dog_background.png')}>
+                           source={this.imageNameBackground}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
 
                     </ImageBackground>
                         <Text
-                            style={styles.label1}>{"This is place where we show text according to the sentence"}</Text>
+                            style={styles.label1}>{"I saw a dog"}</Text>
                     </View>
                    </ImageBackground>
                 </View>
