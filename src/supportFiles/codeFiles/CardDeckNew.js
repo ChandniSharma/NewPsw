@@ -31,7 +31,7 @@ export default class CardDeckNew extends React.Component {
         this.cardCount = 1 ,
        
       this.imageNameBackground = require('./Dog_background.png'),
-      this.imageNameForeground = require('./Dog_background.png'),
+
      
         this.state = {
             isView: false,
@@ -53,65 +53,77 @@ export default class CardDeckNew extends React.Component {
 
       this.arrayImages = [
                 {
+                    index:1,
+                    title:'a',
                     backgndImage: require('./Dog_background.png'),
                     frontImage: require('./Dog_background.png')
                 },
                 {
+                    title:'ran',
                     backgndImage: require('./Zebra_background.png'),
                     frontImage: require('./Zebra_background.png')
                 },
                 {
+                    title:'come',
                     backgndImage: require('./Rainbow_background.png'),
                     frontImage: require('./Rainbow_background.png')
                 },
                 {
+                    title:'up',
                     backgndImage: require('./Tiger_yawning_background_bw.png'),
                     frontImage: require('./Tiger_yawning_background_bw.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Boat_background.png'),
                     frontImage: require('./Boat_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Tiger_sleeping_background.png'),
                     frontImage: require('./Tiger_sleeping_background.png')
                 },
+
                 {
-                    backgndImage: require('./whitecard.png'),
-                    frontImage: require('./whitecard.png')
-                },
-              /*  {
+                    title:'a',
                     backgndImage: require('./Beachball_background.png'),
                     frontImage: require('./Beachball_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Leopard_background.png'),
                     frontImage: require('./Leopard_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Bicycle_background.png'),
                     frontImage: require('./Bicycle_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Kangaroos_background.png'),
                     frontImage: require('./Kangaroos_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Kangaroos_background.png'),
                     frontImage: require('./Kangaroos_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Fishing_background.png'),
                     frontImage: require('./Fishing_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Tigercubs_background.png'),
                     frontImage: require('./Tigercubs_background.png')
                 },
                 {
+                    title:'a',
                     backgndImage: require('./Fishing_background.png'),
                     frontImage: require('./Fishing_background.png')
-                },*/
+                },
             ],
 
         this.props = props;
@@ -224,9 +236,6 @@ fadeAnimationStart() {
                         // onSwiped={() => this.swiper._goBack()}
                         onSwipedLeft={() =>
                             this.onCardSwipedLeft()}
-                        onswipedRight={() =>
-                            this.onCardSwipedRight()()
-                        }
                         onSwipedTop={() => console.log('onSwipedTop')}
                         onSwipedBottom={() => console.log('onSwipedBottom')}
 
