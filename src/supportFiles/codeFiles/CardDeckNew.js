@@ -11,7 +11,6 @@ import {
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
-import CardFlip from 'react-native-card-flip';
 
 export default class CardDeckNew extends React.Component {
     
@@ -52,66 +51,92 @@ export default class CardDeckNew extends React.Component {
       ],
 
       this.arrayImages = [
-                {
+                {   index: 1,
+                    word: 'a',
+                    sentence: 'I saw a dog.',
                     backgndImage: require('./Dog_background.png'),
                     frontImage: require('./Dog_background.png')
                 },
                 {
+                    index: 2,
+                    word: 'ran',
+                    sentence: 'The zebra ran away.',
                     backgndImage: require('./Zebra_background.png'),
                     frontImage: require('./Zebra_background.png')
                 },
                 {
+                    index: 3,
+                    word: 'come',
+                    sentence: 'Please come and see the rainbow.',
                     backgndImage: require('./Rainbow_background.png'),
                     frontImage: require('./Rainbow_background.png')
                 },
                 {
+                    index: 4,
+                    word: 'up',
+                    sentence: 'The tiger woke up.',
                     backgndImage: require('./Tiger_yawning_background_bw.png'),
                     frontImage: require('./Tiger_yawning_background_bw.png')
                 },
                 {
+                    index: 5,
+                    word: 'see',
+                    sentence: 'I can see the boat.',
                     backgndImage: require('./Boat_background.png'),
                     frontImage: require('./Boat_background.png')
                 },
                 {
+                    index: 6,
+                    word: 'was',
+                    sentence: 'The tiger was sleeping.',
                     backgndImage: require('./Tiger_sleeping_background.png'),
                     frontImage: require('./Tiger_sleeping_background.png')
                 },
+               
                 {
-                    backgndImage: require('./whitecard.png'),
-                    frontImage: require('./whitecard.png')
-                },
-              /*  {
+                    index: 7,
+                    word: 'the',
+                    sentence: 'I can catch the ball.',
                     backgndImage: require('./Beachball_background.png'),
                     frontImage: require('./Beachball_background.png')
                 },
                 {
+                    index: 8,
+                    word: 'jump',
+                    sentence: 'The leopard can jump very high.',
                     backgndImage: require('./Leopard_background.png'),
                     frontImage: require('./Leopard_background.png')
                 },
                 {
+                    index: 9,
+                    word: 'on',
+                    sentence: 'I sat on the bike.',
                     backgndImage: require('./Bicycle_background.png'),
                     frontImage: require('./Bicycle_background.png')
                 },
                 {
+                    index: 10,
+                    word: 'ten',
+                    sentence: 'I saw ten kangaroos.',
                     backgndImage: require('./Kangaroos_background.png'),
                     frontImage: require('./Kangaroos_background.png')
                 },
+                
                 {
-                    backgndImage: require('./Kangaroos_background.png'),
-                    frontImage: require('./Kangaroos_background.png')
-                },
-                {
+                    index: 11,
+                    word: 'go',
+                    sentence: 'Lets go fishing.',
                     backgndImage: require('./Fishing_background.png'),
                     frontImage: require('./Fishing_background.png')
                 },
                 {
+                    index: 12,
+                    word: 'two',
+                    sentence: 'There were two tigers at the zoo.',
                     backgndImage: require('./Tigercubs_background.png'),
                     frontImage: require('./Tigercubs_background.png')
                 },
-                {
-                    backgndImage: require('./Fishing_background.png'),
-                    frontImage: require('./Fishing_background.png')
-                },*/
+              
             ],
 
         this.props = props;
