@@ -31,6 +31,7 @@ export default class CardDeckNew extends React.Component {
         this.cardCount = 1 ,
        
       this.imageNameBackground = require('./Dog_background.png'),
+      this.imageNameForeground = require('./Dog_background.png'),
 
         this.state = {
             isView: false,
@@ -180,6 +181,7 @@ onCardSwipedLeft(){
 
      console.log('Card Count initial '+this.cardCount);
      this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
+     this.imageNameForeground = this.arrayImages[this.cardCount].frontImage;
 
      this.cardCount = this.cardCount+1;  
      let temp = ''+(this.cardCount);
@@ -236,7 +238,7 @@ onCardSwipedLeft(){
                 
                     <Card style={[styles.card6]}>
                     <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>this.arrayWords[0]</Text>
+                    <Text style={styles.label}>a</Text>
                     <TouchableOpacity
                                               style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
                                               onPress={() =>this.onCardSwipedLeft(10)}>
@@ -247,7 +249,7 @@ onCardSwipedLeft(){
                     
                     <Card style={[styles.card5]}>
                     <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>the</Text>
+                    <Text style={styles.label}>ran</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.setState({isView:!this.state.isView})}>
@@ -267,7 +269,17 @@ onCardSwipedLeft(){
                     </Card>
                     <Card style={[styles.card3]}>
                     <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>on</Text>
+                    <Text style={styles.label}>up</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(4)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card3]}>
+                    <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>see</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.onClickBulb(4)}>
@@ -277,7 +289,7 @@ onCardSwipedLeft(){
                     </Card>
                     <Card style={[styles.card2]}>
                     <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>see</Text>
+                    <Text style={styles.label}>was</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
                                               onPress={() => this.onClickBulb(5)}>
@@ -287,6 +299,46 @@ onCardSwipedLeft(){
                     </Card>
                     <Card style={[styles.card1]}>
                     <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>the</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(6)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card6]}>
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>jump</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(6)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card5]}>
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>on</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(6)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card4]}>
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>ten</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(6)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    <Card style={[styles.card3]}>
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>go</Text>
                     <TouchableOpacity
                                               style={[styles.container,{marginTop:2}]}
@@ -295,7 +347,18 @@ onCardSwipedLeft(){
                             </TouchableOpacity>
                     </ImageBackground>
                     </Card>
-
+                    
+                    <Card style={[styles.card1]}>
+                    <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>two</Text>
+                    <TouchableOpacity
+                                              style={[styles.container,{marginTop:2}]}
+                                              onPress={() => this.onClickBulb(6)}>
+                                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                            </TouchableOpacity>
+                    </ImageBackground>
+                    </Card>
+                    
                 </CardStack> : null} 
                  <TouchableOpacity style={[{width:30,height:20,paddingTop:'15%'}]}
                                               onPress={() =>this.onClickBulb(7)}>
@@ -307,10 +370,10 @@ onCardSwipedLeft(){
             {isView ?
                 <Animated.View style={{width:"100%",height:"100%"}}>
                 <View style={styles.viewPopupBckgnd}>
-                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={require('./Dog_background.png')}>
+                   <ImageBackground style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}} source={this.imageNameForeground}>
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
-                           source={require('./Dog_background.png')}>
+                           source={this.imageNameForeground}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
