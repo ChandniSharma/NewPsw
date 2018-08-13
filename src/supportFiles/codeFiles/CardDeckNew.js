@@ -188,6 +188,7 @@ export default class CardDeckNew extends Component {
     handleAdd() {
         if (this.state.allCards.length > 0) {
             let newCard = this.state.allCards.shift()
+            console.log("New Card : ",newCard)
             this.setState({
                 allCards: [newCard, ...this.state.allCards]
             });
@@ -218,12 +219,14 @@ export default class CardDeckNew extends Component {
 
             this.state.allCards.push(result[index + 1]);
 
+
+
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
             this.question = this.state.allCards[index+1].sentence;
 
-
             this.handleAdd();
+
         }
     };
 
