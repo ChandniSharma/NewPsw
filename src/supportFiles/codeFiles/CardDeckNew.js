@@ -186,7 +186,6 @@ export default class CardDeckNew extends Component {
 
 
     handleAdd() {
-
         if (this.state.allCards.length > 0) {
             let newCard = this.state.allCards.shift()
             this.setState({
@@ -238,13 +237,11 @@ export default class CardDeckNew extends Component {
     renderCard(cardObject) {
         return(
 
-                <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} key={cardObject.index} source={require('./whitecard.png')} >
+                <ImageBackground style={{ width: 270, height: 370,bottom:cardObject.index*2 ,left:30}} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
-
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',backgroundColor:'green',zIndex:10}]}
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10}]}
                         onPress={() => {this.setState({isView:!this.state.isView})}}>
-
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
                 </ImageBackground>
@@ -536,8 +533,8 @@ const styles = StyleSheet.create({
         fontSize: 60,
         fontFamily: 'System',
         color: '#4a90e2',
-        //backgroundColor: 'transparent',
-        backgroundColor: 'pink',
+        backgroundColor: 'transparent',
+        //backgroundColor: 'pink',
     },
     footer:{
         flex:1,
@@ -615,9 +612,8 @@ const styles = StyleSheet.create({
             height: 32,
         },
         label1: {
-            top:"10%",
             textAlign: 'center',
-            fontSize: 30,
+            fontSize: 25,
             fontFamily: 'System',
             color: '#000000',
             backgroundColor: 'white',
