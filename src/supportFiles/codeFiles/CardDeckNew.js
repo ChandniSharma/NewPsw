@@ -253,9 +253,9 @@ export default class CardDeckNew extends React.Component {
         const isView = this.state.isView;
 
         if (isView) {
-            console.log( 'now is view is true');
+            console.log( 'now view is true');
         } else {
-            console.log( 'now is view is false');
+            console.log( 'now view is false');
         }
 
         var imageName1 = './back1.png';
