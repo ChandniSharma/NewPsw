@@ -15,6 +15,9 @@ import CardStack from 'react-native-card-stack';
 //import CardStack, { Card } from 'react-native-card-stack-swiper';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
 
+let result = [];
+let count = 0;
+
 export default class CardDeckNew extends React.Component {
     
    
@@ -28,7 +31,8 @@ export default class CardDeckNew extends React.Component {
        
 
         this.cardCount = 1 ,
-       
+
+            this.result = [],
          this.imageNameBackground = require('./Dog_background.png'),
 
           this.state = {
@@ -141,8 +145,9 @@ export default class CardDeckNew extends React.Component {
             for (var i = 0; i < this.state.arrayImages.length; i++){
                 resultKeyed.push(this.state.arrayImages[i]);
             }
+
             this.setState({
-                allCards: resultKeyed.reverse()
+                allCards: resultKeyed.reverse(),
             });
         } catch (err) {
             alert(JSON.stringify(err));
@@ -192,19 +197,40 @@ export default class CardDeckNew extends React.Component {
     };
 
     handleRemove = (index) => {
-        console.log("Index: ",index, "\n",this.state.allCards);
+        console.log("Index: ",index, "\n",this.state.allCards,"\n");
 
-        this.imageNameBackground = this.state.allCards[index-1].backgndImage;
-        console.log("All cards: ", this.state.allCards)
-        this.state.allCards.pop();
-        this.setState({
-            displayedCards: this.state.allCards
-        });
-        this.handleAdd();
+        if(index>0) {
+            this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
+            console.log("All cards: ", this.state.allCards)
+            this.state.allCards.pop();
+
+            this.handleAdd();
+        }
+
     };
 
-    showObject(data){
-        console.log("Data: ",data)
+    handleAddToCard = (index) => {
+        if(count===0){
+            result = this.state.arrayImages.reverse()
+            count++;
+        }
+        if(index<11) {
+
+            console.log("Index in add right: ", index, "\n", this.state.allCards, "\n", result[index + 1]);
+
+            this.state.allCards.push(result[index + 1]);
+
+            this.imageNameBackground = this.state.allCards[index+1].backgndImage;
+
+            console.log("All cards: ", this.state.allCards)
+
+
+            this.handleAdd();
+        }
+    };
+
+    showObject(){
+        console.log("Data: ");
     }
 
     renderCard(cardObject) {
@@ -213,8 +239,8 @@ export default class CardDeckNew extends React.Component {
                 <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                        onPress={() => this.showObject(cardObject)}>
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',backgroundColor:'green',zIndex:10}]}
+                        onPress={() => {this.setState({isView:!this.state.isView})}}>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
                 </ImageBackground>
@@ -225,6 +251,13 @@ export default class CardDeckNew extends React.Component {
 
     render() {
         const isView = this.state.isView;
+
+        if (isView) {
+            console.log( 'now is view is true');
+        } else {
+            console.log( 'now is view is false');
+        }
+
         var imageName1 = './back1.png';
         // For showing number below to the card.
         let temp;
@@ -334,12 +367,12 @@ export default class CardDeckNew extends React.Component {
 
                         <CardStack
                             cardList={this.state.allCards}
-                            renderCard={this.renderCard}
+                            renderCard={this.renderCard.bind(this)}
                             cardHeight={flattenStyle(styles.card).height}
                             cardWidth={flattenStyle(styles.card).width}
                             cardRotation={20}
                             cardOpacity={0.5}
-                            onSwipeRight={this.handleRemove}
+                            onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
                             leftSwipeThreshold={-100}
                             rightSwipeThreshold={100}
@@ -499,8 +532,8 @@ const styles = StyleSheet.create({
         fontSize: 60,
         fontFamily: 'System',
         color: '#4a90e2',
-        backgroundColor: 'transparent',
-       // backgroundColor: 'green',
+        //backgroundColor: 'transparent',
+        backgroundColor: 'pink',
     },
     footer:{
         flex:1,
@@ -571,7 +604,7 @@ const styles = StyleSheet.create({
         imageQuestionMark:{
             width: 48,
             height: 48,
-            bottom: 30,
+            bottom: '5%',
         },
         imageCross:{
             width: 32,
