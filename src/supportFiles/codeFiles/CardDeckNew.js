@@ -19,7 +19,7 @@ import CardFlip from 'react-native-card-flip';
 let result = [];
 let count = 0;
 
-export default class CardDeckNew extends React.Component {
+export default class CardDeckNew extends Component {
     
    
     static navigationOptions =
@@ -29,14 +29,11 @@ export default class CardDeckNew extends React.Component {
 
     constructor(props){
         super(props);
-       
-
-        this.cardCount = 1 ,
-
+            this.question='',
+            this.cardCount = 1 ,
             this.result = [],
-         this.imageNameBackground = require('./Dog_background.png'),
-
-          this.state = {
+            this.imageNameBackground = require('./Dog_background.png'),
+            this.state = {
               allCards: [],
               displayedCards: [],
               numberValue:  0,
@@ -130,9 +127,8 @@ export default class CardDeckNew extends React.Component {
                       frontImage: require('./Tigercubs_background.png')
                   },
 
-              ]
-          }
-
+                ]
+             }
 
         
     }
@@ -203,6 +199,8 @@ export default class CardDeckNew extends React.Component {
 
         if(index>0) {
             this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
+            this.cardCount = this.state.allCards[index-1].index;
+            this.question = this.state.allCards[index-1].sentence;
             console.log("All cards: ", this.state.allCards)
             this.state.allCards.pop();
 
@@ -223,7 +221,8 @@ export default class CardDeckNew extends React.Component {
             this.state.allCards.push(result[index + 1]);
 
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
-
+            this.cardCount = this.state.allCards[index+1].index;
+            this.question = this.state.allCards[index+1].sentence;
             console.log("All cards: ", this.state.allCards)
 
 
@@ -238,26 +237,23 @@ export default class CardDeckNew extends React.Component {
     renderCard(cardObject) {
         return(
 
-                <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
+                <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
                         style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                        onPress={() => this.showObject(cardObject)}>
+                        onPress={()=>this.setState({isView:!this.state.isView})}>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
                 </ImageBackground>
-
-
         )
     }
 
     render() {
         const isView = this.state.isView;
-        var imageName1 = './back1.png';
-        // For showing number below to the card.
+
         let temp;
-        if (this.state.numberValue >= 0) {
-            temp = String(this.state.numberValue)+' of 220';
+        if (this.cardCount >= 0) {
+            temp = String(this.cardCount)+' of 220';
         } else {
             temp = '1' +' of 220';
         }
@@ -401,7 +397,7 @@ export default class CardDeckNew extends React.Component {
 
                     </ImageBackground>
                         <Text
-                            style={styles.label1}>{"I saw "}<Text style={[styles.label1,{color: '#4a90e2'}]}>{"a"}</Text> {" dog"}</Text>
+                            style={styles.label1}>{this.question}</Text>
                     </View>
                    </ImageBackground>
                 </View>
