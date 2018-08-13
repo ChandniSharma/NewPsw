@@ -28,12 +28,12 @@ export default class CardDeckNew extends Component {
 
     constructor(props){
         super(props);
-            this.question='',
-            this.cardCount = 1 ,
-            this.result = [],
-            this.imageNameBackground = require('./Dog_background.png'),
-            this.state = {
-              allCards: [],
+        this.question='',
+        this.cardCount = 1 ,
+        this.result = [],
+        this.imageNameBackground = require('./Dog_background.png'),
+        this.state = {
+         allCards: [],
               displayedCards: [],
               numberValue:  0,
               isView: false,
@@ -124,7 +124,7 @@ export default class CardDeckNew extends Component {
                       sentence: 'There were two tigers at the zoo.',
                       backgndImage: require('./Tigercubs_background.png'),
                       frontImage: require('./Tigercubs_background.png')
-                  },
+                    },
 
 
                 ]
@@ -132,11 +132,11 @@ export default class CardDeckNew extends Component {
 
 
         
-    }
+            }
 
-    componentWillMount(){
-        this.pullUsers();
-    }
+            componentWillMount(){
+                this.pullUsers();
+            }
 
     async pullUsers() {
         try {
@@ -224,7 +224,7 @@ export default class CardDeckNew extends Component {
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
             this.question = this.state.allCards[index+1].sentence;
-            console.log("All cards: ", this.state.allCards)
+                       console.log("All cards: ", this.state.allCards)
 
 
             this.handleAdd();
@@ -272,7 +272,7 @@ export default class CardDeckNew extends Component {
         }
        
         console.log('number value '+temp, this.imageNameBackground)
-        return (
+      return (
             <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.imageNameBackground}>
         
                 {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.imageNameBackground}>
