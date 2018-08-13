@@ -14,7 +14,6 @@ import CardStack from 'react-native-card-stack';
 
 //import CardStack, { Card } from 'react-native-card-stack-swiper';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
-import CardFlip from 'react-native-card-flip';
 
 let result = [];
 let count = 0;
@@ -127,8 +126,10 @@ export default class CardDeckNew extends Component {
                       frontImage: require('./Tigercubs_background.png')
                   },
 
+
                 ]
              }
+
 
         
     }
@@ -230,8 +231,8 @@ export default class CardDeckNew extends Component {
         }
     };
 
-    showObject(data){
-        console.log("Data: ",data)
+    showObject(){
+        console.log("Data: ");
     }
 
     renderCard(cardObject) {
@@ -240,8 +241,10 @@ export default class CardDeckNew extends Component {
                 <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                        onPress={() => this.setState({isView:!this.state.isView})}>
+
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',backgroundColor:'green',zIndex:10}]}
+                        onPress={() => {this.setState({isView:!this.state.isView})}}>
+
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
                 </ImageBackground>
@@ -250,6 +253,16 @@ export default class CardDeckNew extends Component {
 
     render() {
         const isView = this.state.isView;
+
+
+        if (isView) {
+            console.log( 'now view is true');
+        } else {
+            console.log( 'now view is false');
+        }
+
+        var imageName1 = './back1.png';
+        // For showing number below to the card.
 
         let temp;
         if (this.cardCount >= 0) {
@@ -358,7 +371,7 @@ export default class CardDeckNew extends Component {
 
                         <CardStack
                             cardList={this.state.allCards}
-                            renderCard={this.renderCard}
+                            renderCard={this.renderCard.bind(this)}
                             cardHeight={flattenStyle(styles.card).height}
                             cardWidth={flattenStyle(styles.card).width}
                             cardRotation={20}
@@ -523,8 +536,8 @@ const styles = StyleSheet.create({
         fontSize: 60,
         fontFamily: 'System',
         color: '#4a90e2',
-        backgroundColor: 'transparent',
-       // backgroundColor: 'green',
+        //backgroundColor: 'transparent',
+        backgroundColor: 'pink',
     },
     footer:{
         flex:1,
@@ -595,7 +608,7 @@ const styles = StyleSheet.create({
         imageQuestionMark:{
             width: 48,
             height: 48,
-            bottom: 30,
+            bottom: '5%',
         },
         imageCross:{
             width: 32,
