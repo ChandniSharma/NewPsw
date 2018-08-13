@@ -241,7 +241,7 @@ export default class CardDeckNew extends Component {
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
                         style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                        onPress={()=>this.setState({isView:!this.state.isView})}>
+                        onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
                 </ImageBackground>
