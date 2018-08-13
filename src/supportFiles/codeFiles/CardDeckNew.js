@@ -375,6 +375,8 @@ export default class CardDeckNew extends Component {
                             cardOpacity={0.5}
                             onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
+                            onSwipeUp={this.handleAddToCard}
+                            onSwipeDown={this.handleRemove}
                             leftSwipeThreshold={-100}
                             rightSwipeThreshold={100}
                             upSwipeThreshold={-100}
@@ -527,11 +529,11 @@ const styles = StyleSheet.create({
     },
 
     label: {
+        fontFamily:"Jua-Regular",
         marginTop:'0%',
         lineHeight: 300,
         textAlign: 'center',
         fontSize: 60,
-        fontFamily: 'System',
         color: '#4a90e2',
         backgroundColor: 'transparent',
         //backgroundColor: 'pink',
@@ -559,7 +561,6 @@ const styles = StyleSheet.create({
         height:55,
         borderWidth:6,
         borderColor:'rgb(246,190,66)',
-        borderWidth:4,
         borderRadius:55,
         marginTop:-15
     },
@@ -612,9 +613,9 @@ const styles = StyleSheet.create({
             height: 32,
         },
         label1: {
+            fontFamily:"Jua-Regular",
             textAlign: 'center',
             fontSize: 25,
-            fontFamily: 'System',
             color: '#000000',
             backgroundColor: 'white',
            
