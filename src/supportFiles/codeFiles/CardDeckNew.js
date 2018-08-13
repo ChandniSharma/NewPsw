@@ -16,6 +16,9 @@ import CardStack from 'react-native-card-stack';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
 import CardFlip from 'react-native-card-flip';
 
+let result = [];
+let count = 0;
+
 export default class CardDeckNew extends React.Component {
     
    
@@ -29,7 +32,8 @@ export default class CardDeckNew extends React.Component {
        
 
         this.cardCount = 1 ,
-       
+
+            this.result = [],
          this.imageNameBackground = require('./Dog_background.png'),
 
           this.state = {
@@ -143,8 +147,9 @@ export default class CardDeckNew extends React.Component {
             for (var i = 0; i < this.state.arrayImages.length; i++){
                 resultKeyed.push(this.state.arrayImages[i]);
             }
+
             this.setState({
-                allCards: resultKeyed.reverse()
+                allCards: resultKeyed.reverse(),
             });
         } catch (err) {
             alert(JSON.stringify(err));
@@ -194,15 +199,36 @@ export default class CardDeckNew extends React.Component {
     };
 
     handleRemove = (index) => {
-        console.log("Index: ",index, "\n",this.state.allCards);
+        console.log("Index: ",index, "\n",this.state.allCards,"\n");
 
-        this.imageNameBackground = this.state.allCards[index-1].backgndImage;
-        console.log("All cards: ", this.state.allCards)
-        this.state.allCards.pop();
-        this.setState({
-            displayedCards: this.state.allCards
-        });
-        this.handleAdd();
+        if(index>0) {
+            this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
+            console.log("All cards: ", this.state.allCards)
+            this.state.allCards.pop();
+
+            this.handleAdd();
+        }
+
+    };
+
+    handleAddToCard = (index) => {
+        if(count===0){
+            result = this.state.arrayImages.reverse()
+            count++;
+        }
+        if(index<11) {
+
+            console.log("Index in add right: ", index, "\n", this.state.allCards, "\n", result[index + 1]);
+
+            this.state.allCards.push(result[index + 1]);
+
+            this.imageNameBackground = this.state.allCards[index+1].backgndImage;
+
+            console.log("All cards: ", this.state.allCards)
+
+
+            this.handleAdd();
+        }
     };
 
     showObject(data){
@@ -341,7 +367,7 @@ export default class CardDeckNew extends React.Component {
                             cardWidth={flattenStyle(styles.card).width}
                             cardRotation={20}
                             cardOpacity={0.5}
-                            onSwipeRight={this.handleRemove}
+                            onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
                             leftSwipeThreshold={-100}
                             rightSwipeThreshold={100}
