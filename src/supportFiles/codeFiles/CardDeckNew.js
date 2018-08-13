@@ -9,7 +9,10 @@ import {
     TextInput
 } from 'react-native';
 
-import CardStack, { Card } from 'react-native-card-stack-swiper';
+import flattenStyle from 'flattenStyle';
+import CardStack from 'react-native-card-stack';
+
+//import CardStack, { Card } from 'react-native-card-stack-swiper';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
 import CardFlip from 'react-native-card-flip';
 
@@ -22,180 +25,204 @@ export default class CardDeckNew extends React.Component {
         };
 
     constructor(props){
-        super();
+        super(props);
        
-        this.state = {
-            numberValue:  0,
-            
-        }
+
         this.cardCount = 1 ,
        
-      this.imageNameBackground = require('./Dog_background.png'),
+         this.imageNameBackground = require('./Dog_background.png'),
 
-     
-        this.state = {
-            isView: false,
-        }
-        
-        
-       this.state = {
-            fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
+          this.state = {
+              allCards: [],
+              displayedCards: [],
+              numberValue:  0,
+              isView: false,
+              fadeAnim: new Animated.Value(0),
+              errors: [],
+              arrayImages: [
+                  {   index: 1,
+                      word: 'a',
+                      sentence: 'I saw a dog.',
+                      backgndImage: require('./Dog_background.png'),
+                      frontImage: require('./Dog_background.png')
+                  },
+                  {
+                      index: 2,
+                      word: 'ran',
+                      sentence: 'The zebra ran away.',
+                      backgndImage: require('./Zebra_background.png'),
+                      frontImage: require('./Zebra_background.png')
+                  },
+                  {
+                      index: 3,
+                      word: 'come',
+                      sentence: 'Please come and see the rainbow.',
+                      backgndImage: require('./Rainbow_background.png'),
+                      frontImage: require('./Rainbow_background.png')
+                  },
+                  {
+                      index: 4,
+                      word: 'up',
+                      sentence: 'The tiger woke up.',
+                      backgndImage: require('./Tiger_yawning_background_bw.png'),
+                      frontImage: require('./Tiger_yawning_background_bw.png')
+                  },
+                  {
+                      index: 5,
+                      word: 'see',
+                      sentence: 'I can see the boat.',
+                      backgndImage: require('./Boat_background.png'),
+                      frontImage: require('./Boat_background.png')
+                  },
+                  {
+                      index: 6,
+                      word: 'was',
+                      sentence: 'The tiger was sleeping.',
+                      backgndImage: require('./Tiger_sleeping_background.png'),
+                      frontImage: require('./Tiger_sleeping_background.png')
+                  },
+
+                  {
+                      index: 7,
+                      word: 'the',
+                      sentence: 'I can catch the ball.',
+                      backgndImage: require('./Beachball_background.png'),
+                      frontImage: require('./Beachball_background.png')
+                  },
+                  {
+                      index: 8,
+                      word: 'jump',
+                      sentence: 'The leopard can jump very high.',
+                      backgndImage: require('./Leopard_background.png'),
+                      frontImage: require('./Leopard_background.png')
+                  },
+                  {
+                      index: 9,
+                      word: 'on',
+                      sentence: 'I sat on the bike.',
+                      backgndImage: require('./Bicycle_background.png'),
+                      frontImage: require('./Bicycle_background.png')
+                  },
+                  {
+                      index: 10,
+                      word: 'ten',
+                      sentence: 'I saw ten kangaroos.',
+                      backgndImage: require('./Kangaroos_background.png'),
+                      frontImage: require('./Kangaroos_background.png')
+                  },
+
+                  {
+                      index: 11,
+                      word: 'go',
+                      sentence: 'Lets go fishing.',
+                      backgndImage: require('./Fishing_background.png'),
+                      frontImage: require('./Fishing_background.png')
+                  },
+                  {
+                      index: 12,
+                      word: 'two',
+                      sentence: 'There were two tigers at the zoo.',
+                      backgndImage: require('./Tigercubs_background.png'),
+                      frontImage: require('./Tigercubs_background.png')
+                  },
+
+              ]
           }
-     
-        this.state = {
-            errors: []
-        }
-        
-        // Add card image and background image
-      this.arrayWords = [
-          'a','ran','come','up','see','was','the','jump','on','ten','go','two'
-      ],
 
-      this.arrayImages = [
-                {
-                    index:1,
-                    title:'a',
-                    backgndImage: require('./Dog_background.png'),
-                    frontImage: require('./Dog_background.png')
-                },
-                {
-                    title:'ran',
-                    backgndImage: require('./Zebra_background.png'),
-                    frontImage: require('./Zebra_background.png')
-                },
-                {
-                    title:'come',
-                    backgndImage: require('./Rainbow_background.png'),
-                    frontImage: require('./Rainbow_background.png')
-                },
-                {
-                    title:'up',
-                    backgndImage: require('./Tiger_yawning_background_bw.png'),
-                    frontImage: require('./Tiger_yawning_background_bw.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Boat_background.png'),
-                    frontImage: require('./Boat_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Tiger_sleeping_background.png'),
-                    frontImage: require('./Tiger_sleeping_background.png')
-                },
-
-                {
-                    title:'a',
-                    backgndImage: require('./Beachball_background.png'),
-                    frontImage: require('./Beachball_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Leopard_background.png'),
-                    frontImage: require('./Leopard_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Bicycle_background.png'),
-                    frontImage: require('./Bicycle_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Kangaroos_background.png'),
-                    frontImage: require('./Kangaroos_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Kangaroos_background.png'),
-                    frontImage: require('./Kangaroos_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Fishing_background.png'),
-                    frontImage: require('./Fishing_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Tigercubs_background.png'),
-                    frontImage: require('./Tigercubs_background.png')
-                },
-                {
-                    title:'a',
-                    backgndImage: require('./Fishing_background.png'),
-                    frontImage: require('./Fishing_background.png')
-                },
-            ],
-
-        this.props = props;
 
         
     }
-    
 
-flipCurrentView( card,){
-    this.card.flip()
-    this.setState({isView:!this.state.isView});
-    
-}
+    componentWillMount(){
+        this.pullUsers();
+    }
 
-getInitialState() {
-    return { absoluteChangeX: new Animated.Value(0) };
-  }
+    async pullUsers() {
+        try {
+            let resultKeyed = [];
+            for (var i = 0; i < this.state.arrayImages.length; i++){
+                resultKeyed.push(this.state.arrayImages[i]);
+            }
+            this.setState({
+                allCards: resultKeyed.reverse()
+            });
+        } catch (err) {
+            alert(JSON.stringify(err));
+        }
+    }
 
-fadeAnimationStart() {
-    this.setState({isView:!this.state.isView})
-    Animated.timing(                  // Animate over time
-      this.state.fadeAnim,            // The animated value to drive
-      {
-        toValue: 1,                   // Animate to opacity: 1 (opaque)
-        duration: 10000,              // Make it take a while
+    flipCurrentView( card,){
+        this.card.flip()
+        this.setState({isView:!this.state.isView});
+
+    }
+
+    getInitialState() {
+        return { absoluteChangeX: new Animated.Value(0) };
       }
-    ).start();                        // Starts the animation
-  }
-  fadeAnimationStop() {
-    this.setState({isView:!this.state.isView})
-    this.getInitialState();                        // Starts the animation
-  }
 
-  forChildRightSwipeAction(){
-    console.log('Child right swipe ');
-  }
-
-    onClickBulb(indexArrayImage){
-         this.setState({isView:!this.state.isView});
-         let temp = ''+indexArrayImage;
-         this.setState({numberValue:temp});
-
-         console.log('Chandni  indexArrayImage'+indexArrayImage+'number value  '+' '+this.state.numberValue);
-
-       // console.log('Chandni Imge name bckgnd '+' '+this.state.imageNameBackground);
-
+    fadeAnimationStart() {
+        this.setState({isView:!this.state.isView})
+        Animated.timing(                  // Animate over time
+          this.state.fadeAnim,            // The animated value to drive
+          {
+            toValue: 1,                   // Animate to opacity: 1 (opaque)
+            duration: 10000,              // Make it take a while
+          }
+        ).start();                        // Starts the animation
     }
 
-    onCardSwipedRight(){
+    fadeAnimationStop() {
+        this.setState({isView:!this.state.isView})
+        this.getInitialState();                        // Starts the animation
+    }
 
-        console.log('Card Count initial Right '+this.cardCount);
+    onClickBulb(){
+        console.log("Hello here ")
+        this.setState({isView:!this.state.isView});
+    }
 
-        this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
-        if (this.cardCount>0) {
-            this.cardCount = this.cardCount-1;
-            let temp = ''+(this.cardCount);
-            this.setState({numberValue:temp});
 
+    handleAdd() {
+
+        if (this.state.allCards.length > 0) {
+            let newCard = this.state.allCards.shift()
+            this.setState({
+                allCards: [newCard, ...this.state.allCards]
+            });
         }
-         console.log('Chandni  on swipe right'+this.cardCount+'number value  '+' '+this.state.numberValue);
+    };
+
+    handleRemove = (index) => {
+        console.log("Index: ",index, "\n",this.state.allCards);
+
+        this.imageNameBackground = this.state.allCards[index-1].backgndImage;
+        console.log("All cards: ", this.state.allCards)
+        this.state.allCards.pop();
+        this.setState({
+            displayedCards: this.state.allCards
+        });
+        this.handleAdd();
+    };
+
+    showObject(data){
+        console.log("Data: ",data)
     }
 
-    onCardSwipedLeft(){
+    renderCard(cardObject) {
+        return(
 
-         console.log('Card Count initial '+this.cardCount);
-         this.imageNameBackground = this.arrayImages[this.cardCount].backgndImage;
+                <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>{cardObject.word}</Text>
+                    <TouchableOpacity
+                        style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
+                        onPress={() => this.showObject(cardObject)}>
+                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                    </TouchableOpacity>
+                </ImageBackground>
 
-         this.cardCount = this.cardCount+1;
-         let temp = ''+(this.cardCount);
-         this.setState({numberValue:temp});
-        console.log('Chandni  on swipe left '+this.cardCount+'number value  '+' '+this.state.numberValue+'Image name is '+this.imageNameBackground);
 
+        )
     }
 
     render() {
@@ -223,9 +250,9 @@ fadeAnimationStart() {
                     <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
                     {/* <Text style={{textAlign: 'center', color:'pink',backgroundColor:'red', marginTop: 50}}>sightwords</Text> */}
 
-                    <View style={{width:"100%",height:"50%",justifyContent:'center',alignItems:'center'}}>
+                    <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
-                    <CardStack
+                   {/* <CardStack
                         style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
                         ref={swiper => {
                             this.swiper = swiper
@@ -303,7 +330,24 @@ fadeAnimationStart() {
                             </ImageBackground>
                         </Card>
 
-                    </CardStack>
+                    </CardStack>*/}
+
+                        {console.log("Display Cards: ",this.state.allCards)}
+
+                        <CardStack
+                            cardList={this.state.allCards}
+                            renderCard={this.renderCard}
+                            cardHeight={flattenStyle(styles.card).height}
+                            cardWidth={flattenStyle(styles.card).width}
+                            cardRotation={20}
+                            cardOpacity={0.5}
+                            onSwipeRight={this.handleRemove}
+                            onSwipeLeft={this.handleRemove}
+                            leftSwipeThreshold={-100}
+                            rightSwipeThreshold={100}
+                            upSwipeThreshold={-100}
+                            downSwipeThreshold={100}
+                        />
 
 
 
