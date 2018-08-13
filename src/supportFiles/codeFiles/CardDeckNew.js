@@ -28,7 +28,7 @@ export default class CardDeckNew extends Component {
 
     constructor(props){
         super(props);
-            this.question='',
+            this.question='I saw a dog.',
             this.cardCount = 1 ,
             this.result = [],
             this.imageNameBackground = require('./Dog_background.png'),
@@ -195,13 +195,11 @@ export default class CardDeckNew extends Component {
     };
 
     handleRemove = (index) => {
-        console.log("Index: ",index, "\n",this.state.allCards,"\n");
 
         if(index>0) {
             this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
             this.cardCount = this.state.allCards[index-1].index;
             this.question = this.state.allCards[index-1].sentence;
-            console.log("All cards: ", this.state.allCards)
             this.state.allCards.pop();
 
             this.handleAdd();
@@ -223,7 +221,6 @@ export default class CardDeckNew extends Component {
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
             this.question = this.state.allCards[index+1].sentence;
-            console.log("All cards: ", this.state.allCards)
 
 
             this.handleAdd();
@@ -235,6 +232,7 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard(cardObject) {
+        console.log("Chala Yeah")
         return(
 
                 <ImageBackground style={{ width: 270, height: 370,bottom:cardObject.index*2 ,left:30}} key={cardObject.index} source={require('./whitecard.png')} >

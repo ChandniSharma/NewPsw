@@ -264,7 +264,7 @@ flex-direction: row;
 const styles = StyleSheet.create({
     container: {
         bottom:10,
-        left:140,
+        left:"43%",
     },
     content:{
         flex: 5,
