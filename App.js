@@ -103,11 +103,11 @@ class ThumbnailCarousel extends Component {
 
     moveToNextView(index){
         
-        this.props.navigation.navigate('Details')
+        
         if (index===1) {
             this.props.navigation.navigate('Details')
         } else {
-            
+            console.log('we will move user to lock features');
         }
     }
     _renderItem = ({item, index}) => {
@@ -162,8 +162,6 @@ class ThumbnailCarousel extends Component {
                             </TouchableOpacity>
                         </View>
                     </CurrentVideoImage>
-
-
 
                 </CurrentVideoTO>
 
@@ -264,7 +262,7 @@ flex-direction: row;
 const styles = StyleSheet.create({
     container: {
         bottom:10,
-        left:140,
+        left:"43%",
     },
     content:{
         flex: 5,
@@ -404,6 +402,7 @@ const stylesImage = StyleSheet.create({
     marginTop: '15%',
     width: 70,
     height: 39,
+    marginLeft: '-5%',
   },
   imageBottomLock:{
     marginTop: Platform.OS === 'ios' ? '9%' : '0.5%',
