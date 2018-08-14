@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground, Animated,
-    TextInput
+    TextInput,
+    Platform
 } from 'react-native';
 
 import flattenStyle from 'flattenStyle';
@@ -237,8 +238,8 @@ export default class CardDeckNew extends Component {
 
     renderCard(cardObject) {
         console.log("Chala Yeah")
-        return(
-
+        if (Platform.OS === 'ios') {
+            return(
                 <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
@@ -248,6 +249,20 @@ export default class CardDeckNew extends Component {
                     </TouchableOpacity>
                 </ImageBackground>
         )
+        } else {
+            return(
+
+                <ImageBackground style={{ left:30 ,width: 470-cardObject.index, height: 570-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>{cardObject.word}</Text>
+                    <TouchableOpacity
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                        onPress={() => {this.setState({isView:!this.state.isView})}}>
+                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                    </TouchableOpacity>
+                </ImageBackground>
+        )
+        }
+        
     }
 
     render() {
@@ -298,12 +313,12 @@ export default class CardDeckNew extends Component {
                             cardOpacity={0.0}
                             onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
-                            onSwipeUp={this.handleAddToCard}
-                            onSwipeDown={this.handleRemove}
                             leftSwipeThreshold={-150}
                             rightSwipeThreshold={150}
-                            upSwipeThreshold={-150}
-                            downSwipeThreshold={150}
+                            // onSwipeUp={this.handleAddToCard}
+                            // onSwipeDown={this.handleRemove}
+                            // upSwipeThreshold={-150}
+                            // downSwipeThreshold={150}
                             alignItems='center'
                         />
 
