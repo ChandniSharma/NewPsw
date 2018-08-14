@@ -24,16 +24,17 @@ export default class CardDeckNew extends Component {
     static navigationOptions =
         {
             title: 'CardDeckNew',
+            gesturesEnabled: false,
         };
 
     constructor(props){
         super(props);
-        this.question='I saw a dog.',
-        this.cardCount = 1 ,
-        this.result = [],
-        this.imageNameBackground = require('./Dog_background.png'),
-        this.state = {
-         allCards: [],
+            this.question='I saw a dog.',
+            this.cardCount = 1 ,
+            this.result = [],
+            this.imageNameBackground = require('./Dog_background.png'),
+            this.state = {
+              allCards: [],
               displayedCards: [],
               numberValue:  0,
               isView: false,
@@ -124,7 +125,7 @@ export default class CardDeckNew extends Component {
                       sentence: 'There were two tigers at the zoo.',
                       backgndImage: require('./Tigercubs_background.png'),
                       frontImage: require('./Tigercubs_background.png')
-                    },
+                  },
 
 
                 ]
@@ -132,11 +133,11 @@ export default class CardDeckNew extends Component {
 
 
         
-            }
+    }
 
-            componentWillMount(){
-                this.pullUsers();
-            }
+    componentWillMount(){
+        this.pullUsers();
+    }
 
     async pullUsers() {
         try {
@@ -188,6 +189,7 @@ export default class CardDeckNew extends Component {
     handleAdd() {
         if (this.state.allCards.length > 0) {
             let newCard = this.state.allCards.shift()
+            console.log("New Card : ",newCard)
             this.setState({
                 allCards: [newCard, ...this.state.allCards]
             });
@@ -195,13 +197,11 @@ export default class CardDeckNew extends Component {
     };
 
     handleRemove = (index) => {
-        console.log("Index: ",index, "\n",this.state.allCards,"\n");
 
         if(index>0) {
             this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
             this.cardCount = this.state.allCards[index-1].index;
             this.question = this.state.allCards[index-1].sentence;
-            console.log("All cards: ", this.state.allCards)
             this.state.allCards.pop();
 
             this.handleAdd();
@@ -220,13 +220,14 @@ export default class CardDeckNew extends Component {
 
             this.state.allCards.push(result[index + 1]);
 
+
+
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
             this.question = this.state.allCards[index+1].sentence;
-                       console.log("All cards: ", this.state.allCards)
-
 
             this.handleAdd();
+
         }
     };
 
@@ -235,12 +236,13 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard(cardObject) {
+        console.log("Chala Yeah")
         return(
 
-                <ImageBackground style={{ width: 270, height: 370,bottom:cardObject.index*3 ,left:30}} key={cardObject.index} source={require('./whitecard.png')} >
+                <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10}]}
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
                         onPress={() => {this.setState({isView:!this.state.isView})}}>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                     </TouchableOpacity>
@@ -269,7 +271,7 @@ export default class CardDeckNew extends Component {
         }
        
         console.log('number value '+temp, this.imageNameBackground)
-      return (
+        return (
             <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.imageNameBackground}>
         
                 {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.imageNameBackground}>
@@ -284,86 +286,7 @@ export default class CardDeckNew extends Component {
 
                     <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
-                   {/* <CardStack
-                        style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
-                        ref={swiper => {
-                            this.swiper = swiper
-                        }}
-                        disableTopSwipe = {true}
-
-                        disableBottomSwipe = {true}
-                        // onSwiped={() => this.swiper._goBack()}
-                        onSwipedLeft={() =>
-                            this.onCardSwipedLeft()}
-                        onSwipedTop={() => console.log('onSwipedTop')}
-                        onSwipedBottom={() => console.log('onSwipedBottom')}
-
-                    >
-
-                        <Card style={[styles.card6]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>{this.arrayWords[0]}</Text>
-                                <TouchableOpacity
-                                    style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                                    onPress={() =>this.onClickBulb(1)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-
-                        <Card style={[styles.card5]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>the</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(2)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card4]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>come</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(3)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card3]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>on</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(4)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card2]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>see</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(5)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card1]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>go</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(6)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-
-                    </CardStack>*/}
-
+                  
                         {console.log("Display Cards: ",this.state.allCards)}
 
                         <CardStack
@@ -372,13 +295,16 @@ export default class CardDeckNew extends Component {
                             cardHeight={flattenStyle(styles.card).height}
                             cardWidth={flattenStyle(styles.card).width}
                             cardRotation={20}
-                            cardOpacity={0.5}
+                            cardOpacity={0.0}
                             onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
-                            leftSwipeThreshold={-100}
-                            rightSwipeThreshold={100}
-                            upSwipeThreshold={-100}
-                            downSwipeThreshold={100}
+                            onSwipeUp={this.handleAddToCard}
+                            onSwipeDown={this.handleRemove}
+                            leftSwipeThreshold={-150}
+                            rightSwipeThreshold={150}
+                            upSwipeThreshold={-150}
+                            downSwipeThreshold={150}
+                            alignItems='center'
                         />
 
 
@@ -527,14 +453,16 @@ const styles = StyleSheet.create({
     },
 
     label: {
-        marginTop:'0%',
-        lineHeight: 300,
+        fontFamily:"Jua-Regular",
+        marginTop:'10%',
+        lineHeight: 200,
+        width:150,
+    
         textAlign: 'center',
         fontSize: 60,
-        fontFamily: 'System',
         color: '#4a90e2',
-        //backgroundColor: 'transparent',
-        backgroundColor: 'pink',
+       // backgroundColor: 'transparent',
+        backgroundColor: 'white',
     },
     footer:{
         flex:1,
@@ -559,7 +487,6 @@ const styles = StyleSheet.create({
         height:55,
         borderWidth:6,
         borderColor:'rgb(246,190,66)',
-        borderWidth:4,
         borderRadius:55,
         marginTop:-15
     },
@@ -612,11 +539,85 @@ const styles = StyleSheet.create({
             height: 32,
         },
         label1: {
+            fontFamily:"Jua-Regular",
             textAlign: 'center',
             fontSize: 25,
-            fontFamily: 'System',
             color: '#000000',
             backgroundColor: 'white',
            
         },
 });
+ /*{ <CardStack
+                        style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        disableTopSwipe = {true}
+                        disableBottomSwipe = {true}
+                        // onSwiped={() => this.swiper._goBack()}
+                        onSwipedLeft={() =>
+                            this.onCardSwipedLeft()}
+                        onSwipedTop={() => console.log('onSwipedTop')}
+                        onSwipedBottom={() => console.log('onSwipedBottom')}
+                    >
+                        <Card style={[styles.card6]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>{this.arrayWords[0]}</Text>
+                                <TouchableOpacity
+                                    style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
+                                    onPress={() =>this.onClickBulb(1)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                        <Card style={[styles.card5]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>the</Text>
+                                <TouchableOpacity
+                                    style={[styles.container,{marginTop:2}]}
+                                    onPress={() => this.onClickBulb(2)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                        <Card style={[styles.card4]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>come</Text>
+                                <TouchableOpacity
+                                    style={[styles.container,{marginTop:2}]}
+                                    onPress={() => this.onClickBulb(3)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                        <Card style={[styles.card3]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>on</Text>
+                                <TouchableOpacity
+                                    style={[styles.container,{marginTop:2}]}
+                                    onPress={() => this.onClickBulb(4)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                        <Card style={[styles.card2]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>see</Text>
+                                <TouchableOpacity
+                                    style={[styles.container,{marginTop:2}]}
+                                    onPress={() => this.onClickBulb(5)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                        <Card style={[styles.card1]} onSwipedRight={()=>this.onCardSwipedRight()}>
+                            <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
+                                <Text style={styles.label}>go</Text>
+                                <TouchableOpacity
+                                    style={[styles.container,{marginTop:2}]}
+                                    onPress={() => this.onClickBulb(6)}>
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                                </TouchableOpacity>
+                            </ImageBackground>
+                        </Card>
+                    </CardStack>} */
