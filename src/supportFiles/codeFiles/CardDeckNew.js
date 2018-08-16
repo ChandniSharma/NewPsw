@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -37,6 +37,7 @@ export default class CardDeckNew extends Component {
             this.state = {
               allCards: [],
               displayedCards: [],
+              arrayRemovedCards:[],
               numberValue:  0,
               isView: false,
               fadeAnim: new Animated.Value(0),
@@ -187,15 +188,15 @@ export default class CardDeckNew extends Component {
     }
 
 
-    handleAdd() {
-        if (this.state.allCards.length > 0) {
-            let newCard = this.state.allCards.shift()
-            console.log("New Card : ",newCard)
-            this.setState({
-                allCards: [newCard, ...this.state.allCards]
-            });
-        }
-    };
+    // handleAdd() {
+    //     if (this.state.allCards.length > 0) {
+    //         let newCard = this.state.allCards.shift()
+    //         console.log("New Card : ",newCard)
+    //         this.setState({
+    //             allCards: [newCard, ...this.state.allCards]
+    //         });
+    //     }
+    // };
 
     handleRemove = (index) => {
 
@@ -203,9 +204,28 @@ export default class CardDeckNew extends Component {
             this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
             this.cardCount = this.state.allCards[index-1].index;
             this.question = this.state.allCards[index-1].sentence;
-            this.state.allCards.pop();
+            let cardPop =  this.state.allCards.pop(); // It is removing last cards 
 
-            this.handleAdd();
+            console.log("Aftr pop --------", "\n" , "remove index: ", index, "\n All Cards ", this.state.allCards,"\n poped card ",cardPop );
+            
+            this.state.arrayRemovedCards.push(cardPop);
+            console.log("Removed card ",this.state.arrayRemovedCards);
+
+            // This if condition use to call render method so that bckgnd image can update, 
+           if (this.state.allCards.length > 0) {
+                let newCard = this.state.allCards.shift()
+                console.log("New Card : ",newCard)
+                // this.setState({
+                //     allCards: [newCard, ...this.state.allCards]
+                // });
+
+                this.state.allCards.splice(index, 0, newCard);
+
+
+            console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
+
+            }
+            //this.handleAdd();
         }
 
     };
@@ -218,16 +238,26 @@ export default class CardDeckNew extends Component {
         if(index<11) {
 
             console.log("Index in add right: ", index, "\n", this.state.allCards, "\n", result[index + 1]);
+            
+            let oldCard = this.state.arrayRemovedCards.shift()
+                console.log("New Card : ",oldCard)
+               
+                console.log("Index in add right: ", index, "\n", this.state.allCards, "\n arrayRemove Last object ", oldCard);
 
-            this.state.allCards.push(result[index + 1]);
-
-
+         //   this.state.allCards.splice(this.state.allCards.count-1,0,oldCard);
+           
+            this.setState({
+                allCards: [newCard, ...this.state.allCards]
+            });
 
             this.imageNameBackground = this.state.allCards[index+1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
             this.question = this.state.allCards[index+1].sentence;
 
-            this.handleAdd();
+            console.log("After adding on ", index+1, "\n", this.state.allCards, "\n arrayRemove Last object ", oldCard , "\n Array Remov", this.state.arrayRemovedCards);
+
+
+           // this.handleAdd();
 
         }
     };
@@ -237,7 +267,9 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard(cardObject) {
-        console.log("Chala Yeah")
+        
+        console.log('Render card method');
+
         if (Platform.OS === 'ios') {
             return(
                 <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
@@ -302,7 +334,7 @@ export default class CardDeckNew extends Component {
                     <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
                   
-                        {console.log("Display Cards: ",this.state.allCards)}
+                        {/* {console.log("Display Cards: ",this.state.allCards)} */}
 
                         <CardStack
                             cardList={this.state.allCards}
