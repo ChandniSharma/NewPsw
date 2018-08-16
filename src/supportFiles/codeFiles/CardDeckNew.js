@@ -237,6 +237,42 @@ export default class CardDeckNew extends Component {
         }
         if(index<11) {
 
+            let cardPop =  this.state.arrayRemovedCards.pop(); // It is removing last cards 
+            this.state.allCards.push(cardPop);
+
+            console.log("Removed cardArray ",this.state.arrayRemovedCards, "all Card array",this.state.allCards);
+
+
+
+            this.imageNameBackground = this.state.allCards[index +1].backgndImage;
+            this.cardCount = this.state.allCards[index+1].index;
+            this.question = this.state.allCards[index+1].sentence;
+
+            // This if condition use to call render method so that bckgnd image can update, 
+           if (this.state.allCards.length > 0) {
+                let newCard = this.state.allCards.shift()
+                console.log("New Card : ",newCard)
+                this.setState({
+                    allCards: [newCard, ...this.state.allCards]
+                });
+
+                this.state.allCards.splice(0, 0, newCard);
+
+
+            console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
+
+               
+        }
+    }
+}
+
+   /* handleAddToCard = (index) => {
+        if(count===0){
+            result = this.state.arrayImages.reverse()
+            count++;
+        }
+        if(index<11) {
+
             console.log("Index in add right: ", index, "\n", this.state.allCards, "\n", result[index + 1]);
             
             let oldCard = this.state.arrayRemovedCards.shift()
@@ -260,7 +296,7 @@ export default class CardDeckNew extends Component {
            // this.handleAdd();
 
         }
-    };
+    }; */
 
     showObject(){
         console.log("Data: ");
