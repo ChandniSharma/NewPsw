@@ -246,34 +246,20 @@ export default class CardDeckNew extends Component {
         }
         if(index<11 || index>1) {
 
-            let newCardPop = this.state.allCards.pop();
-            let cardPop =  this.state.arrayRemovedCards.pop(); // It is removing last cards
 
-            console.log("Card Length:  ",this.state.allCards.length);
-            this.setState({
-                allCards: this.state.allCards
-            });
-            this.state.allCards.push(newCardPop);
+            let cardPop =  this.state.arrayRemovedCards.pop(); // It is removing last cards 
             this.state.allCards.push(cardPop);
-
-            this.state.allCards.pop();
-            this.state.allCards.pop();
-            console.log("Card Length:  ",this.state.allCards.length);
-            this.setState({
-                allCards: this.state.allCards
-            });
-            console.log("New card Pop : ",newCardPop);
 
             console.log("Removed cardArray ",this.state.arrayRemovedCards, "all Card array",this.state.allCards);
 
 
 
-           /* this.imageNameBackground = this.state.allCards[index +1].backgndImage;
+            this.imageNameBackground = this.state.allCards[index +1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
-            this.question = this.state.allCards[index+1].sentence;*/
+            this.question = this.state.allCards[index+1].sentence;
 
-            // This if condition use to call render method so that bckgnd image can update,
-            if (this.state.allCards.length > 0) {
+            // This if condition use to call render method so that bckgnd image can update, 
+           if (this.state.allCards.length > 0) {
                 let newCard = this.state.allCards.shift()
                 console.log("New Card : ",newCard)
                 this.setState({
@@ -283,12 +269,14 @@ export default class CardDeckNew extends Component {
                 this.state.allCards.splice(0, 0, newCard);
 
 
-                console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
+            console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
 
-
-            }
+               
         }
-    };
+    }
+}
+
+
 
     showObject(){
         console.log("Data: ");
