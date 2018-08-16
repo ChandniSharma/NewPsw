@@ -12,6 +12,7 @@
     "react-native-card-flip": "^1.0.3",
     "react-native-card-stack": "^0.2.8",
     "react-native-card-stack-swiper": "^1.0.8",
+    "react-native-deck-swiper": "^1.5.17",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-swiper-animated": "^1.4.0",
     "react-navigation": "^2.9.3",

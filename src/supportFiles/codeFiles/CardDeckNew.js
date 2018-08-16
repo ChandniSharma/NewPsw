@@ -13,6 +13,8 @@ import {
 import flattenStyle from 'flattenStyle';
 import CardStack from 'react-native-card-stack';
 
+ import Swiper from 'react-native-deck-swiper'
+
 //import CardStack, { Card } from 'react-native-card-stack-swiper';
 //import imagesCardDeckNew from 'imagesCardDeckNew';
 
@@ -30,12 +32,14 @@ export default class CardDeckNew extends Component {
 
     constructor(props){
         super(props);
+
             this.question='I saw a dog.',
             this.cardCount = 1 ,
             this.result = [],
             this.imageNameBackground = require('./Dog_background.png'),
             this.state = {
-              allCards: [],
+                cardIndex: 0,
+                allCards: [],
               displayedCards: [],
               arrayRemovedCards:[],
               numberValue:  0,
@@ -204,7 +208,11 @@ export default class CardDeckNew extends Component {
             this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
             this.cardCount = this.state.allCards[index-1].index;
             this.question = this.state.allCards[index-1].sentence;
-            let cardPop =  this.state.allCards.pop(); // It is removing last cards 
+            let cardPop =  this.state.allCards.pop(); // It is removing last cards
+
+            this.setState({
+                allCards: this.state.allCards
+            });
 
             console.log("Aftr pop --------", "\n" , "remove index: ", index, "\n All Cards ", this.state.allCards,"\n poped card ",cardPop );
             
@@ -230,35 +238,55 @@ export default class CardDeckNew extends Component {
 
     };
 
+
     handleAddToCard = (index) => {
         if(count===0){
             result = this.state.arrayImages.reverse()
             count++;
         }
-        if(index<11) {
+        if(index<11 || index>1) {
 
-            console.log("Index in add right: ", index, "\n", this.state.allCards, "\n", result[index + 1]);
-            
-            let oldCard = this.state.arrayRemovedCards.shift()
-                console.log("New Card : ",oldCard)
-               
-                console.log("Index in add right: ", index, "\n", this.state.allCards, "\n arrayRemove Last object ", oldCard);
+            let newCardPop = this.state.allCards.pop();
+            let cardPop =  this.state.arrayRemovedCards.pop(); // It is removing last cards
 
-         //   this.state.allCards.splice(this.state.allCards.count-1,0,oldCard);
-           
+            console.log("Card Length:  ",this.state.allCards.length);
             this.setState({
-                allCards: [newCard, ...this.state.allCards]
+                allCards: this.state.allCards
             });
+            this.state.allCards.push(newCardPop);
+            this.state.allCards.push(cardPop);
 
-            this.imageNameBackground = this.state.allCards[index+1].backgndImage;
+            this.state.allCards.pop();
+            this.state.allCards.pop();
+            console.log("Card Length:  ",this.state.allCards.length);
+            this.setState({
+                allCards: this.state.allCards
+            });
+            console.log("New card Pop : ",newCardPop);
+
+            console.log("Removed cardArray ",this.state.arrayRemovedCards, "all Card array",this.state.allCards);
+
+
+
+           /* this.imageNameBackground = this.state.allCards[index +1].backgndImage;
             this.cardCount = this.state.allCards[index+1].index;
-            this.question = this.state.allCards[index+1].sentence;
+            this.question = this.state.allCards[index+1].sentence;*/
 
-            console.log("After adding on ", index+1, "\n", this.state.allCards, "\n arrayRemove Last object ", oldCard , "\n Array Remov", this.state.arrayRemovedCards);
+            // This if condition use to call render method so that bckgnd image can update,
+            if (this.state.allCards.length > 0) {
+                let newCard = this.state.allCards.shift()
+                console.log("New Card : ",newCard)
+                this.setState({
+                    allCards: [newCard, ...this.state.allCards]
+                });
+
+                this.state.allCards.splice(0, 0, newCard);
 
 
-           // this.handleAdd();
+                console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
 
+
+            }
         }
     };
 
@@ -267,8 +295,7 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard(cardObject) {
-        
-        console.log('Render card method');
+
 
         if (Platform.OS === 'ios') {
             return(
@@ -296,6 +323,51 @@ export default class CardDeckNew extends Component {
         }
         
     }
+
+    renderCard = (card, index) => {
+        return (
+            <ImageBackground style={{ left:30 ,width: 270-index, height: 370-index,top:-10 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
+                <Text style={styles.label}>{card.word}</Text>
+                <TouchableOpacity
+                    style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                    onPress={() => {this.setState({isView:!this.state.isView})}}>
+                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                </TouchableOpacity>
+            </ImageBackground>
+        )
+    };
+
+    onSwipedAllCards = () => {
+        this.setState({
+            swipedAllCards: true
+        })
+    };
+
+    swipeBack = (index) => {
+        if (!this.state.isSwipingBack) {
+            console.log("Index of :" ,index)
+            this.setIsSwipingBack(true, () => {
+                this.swiper.swipeBack(() => {
+                    this.setIsSwipingBack(false)
+                })
+            })
+        }
+    };
+
+    setIsSwipingBack = (isSwipingBack, cb) => {
+        this.setState(
+            {
+                isSwipingBack: isSwipingBack
+            },
+            cb,
+            console.log("cb: ",cb)
+        )
+    };
+
+
+
+
+
 
     render() {
         const isView = this.state.isView;
@@ -336,13 +408,13 @@ export default class CardDeckNew extends Component {
                   
                         {/* {console.log("Display Cards: ",this.state.allCards)} */}
 
-                        <CardStack
+                        {/*<CardStack
                             cardList={this.state.allCards}
                             renderCard={this.renderCard.bind(this)}
                             cardHeight={flattenStyle(styles.card).height}
                             cardWidth={flattenStyle(styles.card).width}
                             cardRotation={20}
-                            cardOpacity={0.0}
+                            cardOpacity={1.0}
                             onSwipeRight={this.handleAddToCard}
                             onSwipeLeft={this.handleRemove}
                             leftSwipeThreshold={-150}
@@ -352,9 +424,26 @@ export default class CardDeckNew extends Component {
                             // upSwipeThreshold={-150}
                             // downSwipeThreshold={150}
                             alignItems='center'
-                        />
+                        />*/}
 
 
+                        <Swiper
+                            ref={swiper => {
+                                this.swiper = swiper
+                            }}
+                            onSwiped={this.onSwiped}
+                            cards={this.state.allCards.reverse()}
+                            cardIndex={this.state.cardIndex}
+                            cardVerticalMargin={80}
+                            renderCard={this.renderCard}
+                            onSwipedRight={this.swipeBack}
+                            stackSize={4}
+                            backgroundColor={'transparent'}
+                            stackSeparation={-15}
+                            animateOverlayLabelsOpacity
+                            animateCardOpacity
+                        >
+                        </Swiper>
 
                     </View>
 
