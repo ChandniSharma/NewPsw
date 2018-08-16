@@ -215,11 +215,11 @@ export default class CardDeckNew extends Component {
            if (this.state.allCards.length > 0) {
                 let newCard = this.state.allCards.shift()
                 console.log("New Card : ",newCard)
-                // this.setState({
-                //     allCards: [newCard, ...this.state.allCards]
-                // });
+                this.setState({
+                    allCards: [newCard, ...this.state.allCards]
+                });
 
-                this.state.allCards.splice(index, 0, newCard);
+                this.state.allCards.splice(0, 0, newCard);
 
 
             console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
