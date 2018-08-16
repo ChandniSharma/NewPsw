@@ -20,6 +20,9 @@ import CardStack from 'react-native-card-stack';
 
 let result = [];
 let count = 0;
+let renderCount=0;
+let renderArray =[];
+
 
 export default class CardDeckNew extends Component {
     
@@ -33,11 +36,13 @@ export default class CardDeckNew extends Component {
     constructor(props){
         super(props);
 
-            this.question='I saw a dog.',
-            this.cardCount = 1 ,
+
             this.result = [],
-            this.imageNameBackground = require('./Dog_background.png'),
+
             this.state = {
+                imageNameBackground : require('./Dog_background.png'),
+                cardCount : 1,
+                question:'I saw a dog.',
                 cardIndex: 0,
                 allCards: [],
               displayedCards: [],
@@ -332,6 +337,7 @@ export default class CardDeckNew extends Component {
     };
 
     swipeBack = (index) => {
+
         if (!this.state.isSwipingBack) {
             console.log("Index of :" ,index)
             this.setIsSwipingBack(true, () => {
@@ -345,7 +351,10 @@ export default class CardDeckNew extends Component {
     setIsSwipingBack = (isSwipingBack, cb) => {
         this.setState(
             {
-                isSwipingBack: isSwipingBack
+                isSwipingBack: isSwipingBack,
+                imageNameBackground : result[0].backgndImage,
+                cardCount : result[0].index,
+                question :result[0].sentence
             },
             cb,
             console.log("cb: ",cb)
@@ -353,6 +362,20 @@ export default class CardDeckNew extends Component {
     };
 
 
+    onSwiped = (index)=>{
+        if(count===0){
+            result = this.state.arrayImages;
+            count++;
+        }
+        this.setState({
+            imageNameBackground : result[index+1].backgndImage,
+            cardCount : result[index+1].index,
+            question :result[index+1].sentence
+        })
+
+
+        console.log("Index: ",index);
+    };
 
 
 
@@ -371,17 +394,24 @@ export default class CardDeckNew extends Component {
         // For showing number below to the card.
 
         let temp;
-        if (this.cardCount >= 0) {
-            temp = String(this.cardCount)+' of 220';
+        if (this.state.cardCount >= 0) {
+            temp = String(this.state.cardCount)+' of 220';
         } else {
             temp = '1' +' of 220';
         }
+
+        if(renderCount===0){
+            renderArray = this.state.arrayImages;
+            renderCount++;
+        }
+
+        console.log("Render Array : ",renderArray);
        
-        console.log('number value '+temp, this.imageNameBackground)
+
         return (
-            <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.imageNameBackground}>
+            <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.state.imageNameBackground}>
         
-                {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.imageNameBackground}>
+                {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.state.imageNameBackground}>
 
 
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
@@ -420,7 +450,7 @@ export default class CardDeckNew extends Component {
                                 this.swiper = swiper
                             }}
                             onSwiped={this.onSwiped}
-                            cards={this.state.allCards.reverse()}
+                            cards={renderArray}
                             cardIndex={this.state.cardIndex}
                             cardVerticalMargin={80}
                             renderCard={this.renderCard}
@@ -450,14 +480,14 @@ export default class CardDeckNew extends Component {
                    <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#90000000',justifyContent:'center',alignItems:'center'}}>
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
-                           source={this.imageNameBackground}>
+                           source={this.state.imageNameBackground}>
                              <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
 
                     </ImageBackground>
                         <Text
-                            style={styles.label1}>{this.question}</Text>
+                            style={styles.label1}>{this.state.question}</Text>
                     </View>
                    </ImageBackground>
                 </View>
