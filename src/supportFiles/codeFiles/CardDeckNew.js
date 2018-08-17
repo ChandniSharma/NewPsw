@@ -190,7 +190,6 @@ export default class CardDeckNew extends Component {
         this.setState({isView:!this.state.isView})
         this.getInitialState();                        // Starts the animation
     }
-
     onClickBulb(){
         console.log("Hello here ")
         this.setState({isView:!this.state.isView});
@@ -281,13 +280,11 @@ export default class CardDeckNew extends Component {
     }
 }
 
-
-
     showObject(){
         console.log("Data: ");
     }
 
-    renderCard(cardObject) {
+  /*  renderCard(cardObject) {
 
 
         if (Platform.OS === 'ios') {
@@ -315,6 +312,13 @@ export default class CardDeckNew extends Component {
         )
         }
         
+    
+    }*/
+
+    showViewPopup(index){
+        console.log('showView popup');
+        this.setState({isView:!this.state.isView});
+
     }
 
     renderCard = (card, index) => {
@@ -323,7 +327,7 @@ export default class CardDeckNew extends Component {
                 <Text style={styles.label}>{card.word}</Text>
                 <TouchableOpacity
                     style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                    onPress={() => {this.setState({isView:!this.state.isView})}}>
+                    onPress={() => {this.showViewPopup(index)}}>
                     <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                 </TouchableOpacity>
             </ImageBackground>
@@ -332,7 +336,7 @@ export default class CardDeckNew extends Component {
 
     onSwipedAllCards = () => {
         this.setState({
-            swipedAllCards: true
+            swipedAllCards: true 
         })
     };
 
@@ -361,23 +365,30 @@ export default class CardDeckNew extends Component {
         )
     };
 
-
     onSwiped = (index)=>{
+        console.log( " On swiped ");
         if(count===0){
             result = this.state.arrayImages;
             count++;
         }
+        if(index <= 10){
         this.setState({
+
             imageNameBackground : result[index+1].backgndImage,
             cardCount : result[index+1].index,
             question :result[index+1].sentence
         })
-
+    }else{
+       
+    }
 
         console.log("Index: ",index);
     };
 
-
+closePopup(){
+    this.setState({isView:!this.state.isView})
+    this.onSwiped(-1);
+}
 
 
     render() {
@@ -386,7 +397,7 @@ export default class CardDeckNew extends Component {
 
         if (isView) {
             console.log( 'now view is true');
-        } else {
+        } else { 
             console.log( 'now view is false');
         }
 
@@ -458,8 +469,9 @@ export default class CardDeckNew extends Component {
                             stackSize={4}
                             backgroundColor={'transparent'}
                             stackSeparation={-15}
-                            animateOverlayLabelsOpacity
-                            animateCardOpacity
+                            disableTopSwipe={true}
+                            disableBottomSwipe={true}
+
                         >
                         </Swiper>
 
@@ -481,7 +493,7 @@ export default class CardDeckNew extends Component {
                        <View style={styles.card}>
                     <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
                            source={this.state.imageNameBackground}>
-                             <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.setState({isView:!this.state.isView})}>
+                             <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup()}>
                         <Image style={styles.imageCross} source={require('./cross.png')} />
                     </TouchableOpacity>
 
