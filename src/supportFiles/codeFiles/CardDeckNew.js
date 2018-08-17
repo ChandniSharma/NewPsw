@@ -40,6 +40,7 @@ export default class CardDeckNew extends Component {
             this.result = [],
 
             this.state = {
+                isSwipingBack:false,
                 imageNameBackground : require('./Dog_background.png'),
                currentCardNumber: 0,
                 cardCount : 1,
@@ -331,6 +332,7 @@ export default class CardDeckNew extends Component {
 
     swipeBack = (index) => {
 
+        console.log("Swiping Back: ",this.state.isSwipingBack)
         if (!this.state.isSwipingBack) {
 
                 this.swiper.swipeBack(() => {
@@ -345,37 +347,41 @@ export default class CardDeckNew extends Component {
 
         this.setState(
             {
-                currentCardNumber : this.state.currentCardNumber-2,
+                currentCardNumber : this.state.currentCardNumber-1,
                 cardIndex: index-1,
                 isSwipingBack: isSwipingBack,
-                imageNameBackground : result[index-1].backgndImage,
-                cardCount : result[index-1].index,
-                question :result[index-1].sentence
+                imageNameBackground : renderArray[index-1].backgndImage,
+                cardCount : renderArray[index-1].index,
+                question :renderArray[index-1].sentence
             }
         )
     };
 
-    onSwiped = (index)=>{
 
+    setIsSwiping = (index,isSwipingBack) => {
 
-
-
-        if(count===0){
-            result = this.state.arrayImages;
-            count++;
-        }
-        if(index <= 10){
-            this.setState({
+        console.log("Index: ",index)
+        this.setState(
+            {
+                isSwipingBack: isSwipingBack,
                 currentCardNumber : index+1,
-                imageNameBackground : result[index+1].backgndImage,
-                cardCount : result[index+1].index,
-                question :result[index+1].sentence
+                cardIndex: index+1,
+                imageNameBackground : renderArray[index+1].backgndImage,
+                cardCount : renderArray[index+1].index,
+                question :renderArray[index+1].sentence
+            }
+        )
+    };
+
+    swipeCard = (index)=>{
+        if (!this.state.isSwipingBack) {
+
+            this.swiper.swipeCard(() => {
+
+                this.setIsSwiping(index,false)
             })
-        }else{
 
         }
-
-
     };
 
     closePopup(){
@@ -428,11 +434,12 @@ export default class CardDeckNew extends Component {
                 ref={swiper => {
                     this.swiper = swiper
                 }}
-                onSwiped={this.onSwiped}
+                //onSwiped={this.onSwiped}
                 cards={renderArray}
                 cardIndex={this.state.cardIndex}
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
+                onSwipedLeft={this.swipeCard}
                 onSwipedRight={this.swipeBack}
                 stackSize={4}
                 backgroundColor={'transparent'}
@@ -450,11 +457,12 @@ export default class CardDeckNew extends Component {
                     ref={swiper => {
                         this.swiper = swiper
                     }}
-                    onSwiped={this.onSwiped}
+                    //onSwiped={this.onSwiped}
                     cards={renderArray}
                     cardIndex={this.state.cardIndex}
                     cardVerticalMargin={80}
                     renderCard={this.renderCard}
+                    onSwipedLeft={this.swipeCard}
                     onSwipedRight={this.swipeBack}
                     stackSize={4}
                     backgroundColor={'transparent'}
@@ -471,11 +479,12 @@ export default class CardDeckNew extends Component {
                     ref={swiper => {
                         this.swiper = swiper
                     }}
-                    onSwiped={this.onSwiped}
+                    //onSwiped={this.onSwiped}
                     cards={renderArray}
                     cardIndex={this.state.cardIndex}
                     cardVerticalMargin={80}
                     renderCard={this.renderCard}
+                    onSwipedLeft={this.swipeCard}
                     onSwipedRight={this.swipeBack}
                     stackSize={4}
                     backgroundColor={'transparent'}
