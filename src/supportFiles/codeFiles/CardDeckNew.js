@@ -456,7 +456,7 @@ if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
         stackSeparation={-15}
         disableTopSwipe={true}
         disableBottomSwipe={true}
-        disableRightSwipe={true}
+        disableRightSwipe={false}
         disableLeftSwipe={true}
 
     />
