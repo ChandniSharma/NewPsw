@@ -41,7 +41,7 @@ export default class CardDeckNew extends Component {
 
             this.state = {
                 imageNameBackground : require('./Dog_background.png'),
-                currentCardNumber: 0,
+               currentCardNumber: 0,
                 cardCount : 1,
                 question:'I saw a dog.',
                 cardIndex: 0,
@@ -332,46 +332,49 @@ export default class CardDeckNew extends Component {
     swipeBack = (index) => {
 
         if (!this.state.isSwipingBack) {
-            console.log("Index of :" ,index)
-            this.setIsSwipingBack(true, () => {
+
                 this.swiper.swipeBack(() => {
-                    this.setIsSwipingBack(false)
+
+                    this.setIsSwipingBack(index,false)
                 })
-            })
+
         }
     };
 
-    setIsSwipingBack = (isSwipingBack, cb) => {
+    setIsSwipingBack = (index,isSwipingBack) => {
+
         this.setState(
             {
-                cardIndex: 0,
+                currentCardNumber : this.state.currentCardNumber-2,
+                cardIndex: index-1,
                 isSwipingBack: isSwipingBack,
-                imageNameBackground : result[0].backgndImage,
-                cardCount : result[0].index,
-                question :result[0].sentence
-            },
-            cb,
-            console.log("cb: ",cb)
+                imageNameBackground : result[index-1].backgndImage,
+                cardCount : result[index-1].index,
+                question :result[index-1].sentence
+            }
         )
     };
 
     onSwiped = (index)=>{
-        console.log( " On swiped ");
+
+
+
+
         if(count===0){
             result = this.state.arrayImages;
             count++;
         }
         if(index <= 10){
-        this.setState({
+            this.setState({
+                currentCardNumber : index+1,
+                imageNameBackground : result[index+1].backgndImage,
+                cardCount : result[index+1].index,
+                question :result[index+1].sentence
+            })
+        }else{
 
-            imageNameBackground : result[index+1].backgndImage,
-            cardCount : result[index+1].index,
-            question :result[index+1].sentence
-        })
-    }else{
-       
-    }
-    this.currentCardNumber = index;
+        }
+
 
     };
 
@@ -412,13 +415,14 @@ export default class CardDeckNew extends Component {
         }
         // For disabling right swipe first card 
        
-        console.log("Render me ",this.currentCardNumber);
+
+        console.log("CurrentcardNumber Yeh wala: ",this.state.currentCardNumber);
 
             let swiperStack;
 
-            if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
+            if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber+1 <12) {
 
-                console.log("In condition cardNumber ",this.state.currentCardNumber);
+
 
               swiperStack =  <Swiper
                 ref={swiper => {
@@ -441,7 +445,7 @@ export default class CardDeckNew extends Component {
             />
             } else {
                 // this is for last card
-                if(this.currentCardNumber+1 >=9){
+                if(this.state.currentCardNumber+1 >=11){
                     swiperStack =  <Swiper
                     ref={swiper => {
                         this.swiper = swiper
