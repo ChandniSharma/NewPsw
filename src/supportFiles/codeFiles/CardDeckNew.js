@@ -41,6 +41,7 @@ export default class CardDeckNew extends Component {
 
             this.state = {
                 imageNameBackground : require('./Dog_background.png'),
+                currentCardNumber: 0,
                 cardCount : 1,
                 question:'I saw a dog.',
                 cardIndex: 0,
@@ -321,18 +322,6 @@ export default class CardDeckNew extends Component {
 
     }
 
-    renderCard = (card, index) => {
-        return (
-            <ImageBackground style={{ left:30 ,width: 270-index, height: 370-index,top:-10 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
-                <Text style={styles.label}>{card.word}</Text>
-                <TouchableOpacity
-                    style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                    onPress={() => {this.showViewPopup(index)}}>
-                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                </TouchableOpacity>
-            </ImageBackground>
-        )
-    };
 
     onSwipedAllCards = () => {
         this.setState({
@@ -381,7 +370,7 @@ export default class CardDeckNew extends Component {
     }else{
        
     }
-
+    this.currentCardNumber = index;
         console.log("Index: ",index);
     };
 
@@ -389,19 +378,25 @@ closePopup(){
     this.setState({isView:!this.state.isView})
     this.onSwiped(-1);
 }
-
+renderCard = (card, index) => {
+    // Disable right swipe on first card//
+  
+    return (
+        <ImageBackground style={{ alignSelf:'center' ,width: 270-index, height: 370-index,top:-10 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
+            <Text style={styles.label}>{card.word}</Text>
+            <TouchableOpacity
+                style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                onPress={() => {this.showViewPopup(index)}}>
+                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+            </TouchableOpacity>
+        </ImageBackground>
+    )
+};
 
     render() {
         const isView = this.state.isView;
 
-
-        if (isView) {
-            console.log( 'now view is true');
-        } else { 
-            console.log( 'now view is false');
-        }
-
-        var imageName1 = './back1.png';
+        
         // For showing number below to the card.
 
         let temp;
@@ -415,10 +410,79 @@ closePopup(){
             renderArray = this.state.arrayImages;
             renderCount++;
         }
-
-        console.log("Render Array : ",renderArray);
+        // For disabling right swipe first card 
        
+        console.log("Render me ",this.currentCardNumber);
 
+let swiperStack;
+
+if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
+
+    console.log("In condition cardNumber ",this.state.currentCardNumber);
+
+  swiperStack =  <Swiper
+    ref={swiper => {
+        this.swiper = swiper
+    }}
+    onSwiped={this.onSwiped}
+    cards={renderArray}
+    cardIndex={this.state.cardIndex}
+    cardVerticalMargin={80}
+    renderCard={this.renderCard}
+    onSwipedRight={this.swipeBack}
+    stackSize={4}
+    backgroundColor={'transparent'}
+    stackSeparation={-15}
+    disableTopSwipe={true}
+    disableBottomSwipe={true}
+    disableRightSwipe={false}
+    disableLeftSwipe={false}
+/>
+} else {
+    // this is for last card 
+    if(this.currentCardNumber+1 >=9){
+        swiperStack =  <Swiper
+        ref={swiper => {
+            this.swiper = swiper
+        }}
+        onSwiped={this.onSwiped}
+        cards={renderArray}
+        cardIndex={this.state.cardIndex}
+        cardVerticalMargin={80}
+        renderCard={this.renderCard}
+        onSwipedRight={this.swipeBack}
+        stackSize={4}
+        backgroundColor={'transparent'}
+        stackSeparation={-15}
+        disableTopSwipe={true}
+        disableBottomSwipe={true}
+        disableRightSwipe={true}
+        disableLeftSwipe={true}
+
+    />
+    }else{
+        swiperStack =  <Swiper
+        ref={swiper => {
+            this.swiper = swiper
+        }}
+        onSwiped={this.onSwiped}
+        cards={renderArray}
+        cardIndex={this.state.cardIndex}
+        cardVerticalMargin={80}
+        renderCard={this.renderCard}
+        onSwipedRight={this.swipeBack}
+        stackSize={4}
+        backgroundColor={'transparent'}
+        stackSeparation={-15}
+        disableTopSwipe={true}
+        disableBottomSwipe={true}
+        disableRightSwipe={true}
+        disableLeftSwipe={false}
+        />
+    }
+        
+     
+}
         return (
             <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.state.imageNameBackground}>
         
@@ -455,25 +519,8 @@ closePopup(){
                             alignItems='center'
                         />*/}
 
-
-                        <Swiper
-                            ref={swiper => {
-                                this.swiper = swiper
-                            }}
-                            onSwiped={this.onSwiped}
-                            cards={renderArray}
-                            cardIndex={this.state.cardIndex}
-                            cardVerticalMargin={80}
-                            renderCard={this.renderCard}
-                            onSwipedRight={this.swipeBack}
-                            stackSize={4}
-                            backgroundColor={'transparent'}
-                            stackSeparation={-15}
-                            disableTopSwipe={true}
-                            disableBottomSwipe={true}
-
-                        >
-                        </Swiper>
+{swiperStack}
+                      
 
                     </View>
 
@@ -482,8 +529,6 @@ closePopup(){
                     </TouchableOpacity>
 
                     <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',left:"42%"}} value={temp}/>
-
-
 
                 </ImageBackground>:null}
             {isView ?
