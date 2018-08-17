@@ -437,6 +437,7 @@ if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
     disableBottomSwipe={true}
     disableRightSwipe={false}
     disableLeftSwipe={false}
+    swipeAnimationDuration={100}
 />
 } else {
     // this is for last card 
@@ -458,7 +459,7 @@ if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
         disableBottomSwipe={true}
         disableRightSwipe={false}
         disableLeftSwipe={true}
-
+        swipeAnimationDuration={100}
     />
     }else{
         swiperStack =  <Swiper
@@ -478,6 +479,7 @@ if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
         disableBottomSwipe={true}
         disableRightSwipe={true}
         disableLeftSwipe={false}
+        swipeAnimationDuration={100}
         />
     }
         
