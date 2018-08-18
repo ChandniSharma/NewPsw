@@ -41,7 +41,7 @@ export default class CardDeckNew extends Component {
 
             this.state = {
                 imageNameBackground : require('./Dog_background.png'),
-                currentCardNumber: 0,
+               currentCardNumber: 0,
                 cardCount : 1,
                 question:'I saw a dog.',
                 cardIndex: 0,
@@ -285,113 +285,87 @@ export default class CardDeckNew extends Component {
         console.log("Data: ");
     }
 
-  /*  renderCard(cardObject) {
+ 
 
-
-        if (Platform.OS === 'ios') {
-            return(
-                <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>{cardObject.word}</Text>
-                    <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                        onPress={() => {this.setState({isView:!this.state.isView})}}>
-                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                    </TouchableOpacity>
-                </ImageBackground>
-        )
-        } else {
-            return(
-
-                <ImageBackground style={{ left:30 ,width: 470-cardObject.index, height: 570-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>{cardObject.word}</Text>
-                    <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                        onPress={() => {this.setState({isView:!this.state.isView})}}>
-                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                    </TouchableOpacity>
-                </ImageBackground>
-        )
-        }
-        
-    
-    }*/
-
-    showViewPopup(index){
-        console.log('showView popup');
-        this.setState({isView:!this.state.isView});
+    showViewPopup(card,index){
+        console.log('showView popup: ',index,card,"\n",card.sentence);
+        this.setState({
+            isView:!this.state.isView,
+            cardIndex: index,
+            imageNameBackground :card.backgndImage,
+            cardCount : card.index,
+            question :card.sentence
+        });
 
     }
 
 
-    onSwipedAllCards = () => {
-        this.setState({
-            swipedAllCards: true 
-        })
-    };
-
     swipeBack = (index) => {
 
         if (!this.state.isSwipingBack) {
-            console.log("Index of :" ,index)
-            this.setIsSwipingBack(true, () => {
+
                 this.swiper.swipeBack(() => {
-                    this.setIsSwipingBack(false)
+
+                    this.setIsSwipingBack(index,false)
                 })
-            })
+
         }
     };
 
-    setIsSwipingBack = (isSwipingBack, cb) => {
+    setIsSwipingBack = (index,isSwipingBack) => {
+
         this.setState(
             {
+                currentCardNumber : this.state.currentCardNumber-2,
+                cardIndex: index-1,
                 isSwipingBack: isSwipingBack,
-                imageNameBackground : result[0].backgndImage,
-                cardCount : result[0].index,
-                question :result[0].sentence
-            },
-            cb,
-            console.log("cb: ",cb)
+                imageNameBackground : result[index-1].backgndImage,
+                cardCount : result[index-1].index,
+                question :result[index-1].sentence
+            }
         )
     };
 
     onSwiped = (index)=>{
-        console.log( " On swiped ");
+
+
+
+
         if(count===0){
             result = this.state.arrayImages;
             count++;
         }
         if(index <= 10){
-        this.setState({
+            this.setState({
+                currentCardNumber : index+1,
+                imageNameBackground : result[index+1].backgndImage,
+                cardCount : result[index+1].index,
+                question :result[index+1].sentence
+            })
+        }else{
 
-            imageNameBackground : result[index+1].backgndImage,
-            cardCount : result[index+1].index,
-            question :result[index+1].sentence
-        })
-    }else{
-       
-    }
-    this.currentCardNumber = index;
-        console.log("Index: ",index);
+        }
+
+
     };
 
-closePopup(){
-    this.setState({isView:!this.state.isView})
-    this.onSwiped(-1);
-}
-renderCard = (card, index) => {
-    // Disable right swipe on first card//
-  
-    return (
-        <ImageBackground style={{ alignSelf:'center' ,width: 270-index, height: 370-index,top:-10 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
-            <Text style={styles.label}>{card.word}</Text>
-            <TouchableOpacity
-                style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                onPress={() => {this.showViewPopup(index)}}>
-                <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-            </TouchableOpacity>
-        </ImageBackground>
-    )
-};
+    closePopup(){
+        this.setState({isView:!this.state.isView})
+    }
+    renderCard = (card, index) => {
+        // Disable right swipe on first card//
+
+        return (
+            <ImageBackground style={{ alignSelf:'center' ,width: 270, height: 370 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
+                <Text style={styles.label}>{card.word}</Text>
+                <TouchableOpacity
+                    style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                    onPress={() => {this.showViewPopup(card,index)}}>
+                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                </TouchableOpacity>
+            </ImageBackground>
+        )
+    };
 
     render() {
         const isView = this.state.isView;
@@ -412,79 +386,80 @@ renderCard = (card, index) => {
         }
         // For disabling right swipe first card 
        
-        console.log("Render me ",this.currentCardNumber);
 
-let swiperStack;
+        console.log("CurrentcardNumber Yeh wala: ",this.state.currentCardNumber);
 
-if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
+            let swiperStack;
 
-    console.log("In condition cardNumber ",this.state.currentCardNumber);
+            if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber+1 <12) {
 
-  swiperStack =  <Swiper
-    ref={swiper => {
-        this.swiper = swiper
-    }}
-    onSwiped={this.onSwiped}
-    cards={renderArray}
-    cardIndex={this.state.cardIndex}
-    cardVerticalMargin={80}
-    renderCard={this.renderCard}
-    onSwipedRight={this.swipeBack}
-    stackSize={4}
-    backgroundColor={'transparent'}
-    stackSeparation={-15}
-    disableTopSwipe={true}
-    disableBottomSwipe={true}
-    disableRightSwipe={false}
-    disableLeftSwipe={false}
-    swipeAnimationDuration={100}
-/>
-} else {
-    // this is for last card 
-    if(this.currentCardNumber+1 >=9){
-        swiperStack =  <Swiper
-        ref={swiper => {
-            this.swiper = swiper
-        }}
-        onSwiped={this.onSwiped}
-        cards={renderArray}
-        cardIndex={this.state.cardIndex}
-        cardVerticalMargin={80}
-        renderCard={this.renderCard}
-        onSwipedRight={this.swipeBack}
-        stackSize={4}
-        backgroundColor={'transparent'}
-        stackSeparation={-15}
-        disableTopSwipe={true}
-        disableBottomSwipe={true}
-        disableRightSwipe={false}
-        disableLeftSwipe={true}
-        swipeAnimationDuration={100}
-    />
-    }else{
-        swiperStack =  <Swiper
-        ref={swiper => {
-            this.swiper = swiper
-        }}
-        onSwiped={this.onSwiped}
-        cards={renderArray}
-        cardIndex={this.state.cardIndex}
-        cardVerticalMargin={80}
-        renderCard={this.renderCard}
-        onSwipedRight={this.swipeBack}
-        stackSize={4}
-        backgroundColor={'transparent'}
-        stackSeparation={-15}
-        disableTopSwipe={true}
-        disableBottomSwipe={true}
-        disableRightSwipe={true}
-        disableLeftSwipe={false}
-        swipeAnimationDuration={100}
-        />
-    }
-        
-     
-}
+              swiperStack =  <Swiper
+                ref={swiper => {
+                    this.swiper = swiper
+                }}
+                onSwiped={this.onSwiped}
+                cards={renderArray}
+                cardIndex={this.state.cardIndex}
+                cardVerticalMargin={80}
+                renderCard={this.renderCard}
+                onSwipedRight={this.swipeBack}
+                stackSize={4}
+                backgroundColor={'transparent'}
+                stackSeparation={-15}
+                disableTopSwipe={true}
+                disableBottomSwipe={true}
+                disableRightSwipe={false}
+                disableLeftSwipe={false}
+                swipeAnimationDuration={100}
+            />
+            } else {
+                // this is for last card
+                if(this.state.currentCardNumber+1 >=11){
+                    swiperStack =  <Swiper
+                    ref={swiper => {
+                        this.swiper = swiper
+                    }}
+                    onSwiped={this.onSwiped}
+                    cards={renderArray}
+                    cardIndex={this.state.cardIndex}
+                    cardVerticalMargin={80}
+                    renderCard={this.renderCard}
+                    onSwipedRight={this.swipeBack}
+                    stackSize={4}
+                    backgroundColor={'transparent'}
+                    stackSeparation={-15}
+                    disableTopSwipe={true}
+                    disableBottomSwipe={true}
+                    disableRightSwipe={false}
+                    disableLeftSwipe={true}
+                    swipeAnimationDuration={100}
+
+                />
+                }else{
+                    swiperStack =  <Swiper
+                    ref={swiper => {
+                        this.swiper = swiper
+                    }}
+                    onSwiped={this.onSwiped}
+                    cards={renderArray}
+                    cardIndex={this.state.cardIndex}
+                    cardVerticalMargin={80}
+                    renderCard={this.renderCard}
+                    onSwipedRight={this.swipeBack}
+                    stackSize={4}
+                    backgroundColor={'transparent'}
+                    stackSeparation={-15}
+                   
+                    disableTopSwipe={true}
+                    disableBottomSwipe={true}
+                    disableRightSwipe={true}
+                    disableLeftSwipe={false}
+                    swipeAnimationDuration={100}
+                    />
+                }
+
+
+            }
         return (
             <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.state.imageNameBackground}>
         
@@ -521,7 +496,7 @@ if (this.currentCardNumber !== 0 && this.currentCardNumber+1 <10) {
                             alignItems='center'
                         />*/}
 
-{swiperStack}
+                        {swiperStack}
                       
 
                     </View>
@@ -760,77 +735,34 @@ const styles = StyleSheet.create({
            
         },
 });
- /*{ <CardStack
-                        style={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'transparent',flex: 0.4,bottom:'5%'}}
-                        ref={swiper => {
-                            this.swiper = swiper
-                        }}
-                        disableTopSwipe = {true}
-                        disableBottomSwipe = {true}
-                        // onSwiped={() => this.swiper._goBack()}
-                        onSwipedLeft={() =>
-                            this.onCardSwipedLeft()}
-                        onSwipedTop={() => console.log('onSwipedTop')}
-                        onSwipedBottom={() => console.log('onSwipedBottom')}
-                    >
-                        <Card style={[styles.card6]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 270, height: 370, borderRadius: 25 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>{this.arrayWords[0]}</Text>
-                                <TouchableOpacity
-                                    style={[{bottom:'5%', alignItems:'center',position:'relative'}]}
-                                    onPress={() =>this.onClickBulb(1)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card5]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 275, height: 385, borderRadius: 25 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>the</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(2)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card4]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 280, height: 400, borderRadius: 35 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>come</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(3)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card3]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 285, height: 415, borderRadius: 35 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>on</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(4)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card2]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 290, height: 430, borderRadius: 45 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>see</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(5)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                        <Card style={[styles.card1]} onSwipedRight={()=>this.onCardSwipedRight()}>
-                            <ImageBackground style={{ width: 295, height: 445, borderRadius: 45 }} source={require('./whitecard.png')} >
-                                <Text style={styles.label}>go</Text>
-                                <TouchableOpacity
-                                    style={[styles.container,{marginTop:2}]}
-                                    onPress={() => this.onClickBulb(6)}>
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                                </TouchableOpacity>
-                            </ImageBackground>
-                        </Card>
-                    </CardStack>} */
+
+ /*  renderCard(cardObject) {
+
+
+        if (Platform.OS === 'ios') {
+            return(
+                <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>{cardObject.word}</Text>
+                    <TouchableOpacity
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                        onPress={() => {this.setState({isView:!this.state.isView})}}>
+                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                    </TouchableOpacity>
+                </ImageBackground>
+        )
+        } else {
+            return(
+
+                <ImageBackground style={{ left:30 ,width: 470-cardObject.index, height: 570-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
+                    <Text style={styles.label}>{cardObject.word}</Text>
+                    <TouchableOpacity
+                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                        onPress={() => {this.setState({isView:!this.state.isView})}}>
+                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                    </TouchableOpacity>
+                </ImageBackground>
+        )
+        }
+        
+    
+    }*/
