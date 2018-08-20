@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image,Platform} from 'react-native';
+import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image,Platform,ImageBackground} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
@@ -138,9 +138,7 @@ class ThumbnailCarousel extends Component {
                     this.setState({numberValue: String(index + 1)});
 
                 }}>
-
-
-                    <CurrentVideoImage source={item.thumbnail} resizeMode={'cover'}>
+                    <ImageBackground style={styles.card} source={item.thumbnail} resizeMode={'cover'}>
                         <View >
 
                             <View style={styles.container}>{imageTitle}</View>
@@ -161,7 +159,7 @@ class ThumbnailCarousel extends Component {
                                 {imageBottom}
                             </TouchableOpacity>
                         </View>
-                    </CurrentVideoImage>
+                    </ImageBackground>
 
                 </CurrentVideoTO>
 
@@ -196,7 +194,7 @@ class ThumbnailCarousel extends Component {
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
                         sliderWidth={deviceWidth}
-                        itemWidth={310} //256
+                        itemWidth={itemWidth} //256
                         layout={'default'}
                         firstItem={0}
                     />
@@ -230,7 +228,12 @@ const {height, width} = Dimensions.get('window');
 const deviceHeight = height;
 let deviceWidth  = width;
 
-
+let itemWidth;
+if (deviceHeight > 736 ) {
+    itemWidth = 610;
+} else {
+    itemWidth = 310;
+}
 
 
 // ios greater than 6 5.5 inch
@@ -262,7 +265,8 @@ flex-direction: row;
 const styles = StyleSheet.create({
     container: {
         bottom:10,
-        left:"43%",
+        alignSelf: 'center'
+       // left:"43%",
     },
     content:{
         flex: 5,
@@ -270,8 +274,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     card:{
-        width: 320,
-        height: 470,
+        width: itemWidth,
+        height: 'auto',
         borderRadius: 10,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
@@ -280,6 +284,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity:0.5,
     },
+   
 
     label: {
         lineHeight: 400,
@@ -402,7 +407,7 @@ const stylesImage = StyleSheet.create({
     marginTop: '15%',
     width: 70,
     height: 39,
-    marginLeft: '-5%',
+   
   },
   imageBottomLock:{
     marginTop: Platform.OS === 'ios' ? '9%' : '0.5%',

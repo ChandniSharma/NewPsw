@@ -9,7 +9,7 @@ import {
     TextInput,
     Platform
 } from 'react-native';
-
+import { Dimensions } from 'react-native';
 import flattenStyle from 'flattenStyle';
 import CardStack from 'react-native-card-stack';
 
@@ -359,13 +359,15 @@ export default class CardDeckNew extends Component {
         this.setState({isView:!this.state.isView})
     }
     renderCard = (card, index) => {
+     console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
+
         // Disable right swipe on first card//
 
         return (
-            <ImageBackground style={{ alignSelf:'center' ,width: 270, height: 370 ,alignItems:'center'}} key={index} source={require('./whitecard.png')} >
+            <ImageBackground style={{ alignSelf:'center' ,paddingBottom:'17%',paddingLeft:'17%',paddingRight:'17%', paddingTop:'17%' ,alignItems:'center', justifyContent:"center", borderRadius:20}} key={index} source={require('./whitecard.png')} >
                 <Text style={styles.label}>{card.word}</Text>
                 <TouchableOpacity
-                    style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
+                    style={[{bottom:'17%', alignItems:'center',position:'absolute',zIndex:10}]}
                     onPress={() => {this.showViewPopup(card,index)}}>
                     <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                 </TouchableOpacity>
@@ -412,7 +414,7 @@ export default class CardDeckNew extends Component {
                 onSwipedRight={this.swipeBack}
                 stackSize={4}
                 backgroundColor={'transparent'}
-                stackSeparation={-15}
+                stackSeparation={stackSepration}
                 disableTopSwipe={true}
                 disableBottomSwipe={true}
                 disableRightSwipe={false}
@@ -422,6 +424,7 @@ export default class CardDeckNew extends Component {
             } else {
                 // this is for last card
                 if(this.state.currentCardNumber+1 >=11){
+
                     swiperStack =  <Swiper
                     ref={swiper => {
                         this.swiper = swiper
@@ -435,7 +438,7 @@ export default class CardDeckNew extends Component {
                     onSwipedRight={this.swipeBack}
                     stackSize={4}
                     backgroundColor={'transparent'}
-                    stackSeparation={-15}
+                    stackSeparation={stackSepration}
                     disableTopSwipe={true}
                     disableBottomSwipe={true}
                     disableRightSwipe={false}
@@ -457,8 +460,7 @@ export default class CardDeckNew extends Component {
                     onSwipedRight={this.swipeBack}
                     stackSize={4}
                     backgroundColor={'transparent'}
-                    stackSeparation={-15}
-                   
+                    stackSeparation={stackSepration}
                     disableTopSwipe={true}
                     disableBottomSwipe={true}
                     disableRightSwipe={true}
@@ -541,6 +543,18 @@ export default class CardDeckNew extends Component {
         );
     }
 }
+const {height, width} = Dimensions.get('window'); 
+const deviceHeight = height;
+let deviceWidth  = width;
+
+let stackSepration;
+if (deviceHeight > 736 ) {
+    stackSepration = -25;
+} else {
+    stackSepration = -15;
+}
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -564,8 +578,8 @@ const styles = StyleSheet.create({
        backgroundColor: 'green',
     },
     card:{
-        width: 320,
-        height: 500,
+        width: (deviceWidth*3)/4,
+        height: (deviceHeight*3)/4,
         borderRadius: 20,
         backgroundColor:"#ffffff",
         shadowColor: 'rgba(0,0,0,0.5)',
@@ -653,10 +667,10 @@ const styles = StyleSheet.create({
         fontFamily:"Jua-Regular",
         marginTop:'10%',
         lineHeight: 200,
-        width:150,
-    
+        width:160,
+        bottom: '20%',
         textAlign: 'center',
-        fontSize: 60,
+        fontSize: 70,
         color: '#4a90e2',
        // backgroundColor: 'transparent',
         backgroundColor: 'white',
