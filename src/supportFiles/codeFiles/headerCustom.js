@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Image, Platform } from 'react-native';
 
 // <Image source={require('./Assets/settingsWheel.png')} style={stylesButton.image}/>
 
@@ -23,6 +23,7 @@ const stylesButton = StyleSheet.create({
       position: 'relative', // add if dont work with above
       justifyContent: 'center',
       alignItems: 'center',
+      //backgroundColor: 'red',
     },
    
     image:{

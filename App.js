@@ -229,7 +229,7 @@ const deviceHeight = height;
 let deviceWidth  = width;
 
 let itemWidth;
-if (deviceHeight > 736 ) {
+if (deviceHeight > 736 && Platform.OS === 'ios' ) {
     itemWidth = 610;
 } else {
     itemWidth = 310;
@@ -345,13 +345,12 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    top: Platform.OS === 'ios' ? '4%' : '-10%',
+    top: Platform.OS === 'ios' ? '4%' : '4%',
     left: '11.5%',
     color: 'gray',
     fontWeight: '500',
     fontSize: 35,
 position: 'absolute',
-   
    
   },
   textCardTitle: {
