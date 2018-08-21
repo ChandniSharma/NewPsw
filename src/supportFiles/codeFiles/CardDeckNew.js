@@ -197,97 +197,6 @@ export default class CardDeckNew extends Component {
         this.setState({isView:!this.state.isView});
     }
 
-
-    // handleAdd() {
-    //     if (this.state.allCards.length > 0) {
-    //         let newCard = this.state.allCards.shift()
-    //         console.log("New Card : ",newCard)
-    //         this.setState({
-    //             allCards: [newCard, ...this.state.allCards]
-    //         });
-    //     }
-    // };
-
-    handleRemove = (index) => {
-
-        if(index>0) {
-            this.imageNameBackground = this.state.allCards[index - 1].backgndImage;
-            this.cardCount = this.state.allCards[index-1].index;
-            this.question = this.state.allCards[index-1].sentence;
-            let cardPop =  this.state.allCards.pop(); // It is removing last cards
-
-            this.setState({
-                allCards: this.state.allCards
-            });
-
-            console.log("Aftr pop --------", "\n" , "remove index: ", index, "\n All Cards ", this.state.allCards,"\n poped card ",cardPop );
-            
-            this.state.arrayRemovedCards.push(cardPop);
-            console.log("Removed card ",this.state.arrayRemovedCards);
-
-            // This if condition use to call render method so that bckgnd image can update, 
-           if (this.state.allCards.length > 0) {
-                let newCard = this.state.allCards.shift()
-                console.log("New Card : ",newCard)
-                this.setState({
-                    allCards: [newCard, ...this.state.allCards]
-                });
-
-                this.state.allCards.splice(0, 0, newCard);
-
-
-            console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
-
-            }
-            //this.handleAdd();
-        }
-
-    };
-
-
-    handleAddToCard = (index) => {
-        if(count===0){
-            result = this.state.arrayImages.reverse()
-            count++;
-        }
-        if(index<11 || index>1) {
-
-
-            let cardPop =  this.state.arrayRemovedCards.pop(); // It is removing last cards 
-            this.state.allCards.push(cardPop);
-
-            console.log("Removed cardArray ",this.state.arrayRemovedCards, "all Card array",this.state.allCards);
-
-
-
-            this.imageNameBackground = this.state.allCards[index +1].backgndImage;
-            this.cardCount = this.state.allCards[index+1].index;
-            this.question = this.state.allCards[index+1].sentence;
-
-            // This if condition use to call render method so that bckgnd image can update, 
-           if (this.state.allCards.length > 0) {
-                let newCard = this.state.allCards.shift()
-                console.log("New Card : ",newCard)
-                this.setState({
-                    allCards: [newCard, ...this.state.allCards]
-                });
-
-                this.state.allCards.splice(0, 0, newCard);
-
-
-            console.log("Aftr Shift ****", "\n", index, "\n All Cards ", this.state.allCards, "\n",'Removed cards ',this.state.arrayRemovedCards );
-
-               
-        }
-    }
-}
-
-    showObject(){
-        console.log("Data: ");
-    }
-
- 
-
     showViewPopup(card,index){
         console.log('showView popup: ',index,card,"\n",card.sentence);
         this.setState({
@@ -473,7 +382,7 @@ export default class CardDeckNew extends Component {
 
             }
         return (
-            <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#40000000'}} source={this.state.imageNameBackground}>
+            <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#80000000'}} source={this.state.imageNameBackground}>
         
                 {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.state.imageNameBackground}>
 

@@ -138,7 +138,7 @@ class ThumbnailCarousel extends Component {
                     this.setState({numberValue: String(index + 1)});
 
                 }}>
-                    <ImageBackground style={styles.card} source={item.thumbnail} resizeMode={'cover'}>
+                    <ImageBackground style={[styles.card]} source={item.thumbnail} resizeMode={'cover'}>
                         <View >
 
                             <View style={styles.container}>{imageTitle}</View>
@@ -232,7 +232,7 @@ let itemWidth;
 if (deviceHeight > 736 && Platform.OS === 'ios' ) {
     itemWidth = 610;
 } else {
-    itemWidth = 310;
+    itemWidth = 300;
 }
 
 
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     },
     card:{
         width: itemWidth,
-        height: 'auto',
+        height: (deviceHeight*3)/4,
         borderRadius: 10,
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
