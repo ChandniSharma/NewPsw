@@ -1,3 +1,4 @@
+
  import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -364,7 +365,7 @@ export default class CardDeckNew extends Component {
         // Disable right swipe on first card//
 
         return (
-            <ImageBackground style={{ alignSelf:'center' ,paddingBottom:'17%',paddingLeft:'17%',paddingRight:'17%', paddingTop:Platform === 'ios'?'17%':'25%' ,alignItems:'center', justifyContent:"center", borderRadius:20}} key={index} source={require('./whitecard.png')} >
+            <ImageBackground style={{ alignSelf:'center' ,paddingBottom:'17%',paddingLeft:'17%',paddingRight:'17%', paddingTop:'17%' ,alignItems:'center', justifyContent:"center", borderRadius:20}} key={index} source={require('./whitecard.png')} >
                 <Text style={styles.label}>{card.word}</Text>
                 <TouchableOpacity
                     style={[{bottom:'17%', alignItems:'center',position:'absolute',zIndex:10}]}
@@ -420,7 +421,6 @@ export default class CardDeckNew extends Component {
                 disableRightSwipe={false}
                 disableLeftSwipe={false}
                 swipeAnimationDuration={100}
-                
             />
             } else {
                 // this is for last card
@@ -483,6 +483,7 @@ export default class CardDeckNew extends Component {
                     </TouchableOpacity>
 
                     <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
+                    {/* <Text style={{textAlign: 'center', color:'pink',backgroundColor:'red', marginTop: 50}}>sightwords</Text> */}
 
                     <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
@@ -666,14 +667,14 @@ const styles = StyleSheet.create({
     label: {
         fontFamily:"Jua-Regular",
         marginTop:'10%',
-        lineHeight:Platform.OS === 'ios' ? 200 : 160,
+        lineHeight: 200,
         width:160,
         bottom: '20%',
         textAlign: 'center',
         fontSize: 70,
         color: '#4a90e2',
        // backgroundColor: 'transparent',
-        backgroundColor:Platform.OS === 'ios' ? 'white' : 'white',
+        backgroundColor: 'white',
     },
     footer:{
         flex:1,
@@ -720,8 +721,9 @@ const styles = StyleSheet.create({
         buttonBack: {
 
       alignSelf: 'flex-start',
-      zIndex:50,
-      marginTop: Platform.OS === 'ios' ? '10%' : '5%',
+      zIndex:80,
+      marginTop: '15%',
+      marginBottom: '10%',
       left:'5%',
       position: 'relative', // add if dont work with above
       justifyContent: 'center',
@@ -760,8 +762,6 @@ const styles = StyleSheet.create({
 });
 
  /*  renderCard(cardObject) {
-
-
         if (Platform.OS === 'ios') {
             return(
                 <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
@@ -775,7 +775,6 @@ const styles = StyleSheet.create({
         )
         } else {
             return(
-
                 <ImageBackground style={{ left:30 ,width: 470-cardObject.index, height: 570-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
                     <Text style={styles.label}>{cardObject.word}</Text>
                     <TouchableOpacity
