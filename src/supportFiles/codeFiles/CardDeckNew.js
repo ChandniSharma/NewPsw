@@ -382,9 +382,10 @@ export default class CardDeckNew extends Component {
 
             }
         return (
-            <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#80000000'}} source={this.state.imageNameBackground}>
+            <ImageBackground style={{width:"100%",height:"100%"}} source={this.state.imageNameBackground}>
         
-                {!isView?<ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#00000088'}} source={this.state.imageNameBackground}>
+                {!isView?
+                    <ImageBackground style={{width:"100%",height:"100%",backgroundColor:'rgba(232,232,232,0.8)'}} >
 
 
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
@@ -427,24 +428,22 @@ export default class CardDeckNew extends Component {
 
                     <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',left:"42%"}} value={temp}/>
 
-                </ImageBackground>:null}
+                </ImageBackground>
+                    :null}
             {isView ?
-                <Animated.View style={{width:"100%",height:"100%"}}>
-                <View style={styles.viewPopupBckgnd}>
-                   <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'#90000000',justifyContent:'center',alignItems:'center'}}>
-                       <View style={styles.card}>
-                    <ImageBackground style={{height:'85%',width:'100%',borderRadius:20}}
-                           source={this.state.imageNameBackground}>
-                             <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup()}>
-                        <Image style={styles.imageCross} source={require('./cross.png')} />
-                    </TouchableOpacity>
+                <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'rgba(219,219,219,0.9)'}}>
+                    <View style={styles.card}>
+                        <ImageBackground style={{height:'90%',width:'100%'}}
+                               source={this.state.imageNameBackground}>
+                                 <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup()}>
+                            <Image style={styles.imageCross} source={require('./cross.png')} />
+                        </TouchableOpacity>
 
-                    </ImageBackground>
+                        </ImageBackground>
+
                         <Text
                             style={styles.label1}>{this.state.question}</Text>
-                    </View>
-                   </ImageBackground>
-                </View>
+                   </View>
                 </Animated.View>   : null}
             
             </ImageBackground>
@@ -473,11 +472,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor: 'transparent',
     },
-    viewPopupBckgnd: {
-        height:'100%',
-        width: '100%',
-        backgroundColor: '#00000088'
-    },
+
     content:{
        //DR bottom:100,
         flex: 1,
@@ -487,9 +482,11 @@ const styles = StyleSheet.create({
        backgroundColor: 'green',
     },
     card:{
-        width: (deviceWidth*3)/4,
+        overflow:'hidden',
+        marginTop:'10%',
+        width: deviceWidth-20,
         height: (deviceHeight*3)/4,
-        borderRadius: 20,
+        borderRadius: 12,
         backgroundColor:"#ffffff",
         shadowColor: 'rgba(0,0,0,0.5)',
         shadowOffset: {
@@ -498,79 +495,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity:0.5,
     },
-    card1: {
 
-        width: 295,
-        height: 445,
-        marginTop:100,
-        borderRadius: 20,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
-    card2: {
-
-        width: 290, height: 430,
-        marginTop:120,
-        borderRadius: 15,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
-    card3: {
-
-        width: 285, height: 415,
-        marginTop:140,
-        borderRadius: 10,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
-    card4: {
-
-        width: 280, height: 400,
-        marginTop:160,
-        borderRadius: 5,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
-    card5: {
-
-        width: 275, height: 385,
-        marginTop:180,
-        borderRadius: 5,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
-    card6: {
-
-        width: 270, height: 370,
-        marginTop:200,
-        borderRadius: 5,
-        shadowColor: 'rgba(0,0,0,0.5)',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity:0.5,
-    },
 
     label: {
         fontFamily:"Jua-Regular",
@@ -602,30 +527,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-    orange:{
-        width:55,
-        height:55,
-        borderWidth:6,
-        borderColor:'rgb(246,190,66)',
-        borderRadius:55,
-        marginTop:-15
-    },
-    green:{
-        width:75,
-        height:75,
-        backgroundColor:'#fff',
-        borderRadius:75,
-        borderWidth:6,
-        borderColor:'#01df8a',
-    },
-    red:{
-        width:75,
-        height:75,
-        backgroundColor:'#fff',
-        borderRadius:75,
-        borderWidth:6,
-        borderColor:'#fd267d',
-    },
+
         buttonBack: {
 
       alignSelf: 'flex-start',
@@ -659,42 +561,14 @@ const styles = StyleSheet.create({
             height: 32,
         },
         label1: {
+            height:"auto",
+            fontSize:25,
+            textAlign:'center',
+            width:'100%',
             fontFamily:"Jua-Regular",
-            textAlign: 'center',
-            fontSize: 25,
             color: '#000000',
-            backgroundColor: 'white',
+            backgroundColor: 'transparent',
            
         },
 });
 
- /*  renderCard(cardObject) {
-
-
-        if (Platform.OS === 'ios') {
-            return(
-                <ImageBackground style={{ left:30 ,width: 270-cardObject.index, height: 370-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>{cardObject.word}</Text>
-                    <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                        onPress={() => {this.setState({isView:!this.state.isView})}}>
-                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                    </TouchableOpacity>
-                </ImageBackground>
-        )
-        } else {
-            return(
-
-                <ImageBackground style={{ left:30 ,width: 470-cardObject.index, height: 570-cardObject.index,bottom:cardObject.index*4 , alignItems:'center'}} key={cardObject.index} source={require('./whitecard.png')} >
-                    <Text style={styles.label}>{cardObject.word}</Text>
-                    <TouchableOpacity
-                        style={[{bottom:'5%', alignItems:'center',position:'relative',zIndex:10, top: '2%'}]}
-                        onPress={() => {this.setState({isView:!this.state.isView})}}>
-                        <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                    </TouchableOpacity>
-                </ImageBackground>
-        )
-        }
-        
-    
-    }*/
