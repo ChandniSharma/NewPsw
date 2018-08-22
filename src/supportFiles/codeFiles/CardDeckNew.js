@@ -273,14 +273,14 @@ export default class CardDeckNew extends Component {
         // Disable right swipe on first card//
 
         return (
-            <ImageBackground style={{ alignSelf:'center' ,paddingBottom:'17%',paddingLeft:'17%',paddingRight:'17%', paddingTop:Platform === 'ios'?'17%':'25%' ,alignItems:'center', justifyContent:"center", borderRadius:20}} key={index} source={require('./whitecard.png')} >
+            <View style={styles.card1} key={index}  >
                 <Text style={styles.label}>{card.word}</Text>
                 <TouchableOpacity
                     style={[{bottom:'17%', alignItems:'center',position:'absolute',zIndex:10}]}
                     onPress={() => {this.showViewPopup(card,index)}}>
                     <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                 </TouchableOpacity>
-            </ImageBackground>
+            </View>
         )
     };
 
@@ -382,11 +382,10 @@ export default class CardDeckNew extends Component {
 
             }
         return (
-            <ImageBackground style={{width:"100%",height:"100%"}} source={this.state.imageNameBackground}>
+            <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
         
                 {!isView?
-                    <ImageBackground style={{width:"100%",height:"100%",backgroundColor:'rgba(232,232,232,0.8)'}} >
-
+                    <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
 
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                         <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
@@ -422,11 +421,13 @@ export default class CardDeckNew extends Component {
 
                     </View>
 
-                    <TouchableOpacity style={{bottom:"-20%",left:"45%"}}>
-                        <Image source={require('./audio_off.png')} style={{height:30, width:20}}/>
-                    </TouchableOpacity>
+
 
                     <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',left:"42%"}} value={temp}/>
+
+                        <TouchableOpacity style={{alignSelf:'center',top:30,height:30,width:30}}>
+                            <Image source={require('./audio_off.png')} style={{color:'black',height:30,width:30}}/>
+                        </TouchableOpacity>
 
                 </ImageBackground>
                     :null}
@@ -444,6 +445,12 @@ export default class CardDeckNew extends Component {
                         <Text
                             style={styles.label1}>{this.state.question}</Text>
                    </View>
+
+                    <TouchableOpacity style={{alignSelf:'center',top:30,height:30,width:30}}>
+                        <Image source={require('./audio_off.png')} style={{color:'black',height:30,width:30}}/>
+                    </TouchableOpacity>
+
+                    <TextInput editable={false} style={{alignSelf: 'center',bottom:'2%',position:'absolute'}} value={temp}/>
                 </Animated.View>   : null}
             
             </ImageBackground>
@@ -467,7 +474,6 @@ if (deviceHeight > 736 ) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red',
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: 'transparent',
@@ -494,6 +500,23 @@ const styles = StyleSheet.create({
             height: 1
         },
         shadowOpacity:0.5,
+    },
+
+    card1:{
+        alignItems:'center',
+        justifyContent:"center",
+        alignSelf:'center',
+        top:"-5%",
+        width: (deviceWidth-82),
+        height: (deviceHeight*2.4)/4,
+        borderRadius: 12,
+        backgroundColor:"#ffffff",
+        shadowColor: 'rgba(0,0,0,0.8)',
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity:0.8,
     },
 
 
