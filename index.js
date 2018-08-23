@@ -2,72 +2,34 @@
 
 import App from './App';
 import {name as appName} from './app.json';
-import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
+
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, StyleSheet, Dimensions  } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  createClass,
+  Platform
+} from 'react-native';
+
+import CardFlip from 'react-native-card-flip';
 
 
-import Carousel from 'react-native-snap-carousel'; // 3.4.0
-
-/*
-
-If FirstItem is small (3), activeSlideAlignment works correctly. In other words,
-the slide is centered in the viewport and the previous and next slides are visible.
-
-If FirstItem is large (20), the slides are aligned to the left...
-
- */
- 
-let FirstItem = 1;
-// FirstItem = 20;  // <----- UNCOMMENT THIS
-
-const SliderWidth = Dimensions.get('screen').width;
-const ItemWidth = 300.0;
-const ItemHeight = 400.0;
-
-const NumItems = 16;
-const Items = [];
-for(var i = 0; i < NumItems; i++) {
-  Items.push(i)
-}
-
-export default class MainClass extends Component {
-  
- 
-  
-
-  constructor(props) {
-    super(props);
-    this._renderItem = this._renderItem.bind(this)
-  }
-  
-  _renderItem({ item }) {
-    return (
-      <View style={{
-        width: ItemWidth,
-        height: ItemHeight,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'red',
-        flexDirection: 'column'
-      }}>
-        <Text style={{ color: 'white', fontSize: 40 }}>{item}</Text>
-      </View>
-    );
-  }
-  
+export default class NewFlip extends Component {
   render() {
-    console.log('In new update');
     return (
       <View style={styles.container}>
-        <Carousel
-          data={Items}
-          firstItem={FirstItem}
-          itemWidth={ItemWidth}
-          sliderWidth={SliderWidth}
-          activeSlideAlignment='center'
-           layout={'tinder'}
-          renderItem={this._renderItem} />
+        <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} >
+          <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card1]} onPress={() => this.card.flip()} >
+            <Text style={styles.label}>AB</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={1} style={[styles.card, styles.card1]} onPress={() => this.card.flip()} >
+            <Text style={styles.label}>CD</Text>
+          </TouchableOpacity>
+        </CardFlip>
       </View>
     );
   }
@@ -76,11 +38,210 @@ export default class MainClass extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 50,
+    alignItems: 'center',
     backgroundColor: 'yellow',
-  }
+  },
+  cardContainer:{
+    width: 320,
+    height: 470,
+  },
+  card:{
+    width: 320,
+    height: 470,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+    shadowColor: 'rgba(0,0,0,0.5)',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity:0.5,
+  },
+  card1: {
+    backgroundColor: 'red',
+  },
+  card2: {
+    backgroundColor: 'pink',
+  },
+  label: {
+    lineHeight: 470,
+    textAlign: 'center',
+    fontSize: 55,
+    fontFamily: 'System',
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
 });
-  
+
+
+
+
+
+
+
+
+
+// import FlipCard from 'react-native-flip-card';
+
+// export default class FlipCardExample extends Component {
+//   constructor (props) {
+//     super(props)
+//     this.state = {
+//       flip: false
+//     }
+//   }
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <ScrollView>
+//           <Text style={styles.welcome}>Flip Card Example</Text>
+//           <View>
+//             <Text style={styles.welcome}>Minimal</Text>
+//             <FlipCard style={{marginBottom: 5}}>
+//               {/* Face Side */}
+//               <View style={styles.face}>
+//                 <Text>The Face</Text>
+//               </View>
+//               {/* Back Side */}
+//               <View style={styles.back}>
+//                 <Text>The Back</Text>
+//               </View>
+//             </FlipCard>
+
+//             <Text style={styles.welcome}>Customized</Text>
+//             <FlipCard
+//               flip={this.state.flip}
+//               friction={6}
+//               perspective={1000}
+//               flipHorizontal={true}
+//               flipVertical={false}
+//               clickable={true}
+//               style={styles.card}
+//               alignHeight={true}
+//               // alignWidth={true}
+//               onFlipEnd={(isFlipEnd)=>{console.log('isFlipEnd', isFlipEnd)}}
+//             >
+//               {/* Face Side */}
+//               <View style={styles.face}>
+//                 <Text>The Face</Text>
+//               </View>
+//               {/* Back Side */}
+//               <View style={styles.back}>
+//                 <Text>T</Text>
+//                 <Text>h</Text>
+//                 <Text>e</Text>
+//                 <Text></Text>
+//                 <Text>B</Text>
+//                 <Text>a</Text>
+//                 <Text>c</Text>
+//                 <Text>k</Text>
+//               </View>
+//             </FlipCard>
+//           </View>
+
+//           <View>
+//             <TouchableOpacity
+//               style={styles.button}
+//               onPress={()=>{this.setState({flip: !this.state.flip})}}
+//               >
+//               <Text style={styles.buttonText}>Flip</Text>
+//             </TouchableOpacity>
+//           </View>
+
+//           {/* <View>
+//             {CARDS.map(createCard)}
+//           </View> */}
+
+//         </ScrollView>
+//       </View>
+//     )
+//   }
+// }
+// /*
+// var CARDS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// var createCard = (val, i) => <MyFlipCard key={i} val={val}/>
+// var createReactClass = require('create-react-class');
+// var MyFlipCard = createReactClass({
+//   shouldComponentUpdate: function (nextProps, nextState) {
+//     return false
+//   },
+//   render: function () {
+//     return (
+//       <View style={{margin: 3}}>
+//         <FlipCard
+//           style={styles.card}
+//         >
+//           {/* Face Side 
+//           <View style={styles.face}>
+//             <Text>Card {this.props.val}</Text>
+//           </View>
+//           {/* Back Side 
+//           <View style={styles.back}>
+//             <Text>The back side</Text>
+//           </View>
+//         </FlipCard>
+//       </View>
+//     )
+//   }
+// })
+// */
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#F5FCFF',
+//   },
+//   welcome: {
+//     fontSize: 20,
+//     textAlign: 'center',
+//     margin: 10,
+//     marginTop: 20,
+//   },
+//   instructions: {
+//     textAlign: 'center',
+//     color: '#333333',
+//     marginBottom: 5,
+//   },
+//   card: {
+//     width:200,
+//   },
+//   face: {
+//     flex:1,
+//     backgroundColor: '#2ecc71',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   back: {
+//     flex:1,
+//     backgroundColor: '#f1c40f',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   button: {
+//     width: 100,
+//     height: 30,
+//     marginTop: 30,
+//     paddingTop: 6,
+//     paddingBottom: 6,
+//     borderRadius: 3,
+//     borderWidth: 1,
+//     backgroundColor: '#007AFF',
+//     borderColor: 'transparent',
+//   },
+//   buttonText: {
+//     color: '#fff',
+//     textAlign: 'center',
+//   },
+//   img: {
+//     flex: 1,
+//     height: 64
+//   }
+// });
+
+//AppRegistry.registerComponent('FlipCardExample', () => FlipCardExample);
+
+//AppRegistry.registerComponent(appName, () => NewFlip);
 AppRegistry.registerComponent(appName, () => App);

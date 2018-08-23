@@ -7,12 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.4.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-native": "0.56.0",
     "react-native-card-flip": "^1.0.3",
     "react-native-card-stack": "^0.2.8",
     "react-native-card-stack-swiper": "^1.0.8",
     "react-native-deck-swiper": "^1.5.17",
+    "react-native-flip-card": "^3.5.2",
     "react-native-play-audio": "^0.1.2",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-sound": "^0.10.9",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "babel-jest": "23.4.0",
     "babel-preset-react-native": "5.0.2",
+    "create-react-class": "^15.6.3",
     "jest": "23.4.1",
     "react-test-renderer": "16.4.1"
   },
