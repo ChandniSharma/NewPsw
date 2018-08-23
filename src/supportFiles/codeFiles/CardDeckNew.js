@@ -10,14 +10,9 @@ import {
     TextInput,
     Platform
 } from 'react-native';
+ import AudioPlayer from 'react-native-play-audio';
 import { Dimensions } from 'react-native';
-import flattenStyle from 'flattenStyle';
-import CardStack from 'react-native-card-stack';
-
- import Swiper from 'react-native-deck-swiper'
-
-//import CardStack, { Card } from 'react-native-card-stack-swiper';
-//import imagesCardDeckNew from 'imagesCardDeckNew';
+import Swiper from 'react-native-deck-swiper'
 
 let result = [];
 let count = 0;
@@ -388,7 +383,7 @@ export default class CardDeckNew extends Component {
                     <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
 
                     <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                        <Image  style={styles.imageLeft} source={require('./arrowRight.png')} />
+                        <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
                     </TouchableOpacity>
 
                     <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
@@ -422,10 +417,13 @@ export default class CardDeckNew extends Component {
 
                     </View>
 
-                    <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',left:"42%"}} value={temp}/>
 
-                        <TouchableOpacity style={{alignSelf:'center',top:30,height:30,width:30}}>
-                            <Image source={require('./audio_off.png')} style={{color:'black',height:30,width:30}}/>
+
+                    <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
+
+
+                        <TouchableOpacity style={{alignSelf:'center',height:30,width:30,bottom:"10%"}}>
+                            <Image source={require('./audio_off.png')} style={{color:'black'}}/>
                         </TouchableOpacity>
 
                 </ImageBackground>
@@ -445,8 +443,8 @@ export default class CardDeckNew extends Component {
                             style={styles.label1}>{this.state.question}</Text>
                    </View>
 
-                    <TouchableOpacity style={{alignSelf:'center',top:30,height:30,width:30}}>
-                        <Image source={require('./audio_off.png')} style={{color:'black',height:30,width:30}}/>
+                    <TouchableOpacity style={{alignSelf:'center',top:30}}>
+                        <Image source={require('./audio_off.png')} style={{tintColor:'black',height:20,width:20}}/>
                     </TouchableOpacity>
 
                     <TextInput editable={false} style={{alignSelf: 'center',bottom:'2%',position:'absolute'}} value={temp}/>
@@ -551,7 +549,6 @@ const styles = StyleSheet.create({
     },
 
         buttonBack: {
-
       alignSelf: 'flex-start',
       zIndex:80,
       marginTop: '15%',
@@ -567,8 +564,8 @@ const styles = StyleSheet.create({
           },
     
         imageLeft:{
-            width: 50,
-            height: 50,
+            width: 30,
+            height: 30,
         },
         imageBulb:{
             width: 32,
