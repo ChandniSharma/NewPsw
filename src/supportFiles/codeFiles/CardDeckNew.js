@@ -166,39 +166,11 @@ export default class CardDeckNew extends Component {
         }
     }
 
-    flipCurrentView( card,){
-        this.card.flip()
-        this.setState({isView:!this.state.isView});
-
-    }
-
-    getInitialState() {
-        return { absoluteChangeX: new Animated.Value(0) };
-      }
-
-    fadeAnimationStart() {
-        this.setState({isView:!this.state.isView})
-        Animated.timing(                  // Animate over time
-          this.state.fadeAnim,            // The animated value to drive
-          {
-            toValue: 1,                   // Animate to opacity: 1 (opaque)
-            duration: 10000,              // Make it take a while
-          }
-        ).start();                        // Starts the animation
-    }
-
-    fadeAnimationStop() {
-        this.setState({isView:!this.state.isView})
-        this.getInitialState();                        // Starts the animation
-    }
-    onClickBulb(){
-        console.log("Hello here ")
-        this.setState({isView:!this.state.isView});
-    }
+    
 
     showViewPopup(card,index){
         console.log('showView popup: ',index,card,"\n",card.sentence);
-        this.card.flip();
+        this['card' + index].flip();
 
         this.setState({
             isView:!this.state.isView,
@@ -210,7 +182,7 @@ export default class CardDeckNew extends Component {
 
     }
     closePopup(card, index){
-        this.card.flip();
+        this['card' + index].flip();
 
         this.setState({isView:!this.state.isView})
     }
@@ -289,19 +261,19 @@ export default class CardDeckNew extends Component {
                 </TouchableOpacity> */}
 
             
-      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => this['card' + index].flip()} >
+      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => this.showViewPopup(card,index)} >
       <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
       </TouchableOpacity>
 
       
       {/* //</CardFlip><Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'rgba(219,219,219,0.9)'}}> */}
-      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-15%'}}>
+      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%', zIndex:30}}>
 
           <View style={styles.card}>
               <ImageBackground style={{height:'90%',width:'100%'}}
                      source={this.state.imageNameBackground}>
-                       <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this['card' + index].flip()}>
+                       <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup(card,index)}>
                   <Image style={styles.imageCross} source={require('./cross.png')} />
               </TouchableOpacity>
 
@@ -420,76 +392,34 @@ export default class CardDeckNew extends Component {
             return(
                 <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
-                    {!isView?
+                    
                         <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
-    
-                        <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                            <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
-                        </TouchableOpacity>
+                        {!isView?
+                            <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                                <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
+                            </TouchableOpacity> :<TouchableOpacity activeOpacity={0} style={[styles.buttonBack]}/>
+                        }
     
                         <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
     
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
-    
-                      
-                            {/* {console.log("Display Cards: ",this.state.allCards)} */}
-    
-                            {/*<CardStack
-                                cardList={this.state.allCards}
-                                renderCard={this.renderCard.bind(this)}
-                                cardHeight={flattenStyle(styles.card).height}
-                                cardWidth={flattenStyle(styles.card).width}
-                                cardRotation={20}
-                                cardOpacity={1.0}
-                                onSwipeRight={this.handleAddToCard}
-                                onSwipeLeft={this.handleRemove}
-                                leftSwipeThreshold={-150}
-                                rightSwipeThreshold={150}
-                                // onSwipeUp={this.handleAddToCard}
-                                // onSwipeDown={this.handleRemove}
-                                // upSwipeThreshold={-150}
-                                // downSwipeThreshold={150}
-                                alignItems='center'
-                            />*/}
+
     
                             {swiperStack}
-                          
+
     
                         </View>
-    
-    
-    
+
+                        {/* <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'15%'}}>
+                                <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
+                            </TouchableOpacity> */}
+
                         <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
     
-                            <TouchableOpacity style={{alignSelf:'center',height:30,width:30,bottom:"10%"}}>
-                                <Image source={require('./audio_off.png')} style={{color:'black'}}/>
-                            </TouchableOpacity>
+                            
     
                     </ImageBackground>
-                        :null}
-                {/* {isView ?
-                 <CardFlip style={styles.cardContainer} ref={(card) => this.card = card} >
-                    <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'rgba(219,219,219,0.9)'}}>
-                        <View style={styles.card}>
-                            <ImageBackground style={{height:'90%',width:'100%'}}
-                                   source={this.state.imageNameBackground}>
-                                     <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup()}>
-                                <Image style={styles.imageCross} source={require('./cross.png')} />
-                            </TouchableOpacity>
-    
-                            </ImageBackground>
-    
-                            <Text
-                                style={styles.label1}>{this.state.question}</Text>
-                       </View>
-    
-                        <TouchableOpacity style={{alignSelf:'center',top:30}}>
-                            <Image source={require('./audio_off.png')} style={{tintColor:'black',height:20,width:20}}/>
-                        </TouchableOpacity>
-    
-                        <TextInput editable={false} style={{alignSelf: 'center',bottom:'2%',position:'absolute'}} value={temp}/>
-                    </Animated.View> 
-                    </CardFlip>  : null} */}
+                       
                 
                 </ImageBackground>
     
@@ -651,6 +581,12 @@ const styles = StyleSheet.create({
             width: 48,
             height: 48,
             bottom: '2%',
+            alignSelf: 'center'
+        },
+        imageSpeaker:{
+            width: 30,
+            height: 30,
+            
             alignSelf: 'center'
         },
         imageCross:{
