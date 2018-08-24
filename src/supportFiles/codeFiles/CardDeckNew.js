@@ -288,9 +288,9 @@ export default class CardDeckNew extends Component {
                     <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                 </TouchableOpacity> */}
 
-              {/* <Text style={styles.label}>{card.word}</Text> */}
-      <TouchableOpacity style={[{alignItems:'center', width: 50, height:50, position:'absolute'}]} onPress={() => this['card' + index].flip()} >
-      <Text style={styles.label}>{card.word}</Text>
+               {/* <Text style={styles.label}>{card.word}</Text>  */}
+      <TouchableOpacity style={[{alignItems:'center', position:'absolute',bottom:'17%', alignSelf: 'center'}]} onPress={() => this['card' + index].flip()} >
+      <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
       </TouchableOpacity>
 
@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
         fontFamily:"Jua-Regular",
        top:'2%',
         lineHeight: 200,
-        width:'90%',
+        width:'100%',
         alignSelf:'center',
         textAlign: 'center',
         fontSize: 70,
