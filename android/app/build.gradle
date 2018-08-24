@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-play-sound')
     compile project(':react-native-sound')
     compile project(':react-native-play-audio')
     compile fileTree(dir: "libs", include: ["*.jar"])

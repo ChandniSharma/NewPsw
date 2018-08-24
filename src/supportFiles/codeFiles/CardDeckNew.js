@@ -14,6 +14,7 @@ import {
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
+import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
 
 
 let result = [];
@@ -180,39 +181,35 @@ export default class CardDeckNew extends Component {
         }
     }
 
-    flipCurrentView( card,){
-        this.card.flip()
-        this.setState({isView:!this.state.isView});
+    
+
+
+    showViewPopup(card,index){
+        console.log('showView popup: ',index,card,"\n",card.sentence);
+        this['card' + index].flip();
+
+        this.setState({
+            isView:!this.state.isView,
+            cardIndex: index,
+            imageNameBackground :card.backgndImage,
+            cardCount : card.index,
+            question :card.sentence
+        });
 
     }
+    closePopup(card, index){
+        this['card' + index].flip();
 
-    getInitialState() {
-        return { absoluteChangeX: new Animated.Value(0) };
-      }
-
-    fadeAnimationStart() {
         this.setState({isView:!this.state.isView})
-        Animated.timing(                  // Animate over time
-          this.state.fadeAnim,            // The animated value to drive
-          {
-            toValue: 1,                   // Animate to opacity: 1 (opaque)
-            duration: 10000,              // Make it take a while
-          }
-        ).start();                        // Starts the animation
     }
 
-    fadeAnimationStop() {
-        this.setState({isView:!this.state.isView})
-        this.getInitialState();                        // Starts the animation
-    }
-    onClickBulb(){
-        console.log("Hello here ")
-        this.setState({isView:!this.state.isView});
+    flipStart(){
+
     }
 
 
     swipeBack = (index) => {
-
+        PlaySound('cardslidesound');
         console.log("Swiping Back: ",this.state.isSwipingBack)
         if (!this.state.isSwipingBack) {
 
@@ -260,6 +257,7 @@ export default class CardDeckNew extends Component {
     };
 
     swipeCard = (index)=>{
+        PlaySound('cardslidesound');
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
@@ -270,7 +268,10 @@ export default class CardDeckNew extends Component {
         }
     };
 
-    
+    playCardSound(){
+
+    }
+
     renderCard = (card, index) => {
      console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
 
@@ -279,18 +280,24 @@ export default class CardDeckNew extends Component {
         return (
             <CardFlip style={styles.card1} key={index}  ref={ (card) => this['card' + index] = card }>
 
+
       <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
+
       <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
       </TouchableOpacity>
 
 
+
       <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%'}}>
+
 
           <View style={styles.card}>
               <ImageBackground style={{height:'90%',width:'100%'}}
                      source={this.state.imageNameBackground}>
+
                        <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
+
                   <Image style={styles.imageCross} source={require('./cross.png')} />
               </TouchableOpacity>
 
@@ -406,6 +413,7 @@ export default class CardDeckNew extends Component {
                 <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
 
+
                         <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
     
                             {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
@@ -414,29 +422,29 @@ export default class CardDeckNew extends Component {
                                 <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
 
                             </TouchableOpacity>}
+
+
     
                         <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
     
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
-    
-                      
+
 
     
                             {swiperStack}
-                          
+
     
                         </View>
-    
-    
-    
+
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} >
+                                <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
+                            </TouchableOpacity>
+
                         <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
     
-                            <TouchableOpacity style={{alignSelf:'center',height:30,width:30,bottom:"10%"}}>
-                                <Image source={require('./audio_off.png')} style={{color:'black'}}/>
-                            </TouchableOpacity>
+                            
     
                     </ImageBackground>
-
 
                 
                 </ImageBackground>
@@ -445,6 +453,7 @@ export default class CardDeckNew extends Component {
     
     }
 }
+
 const {height, width} = Dimensions.get('window'); 
 const deviceHeight = height;
 let deviceWidth  = width;
@@ -601,6 +610,12 @@ const styles = StyleSheet.create({
             bottom: '2%',
             alignSelf: 'center'
         },
+        imageSpeaker:{
+            width: 25,
+            height: 25,
+            tintColor:'black',
+            alignSelf: 'center'
+        },
         imageCross:{
             width: 32,
             height: 32,
@@ -617,20 +632,4 @@ const styles = StyleSheet.create({
         },
 });
 
- {/*<CardStack
-                            cardList={this.state.allCards}
-                            renderCard={this.renderCard.bind(this)}
-                            cardHeight={flattenStyle(styles.card).height}
-                            cardWidth={flattenStyle(styles.card).width}
-                            cardRotation={20}
-                            cardOpacity={1.0}
-                            onSwipeRight={this.handleAddToCard}
-                            onSwipeLeft={this.handleRemove}
-                            leftSwipeThreshold={-150}
-                            rightSwipeThreshold={150}
-                            // onSwipeUp={this.handleAddToCard}
-                            // onSwipeDown={this.handleRemove}
-                            // upSwipeThreshold={-150}
-                            // downSwipeThreshold={150}
-                            alignItems='center'
-                        />*/}
+

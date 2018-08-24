@@ -16,6 +16,7 @@
     "react-native-deck-swiper": "^1.5.17",
     "react-native-flip-card": "^3.5.2",
     "react-native-play-audio": "^0.1.2",
+    "react-native-play-sound": "^1.0.24",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-sound": "^0.10.9",
     "react-native-swiper-animated": "^1.4.0",
