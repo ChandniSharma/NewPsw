@@ -336,7 +336,7 @@ export default class CardDeckNew extends Component {
         console.log("CurrentcardNumber Yeh wala: ",this.state.currentCardNumber);
 
             let swiperStack;
-
+            if(!isView){
             if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber+1 <12) {
 
               swiperStack =  <Swiper
@@ -361,31 +361,53 @@ export default class CardDeckNew extends Component {
             />
             } else {
                 // this is for last card
-                if(this.state.currentCardNumber+1 >=11){
+                if (this.state.currentCardNumber + 1 >= 11) {
 
-                    swiperStack =  <Swiper
-                    ref={swiper => {
-                        this.swiper = swiper
-                    }}
-                    //onSwiped={this.onSwiped}
-                    cards={renderArray}
-                    cardIndex={this.state.cardIndex}
-                    cardVerticalMargin={80}
-                    renderCard={this.renderCard}
-                    onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeBack}
-                    stackSize={4}
-                    backgroundColor={'transparent'}
-                    stackSeparation={stackSepration}
-                    disableTopSwipe={true}
-                    disableBottomSwipe={true}
-                    disableRightSwipe={false}
-                    disableLeftSwipe={true}
-                    swipeAnimationDuration={100}
+                    swiperStack = <Swiper
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        //onSwiped={this.onSwiped}
+                        cards={renderArray}
+                        cardIndex={this.state.cardIndex}
+                        cardVerticalMargin={80}
+                        renderCard={this.renderCard}
+                        onSwipedLeft={this.swipeCard}
+                        onSwipedRight={this.swipeBack}
+                        stackSize={4}
+                        backgroundColor={'transparent'}
+                        stackSeparation={stackSepration}
+                        disableTopSwipe={true}
+                        disableBottomSwipe={true}
+                        disableRightSwipe={false}
+                        disableLeftSwipe={true}
+                        swipeAnimationDuration={100}
 
-                />
-                }else{
-                    swiperStack =  <Swiper
+                    />
+                } else {
+                    swiperStack = <Swiper
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        //onSwiped={this.onSwiped}
+                        cards={renderArray}
+                        cardIndex={this.state.cardIndex}
+                        cardVerticalMargin={80}
+                        renderCard={this.renderCard}
+                        onSwipedLeft={this.swipeCard}
+                        onSwipedRight={this.swipeBack}
+                        stackSize={4}
+                        backgroundColor={'transparent'}
+                        stackSeparation={stackSepration}
+                        disableTopSwipe={true}
+                        disableBottomSwipe={true}
+                        disableRightSwipe={true}
+                        disableLeftSwipe={false}
+                        swipeAnimationDuration={100}
+                    />
+                }
+            }}else{
+             swiperStack =  <Swiper
                     ref={swiper => {
                         this.swiper = swiper
                     }}
@@ -402,13 +424,9 @@ export default class CardDeckNew extends Component {
                     disableTopSwipe={true}
                     disableBottomSwipe={true}
                     disableRightSwipe={true}
-                    disableLeftSwipe={false}
+                    disableLeftSwipe={true}
                     swipeAnimationDuration={100}
-                    />
-                }
-
-
-            }
+                />}
             return(
                 <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
