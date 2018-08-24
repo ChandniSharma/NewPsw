@@ -44,6 +44,7 @@
 		99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */; };
 		99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C66212FE3F00000F829 /* cardslidesound.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		4F587238647649E78262AA54 /* comicsas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E30B840A67FE41558C0E1373 /* comicsas.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +381,7 @@
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
 		F441FF500CBE4FEC9721D13B /* libPlaySound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libPlaySound.a; sourceTree = "<group>"; };
 		F75F3DEB78524350BE0512DE /* RNPlayAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPlayAudio.xcodeproj; path = "../node_modules/react-native-play-audio/ios/RNPlayAudio.xcodeproj"; sourceTree = "<group>"; };
+		E30B840A67FE41558C0E1373 /* comicsas.ttf */ = {isa = PBXFileReference; name = "comicsas.ttf"; path = "../assets/fonts/comicsas.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +508,7 @@
 				99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */,
 				2DEEE02C212E92790009274E /* card_slide.aif */,
 				E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */,
+				E30B840A67FE41558C0E1373 /* comicsas.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1185,6 +1188,7 @@
 				99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */,
 				2DEEE02D212E92790009274E /* card_slide.aif in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
+				4F587238647649E78262AA54 /* comicsas.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
