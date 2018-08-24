@@ -288,8 +288,8 @@ export default class CardDeckNew extends Component {
                     <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
                 </TouchableOpacity> */}
 
-               {/* <Text style={styles.label}>{card.word}</Text>  */}
-      <TouchableOpacity style={[{alignItems:'center', position:'absolute',bottom:'17%', alignSelf: 'center'}]} onPress={() => this['card' + index].flip()} >
+            
+      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => this['card' + index].flip()} >
       <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
       </TouchableOpacity>
@@ -582,11 +582,11 @@ const styles = StyleSheet.create({
     // },
     label: {
         fontFamily:"Jua-Regular",
-       top:'2%',
+       //top:'2%',
         lineHeight: 200,
         width:'100%',
-        alignSelf:'center',
-        textAlign: 'center',
+        //alignSelf:'center',
+         textAlign: 'center',
         fontSize: 70,
         color: '#4a90e2',
        backgroundColor: 'transparent',
@@ -650,7 +650,8 @@ const styles = StyleSheet.create({
         imageQuestionMark:{
             width: 48,
             height: 48,
-            bottom: '5%',
+            bottom: '2%',
+            alignSelf: 'center'
         },
         imageCross:{
             width: 32,
