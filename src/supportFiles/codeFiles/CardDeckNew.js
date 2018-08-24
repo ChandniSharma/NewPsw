@@ -556,7 +556,7 @@ const styles = StyleSheet.create({
     //     shadowOpacity:0.8,
     // },
     label: {
-        fontFamily:"comicsas",
+        fontFamily:"Comic Sans MS",
        //top:'2%',
         lineHeight: 200,
         width:'100%',
