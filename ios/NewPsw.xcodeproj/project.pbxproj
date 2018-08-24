@@ -40,7 +40,10 @@
 		2DEEE02D212E92790009274E /* card_slide.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2DEEE02C212E92790009274E /* card_slide.aif */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6FB78FBE69664448B5A7C573 /* libPlaySound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F441FF500CBE4FEC9721D13B /* libPlaySound.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */; };
+		99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C66212FE3F00000F829 /* cardslidesound.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
@@ -325,6 +328,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		99382C60212FDF210000F829 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 295066A408DD45A08E85F862 /* PlaySound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E957A9331FE7A97E0009C115;
+			remoteInfo = PlaySound;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -354,6 +364,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NewPsw/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NewPsw/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		295066A408DD45A08E85F862 /* PlaySound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = PlaySound.xcodeproj; path = "../node_modules/react-native-play-sound/PlaySound/PlaySound.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NewPsw-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewPsw-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NewPsw-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NewPsw-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,10 +373,13 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shiva Tandava Stotram.mp3"; sourceTree = "<group>"; };
+		99382C66212FE3F00000F829 /* cardslidesound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C3CCBF6AADB349AD87F45CF1 /* libRNPlayAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPlayAudio.a; sourceTree = "<group>"; };
 		D025BE5D4C494A62955CF674 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
+		F441FF500CBE4FEC9721D13B /* libPlaySound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libPlaySound.a; sourceTree = "<group>"; };
 		F75F3DEB78524350BE0512DE /* RNPlayAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNPlayAudio.xcodeproj; path = "../node_modules/react-native-play-audio/ios/RNPlayAudio.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -397,6 +411,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				084B80EF28224CDC812A2017 /* libRNPlayAudio.a in Frameworks */,
 				154C79DC571643AE95B285B5 /* libRNSound.a in Frameworks */,
+				6FB78FBE69664448B5A7C573 /* libPlaySound.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +503,8 @@
 		0CDEE4C74F3847D894EC6593 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				99382C66212FE3F00000F829 /* cardslidesound.mp3 */,
+				99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */,
 				2DEEE02C212E92790009274E /* card_slide.aif */,
 				E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */,
 			);
@@ -564,6 +581,7 @@
 			children = (
 				C3CCBF6AADB349AD87F45CF1 /* libRNPlayAudio.a */,
 				D025BE5D4C494A62955CF674 /* libRNSound.a */,
+				F441FF500CBE4FEC9721D13B /* libPlaySound.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -619,6 +637,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F75F3DEB78524350BE0512DE /* RNPlayAudio.xcodeproj */,
 				4B37BAD9000F4D68B82D53FB /* RNSound.xcodeproj */,
+				295066A408DD45A08E85F862 /* PlaySound.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -655,6 +674,14 @@
 				00E356EE1AD99517003FC87E /* NewPswTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* NewPsw-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* NewPsw-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		99382C5D212FDF210000F829 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				99382C61212FDF210000F829 /* libPlaySound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -787,6 +814,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 99382C5D212FDF210000F829 /* Products */;
+					ProjectRef = 295066A408DD45A08E85F862 /* PlaySound.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1121,6 +1152,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		99382C61212FDF210000F829 /* libPlaySound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlaySound.a;
+			remoteRef = 99382C60212FDF210000F829 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1142,8 +1180,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */,
 				2DEEE02D212E92790009274E /* card_slide.aif in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
 			);
@@ -1275,12 +1315,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = NewPswTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1307,12 +1349,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = NewPswTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1340,6 +1384,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = NewPsw/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1370,6 +1415,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = NewPsw/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1407,11 +1453,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = "NewPsw-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1448,11 +1496,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = "NewPsw-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1488,11 +1538,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = "NewPsw-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1528,11 +1580,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-play-audio/ios",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-play-sound/PlaySound/PlaySound",
 				);
 				INFOPLIST_FILE = "NewPsw-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

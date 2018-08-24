@@ -14,6 +14,7 @@ import {
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
+import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
 
 
 let result = [];
@@ -245,7 +246,10 @@ export default class CardDeckNew extends Component {
         }
     };
 
-    
+    playCardSound(){
+
+    }
+
     renderCard = (card, index) => {
      console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
 
@@ -410,9 +414,9 @@ export default class CardDeckNew extends Component {
     
                         </View>
 
-                        {/* <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'15%'}}>
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'15%'}} onPress={() => PlaySound('cardslidesound')}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
-                            </TouchableOpacity> */}
+                            </TouchableOpacity>
 
                         <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
     
