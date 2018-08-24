@@ -44,7 +44,9 @@ export default class CardDeckNew extends Component {
                 imageNameBackground : require('./Dog_background.png'),
                currentCardNumber: 0,
                 cardCount : 1,
-                question:'I saw a dog.',
+                alpha:"a",
+                question1:'I saw',
+                question2:"dog.",
                 cardIndex: 0,
                 allCards: [],
               displayedCards: [],
@@ -56,42 +58,48 @@ export default class CardDeckNew extends Component {
               arrayImages: [
                   {   index: 1,
                       word: 'a',
-                      sentence: 'I saw a dog.',
+                      sentence1: 'I saw',
+                      sentence2: 'dog.',
                       backgndImage: require('./Dog_background.png'),
                       frontImage: require('./Dog_background.png')
                   },
                   {
                       index: 2,
                       word: 'ran',
-                      sentence: 'The zebra ran away.',
+                      sentence1: 'The zebra',
+                      sentence2: 'away.',
                       backgndImage: require('./Zebra_background.png'),
                       frontImage: require('./Zebra_background.png')
                   },
                   {
                       index: 3,
                       word: 'come',
-                      sentence: 'Please come and see the rainbow.',
+                      sentence1: 'Please',
+                      sentence2: 'and see the rainbow.',
                       backgndImage: require('./Rainbow_background.png'),
                       frontImage: require('./Rainbow_background.png')
                   },
                   {
                       index: 4,
                       word: 'up',
-                      sentence: 'The tiger woke up.',
+                      sentence1: 'The tiger',
+                      sentence2: '.',
                       backgndImage: require('./Tiger_yawning_background_bw.png'),
                       frontImage: require('./Tiger_yawning_background_bw.png')
                   },
                   {
                       index: 5,
                       word: 'see',
-                      sentence: 'I can see the boat.',
+                      sentence1: 'I can',
+                      sentence2: 'the boat.',
                       backgndImage: require('./Boat_background.png'),
                       frontImage: require('./Boat_background.png')
                   },
                   {
                       index: 6,
                       word: 'was',
-                      sentence: 'The tiger was sleeping.',
+                      sentence1: 'The tiger',
+                      sentence2: 'sleeping.',
                       backgndImage: require('./Tiger_sleeping_background.png'),
                       frontImage: require('./Tiger_sleeping_background.png')
                   },
@@ -99,28 +107,32 @@ export default class CardDeckNew extends Component {
                   {
                       index: 7,
                       word: 'the',
-                      sentence: 'I can catch the ball.',
+                      sentence1: 'I can catch',
+                      sentence2: 'ball.',
                       backgndImage: require('./Beachball_background.png'),
                       frontImage: require('./Beachball_background.png')
                   },
                   {
                       index: 8,
                       word: 'jump',
-                      sentence: 'The leopard can jump very high.',
+                      sentence1: 'The leopard can',
+                      sentence2: 'very high.',
                       backgndImage: require('./Leopard_background.png'),
                       frontImage: require('./Leopard_background.png')
                   },
                   {
                       index: 9,
                       word: 'on',
-                      sentence: 'I sat on the bike.',
+                      sentence1: 'I sat',
+                      sentence2: 'the bike.',
                       backgndImage: require('./Bicycle_background.png'),
                       frontImage: require('./Bicycle_background.png')
                   },
                   {
                       index: 10,
                       word: 'ten',
-                      sentence: 'I saw ten kangaroos.',
+                      sentence1: 'I saw',
+                      sentence2: 'kangaroos.',
                       backgndImage: require('./Kangaroos_background.png'),
                       frontImage: require('./Kangaroos_background.png')
                   },
@@ -128,14 +140,16 @@ export default class CardDeckNew extends Component {
                   {
                       index: 11,
                       word: 'go',
-                      sentence: 'Lets go fishing.',
+                      sentence1: 'Lets',
+                      sentence2: 'fishing.',
                       backgndImage: require('./Fishing_background.png'),
                       frontImage: require('./Fishing_background.png')
                   },
                   {
                       index: 12,
                       word: 'two',
-                      sentence: 'There were two tigers at the zoo.',
+                      sentence1: 'There were',
+                      sentence2: 'tigers at the zoo.',
                       backgndImage: require('./Tigercubs_background.png'),
                       frontImage: require('./Tigercubs_background.png')
                   },
@@ -169,6 +183,7 @@ export default class CardDeckNew extends Component {
 
     
 
+
     showViewPopup(card,index){
         console.log('showView popup: ',index,card,"\n",card.sentence);
         this['card' + index].flip();
@@ -192,8 +207,9 @@ export default class CardDeckNew extends Component {
 
     }
 
-    swipeBack = (index) => {
 
+    swipeBack = (index) => {
+        PlaySound('cardslidesound');
         console.log("Swiping Back: ",this.state.isSwipingBack)
         if (!this.state.isSwipingBack) {
 
@@ -214,8 +230,11 @@ export default class CardDeckNew extends Component {
                 isSwipingBack: isSwipingBack,
                 imageNameBackground : renderArray[index-1].backgndImage,
                 cardCount : renderArray[index-1].index,
-                question :renderArray[index-1].sentence
+                question1 :renderArray[index-1].sentence1,
+                question2 :renderArray[index-1].sentence2,
+                alpha : renderArray[index-1].word,
             }
+
         )
     };
 
@@ -230,12 +249,15 @@ export default class CardDeckNew extends Component {
                 cardIndex: index+1,
                 imageNameBackground : renderArray[index+1].backgndImage,
                 cardCount : renderArray[index+1].index,
-                question :renderArray[index+1].sentence
+                question1 :renderArray[index+1].sentence1,
+                question2 :renderArray[index+1].sentence2,
+                alpha : renderArray[index+1].word,
             }
         )
     };
 
     swipeCard = (index)=>{
+        PlaySound('cardslidesound');
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
@@ -257,40 +279,35 @@ export default class CardDeckNew extends Component {
 
         return (
             <CardFlip style={styles.card1} key={index}  ref={ (card) => this['card' + index] = card }>
-                {/* //<Text style={styles.label}>{card.word}</Text> */}
-                {/* <TouchableOpacity
-                    style={[{bottom:'17%', alignItems:'center',position:'absolute',zIndex:10}]}
-                  onPress={() => {this.showViewPopup(card,index)}}> 
-                    <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                </TouchableOpacity> */}
 
-            
-      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => this.showViewPopup(card,index)} >
+
+      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
+
       <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
       </TouchableOpacity>
 
-      
-      <Animated.View pointerEvents="none" style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%', zIndex:30}}>
+
+
+      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%'}}>
+
 
           <View style={styles.card}>
               <ImageBackground style={{height:'90%',width:'100%'}}
                      source={this.state.imageNameBackground}>
-                       <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => this.closePopup(card,index)}>
+
+                       <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
+
                   <Image style={styles.imageCross} source={require('./cross.png')} />
               </TouchableOpacity>
 
               </ImageBackground>
 
               <Text
-                  style={styles.label1}>{this.state.question}</Text>
+                  style={styles.label1}>{this.state.question1+" "}<Text style={{color:'#4a90e2'}}>{this.state.alpha+" "}</Text>{this.state.question2}</Text>
          </View>
 
-          {/* <TouchableOpacity style={{alignSelf:'center',top:30}}>
-              <Image source={require('./audio_off.png')} style={{tintColor:'black',height:20,width:20}}/>
-          </TouchableOpacity> */}
 
-       {/* //   <TextInput editable={false} style={{alignSelf: 'center',bottom:'2%',position:'absolute'}} value={temp}/> */}
       </Animated.View> 
             </CardFlip>
         )
@@ -319,7 +336,7 @@ export default class CardDeckNew extends Component {
         console.log("CurrentcardNumber Yeh wala: ",this.state.currentCardNumber);
 
             let swiperStack;
-
+            if(!isView){
             if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber+1 <12) {
 
               swiperStack =  <Swiper
@@ -344,31 +361,53 @@ export default class CardDeckNew extends Component {
             />
             } else {
                 // this is for last card
-                if(this.state.currentCardNumber+1 >=11){
+                if (this.state.currentCardNumber + 1 >= 11) {
 
-                    swiperStack =  <Swiper
-                    ref={swiper => {
-                        this.swiper = swiper
-                    }}
-                    //onSwiped={this.onSwiped}
-                    cards={renderArray}
-                    cardIndex={this.state.cardIndex}
-                    cardVerticalMargin={80}
-                    renderCard={this.renderCard}
-                    onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeBack}
-                    stackSize={4}
-                    backgroundColor={'transparent'}
-                    stackSeparation={stackSepration}
-                    disableTopSwipe={true}
-                    disableBottomSwipe={true}
-                    disableRightSwipe={false}
-                    disableLeftSwipe={true}
-                    swipeAnimationDuration={100}
+                    swiperStack = <Swiper
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        //onSwiped={this.onSwiped}
+                        cards={renderArray}
+                        cardIndex={this.state.cardIndex}
+                        cardVerticalMargin={80}
+                        renderCard={this.renderCard}
+                        onSwipedLeft={this.swipeCard}
+                        onSwipedRight={this.swipeBack}
+                        stackSize={4}
+                        backgroundColor={'transparent'}
+                        stackSeparation={stackSepration}
+                        disableTopSwipe={true}
+                        disableBottomSwipe={true}
+                        disableRightSwipe={false}
+                        disableLeftSwipe={true}
+                        swipeAnimationDuration={100}
 
-                />
-                }else{
-                    swiperStack =  <Swiper
+                    />
+                } else {
+                    swiperStack = <Swiper
+                        ref={swiper => {
+                            this.swiper = swiper
+                        }}
+                        //onSwiped={this.onSwiped}
+                        cards={renderArray}
+                        cardIndex={this.state.cardIndex}
+                        cardVerticalMargin={80}
+                        renderCard={this.renderCard}
+                        onSwipedLeft={this.swipeCard}
+                        onSwipedRight={this.swipeBack}
+                        stackSize={4}
+                        backgroundColor={'transparent'}
+                        stackSeparation={stackSepration}
+                        disableTopSwipe={true}
+                        disableBottomSwipe={true}
+                        disableRightSwipe={true}
+                        disableLeftSwipe={false}
+                        swipeAnimationDuration={100}
+                    />
+                }
+            }}else{
+             swiperStack =  <Swiper
                     ref={swiper => {
                         this.swiper = swiper
                     }}
@@ -385,27 +424,29 @@ export default class CardDeckNew extends Component {
                     disableTopSwipe={true}
                     disableBottomSwipe={true}
                     disableRightSwipe={true}
-                    disableLeftSwipe={false}
+                    disableLeftSwipe={true}
                     swipeAnimationDuration={100}
-                    />
-                }
-
-
-            }
+                />}
             return(
                 <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
-                    
+
+
                         <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
-                        {!isView?
-                            <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                                <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
-                            </TouchableOpacity> :<TouchableOpacity activeOpacity={0} style={[styles.buttonBack]}/>
-                        }
+    
+                            {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+                            <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
+                        </TouchableOpacity>:
+                                <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
+
+                            </TouchableOpacity>}
+
+
     
                         <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
     
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
+
 
     
                             {swiperStack}
@@ -413,7 +454,7 @@ export default class CardDeckNew extends Component {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'15%'}} onPress={() => PlaySound('cardslidesound')}>
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} >
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
@@ -422,7 +463,7 @@ export default class CardDeckNew extends Component {
                             
     
                     </ImageBackground>
-                       
+
                 
                 </ImageBackground>
     
@@ -430,6 +471,7 @@ export default class CardDeckNew extends Component {
     
     }
 }
+
 const {height, width} = Dimensions.get('window'); 
 const deviceHeight = height;
 let deviceWidth  = width;
@@ -514,7 +556,7 @@ const styles = StyleSheet.create({
     //     shadowOpacity:0.8,
     // },
     label: {
-        fontFamily:"Jua-Regular",
+        fontFamily:"comicsas",
        //top:'2%',
         lineHeight: 200,
         width:'100%',
@@ -587,9 +629,9 @@ const styles = StyleSheet.create({
             alignSelf: 'center'
         },
         imageSpeaker:{
-            width: 30,
-            height: 30,
-            
+            width: 25,
+            height: 25,
+            tintColor:'black',
             alignSelf: 'center'
         },
         imageCross:{
@@ -608,20 +650,4 @@ const styles = StyleSheet.create({
         },
 });
 
- {/*<CardStack
-                            cardList={this.state.allCards}
-                            renderCard={this.renderCard.bind(this)}
-                            cardHeight={flattenStyle(styles.card).height}
-                            cardWidth={flattenStyle(styles.card).width}
-                            cardRotation={20}
-                            cardOpacity={1.0}
-                            onSwipeRight={this.handleAddToCard}
-                            onSwipeLeft={this.handleRemove}
-                            leftSwipeThreshold={-150}
-                            rightSwipeThreshold={150}
-                            // onSwipeUp={this.handleAddToCard}
-                            // onSwipeDown={this.handleRemove}
-                            // upSwipeThreshold={-150}
-                            // downSwipeThreshold={150}
-                            alignItems='center'
-                        />*/}
+
