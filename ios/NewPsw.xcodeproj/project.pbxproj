@@ -42,7 +42,6 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6FB78FBE69664448B5A7C573 /* libPlaySound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F441FF500CBE4FEC9721D13B /* libPlaySound.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */; };
 		99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C66212FE3F00000F829 /* cardslidesound.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
@@ -373,7 +372,6 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Shiva Tandava Stotram.mp3"; sourceTree = "<group>"; };
 		99382C66212FE3F00000F829 /* cardslidesound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C3CCBF6AADB349AD87F45CF1 /* libRNPlayAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPlayAudio.a; sourceTree = "<group>"; };
@@ -504,7 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				99382C66212FE3F00000F829 /* cardslidesound.mp3 */,
-				99382C62212FE11F0000F829 /* Shiva Tandava Stotram.mp3 */,
 				2DEEE02C212E92790009274E /* card_slide.aif */,
 				E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */,
 			);
@@ -1183,7 +1180,6 @@
 				99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				99382C63212FE11F0000F829 /* Shiva Tandava Stotram.mp3 in Resources */,
 				2DEEE02D212E92790009274E /* card_slide.aif in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
 			);

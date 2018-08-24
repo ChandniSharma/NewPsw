@@ -271,8 +271,7 @@ export default class CardDeckNew extends Component {
       </TouchableOpacity>
 
       
-      {/* //</CardFlip><Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'rgba(219,219,219,0.9)'}}> */}
-      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%', zIndex:30}}>
+      <Animated.View pointerEvents="none" style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%', zIndex:30}}>
 
           <View style={styles.card}>
               <ImageBackground style={{height:'90%',width:'100%'}}
