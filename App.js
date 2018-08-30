@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput,TouchableOpacity,Image,Platform,ImageBackground} from 'react-native';
+import {
+    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar
+} from 'react-native';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
@@ -39,6 +41,10 @@ class ThumbnailCarousel extends Component {
         this.props = props;
         this._carousel = {};
         this.init();
+    }
+
+    componentWillMount(){
+        StatusBar.setHidden(true);
     }
 
     init() {
@@ -363,7 +369,7 @@ position: 'absolute',
     
   },
   textCardDetail: {
-    
+    fontFamily:"Comic Sans MS",
     color: 'white',
     fontWeight: '300',
     fontSize: 20,
