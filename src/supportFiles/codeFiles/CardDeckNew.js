@@ -11,13 +11,13 @@ import {
     TextInput,
     Platform
 } from 'react-native';
- import AudioPlayer from 'react-native-play-audio';
+ 
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
 //import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
 //import Sound from react-native-sound;
-
+//import AudioPlayer from 'react-native-play-audio';
 // import {asset, NativeModules, VrButton} from 'react-360';
 // const {AudioModule} = NativeModules;
 import SoundPlayer from 'react-native-sound-player'
@@ -309,7 +309,7 @@ componentWillUnmount() {
 
 
 
-      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-25%'}}>
+      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-20%'}}>
 
 
           <View style={styles.card}>
@@ -525,6 +525,9 @@ const styles = StyleSheet.create({
         
       },
     card:{
+        alignItems:'center',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
         overflow:'hidden',
         marginTop:'10%',
         width: deviceWidth-20,
@@ -660,11 +663,12 @@ const styles = StyleSheet.create({
             height:"auto",
             fontSize:25,
             textAlign:'center',
+            alignSelf: 'center',
             width:'100%',
             fontFamily:"Jua-Regular",
             color: '#000000',
-            backgroundColor: 'transparent',
-           
+           // backgroundColor: 'transparent',
+            backgroundColor: 'pink',
         },
 });
 
