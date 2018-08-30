@@ -9,7 +9,9 @@ import {
     Image,
     ImageBackground, Animated,
     TextInput,
-    Platform
+    Platform,
+    StatusBar
+
 } from 'react-native';
  
 import { Dimensions } from 'react-native';
@@ -87,10 +89,10 @@ export default class CardDeckNew extends Component {
                   {
                       index: 4,
                       word: 'up',
-                      sentence1: 'The tiger',
+                      sentence1: 'The tiger woke',
                       sentence2: '.',
-                      backgndImage: require('./Tiger_yawning_background_bw.png'),
-                      frontImage: require('./Tiger_yawning_background_bw.png')
+                      backgndImage: require('./up_color.png'),
+                      frontImage: require('./up_color.png')
                   },
                   {
                       index: 5,
@@ -168,6 +170,7 @@ export default class CardDeckNew extends Component {
     }
 
     componentWillMount(){
+        StatusBar.setHidden(true);
         this.pullUsers();
     }
 
@@ -301,7 +304,7 @@ componentWillUnmount() {
             <CardFlip style={styles.card1} key={index}  ref={ (card) => this['card' + index] = card }>
 
 
-      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'10%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
+      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
 
       <Text style={styles.label}>{card.word}</Text> 
       <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
@@ -309,22 +312,24 @@ componentWillUnmount() {
 
 
 
-      <Animated.View style={{width:"100%",height:"100%",alignItems:'center', backgroundColor:'transparent',top:'-20%'}}>
+      <Animated.View style={{width:"100%",height:"100%",alignItems:'center',top:'-28%'}}>
 
 
           <View style={styles.card}>
-              <ImageBackground style={{height:'90%',width:'100%'}}
+              <ImageBackground style={{height:'80%',width:'100%'}}
                      source={this.state.imageNameBackground}>
 
                        <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
 
-                  <Image style={styles.imageCross} source={require('./cross.png')} />
+                  <Image style={styles.imageCross} source={require('./close.png')} />
               </TouchableOpacity>
 
               </ImageBackground>
 
+              <View style={{marginLeft:"8%",marginRight:'8%',top:'-5%'}}>
               <Text
                   style={styles.label1}>{this.state.question1+" "}<Text style={{color:'#4a90e2'}}>{this.state.alpha+" "}</Text>{this.state.question2}</Text>
+              </View>
          </View>
 
 
@@ -448,11 +453,11 @@ componentWillUnmount() {
                     swipeAnimationDuration={100}
                 />}
             return(
-                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
+                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={!isView?15:0} source={this.state.imageNameBackground}>
             
 
 
-                        <ImageBackground style={{width:"100%",height:"100%", backgroundColor:'rgba(219,219,219,0.5)'}} >
+                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:!isView?'rgba(219,219,219,0.5)':'rgba(209, 209, 209,0.95)'}}>
     
                             {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                             <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
@@ -463,7 +468,7 @@ componentWillUnmount() {
 
 
     
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '10%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
     
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
@@ -474,7 +479,7 @@ componentWillUnmount() {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.playCardSound()}>
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
@@ -534,24 +539,22 @@ const styles = StyleSheet.create({
         height: (deviceHeight*3)/4,
         borderRadius: 12,
         backgroundColor:"#ffffff",
-        shadowColor: 'rgba(0,0,0,0.5)',
+        shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
-            width: 0,
-            height: 1
+            width: 5,
+            height: 5
         },
-        shadowOpacity:0.5,
+        shadowOpacity:0.8,
     },
     card1:{
         
         alignSelf:'center',
-        top:"-15%",
+        top:"-10%",
         width: (deviceWidth-82),
         height: (deviceHeight*2.4)/4,
         borderRadius: 12,
         backgroundColor:"#ffffff",
-       // backgroundColor:"pink",
-
-        shadowColor: 'rgba(0,0,0,0.8)',
+        shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: 0,
             height: 1
@@ -583,7 +586,7 @@ const styles = StyleSheet.create({
         width:'100%',
         //alignSelf:'center',
          textAlign: 'center',
-        fontSize: 70,
+        fontSize: 88,
         color: '#4a90e2',
        backgroundColor: 'transparent',
        // backgroundColor: 'white',
@@ -623,7 +626,7 @@ const styles = StyleSheet.create({
         buttonBack: {
       alignSelf: 'flex-start',
       zIndex:80,
-      marginTop: '15%',
+      marginTop: '7%',
       marginBottom: '10%',
       left:'5%',
       position: 'relative', // add if dont work with above
@@ -636,8 +639,8 @@ const styles = StyleSheet.create({
           },
     
         imageLeft:{
-            width: 30,
-            height: 30,
+            width: 22,
+            height: 22,
         },
         imageBulb:{
             width: 32,
@@ -661,14 +664,14 @@ const styles = StyleSheet.create({
         },
         label1: {
             height:"auto",
-            fontSize:25,
+            fontSize:36,
             textAlign:'center',
             alignSelf: 'center',
             width:'100%',
-            fontFamily:"Jua-Regular",
+            fontFamily:"Comic Sans MS",
             color: '#000000',
-           // backgroundColor: 'transparent',
-            backgroundColor: 'pink',
+            backgroundColor: 'transparent',
+            
         },
 });
 

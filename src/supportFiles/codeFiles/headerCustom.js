@@ -16,9 +16,8 @@ class HeaderCustom extends Component{
 }
 const stylesButton = StyleSheet.create({
     containerButton: {
-      
+      top:'2%',
       alignSelf: 'flex-end',
-      marginTop: '10%',
       right:'2%',
       position: 'relative', // add if dont work with above
       justifyContent: 'center',
