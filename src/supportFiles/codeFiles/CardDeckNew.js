@@ -1,4 +1,5 @@
 
+
  import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -16,8 +17,12 @@ import {
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
-import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
+//import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
+//import Sound from react-native-sound;
 
+// import {asset, NativeModules, VrButton} from 'react-360';
+// const {AudioModule} = NativeModules;
+import SoundPlayer from 'react-native-sound-player'
 
 let result = [];
 let count = 0;
@@ -212,7 +217,7 @@ export default class CardDeckNew extends Component {
 
 
     swipeBack = (index) => {
-        PlaySound('cardslidesound');
+        this.playCardSound();
         console.log("Swiping Back: ",this.state.isSwipingBack)
         if (!this.state.isSwipingBack) {
 
@@ -260,7 +265,7 @@ export default class CardDeckNew extends Component {
     };
 
     swipeCard = (index)=>{
-        PlaySound('cardslidesound');
+        this.playCardSound();
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
@@ -272,9 +277,24 @@ export default class CardDeckNew extends Component {
     };
 
     playCardSound(){
-
+        try {
+            // play the file tone.mp3
+            SoundPlayer.playSoundFile('cardslidesound', 'mp3')
+            // or play from url
+          } catch (e) {
+            console.log(`cannot play the sound file`, e)
+          }
     }
-
+    componentDidMount() {
+        SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
+          console.log('finished playing', success)
+        })
+      }
+      // unsubscribe when unmount
+componentWillUnmount() {
+    SoundPlayer.unmount()
+  }
+       
     renderCard = (card, index) => {
      console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
 
@@ -459,13 +479,11 @@ export default class CardDeckNew extends Component {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} >
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.playCardSound()}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
                         <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
-    
-                            
     
                     </ImageBackground>
 
@@ -632,8 +650,8 @@ const styles = StyleSheet.create({
             alignSelf: 'center'
         },
         imageSpeaker:{
-            width: 25,
-            height: 25,
+            width: 20,
+            height: 30,
             tintColor:'black',
             alignSelf: 'center'
         },
@@ -652,5 +670,4 @@ const styles = StyleSheet.create({
            
         },
 });
-
 
