@@ -1,6 +1,7 @@
 
 
- import React, { Component } from 'react';
+
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -13,13 +14,13 @@ import {
     StatusBar
 
 } from 'react-native';
- 
+ import AudioPlayer from 'react-native-play-audio';
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
 //import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
 //import Sound from react-native-sound;
-//import AudioPlayer from 'react-native-play-audio';
+
 // import {asset, NativeModules, VrButton} from 'react-360';
 // const {AudioModule} = NativeModules;
 import SoundPlayer from 'react-native-sound-player'
@@ -301,39 +302,41 @@ componentWillUnmount() {
         // Disable right swipe on first card//
 
         return (
-            <CardFlip style={styles.card1} key={index}  ref={ (card) => this['card' + index] = card }>
+            <CardFlip style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} key={index}  ref={ (card) => this['card' + index] = card }>
 
 
-      <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
+                <View style={styles.card1}>
 
-      <Text style={styles.label}>{card.word}</Text> 
-      <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-      </TouchableOpacity>
+                  <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
 
+                  <Text style={styles.label}>{card.word}</Text>
+                  <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
+                  </TouchableOpacity>
 
+                </View>
 
-      <Animated.View style={{width:"100%",height:"100%",alignItems:'center',top:'-28%'}}>
-
-
-          <View style={styles.card}>
-              <ImageBackground style={{height:'80%',width:'100%'}}
-                     source={this.state.imageNameBackground}>
-
-                       <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
-
-                  <Image style={styles.imageCross} source={require('./close.png')} />
-              </TouchableOpacity>
-
-              </ImageBackground>
-
-              <View style={{marginLeft:"8%",marginRight:'8%',top:'-5%'}}>
-              <Text
-                  style={styles.label1}>{this.state.question1+" "}<Text style={{color:'#4a90e2'}}>{this.state.alpha+" "}</Text>{this.state.question2}</Text>
-              </View>
-         </View>
+                  <Animated.View style={{width:"100%",height:"100%",alignItems:'center',top:'-31%'}}>
 
 
-      </Animated.View> 
+                      <View style={styles.card}>
+                          <ImageBackground style={{height:'80%',width:'100%'}}
+                                 source={this.state.imageNameBackground}>
+
+                                   <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
+
+                              <Image style={styles.imageCross} source={require('./close.png')} />
+                          </TouchableOpacity>
+
+                          </ImageBackground>
+
+                          <View style={{marginLeft:"8%",marginRight:'8%',top:'-5%'}}>
+                          <Text
+                              style={styles.label1}>{this.state.question1+" "}<Text style={{color:'#4a90e2'}}>{this.state.alpha+" "}</Text>{this.state.question2}</Text>
+                          </View>
+                     </View>
+
+
+                  </Animated.View>
             </CardFlip>
         )
     };
@@ -479,7 +482,7 @@ componentWillUnmount() {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}}>
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.playCardSound()}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
@@ -530,9 +533,6 @@ const styles = StyleSheet.create({
         
       },
     card:{
-        alignItems:'center',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
         overflow:'hidden',
         marginTop:'10%',
         width: deviceWidth-20,
@@ -561,24 +561,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity:0.8,
     },
-    // card1:{
-    //     alignItems:'center',
-    //     justifyContent:"center",
-    //     alignSelf:'center',
-    //     top:"-5%",
-    //     width: (deviceWidth-82),
-    //     height: (deviceHeight*2.4)/4,
-    //     borderRadius: 12,
-    //     //backgroundColor:"#ffffff",
-    //     backgroundColor:"pink",
 
-    //     shadowColor: 'rgba(0,0,0,0.8)',
-    //     shadowOffset: {
-    //         width: 0,
-    //         height: 1
-    //     },
-    //     shadowOpacity:0.8,
-    // },
     label: {
         fontFamily:"Comic Sans MS",
        //top:'2%',
@@ -592,18 +575,6 @@ const styles = StyleSheet.create({
        // backgroundColor: 'white',
     },
 
-    // label: {
-    //     fontFamily:"Jua-Regular",
-    //     marginTop:'10%',
-    //     lineHeight: 200,
-    //     width:160,
-    //     bottom: '20%',
-    //     textAlign: 'center',
-    //     fontSize: 70,
-    //     color: '#4a90e2',
-    //    // backgroundColor: 'transparent',
-    //     backgroundColor: 'white',
-    // },
     footer:{
         flex:1,
         justifyContent:'center',
@@ -666,12 +637,11 @@ const styles = StyleSheet.create({
             height:"auto",
             fontSize:36,
             textAlign:'center',
-            alignSelf: 'center',
             width:'100%',
             fontFamily:"Comic Sans MS",
             color: '#000000',
             backgroundColor: 'transparent',
-            
+           
         },
 });
 

@@ -235,10 +235,11 @@ const deviceHeight = height;
 let deviceWidth  = width;
 
 let itemWidth;
+console.log("device width : ",deviceWidth)
 if (deviceHeight > 736 && Platform.OS === 'ios' ) {
-    itemWidth = 610;
+    itemWidth = deviceWidth-100;
 } else {
-    itemWidth = 300;
+    itemWidth = deviceWidth-100;
 }
 
 
