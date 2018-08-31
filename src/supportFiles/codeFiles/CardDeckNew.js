@@ -317,9 +317,8 @@ componentWillUnmount() {
 
                   <Animated.View style={{width:"100%",height:"100%",alignItems:'center',top:'-31%'}}>
 
-
                       <View style={styles.card}>
-                          <ImageBackground style={{height:'80%',width:'100%'}}
+                          <ImageBackground style={{height:'81%',width:'100%',borderTopLeftRadius:15,borderTopRightRadius:15,overflow: "hidden", top:'-1%'}}
                                  source={this.state.imageNameBackground}>
 
                                    <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
@@ -336,7 +335,7 @@ componentWillUnmount() {
                      </View>
 
 
-                  </Animated.View>
+                   </Animated.View> 
             </CardFlip>
         )
     };
@@ -486,7 +485,7 @@ componentWillUnmount() {
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
-                        <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center'}} value={temp}/>
+                        <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center', fontFamily:"Comic Sans MS", fontSize: 17, color:'#777777'}} value={temp}/>
     
                     </ImageBackground>
 
@@ -532,8 +531,10 @@ const styles = StyleSheet.create({
         height: '100%',
         
       },
-    card:{
-        overflow:'hidden',
+
+      card:{
+          
+       // overflow:'hidden',
         marginTop:'10%',
         width: deviceWidth-20,
         height: (deviceHeight*3)/4,
@@ -541,11 +542,61 @@ const styles = StyleSheet.create({
         backgroundColor:"#ffffff",
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
-            width: 5,
-            height: 5
+            width: 2,
+            height: 2
         },
         shadowOpacity:0.8,
     },
+  
+    //     card:{
+    //         //overflow:'hidden',
+           
+    //         top:'-31%',
+    //       marginTop:'10%',
+    //    // borderWidth: 1,
+    //     width: deviceWidth-40,
+    //     height: (deviceHeight*3)/4,
+    //     borderRadius: 2,
+    //     shadowRadius: 12,
+    //     backgroundColor:"#ffffff",
+       
+    //     borderBottomWidth: 0,
+    //     shadowRadius: 9,
+    //     shadowColor: 'rgba(0,0,0,1)',
+       
+
+    //     shadowOffset: {
+    //         width: 5,
+    //         height: 5
+    //     },
+    //     shadowOpacity:0.8,
+        
+            
+    //     },
+
+
+    //     boxShadow: 1px 10px 10px black,
+    //     overflow:'hidden',
+    //     marginTop:'10%',
+    //     borderWidth: 1,
+    //     width: deviceWidth-20,
+    //     height: (deviceHeight*3)/4,
+    //     borderRadius: 2,
+    //     shadowRadius: 2,
+    //    // backgroundColor:"#ffffff",
+    //     borderColor: 'red',//'#ddd',
+    //     borderBottomWidth: 0,
+    //     shadowRadius: 9,
+    //    // shadowColor: 'rgba(0,0,0,1)',
+    //     shadowColor: 'green',
+
+    //     shadowOffset: {
+    //         width: 5,
+    //         height: 5
+    //     },
+    //     //shadowOpacity:0.8,
+    //     shadowOpacity:1.0,
+   
     card1:{
         
         alignSelf:'center',
