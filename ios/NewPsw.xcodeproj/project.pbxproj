@@ -45,6 +45,7 @@
 		88D4F6A546D84F4197919048 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7369D4FEFA004BDC8F773DA0 /* libRNSound.a */; };
 		9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D837213EA54F00A563EC /* Montserrat-Light.ttf */; };
 		9917D862213EA69F00A563EC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */; };
+		9917D864213EC4D100A563EC /* cardslidesound_Reduce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9917D863213EC4D100A563EC /* cardslidesound_Reduce.mp3 */; };
 		99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C66212FE3F00000F829 /* cardslidesound.mp3 */; };
 		99382CA0212FF44A0000F829 /* comicsas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99382C77212FF44A0000F829 /* comicsas.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -379,6 +380,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9917D837213EA54F00A563EC /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		9917D863213EC4D100A563EC /* cardslidesound_Reduce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound_Reduce.mp3; sourceTree = "<group>"; };
 		99382C66212FE3F00000F829 /* cardslidesound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound.mp3; sourceTree = "<group>"; };
 		99382C77212FF44A0000F829 /* comicsas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = comicsas.ttf; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				9917D837213EA54F00A563EC /* Montserrat-Light.ttf */,
+				9917D863213EC4D100A563EC /* cardslidesound_Reduce.mp3 */,
 				9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */,
 				99382C77212FF44A0000F829 /* comicsas.ttf */,
 				99382C66212FE3F00000F829 /* cardslidesound.mp3 */,
@@ -1193,6 +1196,7 @@
 				99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				9917D864213EC4D100A563EC /* cardslidesound_Reduce.mp3 in Resources */,
 				2DEEE02D212E92790009274E /* card_slide.aif in Resources */,
 				9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,

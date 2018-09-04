@@ -280,7 +280,7 @@ export default class CardDeckNew extends Component {
     playCardSound(){
         try {
             // play the file tone.mp3
-            SoundPlayer.playSoundFile('cardslidesound', 'mp3')
+            SoundPlayer.playSoundFile('cardslidesound_Reduce', 'mp3')
             // or play from url
           } catch (e) {
             console.log(`cannot play the sound file`, e)
