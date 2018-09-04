@@ -29,6 +29,7 @@ let result = [];
 let count = 0;
 let renderCount=0;
 let renderArray =[];
+let DURATION = 10000;
 
 
 export default class CardDeckNew extends Component {
@@ -42,7 +43,6 @@ export default class CardDeckNew extends Component {
 
     constructor(props){
         super(props);
-
 
             this.result = [],
 
@@ -247,6 +247,20 @@ export default class CardDeckNew extends Component {
         )
     };
 
+    setCardback(){
+        if(this.state.currentCardNumber>0) {
+            this.setState({
+                currentCardNumber: this.state.currentCardNumber - 1,
+                cardIndex: this.state.currentCardNumber - 1,
+                imageNameBackground: renderArray[this.state.currentCardNumber - 1].backgndImage,
+                cardCount: renderArray[this.state.currentCardNumber - 1].index,
+                question1: renderArray[this.state.currentCardNumber - 1].sentence1,
+                question2: renderArray[this.state.currentCardNumber - 1].sentence2,
+                alpha: renderArray[this.state.currentCardNumber - 1].word,
+            })
+        }
+    }
+
 
     setIsSwiping = (index,isSwipingBack) => {
 
@@ -292,9 +306,11 @@ export default class CardDeckNew extends Component {
         })
       }
       // unsubscribe when unmount
-componentWillUnmount() {
-    SoundPlayer.unmount()
-  }
+    componentWillUnmount() {
+        SoundPlayer.unmount()
+      }
+
+  
        
     renderCard = (card, index) => {
      console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
@@ -307,6 +323,7 @@ componentWillUnmount() {
 
                 <View style={styles.card1}>
 
+                
                   <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
 
                   <Text style={styles.label}>{card.word}</Text>
@@ -350,7 +367,9 @@ componentWillUnmount() {
         if (this.state.cardCount >= 0) {
             temp = String(this.state.cardCount)+' | 220';
         } else {
+
             temp = '1' +'| 220';
+
         }
 
         if(renderCount===0){
@@ -470,6 +489,7 @@ componentWillUnmount() {
 
 
     
+
                         <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center"}}>sightwords</Text>
 
 
@@ -477,6 +497,7 @@ componentWillUnmount() {
                                 <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}></Text>}
 
     
+
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
 
@@ -486,7 +507,7 @@ componentWillUnmount() {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.playCardSound()}>
+                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.setCardback()}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
