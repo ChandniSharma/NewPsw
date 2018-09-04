@@ -29,6 +29,7 @@ let result = [];
 let count = 0;
 let renderCount=0;
 let renderArray =[];
+let DURATION = 10000;
 
 
 export default class CardDeckNew extends Component {
@@ -295,6 +296,8 @@ export default class CardDeckNew extends Component {
 componentWillUnmount() {
     SoundPlayer.unmount()
   }
+
+  
        
     renderCard = (card, index) => {
      console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
@@ -307,6 +310,7 @@ componentWillUnmount() {
 
                 <View style={styles.card1}>
 
+                
                   <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
 
                   <Text style={styles.label}>{card.word}</Text>
@@ -348,9 +352,9 @@ componentWillUnmount() {
 
         let temp;
         if (this.state.cardCount >= 0) {
-            temp = String(this.state.cardCount)+' of 220';
+            temp = String(this.state.cardCount)+' | 220';
         } else {
-            temp = '1' +' of 220';
+            temp = '1' +' | 220';
         }
 
         if(renderCount===0){
@@ -470,8 +474,10 @@ componentWillUnmount() {
 
 
     
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
-    
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 16,left:"42%"}}>sightwords</Text>
+                       
+                        <TextInput editable={false} style={{textAlign: 'center',marginTop: '3.5%',position:'absolute',alignSelf:'flex-end', fontSize: 14, color:'white',right:'5%'}} value={temp}/>
+
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
 
@@ -485,7 +491,6 @@ componentWillUnmount() {
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
-                        <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center', fontFamily:"Comic Sans MS", fontSize: 17, color:'#777777'}} value={temp}/>
     
                     </ImageBackground>
 
@@ -690,7 +695,7 @@ const styles = StyleSheet.create({
             textAlign:'center',
             width:'100%',
             fontFamily:"Comic Sans MS",
-            color: '#000000',
+            color: '#535557',
             backgroundColor: 'transparent',
            
         },

@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {
     View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar
@@ -9,8 +10,6 @@ import HeaderLeft from './src/supportFiles/codeFiles/headerLeft';
 
 import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
-
-
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
 //import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
@@ -95,7 +94,6 @@ class ThumbnailCarousel extends Component {
             ],
 
         };
-
 
     }
 
@@ -245,7 +243,6 @@ if (deviceHeight > 736 && Platform.OS === 'ios' ) {
 
 // ios greater than 6 5.5 inch
 const CurrentVideoImage = styled.ImageBackground`
-
         width: 310;
         height: auto;
         borderRadius: 30;
