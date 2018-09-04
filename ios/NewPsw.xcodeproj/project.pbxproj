@@ -43,6 +43,8 @@
 		7B0CEAF9B36241178D279DCE /* libRNSoundPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 000E1E9BC14B498C9DCB6208 /* libRNSoundPlayer.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		88D4F6A546D84F4197919048 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7369D4FEFA004BDC8F773DA0 /* libRNSound.a */; };
+		9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D837213EA54F00A563EC /* Montserrat-Light.ttf */; };
+		9917D862213EA69F00A563EC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */; };
 		99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99382C66212FE3F00000F829 /* cardslidesound.mp3 */; };
 		99382CA0212FF44A0000F829 /* comicsas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99382C77212FF44A0000F829 /* comicsas.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -375,6 +377,8 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundPlayer.xcodeproj; path = "../node_modules/react-native-sound-player/ios/RNSoundPlayer.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		9917D837213EA54F00A563EC /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		99382C66212FE3F00000F829 /* cardslidesound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound.mp3; sourceTree = "<group>"; };
 		99382C77212FF44A0000F829 /* comicsas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = comicsas.ttf; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -505,6 +509,8 @@
 		0CDEE4C74F3847D894EC6593 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9917D837213EA54F00A563EC /* Montserrat-Light.ttf */,
+				9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */,
 				99382C77212FF44A0000F829 /* comicsas.ttf */,
 				99382C66212FE3F00000F829 /* cardslidesound.mp3 */,
 				2DEEE02C212E92790009274E /* card_slide.aif */,
@@ -1183,10 +1189,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9917D862213EA69F00A563EC /* Montserrat-Regular.ttf in Resources */,
 				99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2DEEE02D212E92790009274E /* card_slide.aif in Resources */,
+				9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
 				4F587238647649E78262AA54 /* comicsas.ttf in Resources */,
 				99382CA0212FF44A0000F829 /* comicsas.ttf in Resources */,

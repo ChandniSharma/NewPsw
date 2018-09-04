@@ -44,7 +44,6 @@ export default class CardDeckNew extends Component {
     constructor(props){
         super(props);
 
-
             this.result = [],
 
             this.state = {
@@ -380,7 +379,7 @@ componentWillUnmount() {
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
                 onSwipedLeft={this.swipeCard}
-                onSwipedRight={this.swipeBack}
+                onSwipedRight={this.swipeCard}
                 stackSize={4}
                 backgroundColor={'transparent'}
                 stackSeparation={stackSepration}
@@ -404,13 +403,13 @@ componentWillUnmount() {
                         cardVerticalMargin={80}
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
-                        onSwipedRight={this.swipeBack}
+                        onSwipedRight={this.swipeCard}
                         stackSize={4}
                         backgroundColor={'transparent'}
                         stackSeparation={stackSepration}
                         disableTopSwipe={true}
                         disableBottomSwipe={true}
-                        disableRightSwipe={false}
+                        disableRightSwipe={true}
                         disableLeftSwipe={true}
                         swipeAnimationDuration={100}
 
@@ -426,7 +425,7 @@ componentWillUnmount() {
                         cardVerticalMargin={80}
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
-                        onSwipedRight={this.swipeBack}
+                        onSwipedRight={this.swipeCard}
                         stackSize={4}
                         backgroundColor={'transparent'}
                         stackSeparation={stackSepration}
@@ -448,7 +447,7 @@ componentWillUnmount() {
                     cardVerticalMargin={80}
                     renderCard={this.renderCard}
                     onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeBack}
+                    onSwipedRight={this.swipeCard}
                     stackSize={4}
                     backgroundColor={'transparent'}
                     stackSeparation={stackSepration}
@@ -474,9 +473,9 @@ componentWillUnmount() {
 
 
     
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 16,left:"42%"}}>sightwords</Text>
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 16,left:"42%",fontFamily:"Montserrat-Regular"}}>sightwords</Text>
                        
-                        <TextInput editable={false} style={{textAlign: 'center',marginTop: '3.5%',position:'absolute',alignSelf:'flex-end', fontSize: 14, color:'white',right:'5%'}} value={temp}/>
+                        <TextInput editable={false} style={{textAlign: 'center',marginTop: '3.5%',position:'absolute',alignSelf:'flex-end', fontSize: 14, color:'white',right:'5%',fontFamily:"Montserrat-Regular"}} value={temp}/>
 
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
