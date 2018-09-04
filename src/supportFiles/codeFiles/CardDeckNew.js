@@ -507,9 +507,15 @@ export default class CardDeckNew extends Component {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.setCardback()}>
+
+                        <TouchableOpacity style={{alignSelf:'center',height:50,width:50, position:'absolute',bottom:'12%'}} onPress= {() => this.setCardback()}>
+                            <ImageBackground style={{ width: 50,
+                                height: 50,
+                                alignSelf: 'center'}} source ={require('./audio_circle.png')}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
+                            </ImageBackground>
                             </TouchableOpacity>
+
 
 
     
@@ -701,6 +707,8 @@ const styles = StyleSheet.create({
             alignSelf: 'center'
         },
         imageSpeaker:{
+            top:'18%',
+            right:"2%",
             width: 20,
             height: 30,
             tintColor:'black',
