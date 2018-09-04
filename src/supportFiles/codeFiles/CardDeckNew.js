@@ -376,7 +376,7 @@ componentWillUnmount() {
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
                 onSwipedLeft={this.swipeCard}
-                onSwipedRight={this.swipeBack}
+                onSwipedRight={this.swipeCard}
                 stackSize={4}
                 backgroundColor={'transparent'}
                 stackSeparation={stackSepration}
@@ -400,13 +400,13 @@ componentWillUnmount() {
                         cardVerticalMargin={80}
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
-                        onSwipedRight={this.swipeBack}
+                        onSwipedRight={this.swipeCard}
                         stackSize={4}
                         backgroundColor={'transparent'}
                         stackSeparation={stackSepration}
                         disableTopSwipe={true}
                         disableBottomSwipe={true}
-                        disableRightSwipe={false}
+                        disableRightSwipe={true}
                         disableLeftSwipe={true}
                         swipeAnimationDuration={100}
 
@@ -422,7 +422,7 @@ componentWillUnmount() {
                         cardVerticalMargin={80}
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
-                        onSwipedRight={this.swipeBack}
+                        onSwipedRight={this.swipeCard}
                         stackSize={4}
                         backgroundColor={'transparent'}
                         stackSeparation={stackSepration}
@@ -444,7 +444,7 @@ componentWillUnmount() {
                     cardVerticalMargin={80}
                     renderCard={this.renderCard}
                     onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeBack}
+                    onSwipedRight={this.swipeCard}
                     stackSize={4}
                     backgroundColor={'transparent'}
                     stackSeparation={stackSepration}
