@@ -348,9 +348,9 @@ componentWillUnmount() {
 
         let temp;
         if (this.state.cardCount >= 0) {
-            temp = String(this.state.cardCount)+' of 220';
+            temp = String(this.state.cardCount)+' | 220';
         } else {
-            temp = '1' +' of 220';
+            temp = '1' +'| 220';
         }
 
         if(renderCount===0){
@@ -455,11 +455,11 @@ componentWillUnmount() {
                     swipeAnimationDuration={100}
                 />}
             return(
-                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={!isView?15:0} source={this.state.imageNameBackground}>
+                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
 
 
-                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:!isView?'rgba(219,219,219,0.5)':'rgba(209, 209, 209,0.95)'}}>
+                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:'rgba(219,219,219,0.5)'}}>
     
                             {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                             <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
@@ -470,7 +470,12 @@ componentWillUnmount() {
 
 
     
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,left:"42%"}}>sightwords</Text>
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center"}}>sightwords</Text>
+
+
+                            {!isView? <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}>{temp}</Text>:
+                                <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}></Text>}
+
     
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
@@ -485,7 +490,7 @@ componentWillUnmount() {
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </TouchableOpacity>
 
-                        <TextInput editable={false} style={{textAlign: 'center',bottom:'2%',position:'absolute',alignSelf:'center', fontFamily:"Comic Sans MS", fontSize: 17, color:'#777777'}} value={temp}/>
+
     
                     </ImageBackground>
 
@@ -690,7 +695,7 @@ const styles = StyleSheet.create({
             textAlign:'center',
             width:'100%',
             fontFamily:"Comic Sans MS",
-            color: '#000000',
+            color: '#535557',
             backgroundColor: 'transparent',
            
         },
