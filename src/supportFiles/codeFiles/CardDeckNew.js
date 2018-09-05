@@ -527,7 +527,7 @@ export default class CardDeckNew extends Component {
 
                     </View>
 
-                    <ImageBackground source={require('./rectangle.png')} style={{
+                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
                         left: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
                             width: 0,
                             height: 1
@@ -535,8 +535,9 @@ export default class CardDeckNew extends Component {
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} />
-                    <ImageBackground style={{
+                    }} />:null}
+
+                    {!isView?<ImageBackground style={{
                         left: '10%',
                         width: 65,
                         height: 65, position: 'absolute', bottom: '9%',
@@ -561,10 +562,10 @@ export default class CardDeckNew extends Component {
                                 <Image source={require('./back_button.png')} style={styles.imageBackButton} />
                             </ImageBackground>
                         </TouchableOpacity>
-                    </ImageBackground>
+                    </ImageBackground>:null}
 
 
-                    <ImageBackground source={require('./rectangle.png')} style={{
+                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
                         right: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
                             width: 0,
                             height: 1
@@ -572,7 +573,7 @@ export default class CardDeckNew extends Component {
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} />
+                    }} />:null}
 
                     <TouchableOpacity style={{ alignSelf: 'center', height: 50, width: 50, position: 'absolute', bottom: '11.5%', justifyContent: 'center', alignItems: 'center', bottom: '10%' }} onPress={() => this.playWordSound()}>
                         <ImageBackground style={{
@@ -598,7 +599,7 @@ export default class CardDeckNew extends Component {
                     </TouchableOpacity>
 
 
-                    <ImageBackground style={{
+                    {!isView?<ImageBackground style={{
                         right: '13%', width: 65,
                         height: 65, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '9%',
                         shadowOffset: {
@@ -616,7 +617,7 @@ export default class CardDeckNew extends Component {
                         }} source={require('./circleBtnOutside.png')}>
                             <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
                         </ImageBackground>
-                    </ImageBackground>
+                    </ImageBackground>:null}
 
 
 
