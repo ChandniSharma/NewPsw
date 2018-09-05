@@ -14,7 +14,7 @@ import {
     StatusBar
 
 } from 'react-native';
- import AudioPlayer from 'react-native-play-audio';
+import AudioPlayer from 'react-native-play-audio';
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
@@ -27,162 +27,164 @@ import SoundPlayer from 'react-native-sound-player'
 
 let result = [];
 let count = 0;
-let renderCount=0;
-let renderArray =[];
+let renderCount = 0;
+let renderArray = [];
 let DURATION = 10000;
 
 
 export default class CardDeckNew extends Component {
-    
-   
+
+
     static navigationOptions =
         {
             title: 'CardDeckNew',
             gesturesEnabled: false,
         };
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
-            this.result = [],
+        this.result = [],
 
             this.state = {
                 flip: false,
-                isSwipingBack:false,
-                imageNameBackground : require('./Dog_background.png'),
-               currentCardNumber: 0,
-                cardCount : 1,
-                audio:'A',
-                alpha:"a",
-                question1:'I saw',
-                question2:"dog.",
+                isSwipingBack: false,
+                imageNameBackground: require('./Dog_background.png'),
+                currentCardNumber: 0,
+                cardCount: 1,
+                audio: 'A',
+                alpha: "a",
+                question1: 'I saw',
+                question2: "dog.",
                 cardIndex: 0,
                 allCards: [],
-              displayedCards: [],
-              arrayRemovedCards:[],
-              numberValue:  0,
-              isView: false,
-              fadeAnim: new Animated.Value(0),
-              errors: [],
-              arrayImages: [
-                  {   index: 1,
-                      word: 'a',
-                      sentence1: 'I saw',
-                      sentence2: 'dog.',
-                      backgndImage: require('./Dog_background.png'),
-                      frontImage: require('./Dog_background.png'),
-                      audio:'A'
-                  },
-                  {
-                      index: 2,
-                      word: 'ran',
-                      sentence1: 'The zebra',
-                      sentence2: 'away.',
-                      backgndImage: require('./Zebra_background.png'),
-                      frontImage: require('./Zebra_background.png'),
-                      audio:'Ran'
-                  },
-                  {
-                      index: 3,
-                      word: 'come',
-                      sentence1: 'Please',
-                      sentence2: 'and see the rainbow.',
-                      backgndImage: require('./Rainbow_background.png'),
-                      frontImage: require('./Rainbow_background.png'),
-                      audio:'Come'
-                  },
-                  {
-                      index: 4,
-                      word: 'up',
-                      sentence1: 'The tiger woke',
-                      sentence2: '.',
-                      backgndImage: require('./up_color.png'),
-                      frontImage: require('./up_color.png'),
-                      audio:'Up'
-                  },
-                  {
-                      index: 5,
-                      word: 'see',
-                      sentence1: 'I can',
-                      sentence2: 'the boat.',
-                      backgndImage: require('./Boat_background.png'),
-                      frontImage: require('./Boat_background.png'),
-                      audio:'See'
-                  },
-                  {
-                      index: 6,
-                      word: 'was',
-                      sentence1: 'The tiger',
-                      sentence2: 'sleeping.',
-                      backgndImage: require('./Tiger_sleeping_background.png'),
-                      frontImage: require('./Tiger_sleeping_background.png'),
-                      audio:'Was'
-                  },
+                displayedCards: [],
+                arrayRemovedCards: [],
+                numberValue: 0,
+                isView: false,
+                fadeAnim: new Animated.Value(0),
+                errors: [],
+                arrayImages: [
+                    {
+                        index: 1,
+                        word: 'a',
+                        sentence1: 'I saw',
+                        sentence2: 'dog.',
+                        backgndImage: require('./Dog_background.png'),
+                        frontImage: require('./Dog_background.png'),
+                        audio: 'A'
+                    },
+                    {
+                        index: 2,
+                        word: 'ran',
+                        sentence1: 'The zebra',
+                        sentence2: 'away.',
+                        backgndImage: require('./Zebra_background.png'),
+                        frontImage: require('./Zebra_background.png'),
+                        audio: 'Ran'
+                    },
+                    {
+                        index: 3,
+                        word: 'come',
+                        sentence1: 'Please',
+                        sentence2: 'and see the rainbow.',
+                        backgndImage: require('./Rainbow_background.png'),
+                        frontImage: require('./Rainbow_background.png'),
+                        audio: 'Come'
+                    },
+                    {
+                        index: 4,
+                        word: 'up',
+                        sentence1: 'The tiger woke',
+                        sentence2: '.',
+                        backgndImage: require('./up_color.png'),
+                        frontImage: require('./up_color.png'),
+                        audio: 'Up'
+                    },
+                    {
+                        index: 5,
+                        word: 'see',
+                        sentence1: 'I can',
+                        sentence2: 'the boat.',
+                        backgndImage: require('./Boat_background.png'),
+                        frontImage: require('./Boat_background.png'),
+                        audio: 'See'
+                    },
+                    {
+                        index: 6,
+                        word: 'was',
+                        sentence1: 'The tiger',
+                        sentence2: 'sleeping.',
+                        backgndImage: require('./Tiger_sleeping_background.png'),
+                        frontImage: require('./Tiger_sleeping_background.png'),
+                        audio: 'Was'
+                    },
 
-                  {
-                      index: 7,
-                      word: 'the',
-                      sentence1: 'I can catch',
-                      sentence2: 'ball.',
-                      backgndImage: require('./Beachball_background.png'),
-                      frontImage: require('./Beachball_background.png'),
-                      audio:'Up'
-                  },
-                  {
-                      index: 8,
-                      word: 'jump',
-                      sentence1: 'The leopard can',
-                      sentence2: 'very high.',
-                      backgndImage: require('./Leopard_background.png'),
-                      frontImage: require('./Leopard_background.png'),
-                      audio:'Jump'
-                  },
-                  {
-                      index: 9,
-                      word: 'on',
-                      sentence1: 'I sat',
-                      sentence2: 'the bike.',
-                      backgndImage: require('./Bicycle_background.png'),
-                      frontImage: require('./Bicycle_background.png')
-                  },
-                  {
-                      index: 10,
-                      word: 'ten',
-                      sentence1: 'I saw',
-                      sentence2: 'kangaroos.',
-                      backgndImage: require('./Kangaroos_background.png'),
-                      frontImage: require('./Kangaroos_background.png'),
-                      audio:'ten'
-                  },
+                    {
+                        index: 7,
+                        word: 'the',
+                        sentence1: 'I can catch',
+                        sentence2: 'ball.',
+                        backgndImage: require('./Beachball_background.png'),
+                        frontImage: require('./Beachball_background.png'),
+                        audio: 'The'
+                    },
+                    {
+                        index: 8,
+                        word: 'jump',
+                        sentence1: 'The leopard can',
+                        sentence2: 'very high.',
+                        backgndImage: require('./Leopard_background.png'),
+                        frontImage: require('./Leopard_background.png'),
+                        audio: 'Jump'
+                    },
+                    {
+                        index: 9,
+                        word: 'on',
+                        sentence1: 'I sat',
+                        sentence2: 'the bike.',
+                        backgndImage: require('./Bicycle_background.png'),
+                        frontImage: require('./Bicycle_background.png'),
+                        audio: 'On'
+                    },
+                    {
+                        index: 10,
+                        word: 'ten',
+                        sentence1: 'I saw',
+                        sentence2: 'kangaroos.',
+                        backgndImage: require('./Kangaroos_background.png'),
+                        frontImage: require('./Kangaroos_background.png'),
+                        audio: 'Ten'
+                    },
 
-                  {
-                      index: 11,
-                      word: 'go',
-                      sentence1: 'Lets',
-                      sentence2: 'fishing.',
-                      backgndImage: require('./Fishing_background.png'),
-                      frontImage: require('./Fishing_background.png'),
-                      audio:'Go'
-                  },
-                  {
-                      index: 12,
-                      word: 'two',
-                      sentence1: 'There were',
-                      sentence2: 'tigers at the zoo.',
-                      backgndImage: require('./Tigercubs_background.png'),
-                      frontImage: require('./Tigercubs_background.png'),
-                      audio:'Two'
-                  },
+                    {
+                        index: 11,
+                        word: 'go',
+                        sentence1: 'Lets',
+                        sentence2: 'fishing.',
+                        backgndImage: require('./Fishing_background.png'),
+                        frontImage: require('./Fishing_background.png'),
+                        audio: 'Go'
+                    },
+                    {
+                        index: 12,
+                        word: 'two',
+                        sentence1: 'There were',
+                        sentence2: 'tigers at the zoo.',
+                        backgndImage: require('./Tigercubs_background.png'),
+                        frontImage: require('./Tigercubs_background.png'),
+                        audio: 'Two'
+                    },
 
 
                 ]
-             }
+            }
 
 
-        
+
     }
 
-    componentWillMount(){
+    componentWillMount() {
         StatusBar.setHidden(true);
         this.pullUsers();
     }
@@ -190,7 +192,7 @@ export default class CardDeckNew extends Component {
     async pullUsers() {
         try {
             let resultKeyed = [];
-            for (var i = 0; i < this.state.arrayImages.length; i++){
+            for (var i = 0; i < this.state.arrayImages.length; i++) {
                 resultKeyed.push(this.state.arrayImages[i]);
             }
 
@@ -202,66 +204,66 @@ export default class CardDeckNew extends Component {
         }
     }
 
-    
 
 
-    showViewPopup(card,index){
-        console.log('showView popup: ',index,card,"\n",card.sentence);
+
+    showViewPopup(card, index) {
+        console.log('showView popup: ', index, card, "\n", card.sentence);
         this['card' + index].flip();
 
         this.setState({
-            isView:!this.state.isView,
+            isView: !this.state.isView,
             cardIndex: index,
-            imageNameBackground :card.backgndImage,
-            cardCount : card.index,
-            question :card.sentence
+            imageNameBackground: card.backgndImage,
+            cardCount: card.index,
+            question: card.sentence
         });
 
     }
-    closePopup(card, index){
+    closePopup(card, index) {
         this['card' + index].flip();
 
-        this.setState({isView:!this.state.isView})
+        this.setState({ isView: !this.state.isView })
     }
 
-    flipStart(){
+    flipStart() {
 
     }
 
 
     swipeBack = (index) => {
         this.playCardSound();
-        console.log("Swiping Back: ",this.state.isSwipingBack)
+        console.log("Swiping Back: ", this.state.isSwipingBack)
         if (!this.state.isSwipingBack) {
 
-                this.swiper.swipeBack(() => {
+            this.swiper.swipeBack(() => {
 
-                    this.setIsSwipingBack(index,false)
-                })
+                this.setIsSwipingBack(index, false)
+            })
 
         }
     };
 
-    setIsSwipingBack = (index,isSwipingBack) => {
+    setIsSwipingBack = (index, isSwipingBack) => {
 
         this.setState(
             {
-                currentCardNumber : this.state.currentCardNumber-1,
-                cardIndex: index-1,
+                currentCardNumber: this.state.currentCardNumber - 1,
+                cardIndex: index - 1,
                 isSwipingBack: isSwipingBack,
-                imageNameBackground : renderArray[index-1].backgndImage,
-                cardCount : renderArray[index-1].index,
-                question1 :renderArray[index-1].sentence1,
-                question2 :renderArray[index-1].sentence2,
-                alpha : renderArray[index-1].word,
-                audio : renderArray[index-1].audio,
+                imageNameBackground: renderArray[index - 1].backgndImage,
+                cardCount: renderArray[index - 1].index,
+                question1: renderArray[index - 1].sentence1,
+                question2: renderArray[index - 1].sentence2,
+                alpha: renderArray[index - 1].word,
+                audio: renderArray[index - 1].audio,
             }
 
         )
     };
 
-    setCardback(){
-        if(this.state.currentCardNumber>0) {
+    setCardback() {
+        if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
                 cardIndex: this.state.currentCardNumber - 1,
@@ -270,53 +272,53 @@ export default class CardDeckNew extends Component {
                 question1: renderArray[this.state.currentCardNumber - 1].sentence1,
                 question2: renderArray[this.state.currentCardNumber - 1].sentence2,
                 alpha: renderArray[this.state.currentCardNumber - 1].word,
-                audio : renderArray[this.state.currentCardNumber-1].audio,
+                audio: renderArray[this.state.currentCardNumber - 1].audio,
             })
         }
     }
 
 
-    setIsSwiping = (index,isSwipingBack) => {
+    setIsSwiping = (index, isSwipingBack) => {
 
-        console.log("Index: ",index)
+        console.log("Index: ", index)
         this.setState(
             {
                 isSwipingBack: isSwipingBack,
-                currentCardNumber : index+1,
-                cardIndex: index+1,
-                imageNameBackground : renderArray[index+1].backgndImage,
-                cardCount : renderArray[index+1].index,
-                question1 :renderArray[index+1].sentence1,
-                question2 :renderArray[index+1].sentence2,
-                alpha : renderArray[index+1].word,
-                audio : renderArray[index+1].audio,
+                currentCardNumber: index + 1,
+                cardIndex: index + 1,
+                imageNameBackground: renderArray[index + 1].backgndImage,
+                cardCount: renderArray[index + 1].index,
+                question1: renderArray[index + 1].sentence1,
+                question2: renderArray[index + 1].sentence2,
+                alpha: renderArray[index + 1].word,
+                audio: renderArray[index + 1].audio,
             }
         )
     };
 
-    swipeCard = (index)=>{
+    swipeCard = (index) => {
         this.playCardSound();
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
 
-                this.setIsSwiping(index,false)
+                this.setIsSwiping(index, false)
             })
 
         }
     };
 
-    playCardSound(){
+    playCardSound() {
         try {
             // play the file tone.mp3
             SoundPlayer.playSoundFile('cardslidesound_Reduce', 'mp3')
             // or play from url
-          } catch (e) {
+        } catch (e) {
             console.log(`cannot play the sound file`, e)
-          }
+        }
     }
 
-    playWordSound(){
+    playWordSound() {
         try {
             // play the file tone.mp3
             SoundPlayer.playSoundFile(this.state.audio, 'mp3')
@@ -327,57 +329,57 @@ export default class CardDeckNew extends Component {
     }
     componentDidMount() {
         SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
-          console.log('finished playing', success)
+            console.log('finished playing', success)
         })
-      }
-      // unsubscribe when unmount
+    }
+    // unsubscribe when unmount
     componentWillUnmount() {
         SoundPlayer.unmount()
-      }
+    }
 
-  
-       
+
+
     renderCard = (card, index) => {
-     console.log("Device width ",deviceWidth, "\n", "DeviceHeight",deviceHeight);
+        console.log("Device width ", deviceWidth, "\n", "DeviceHeight", deviceHeight);
 
         // Disable right swipe on first card//
 
         return (
-            <CardFlip style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} key={index}  ref={ (card) => this['card' + index] = card }>
+            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
 
                 <View style={styles.card1}>
 
-                
-                  <TouchableOpacity style={[{flexDirection: 'column', position:'absolute',bottom:'17%', alignSelf: 'center',top:'5%',justifyContent: 'space-between',}]} onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}} >
 
-                  <Text style={styles.label}>{card.word}</Text>
-                  <Image source={require('./question.png')} style={styles.imageQuestionMark}/>
-                  </TouchableOpacity>
+                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: !this.state.isView }) }} >
+
+                        <Text style={styles.label}>{card.word}</Text>
+                        <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+                    </TouchableOpacity>
 
                 </View>
 
-                  <Animated.View style={{width:"100%",height:"100%",alignItems:'center',top:'-31%'}}>
+                <Animated.View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
 
-                      <View style={styles.card}>
-                          <ImageBackground style={{height:'81%',width:'100%',borderTopLeftRadius:15,borderTopRightRadius:15,overflow: "hidden", top:'-1%'}}
-                                 source={this.state.imageNameBackground}>
+                    <View style={styles.card}>
+                        <ImageBackground style={{ height: '81%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
+                            source={this.state.imageNameBackground}>
 
-                                   <TouchableOpacity style={[styles.button,{marginTop:20}]}  onPress={() => {this['card' + index].flip();this.setState({isView:!this.state.isView})}}>
+                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: !this.state.isView }) }}>
 
-                              <Image style={styles.imageCross} source={require('./close.png')} />
-                          </TouchableOpacity>
+                                <Image style={styles.imageCross} source={require('./close.png')} />
+                            </TouchableOpacity>
 
-                          </ImageBackground>
+                        </ImageBackground>
 
-                          <View style={{marginLeft:"8%",marginRight:'8%',top:'-5%'}}>
-                          <Text
-                              style={styles.label1}>{this.state.question1+" "}<Text style={{color:'#4a90e2'}}>{this.state.alpha+" "}</Text>{this.state.question2}</Text>
-                          </View>
-                     </View>
+                        <View style={{ marginLeft: "8%", marginRight: '8%', top: '-5%' }}>
+                            <Text
+                                style={styles.label1}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
+                        </View>
+                    </View>
 
 
-                   </Animated.View> 
+                </Animated.View>
             </CardFlip>
         )
     };
@@ -385,51 +387,51 @@ export default class CardDeckNew extends Component {
     render() {
         const isView = this.state.isView;
 
-        
+
         // For showing number below to the card.
 
         let temp;
         if (this.state.cardCount >= 0) {
-            temp = String(this.state.cardCount)+' | 220';
+            temp = String(this.state.cardCount) + ' | 220';
         } else {
 
-            temp = '1' +'| 220';
+            temp = '1' + '| 220';
 
         }
 
-        if(renderCount===0){
+        if (renderCount === 0) {
             renderArray = this.state.arrayImages;
             renderCount++;
         }
         // For disabling right swipe first card 
-       
 
-        console.log("CurrentcardNumber Yeh wala: ",this.state.currentCardNumber);
 
-            let swiperStack;
-            if(!isView){
-            if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber+1 <12) {
+        console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
 
-              swiperStack =  <Swiper
-                ref={swiper => {
-                    this.swiper = swiper
-                }}
-                //onSwiped={this.onSwiped}
-                cards={renderArray}
-                cardIndex={this.state.cardIndex}
-                cardVerticalMargin={80}
-                renderCard={this.renderCard}
-                onSwipedLeft={this.swipeCard}
-                onSwipedRight={this.swipeCard}
-                stackSize={4}
-                backgroundColor={'transparent'}
-                stackSeparation={stackSepration}
-                disableTopSwipe={true}
-                disableBottomSwipe={true}
-                disableRightSwipe={false}
-                disableLeftSwipe={false}
-                swipeAnimationDuration={100}
-            />
+        let swiperStack;
+        if (!isView) {
+            if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber + 1 < 12) {
+
+                swiperStack = <Swiper
+                    ref={swiper => {
+                        this.swiper = swiper
+                    }}
+                    //onSwiped={this.onSwiped}
+                    cards={renderArray}
+                    cardIndex={this.state.cardIndex}
+                    cardVerticalMargin={80}
+                    renderCard={this.renderCard}
+                    onSwipedLeft={this.swipeCard}
+                    onSwipedRight={this.swipeCard}
+                    stackSize={4}
+                    backgroundColor={'transparent'}
+                    stackSeparation={stackSepration}
+                    disableTopSwipe={true}
+                    disableBottomSwipe={true}
+                    disableRightSwipe={false}
+                    disableLeftSwipe={false}
+                    swipeAnimationDuration={100}
+                />
             } else {
                 // this is for last card
                 if (this.state.currentCardNumber + 1 >= 11) {
@@ -477,118 +479,166 @@ export default class CardDeckNew extends Component {
                         swipeAnimationDuration={100}
                     />
                 }
-            }}else{
-             swiperStack =  <Swiper
-                    ref={swiper => {
-                        this.swiper = swiper
-                    }}
-                    //onSwiped={this.onSwiped}
-                    cards={renderArray}
-                    cardIndex={this.state.cardIndex}
-                    cardVerticalMargin={80}
-                    renderCard={this.renderCard}
-                    onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeCard}
-                    stackSize={4}
-                    backgroundColor={'transparent'}
-                    stackSeparation={stackSepration}
-                    disableTopSwipe={true}
-                    disableBottomSwipe={true}
-                    disableRightSwipe={true}
-                    disableLeftSwipe={true}
-                    swipeAnimationDuration={100}
-                />}
-            return(
-                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
-            
+            }
+        } else {
+            swiperStack = <Swiper
+                ref={swiper => {
+                    this.swiper = swiper
+                }}
+                //onSwiped={this.onSwiped}
+                cards={renderArray}
+                cardIndex={this.state.cardIndex}
+                cardVerticalMargin={80}
+                renderCard={this.renderCard}
+                onSwipedLeft={this.swipeCard}
+                onSwipedRight={this.swipeCard}
+                stackSize={4}
+                backgroundColor={'transparent'}
+                stackSeparation={stackSepration}
+                disableTopSwipe={true}
+                disableBottomSwipe={true}
+                disableRightSwipe={true}
+                disableLeftSwipe={true}
+                swipeAnimationDuration={100}
+            />
+        }
+        return (
+            <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
+
+                <ImageBackground style={{ width: "100%", height: "100%", backgroundColor: 'rgba(219,219,219,0.5)' }}>
+
+                    {!isView ? <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
+                        <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
+                    </TouchableOpacity> :
+                        <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
+
+                        </TouchableOpacity>}
+
+                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular" }}>sightwords</Text>
 
 
-                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:'rgba(219,219,219,0.5)'}}>
-    
-                            {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-                            <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
-                        </TouchableOpacity>:
-                                <TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
-
-                            </TouchableOpacity>}
-
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center",fontFamily:"Montserrat-Regular"}}>sightwords</Text>
+                    {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
+                        <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%' }}></Text>}
 
 
-                            {!isView? <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%',fontFamily:"Montserrat-Regular"}}>{temp}</Text>:
-                                <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}></Text>}
+                    <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center' }}>
+
+                        {swiperStack}
+
+                    </View>
+
+                    <ImageBackground source={require('./rectangle.png')} style={{
+                        left: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} />
+                    <ImageBackground style={{
+                        left: '10%',
+                        width: 65,
+                        height: 65, position: 'absolute', bottom: '9%',
+                        justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
+                        shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} source={require('./circleGray.png')}>
+                        <TouchableOpacity onPress={() => this.setCardback()}>
 
 
-                        <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
+                            <ImageBackground style={{
+                                width: 35,
+                                height: 35,
+                                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                            }} source={require('./circleBtnOutside.png')}>
 
-                            {swiperStack}
-
-                        </View>
-
-                        <Image source={require('./rectangle.png')}  style={{marginLeft:'24%',height:40,width:10, position:'absolute',bottom:'10%'}}/>
-
-                         <TouchableOpacity style={{marginLeft:'10%',height:65,width:65, position:'absolute',bottom:'9%'}} onPress= {() => this.setCardback()}>
-                            <ImageBackground style={{ width: 65,
-                                height: 65,
-                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
-
-<ImageBackground style={{ width: 50,
-                                height: 50,top: '10%',
-                                alignSelf: 'center'}} source ={require('./circleBtnOutside.png')}>
-                                
-                                <Image source={require('./back_button.png')}  style={styles.imageBackButton}/>
-                                </ImageBackground>
+                                <Image source={require('./back_button.png')} style={styles.imageBackButton} />
                             </ImageBackground>
-                            </TouchableOpacity>
-                           
-                            <Image source={require('./rectangle.png')}  style={{right:'22%',height:40,width:90, position:'absolute',bottom:'10%'}}/>
-
-                        <TouchableOpacity style={{alignSelf:'center',height:50,width:50, position:'absolute',bottom:'10.75%'}} onPress= {() => this.setCardback()}>
-                        <ImageBackground style={{ width: 80,
-                                height: 80,bottom: '12%',
-                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
-                            <ImageBackground style={{ width: 55,
-                                height: 55,top: '15%',
-                                alignSelf: 'center'}} source ={require('./audio_circle.png')}>
-                                <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
-                            </ImageBackground>
-                            </ImageBackground>
-                            </TouchableOpacity>
-
-                            
-<TouchableOpacity style={{ right:'13%',height:65,width:65, position:'absolute',bottom:'9%'}} onPress= {() => this.setCardback()}>
-                            <ImageBackground style={{ width: 65,
-                                height: 65,
-                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
-                                <ImageBackground style={{ width: 50,
-                                height: 50,top: '10%',
-                                alignSelf: 'center'}} source ={require('./circleBtnOutside.png')}>
-                                <Image source={require('./Tick_off.png')}  style={styles.imageTickButton}/>
-                                </ImageBackground>
-                            </ImageBackground>
-                            </TouchableOpacity>
-
-
-    
+                        </TouchableOpacity>
                     </ImageBackground>
 
-                
+
+                    <ImageBackground source={require('./rectangle.png')} style={{
+                        right: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} />
+
+                    <TouchableOpacity style={{ alignSelf: 'center', height: 50, width: 50, position: 'absolute', bottom: '11.5%', justifyContent: 'center', alignItems: 'center', bottom: '10%' }} onPress={() => this.playWordSound()}>
+                        <ImageBackground style={{
+                            width: 80,
+                            height: 80,
+                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
+                            shadowOffset: {
+                                width: 0,
+                                height: 1
+                            },
+                            shadowOpacity: 0.5,
+
+                            shadowRadius: 1
+                        }} source={require('./circleGray.png')}>
+                            <ImageBackground style={{
+                                width: 55,
+                                height: 55,
+                                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                            }} source={require('./audio_circle.png')}>
+                                <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+                            </ImageBackground>
+                        </ImageBackground>
+                    </TouchableOpacity>
+
+
+                    <ImageBackground style={{
+                        right: '13%', width: 65,
+                        height: 65, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '9%',
+                        shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} source={require('./circleGray.png')}>
+                        <ImageBackground style={{
+                            width: 35,
+                            height: 35,
+                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                        }} source={require('./circleBtnOutside.png')}>
+                            <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
+                        </ImageBackground>
+                    </ImageBackground>
+
+
+
                 </ImageBackground>
-    
-            );
-    
+
+
+            </ImageBackground>
+
+        );
+
     }
 }
 
-const {height, width} = Dimensions.get('window'); 
+const { height, width } = Dimensions.get('window');
 const deviceHeight = height;
-let deviceWidth  = width;
+let deviceWidth = width;
 
 let stackSepration;
-if (deviceHeight > 736 ) {
+if (deviceHeight > 736) {
     stackSepration = -25;
 } else {
-    stackSepration = -15;
+    stackSepration = -20;
 }
 
 
@@ -596,154 +646,171 @@ if (deviceHeight > 736 ) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'transparent',
     },
 
-    content:{
-       //DR bottom:100,
+    content: {
+        //DR bottom:100,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-       /// backgroundColor: 'transparent',
-       backgroundColor: 'green',
+        /// backgroundColor: 'transparent',
+        backgroundColor: 'green',
     },
     flipCardSize: {
         width: '100%',
         height: '100%',
-        
-      },
 
-      card:{
-          
-       // overflow:'hidden',
-        marginTop:'10%',
-        width: deviceWidth-20,
-        height: (deviceHeight*3)/4,
+    },
+
+    card: {
+
+        // overflow:'hidden',
+        marginTop: '10%',
+        width: deviceWidth - 20,
+        height: (deviceHeight * 3) / 4,
         borderRadius: 12,
-        backgroundColor:"#ffffff",
+        backgroundColor: "#ffffff",
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: 2,
             height: 2
         },
-        shadowOpacity:0.8,
+        shadowOpacity: 0.8,
     },
-  
-    card1:{
-        
-        alignSelf:'center',
-        top:"-10%",
-        width: (deviceWidth-82),
-        height: (deviceHeight*2.4)/4,
+
+    card1: {
+
+        alignSelf: 'center',
+        top: "-10%",
+        width: (deviceWidth - 82),
+        height: (deviceHeight * 2.4) / 4,
         borderRadius: 12,
-        backgroundColor:"#ffffff",
+        backgroundColor: "#ffffff",
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
             width: 0,
             height: 1
         },
-        shadowOpacity:0.8,
+        shadowOpacity: 0.8,
     },
 
     label: {
-        fontFamily:"Comic Sans MS",
-       //top:'2%',
+        fontFamily: "Comic Sans MS",
+        //top:'2%',
         lineHeight: 200,
-        width:'100%',
+        width: '100%',
         //alignSelf:'center',
-         textAlign: 'center',
+        textAlign: 'center',
         fontSize: 88,
         color: '#4a90e2',
-       backgroundColor: 'transparent',
-       // backgroundColor: 'white',
+        backgroundColor: 'transparent',
+        // backgroundColor: 'white',
     },
 
-    footer:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+    footer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    buttonContainer:{
-        width:220,
-        flexDirection:'row',
+    buttonContainer: {
+        width: 220,
+        flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    button:{
+    button: {
         alignSelf: 'flex-end',
-      marginTop: '10%',
-      right:'5%',
-      position: 'relative', // add if dont work with above
-      justifyContent: 'center',
-      alignItems: 'center',
+        marginTop: '10%',
+        right: '5%',
+        position: 'relative', // add if dont work with above
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
-        buttonBack: {
-      alignSelf: 'flex-start',
-      zIndex:80,
-      marginTop: '7%',
-      marginBottom: '10%',
-      left:'5%',
-      position: 'relative', // add if dont work with above
-      justifyContent: 'center',
-      alignItems: 'center',
-            // zIndex:50,
-            // marginTop:'5%',
-            // marginLeft:'2%',
-            // position:'relative',
-          },
-    
-        imageLeft:{
-            width: 22,
-            height: 22,
+    buttonBack: {
+        alignSelf: 'flex-start',
+        zIndex: 80,
+        marginTop: '7%',
+        marginBottom: '10%',
+        left: '5%',
+        position: 'relative', // add if dont work with above
+        justifyContent: 'center',
+        alignItems: 'center',
+        // zIndex:50,
+        // marginTop:'5%',
+        // marginLeft:'2%',
+        // position:'relative',
+    },
+
+    imageLeft: {
+        width: 22,
+        height: 22,
+    },
+    imageBulb: {
+        width: 32,
+        height: 32,
+    },
+    imageQuestionMark: {
+        width: 48,
+        height: 48,
+        bottom: '2%',
+        alignSelf: 'center'
+    },
+    imageSpeaker: {
+
+        width: 20,
+        height: 30,
+        alignSelf: 'center',
+        tintColor: 'rgb(211,215,218)',
+    },
+    imageBackButton: {
+
+        alignItems: 'center',
+        width: 22,
+        height: 19,
+        tintColor: 'black',
+        alignSelf: 'center',
+        tintColor: 'rgb(211,215,218)',
+    },
+    imageTickButton: {
+
+        width: 20,
+        height: 16,
+        tintColor: 'black',
+        alignSelf: 'center',
+        tintColor: 'rgb(211,215,218)',
+    },
+    imageCross: {
+        width: 32,
+        height: 32,
+    },
+    label1: {
+        height: "auto",
+        fontSize: 36,
+        textAlign: 'center',
+        width: '100%',
+        fontFamily: "Comic Sans MS",
+        color: '#535557',
+        backgroundColor: 'transparent',
+
+    },
+    rectangleLeft: {
+        marginLeft: '24%',
+        height: 40,
+        width: 10,
+        position: 'absolute',
+        bottom: '10%',
+        shadowColor: 'rgba(0,0,0,1)',
+        shadowOffset: {
+            width: 2,
+            height: 2
         },
-        imageBulb:{
-            width: 32,
-            height: 32,
-        },
-        imageQuestionMark:{
-            width: 48,
-            height: 48,
-            bottom: '2%',
-            alignSelf: 'center'
-        },
-        imageSpeaker:{
-            top:'18%',
-            right:"2%",
-            width: 20,
-            height: 30,
-            tintColor:'black',
-            alignSelf: 'center'
-        },
-        imageBackButton:{
-            top:'26%',
-            alignItems: 'center',
-            width: 22,
-            height: 19,
-            tintColor:'black',
-            alignSelf: 'center'
-        },
-        imageTickButton:{
-            top:'30%',
-             width: 20,
-            height: 16,
-            tintColor:'black',
-            alignSelf: 'center'
-        },
-        imageCross:{
-            width: 32,
-            height: 32,
-        },
-        label1: {
-            height:"auto",
-            fontSize:36,
-            textAlign:'center',
-            width:'100%',
-            fontFamily:"Comic Sans MS",
-            color: '#535557',
-            backgroundColor: 'transparent',
-           
-        },
+        shadowOpacity: 0.8,
+
+        shadowRadius: 5
+
+    }
 });
 
