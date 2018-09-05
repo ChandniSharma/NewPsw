@@ -247,6 +247,20 @@ export default class CardDeckNew extends Component {
         )
     };
 
+    setCardback(){
+        if(this.state.currentCardNumber>0) {
+            this.setState({
+                currentCardNumber: this.state.currentCardNumber - 1,
+                cardIndex: this.state.currentCardNumber - 1,
+                imageNameBackground: renderArray[this.state.currentCardNumber - 1].backgndImage,
+                cardCount: renderArray[this.state.currentCardNumber - 1].index,
+                question1: renderArray[this.state.currentCardNumber - 1].sentence1,
+                question2: renderArray[this.state.currentCardNumber - 1].sentence2,
+                alpha: renderArray[this.state.currentCardNumber - 1].word,
+            })
+        }
+    }
+
 
     setIsSwiping = (index,isSwipingBack) => {
 
@@ -292,9 +306,9 @@ export default class CardDeckNew extends Component {
         })
       }
       // unsubscribe when unmount
-componentWillUnmount() {
-    SoundPlayer.unmount()
-  }
+    componentWillUnmount() {
+        SoundPlayer.unmount()
+      }
 
   
        
@@ -353,7 +367,9 @@ componentWillUnmount() {
         if (this.state.cardCount >= 0) {
             temp = String(this.state.cardCount)+' | 220';
         } else {
-            temp = '1' +' | 220';
+
+            temp = '1' +'| 220';
+
         }
 
         if(renderCount===0){
@@ -458,11 +474,11 @@ componentWillUnmount() {
                     swipeAnimationDuration={100}
                 />}
             return(
-                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={!isView?15:0} source={this.state.imageNameBackground}>
+                <ImageBackground style={{width:"100%",height:"100%"}} blurRadius={15} source={this.state.imageNameBackground}>
             
 
 
-                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:!isView?'rgba(219,219,219,0.5)':'rgba(209, 209, 209,0.95)'}}>
+                        <ImageBackground style={{width:"100%",height:"100%",backgroundColor:'rgba(219,219,219,0.5)'}}>
     
                             {!isView?<TouchableOpacity style={[styles.buttonBack]}  onPress={() => this.props.navigation.navigate('Home')}>
                             <Image  style={styles.imageLeft} source={require('./Icon_Home.png')} />
@@ -473,9 +489,14 @@ componentWillUnmount() {
 
 
     
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 16,left:"42%",fontFamily:"Montserrat-Regular"}}>sightwords</Text>
-                       
-                        <TextInput editable={false} style={{textAlign: 'center',marginTop: '3.5%',position:'absolute',alignSelf:'flex-end', fontSize: 14, color:'white',right:'5%',fontFamily:"Montserrat-Regular"}} value={temp}/>
+
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center"}}>sightwords</Text>
+
+
+                            {!isView? <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}>{temp}</Text>:
+                                <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}></Text>}
+
+    
 
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
@@ -486,9 +507,16 @@ componentWillUnmount() {
     
                         </View>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:20,width:20, position:'absolute',bottom:'12%'}} onPress= {() => this.playCardSound()}>
+
+                        <TouchableOpacity style={{alignSelf:'center',height:50,width:50, position:'absolute',bottom:'12%'}} onPress= {() => this.setCardback()}>
+                            <ImageBackground style={{ width: 50,
+                                height: 50,
+                                alignSelf: 'center'}} source ={require('./audio_circle.png')}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
+                            </ImageBackground>
                             </TouchableOpacity>
+
+
 
     
                     </ImageBackground>
@@ -679,6 +707,8 @@ const styles = StyleSheet.create({
             alignSelf: 'center'
         },
         imageSpeaker:{
+            top:'18%',
+            right:"2%",
             width: 20,
             height: 30,
             tintColor:'black',
