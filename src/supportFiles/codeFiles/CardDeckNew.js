@@ -487,35 +487,61 @@ export default class CardDeckNew extends Component {
 
                             </TouchableOpacity>}
 
-
-    
-
-                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center"}}>sightwords</Text>
+                        <Text style={{textAlign: 'center', color:'white', marginTop: '5%', position:'absolute',fontSize: 15,alignSelf:"center",fontFamily:"Montserrat-Regular"}}>sightwords</Text>
 
 
-                            {!isView? <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}>{temp}</Text>:
+                            {!isView? <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%',fontFamily:"Montserrat-Regular"}}>{temp}</Text>:
                                 <Text  style={{textAlign: 'center', marginTop: '5%',position:'absolute',alignSelf:'flex-end', fontSize: 15, color:'#ffffff',marginRight:'5%'}}></Text>}
 
-    
 
                         <View style={{width:"100%",height:"100%",justifyContent:'center',alignItems:'center'}}>
 
-
-    
                             {swiperStack}
 
-    
                         </View>
 
+                        <Image source={require('./rectangle.png')}  style={{marginLeft:'24%',height:40,width:10, position:'absolute',bottom:'10%'}}/>
 
-                        <TouchableOpacity style={{alignSelf:'center',height:50,width:50, position:'absolute',bottom:'12%'}} onPress= {() => this.setCardback()}>
-                            <ImageBackground style={{ width: 50,
-                                height: 50,
+                         <TouchableOpacity style={{marginLeft:'10%',height:65,width:65, position:'absolute',bottom:'9%'}} onPress= {() => this.setCardback()}>
+                            <ImageBackground style={{ width: 65,
+                                height: 65,
+                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
+
+<ImageBackground style={{ width: 50,
+                                height: 50,top: '10%',
+                                alignSelf: 'center'}} source ={require('./circleBtnOutside.png')}>
+                                
+                                <Image source={require('./back_button.png')}  style={styles.imageBackButton}/>
+                                </ImageBackground>
+                            </ImageBackground>
+                            </TouchableOpacity>
+                           
+                            <Image source={require('./rectangle.png')}  style={{right:'22%',height:40,width:90, position:'absolute',bottom:'10%'}}/>
+
+                        <TouchableOpacity style={{alignSelf:'center',height:50,width:50, position:'absolute',bottom:'10.75%'}} onPress= {() => this.setCardback()}>
+                        <ImageBackground style={{ width: 80,
+                                height: 80,bottom: '12%',
+                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
+                            <ImageBackground style={{ width: 55,
+                                height: 55,top: '15%',
                                 alignSelf: 'center'}} source ={require('./audio_circle.png')}>
                                 <Image source={require('./audio_off.png')}  style={styles.imageSpeaker}/>
                             </ImageBackground>
+                            </ImageBackground>
                             </TouchableOpacity>
 
+                            
+<TouchableOpacity style={{ right:'13%',height:65,width:65, position:'absolute',bottom:'9%'}} onPress= {() => this.setCardback()}>
+                            <ImageBackground style={{ width: 65,
+                                height: 65,
+                                alignSelf: 'center'}} source ={require('./circleGray.png')}>
+                                <ImageBackground style={{ width: 50,
+                                height: 50,top: '10%',
+                                alignSelf: 'center'}} source ={require('./circleBtnOutside.png')}>
+                                <Image source={require('./Tick_off.png')}  style={styles.imageTickButton}/>
+                                </ImageBackground>
+                            </ImageBackground>
+                            </TouchableOpacity>
 
 
     
@@ -580,55 +606,6 @@ const styles = StyleSheet.create({
         shadowOpacity:0.8,
     },
   
-    //     card:{
-    //         //overflow:'hidden',
-           
-    //         top:'-31%',
-    //       marginTop:'10%',
-    //    // borderWidth: 1,
-    //     width: deviceWidth-40,
-    //     height: (deviceHeight*3)/4,
-    //     borderRadius: 2,
-    //     shadowRadius: 12,
-    //     backgroundColor:"#ffffff",
-       
-    //     borderBottomWidth: 0,
-    //     shadowRadius: 9,
-    //     shadowColor: 'rgba(0,0,0,1)',
-       
-
-    //     shadowOffset: {
-    //         width: 5,
-    //         height: 5
-    //     },
-    //     shadowOpacity:0.8,
-        
-            
-    //     },
-
-
-    //     boxShadow: 1px 10px 10px black,
-    //     overflow:'hidden',
-    //     marginTop:'10%',
-    //     borderWidth: 1,
-    //     width: deviceWidth-20,
-    //     height: (deviceHeight*3)/4,
-    //     borderRadius: 2,
-    //     shadowRadius: 2,
-    //    // backgroundColor:"#ffffff",
-    //     borderColor: 'red',//'#ddd',
-    //     borderBottomWidth: 0,
-    //     shadowRadius: 9,
-    //    // shadowColor: 'rgba(0,0,0,1)',
-    //     shadowColor: 'green',
-
-    //     shadowOffset: {
-    //         width: 5,
-    //         height: 5
-    //     },
-    //     //shadowOpacity:0.8,
-    //     shadowOpacity:1.0,
-   
     card1:{
         
         alignSelf:'center',
@@ -711,6 +688,21 @@ const styles = StyleSheet.create({
             right:"2%",
             width: 20,
             height: 30,
+            tintColor:'black',
+            alignSelf: 'center'
+        },
+        imageBackButton:{
+            top:'26%',
+            alignItems: 'center',
+            width: 22,
+            height: 19,
+            tintColor:'black',
+            alignSelf: 'center'
+        },
+        imageTickButton:{
+            top:'30%',
+             width: 20,
+            height: 16,
             tintColor:'black',
             alignSelf: 'center'
         },
