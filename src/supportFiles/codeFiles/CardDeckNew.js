@@ -372,7 +372,7 @@ export default class CardDeckNew extends Component {
 
                         </ImageBackground>
 
-                        <View style={{ marginLeft: "8%", marginRight: '8%', top: '-5%' }}>
+                        <View style={{ marginLeft: "8%", marginRight: '8%',backgroundColor:'yellow' }}>
                             <Text
                                 style={styles.label1}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
                         </View>
@@ -666,7 +666,6 @@ const styles = StyleSheet.create({
     },
 
     card: {
-
         // overflow:'hidden',
         marginTop: '10%',
         width: deviceWidth - 20,

@@ -117,18 +117,23 @@ class ThumbnailCarousel extends Component {
     _renderItem = ({item, index}) => {
         let imageTitle;
         let imageBottom;
+        let titleText;
 
         if (index === 1) {
             imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageCamera}/>
             imageBottom = <Image source={require('./arrownext.png')} style={stylesImage.imageBottomArrow}/>
+            titleText =  <TextInput marginTop={'5%'} editable={false} style={[styleText.textSightWordTitle,{textAlign:'center'}]}>{item.title}</TextInput>
+
 
         } else if (index === 2) {
             imageTitle = <Image source={require('./verbs.png')} style={stylesImage.imageVerb}/>
             imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock}/>
+            titleText =  <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput>
 
         } else {
             imageTitle = <Image source={require('./smiley.png')} style={stylesImage.imageTop}/>
             imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock}/>
+            titleText =  <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput>
 
         }
 
@@ -146,7 +151,8 @@ class ThumbnailCarousel extends Component {
                         <View >
 
                             <View style={styles.container}>{imageTitle}</View>
-                            <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput>
+                            {titleText}
+                            {/* <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput> */}
                             <TextInput multiline={true}
                                        editable={false}
                                        numberOfLines={3}
@@ -357,6 +363,18 @@ const styleText = StyleSheet.create({
 position: 'absolute',
    
   },
+  textSightWordTitle: {
+
+    color: 'white',
+    fontWeight: '500',
+    fontSize: 23,
+    height: Platform.OS === 'ios' ? 30 : 50,
+    textShadowColor: 'rgb(0,0,0)',
+    textShadowOffset: { width: 1, height: 4 },
+    textShadowRadius: 5
+  
+  },
+  
   textCardTitle: {
 
     color: 'white',
