@@ -345,7 +345,7 @@ export default class CardDeckNew extends Component {
         // Disable right swipe on first card//
 
         return (
-            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
+            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} duration={1000} key={index} ref={(card) => this['card' + index] = card}>
 
 
                 <View style={styles.card1}>
@@ -592,8 +592,8 @@ export default class CardDeckNew extends Component {
                         }} source={require('./circleGray.png')}>
                             <TouchableOpacity  onPress={() => this.playWordSound()}>
                             <ImageBackground style={{
-                                width: 80,
-                                height: 80,
+                                width: 70,
+                                height: 70,
                                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                             }} source={require('./audio_circle.png')}>
                                 <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
