@@ -8,10 +8,13 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ImageBackground, Animated,
+    ImageBackground,
     TextInput,
     Platform,
-    StatusBar
+    StatusBar,
+    TouchableWithoutFeedback,
+    Animated
+
 
 } from 'react-native';
 import AudioPlayer from 'react-native-play-audio';
@@ -181,12 +184,46 @@ export default class CardDeckNew extends Component {
             }
 
 
+            this.handlePressIn = this.handlePressIn.bind(this);
+            this.handlePressOut = this.handlePressOut.bind(this);
+            this.handlePressAudioOut = this.handlePressAudioOut.bind(this);
+            this.handlePressAudioIn = this.handlePressAudioIn.bind(this);
 
     }
 
     componentWillMount() {
         StatusBar.setHidden(true);
+        this.animatedValue = new Animated.Value(1);
+        this.animatedAudioValue = new Animated.Value(1);
         this.pullUsers();
+    }
+
+    handlePressIn(){
+        Animated.spring(this.animatedValue,{
+            toValue: 1.5
+        }).start();
+    }
+
+    handlePressOut(){
+        Animated.spring(this.animatedValue,{
+            toValue: 1,
+            friction: 3,
+            tension : 40
+        }).start();
+    }
+
+    handlePressAudioIn(){
+        Animated.spring(this.animatedAudioValue,{
+            toValue: 1.5
+        }).start();
+    }
+
+    handlePressAudioOut(){
+        Animated.spring(this.animatedAudioValue,{
+            toValue: 1,
+            friction: 3,
+            tension : 40
+        }).start();
     }
 
     async pullUsers() {
@@ -385,6 +422,12 @@ export default class CardDeckNew extends Component {
     };
 
     render() {
+        const animatedStyle = {
+            transform : [{scale: this.animatedValue}]
+        }
+        const animatedAudioStyle = {
+            transform : [{scale: this.animatedAudioValue}]
+        }
         const isView = this.state.isView;
 
 
@@ -549,19 +592,22 @@ export default class CardDeckNew extends Component {
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} source={require('./circleGray.png')}>
-                        <TouchableOpacity onPress={() => this.setCardback()}>
+                    }} source={require('./circleGray.png')} ref={"back"}>
+                        <TouchableWithoutFeedback onPress={() => this.setCardback()}
+                            onPressIn={this.handlePressIn}
+                        onPressOut={this.handlePressOut}>
 
+                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
+                                <ImageBackground  style={{
+                                    width: 50,
+                                    height: 50,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }} source={require('./circleBtnOutside.png')}>
 
-                            <ImageBackground style={{
-                                width: 50,
-                                height: 50,
-                                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                            }} source={require('./circleBtnOutside.png')}>
-
-                                <Image source={require('./back_button.png')} style={styles.imageBackButton} />
-                            </ImageBackground>
-                        </TouchableOpacity>
+                                    <Image source={require('./back_button.png')} style={styles.imageBackButton} />
+                                </ImageBackground>
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
                     </ImageBackground>:null}
 
 
@@ -589,17 +635,22 @@ export default class CardDeckNew extends Component {
                             shadowOpacity: 0.5,
 
                             shadowRadius: 1
-                        }} source={require('./circleGray.png')}>
-                            <TouchableOpacity  onPress={() => this.playWordSound()}>
-                            <ImageBackground style={{
-                                width: 70,
-                                height: 70,
-                                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                            }} source={require('./audio_circle.png')}>
-                                <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+                        }} source={require('./circleGray.png')}  ref={"audio"}>
 
-                            </ImageBackground>
-                            </TouchableOpacity>
+                            <TouchableWithoutFeedback onPress={() => this.playWordSound()}
+                                                      onPressIn={this.handlePressAudioIn}
+                                                      onPressOut={this.handlePressAudioOut}>
+                                <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
+                                    <ImageBackground style={[{
+                                        width: 70,
+                                        height: 70,
+                                        alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                    }]} source={require('./audio_circle.png')}>
+                                        <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+
+                                    </ImageBackground>
+                                </Animated.View>
+                            </TouchableWithoutFeedback>
                         </ImageBackground>
 
 
@@ -818,5 +869,7 @@ const styles = StyleSheet.create({
         shadowRadius: 5
 
     }
+
+
 });
 
