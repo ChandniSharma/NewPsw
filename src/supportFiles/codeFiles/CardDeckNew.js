@@ -204,9 +204,6 @@ export default class CardDeckNew extends Component {
         }
     }
 
-
-
-
     showViewPopup(card, index) {
         console.log('showView popup: ', index, card, "\n", card.sentence);
         this['card' + index].flip();
@@ -341,17 +338,29 @@ export default class CardDeckNew extends Component {
 
     renderCard = (card, index) => {
         console.log("Device width ", deviceWidth, "\n", "DeviceHeight", deviceHeight);
+        let sentenceStr = this.state.question1 + " "+" "+this.state.question2;
+       let viewMargin;
 
+       console.log("Sentence length === ",sentenceStr.length);
+      if(sentenceStr.length<15){
+                viewMargin = '10%';
+         }else
+        if ( sentenceStr.length>18) {
+            viewMargin = '19%'; 
+        } else{
+            viewMargin = '22%'; 
+        }
         // Disable right swipe on first card//
 
         return (
-            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
+            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} duration={1000} key={index} ref={(card) => this['card' + index] = card}>
 
 
                 <View style={styles.card1}>
 
 
-                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: !this.state.isView }) }} >
+                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
+                    this.setState({ isView: !this.state.isView }) }} >
 
                         <Text style={styles.label}>{card.word}</Text>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
@@ -362,7 +371,7 @@ export default class CardDeckNew extends Component {
                 <Animated.View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
 
                     <View style={styles.card}>
-                        <ImageBackground style={{ height: '81%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
+                        <ImageBackground style={{ height: '80%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
                             source={this.state.imageNameBackground}>
 
                             <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: !this.state.isView }) }}>
@@ -372,9 +381,19 @@ export default class CardDeckNew extends Component {
 
                         </ImageBackground>
 
-                        <View style={{ marginLeft: "8%", marginRight: '8%',backgroundColor:'yellow' }}>
+                        <View style={{height: '40%' , marginLeft: viewMargin, marginRight: viewMargin, justifyContent: 'center' , alignItems: 'center', bottom: '17%'}}>
                             <Text
-                                style={styles.label1}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
+                                style={{ 
+                                height: 'auto',
+                                fontSize: 36,
+                                textAlign: 'center',
+                                width: '100%',
+                                fontFamily: "Comic Sans MS",
+                                color: '#535557',
+                                backgroundColor: 'transparent',
+                                adjustsFontSizeToFit: true,
+                                allowFontScaling: true,
+                                }}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
                         </View>
                     </View>
 
@@ -387,16 +406,13 @@ export default class CardDeckNew extends Component {
     render() {
         const isView = this.state.isView;
 
-
-        // For showing number below to the card.
+        // For showing number 
 
         let temp;
         if (this.state.cardCount >= 0) {
             temp = String(this.state.cardCount) + ' | 220';
         } else {
-
             temp = '1' + '| 220';
-
         }
 
         if (renderCount === 0) {
@@ -527,19 +543,20 @@ export default class CardDeckNew extends Component {
 
                     </View>
 
-                    <ImageBackground source={require('./rectangle.png')} style={{
-                        left: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
+                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
                             width: 0,
                             height: 1
                         },
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} />
-                    <ImageBackground style={{
+                    }} />:null}
+
+                    {!isView?<ImageBackground style={{
                         left: '10%',
-                        width: 65,
-                        height: 65, position: 'absolute', bottom: '9%',
+                        width: 80,
+                        height: 80, position: 'absolute', bottom: '5%',
                         justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
                         shadowOffset: {
                             width: 0,
@@ -553,32 +570,34 @@ export default class CardDeckNew extends Component {
 
 
                             <ImageBackground style={{
-                                width: 35,
-                                height: 35,
+                                width: 50,
+                                height: 50,
                                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                             }} source={require('./circleBtnOutside.png')}>
 
                                 <Image source={require('./back_button.png')} style={styles.imageBackButton} />
                             </ImageBackground>
                         </TouchableOpacity>
-                    </ImageBackground>
+                    </ImageBackground>:null}
 
 
-                    <ImageBackground source={require('./rectangle.png')} style={{
-                        right: '22%', height: 40, width: 90, position: 'absolute', bottom: '10%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
+                        right: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
                             width: 0,
                             height: 1
                         },
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} />
+                    }} />:null}
 
-                    <TouchableOpacity style={{ alignSelf: 'center', height: 50, width: 50, position: 'absolute', bottom: '11.5%', justifyContent: 'center', alignItems: 'center', bottom: '10%' }} onPress={() => this.playWordSound()}>
+
                         <ImageBackground style={{
-                            width: 80,
-                            height: 80,
-                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
+                            width: 100,
+                            height: 100,
+                            position: 'absolute', bottom: '4.5%',
+                            alignSelf:'center',
+                             justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
                             shadowOffset: {
                                 width: 0,
                                 height: 1
@@ -587,20 +606,23 @@ export default class CardDeckNew extends Component {
 
                             shadowRadius: 1
                         }} source={require('./circleGray.png')}>
+                            <TouchableOpacity  onPress={() => this.playWordSound()}>
                             <ImageBackground style={{
-                                width: 55,
-                                height: 55,
+                                width: 70,
+                                height: 70,
                                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                             }} source={require('./audio_circle.png')}>
                                 <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+
                             </ImageBackground>
+                            </TouchableOpacity>
                         </ImageBackground>
-                    </TouchableOpacity>
 
 
-                    <ImageBackground style={{
-                        right: '13%', width: 65,
-                        height: 65, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '9%',
+
+                    {!isView?<ImageBackground style={{
+                        right: '10%', width: 80,
+                        height: 80, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '5%',
                         shadowOffset: {
                             width: 0,
                             height: 1
@@ -610,13 +632,13 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 1
                     }} source={require('./circleGray.png')}>
                         <ImageBackground style={{
-                            width: 35,
-                            height: 35,
+                            width: 50,
+                            height: 50,
                             alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                         }} source={require('./circleBtnOutside.png')}>
                             <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
                         </ImageBackground>
-                    </ImageBackground>
+                    </ImageBackground>:null}
 
 
 
@@ -793,7 +815,7 @@ const styles = StyleSheet.create({
         fontFamily: "Comic Sans MS",
         color: '#535557',
         backgroundColor: 'transparent',
-
+      //  adjustsFontSizeToFit: true,
     },
     rectangleLeft: {
         marginLeft: '24%',
