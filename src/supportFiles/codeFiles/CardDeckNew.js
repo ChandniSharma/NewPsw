@@ -320,7 +320,7 @@ export default class CardDeckNew extends Component {
                 isSwipingBack: isSwipingBack,
                 currentCardNumber: index + 1,
                 cardIndex: index + 1,
-                imageNameBackground: renderArray[index + 1].backgndImage,
+             //   imageNameBackground: renderArray[index + 1].backgndImage,
                 cardCount: renderArray[index + 1].index,
                 question1: renderArray[index + 1].sentence1,
                 question2: renderArray[index + 1].sentence2,
@@ -336,7 +336,7 @@ export default class CardDeckNew extends Component {
 
             this.swiper.swipeCard(() => {
 
-                this.setIsSwiping(index, false)
+              //  this.setIsSwiping(index, false)
             })
 
         }
@@ -467,7 +467,7 @@ export default class CardDeckNew extends Component {
 
         let swiperStack;
         if (!isView) {
-            if (this.state.currentCardNumber !== 0 && this.state.currentCardNumber + 1 < 12) {
+            if (this.state.currentCardNumber + 1 < 12) {
 
                 swiperStack = <Swiper
                     ref={swiper => {
@@ -514,28 +514,29 @@ export default class CardDeckNew extends Component {
                         swipeAnimationDuration={100}
 
                     />
-                } else {
-                    swiperStack = <Swiper
-                        ref={swiper => {
-                            this.swiper = swiper
-                        }}
-                        //onSwiped={this.onSwiped}
-                        cards={renderArray}
-                        cardIndex={this.state.cardIndex}
-                        cardVerticalMargin={80}
-                        renderCard={this.renderCard}
-                        onSwipedLeft={this.swipeCard}
-                        onSwipedRight={this.swipeCard}
-                        stackSize={4}
-                        backgroundColor={'transparent'}
-                        stackSeparation={stackSepration}
-                        disableTopSwipe={true}
-                        disableBottomSwipe={true}
-                        disableRightSwipe={true}
-                        disableLeftSwipe={false}
-                        swipeAnimationDuration={100}
-                    />
-                }
+                } 
+                // else {
+                //     swiperStack = <Swiper
+                //         ref={swiper => {
+                //             this.swiper = swiper
+                //         }}
+                //         //onSwiped={this.onSwiped}
+                //         cards={renderArray}
+                //         cardIndex={this.state.cardIndex}
+                //         cardVerticalMargin={80}
+                //         renderCard={this.renderCard}
+                //         onSwipedLeft={this.swipeCard}
+                //         onSwipedRight={this.swipeCard}
+                //         stackSize={4}
+                //         backgroundColor={'transparent'}
+                //         stackSeparation={stackSepration}
+                //         disableTopSwipe={true}
+                //         disableBottomSwipe={true}
+                //         disableRightSwipe={true}
+                //         disableLeftSwipe={false}
+                //         swipeAnimationDuration={100}
+                //     />
+                // }
             }
         } else {
             swiperStack = <Swiper
