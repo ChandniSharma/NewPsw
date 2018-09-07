@@ -64,6 +64,8 @@ export default class CardDeckNew extends Component {
                 displayedCards: [],
                 arrayRemovedCards: [],
                 numberValue: 0,
+                isBack:false,
+                isAudio:false,
                 isView: false,
                 fadeAnim: new Animated.Value(0),
                 errors: [],
@@ -199,12 +201,18 @@ export default class CardDeckNew extends Component {
     }
 
     handlePressIn(){
+        this.setState({
+            isBack : true
+        })
         Animated.spring(this.animatedValue,{
             toValue: 1.5
         }).start();
     }
 
     handlePressOut(){
+        this.setState({
+            isBack : false
+        })
         Animated.spring(this.animatedValue,{
             toValue: 1,
             friction: 3,
@@ -213,12 +221,18 @@ export default class CardDeckNew extends Component {
     }
 
     handlePressAudioIn(){
+        this.setState({
+            isAudio : true
+        })
         Animated.spring(this.animatedAudioValue,{
             toValue: 1.5
         }).start();
     }
 
     handlePressAudioOut(){
+        this.setState({
+            isAudio : false
+        })
         Animated.spring(this.animatedAudioValue,{
             toValue: 1,
             friction: 3,
@@ -598,14 +612,20 @@ export default class CardDeckNew extends Component {
                         onPressOut={this.handlePressOut}>
 
                             <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
-                                <ImageBackground  style={{
+                                {!this.state.isBack?<ImageBackground  style={{
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                                 }} source={require('./circleBtnOutside.png')}>
 
                                     <Image source={require('./back_button.png')} style={styles.imageBackButton} />
-                                </ImageBackground>
+                                </ImageBackground>:<ImageBackground  style={{
+                                    width: 50,
+                                    height: 50,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }} source={require('./undo_red.png')}>
+
+                                </ImageBackground>}
                             </Animated.View>
                         </TouchableWithoutFeedback>
                     </ImageBackground>:null}
@@ -641,14 +661,23 @@ export default class CardDeckNew extends Component {
                                                       onPressIn={this.handlePressAudioIn}
                                                       onPressOut={this.handlePressAudioOut}>
                                 <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
-                                    <ImageBackground style={[{
+                                    {!this.state.isAudio?<ImageBackground style={[{
                                         width: 70,
                                         height: 70,
                                         alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                                     }]} source={require('./audio_circle.png')}>
-                                        <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
 
-                                    </ImageBackground>
+                                            <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+                                    </ImageBackground>:<ImageBackground style={[{
+                                        width: 70,
+                                        height: 70,
+                                        alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                    }]} source={require('./audio_circle.png')}>
+
+                                        <Image source={require('./speaker.png')} style={{ width: 30,
+                                            height: 30,
+                                            alignSelf: 'center'}} />
+                                    </ImageBackground>}
                                 </Animated.View>
                             </TouchableWithoutFeedback>
                         </ImageBackground>
