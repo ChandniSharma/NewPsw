@@ -17,6 +17,9 @@ import {
 
 
 } from 'react-native';
+
+import * as Animatable from 'react-native-animatable';
+
 import AudioPlayer from 'react-native-play-audio';
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
@@ -69,6 +72,7 @@ export default class CardDeckNew extends Component {
                 isView: false,
                 fadeAnim: new Animated.Value(0),
                 errors: [],
+                xPosition: 0,
                 arrayImages: [
                     {
                         index: 1,
@@ -197,6 +201,8 @@ export default class CardDeckNew extends Component {
         StatusBar.setHidden(true);
         this.animatedValue = new Animated.Value(1);
         this.animatedAudioValue = new Animated.Value(1);
+        this.animatedCardValue = new Animated.Value(1);
+
         this.pullUsers();
     }
 
@@ -293,7 +299,7 @@ export default class CardDeckNew extends Component {
     };
 
     setIsSwipingBack = (index, isSwipingBack) => {
-
+       
         this.setState(
             {
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -311,6 +317,16 @@ export default class CardDeckNew extends Component {
     };
 
     setCardback() {
+
+        Animated.spring(this.animatedCardValue,{
+            toValue: 1.2,
+        }).start(() => {
+            Animated.spring(this.animatedCardValue,{
+                toValue: 1,
+                
+            }).start();
+        });
+
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -323,6 +339,8 @@ export default class CardDeckNew extends Component {
                 audio: renderArray[this.state.currentCardNumber - 1].audio,
             })
         }
+       
+
     }
 
 
@@ -345,12 +363,16 @@ export default class CardDeckNew extends Component {
     };
 
     swipeCard = (index) => {
+        Animated.spring(this.animatedCardValue,{
+            toValue: 1,
+        }).start();
+
         this.playCardSound();
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
 
-                this.setIsSwiping(index, false)
+               this.setIsSwiping(index, false)
             })
 
         }
@@ -376,6 +398,17 @@ export default class CardDeckNew extends Component {
         }
     }
     componentDidMount() {
+
+        // For animation 
+
+        // Animated.timing(                  // Animate over time
+        //     this.state.fadeAnim,            // The animated value to drive
+        //     {
+        //       toValue: 1,                   // Animate to opacity: 1 (opaque)
+        //       duration: 10000,              // Make it take a while
+        //     }
+        //   ).start();  
+
         SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
             console.log('finished playing', success)
         })
@@ -385,9 +418,13 @@ export default class CardDeckNew extends Component {
         SoundPlayer.unmount()
     }
 
-
-
     renderCard = (card, index) => {
+        const animatedCardStyle = {
+            transform : [{scale: this.animatedCardValue}]
+        };
+
+        let { fadeAnim } = this.state;
+        let { xPositionTemp } = this.state.xPosition  
         console.log("Device width ", deviceWidth, "\n", "DeviceHeight", deviceHeight);
         let sentenceStr = this.state.question1 + " "+" "+this.state.question2;
        let viewMargin;
@@ -406,9 +443,7 @@ export default class CardDeckNew extends Component {
         return (
             <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
-
-                <View style={styles.card1}>
-
+                <Animatable.View ref="viewCard" style={[styles.card1, animatedCardStyle]}>
 
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
                     this.setState({ isView: !this.state.isView }) }} >
@@ -417,7 +452,7 @@ export default class CardDeckNew extends Component {
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                     </TouchableOpacity>
 
-                </View>
+                </Animatable.View>
 
                 <Animated.View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
 
@@ -453,12 +488,16 @@ export default class CardDeckNew extends Component {
     };
 
     render() {
+        
+
         const animatedStyle = {
             transform : [{scale: this.animatedValue}]
-        }
+        };
         const animatedAudioStyle = {
             transform : [{scale: this.animatedAudioValue}]
-        }
+        };
+        
+
         const isView = this.state.isView;
 
         // For showing number 
@@ -609,6 +648,7 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 1
                     }} />:null}
 
+{/* For backbutton showing in circle  */}
                     {!isView?<ImageBackground style={{
                         left: '10%',
                         width: 80,

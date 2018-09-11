@@ -381,7 +381,7 @@ position: 'absolute',
     fontWeight: '500',
     fontSize: 23,
     height: Platform.OS === 'ios' ? 30 : 50,
-   // backgroundColor: 'yellow'
+   
     
   },
   textCardDetail: {
@@ -390,7 +390,7 @@ position: 'absolute',
     fontWeight: '300',
     fontSize: 20,
    // backgroundColor: 'green',
-    height: Platform.OS === 'ios' ? 85 : 90,
+    height: 92,
   //  alignItems:'center'
 
   },
