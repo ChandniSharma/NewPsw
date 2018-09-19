@@ -280,11 +280,6 @@ export default class CardDeckNew extends Component {
         this.setState({ isView: !this.state.isView })
     }
 
-    flipStart() {
-
-    }
-
-
     swipeBack = (index) => {
         this.playCardSound();
         console.log("Swiping Back: ", this.state.isSwipingBack)
@@ -371,7 +366,6 @@ export default class CardDeckNew extends Component {
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
-
                this.setIsSwiping(index, false)
             })
 
@@ -438,10 +432,24 @@ export default class CardDeckNew extends Component {
         } else{
             viewMargin = '22%'; 
         }
-        // Disable right swipe on first card//
-
+        // For 4 th card remove full stop space//
+        let textTemp
+                    if (index === 3) {
+                        textTemp = <Text
+                                        style={[ styles.textSentence,
+                                        {adjustsFontSizeToFit: true},
+                                        {allowFontScaling: true},
+                                        ]}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + ""}</Text>{this.state.question2}</Text>
+                    } else {
+                        textTemp = <Text
+                                        style={[ styles.textSentence,
+                                            {adjustsFontSizeToFit: true},
+                                            {allowFontScaling: true},
+                                            ]}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
+                    }
+                    
         return (
-            <CardFlip style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
+            <CardFlip duration={370} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
                 <Animatable.View ref="viewCard" style={[styles.card1, animatedCardStyle]}>
 
@@ -468,18 +476,7 @@ export default class CardDeckNew extends Component {
                         </ImageBackground>
 
                         <View style={{height: '40%' , marginLeft: viewMargin, marginRight: viewMargin, justifyContent: 'center' , alignItems: 'center', bottom: '17%'}}>
-                            <Text
-                                style={{ 
-                                height: 'auto',
-                                fontSize: 36,
-                                textAlign: 'center',
-                                width: '100%',
-                                fontFamily: "Comic Sans MS",
-                                color: '#535557',
-                                backgroundColor: 'transparent',
-                                adjustsFontSizeToFit: true,
-                                allowFontScaling: true,
-                                }}>{this.state.question1 + " "}<Text style={{ color: '#4a90e2' }}>{this.state.alpha + " "}</Text>{this.state.question2}</Text>
+                            {textTemp}
                         </View>
                     </View>
                 </Animated.View>
@@ -540,7 +537,7 @@ export default class CardDeckNew extends Component {
                     disableBottomSwipe={true}
                     disableRightSwipe={false}
                     disableLeftSwipe={false}
-                    swipeAnimationDuration={100}
+                    swipeAnimationDuration={150}
                 />
             } else {
                 // this is for last card
@@ -564,7 +561,7 @@ export default class CardDeckNew extends Component {
                         disableBottomSwipe={true}
                         disableRightSwipe={true}
                         disableLeftSwipe={true}
-                        swipeAnimationDuration={100}
+                        swipeAnimationDuration={150}
 
                     />
                 } 
@@ -610,7 +607,7 @@ export default class CardDeckNew extends Component {
                 disableBottomSwipe={true}
                 disableRightSwipe={true}
                 disableLeftSwipe={true}
-                swipeAnimationDuration={100}
+                swipeAnimationDuration={150}
             />
         }
         return (
@@ -625,7 +622,7 @@ export default class CardDeckNew extends Component {
 
                         </TouchableOpacity>}
 
-                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular" }}>sightwords</Text>
+                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
 
 
                     {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
@@ -759,8 +756,6 @@ export default class CardDeckNew extends Component {
                         </ImageBackground>
                     </ImageBackground>:null}
 
-
-
                 </ImageBackground>
 
 
@@ -791,7 +786,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'transparent',
     },
-
+textSentence:{
+    height: 'auto',
+    fontSize: 36,
+    textAlign: 'center',
+    width: '100%',
+    fontFamily: "Comic Sans MS",
+    color: '#535557',
+    backgroundColor: 'transparent'
+},
     content: {
         //DR bottom:100,
         flex: 1,
