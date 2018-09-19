@@ -537,7 +537,7 @@ export default class CardDeckNew extends Component {
                     disableBottomSwipe={true}
                     disableRightSwipe={false}
                     disableLeftSwipe={false}
-                    swipeAnimationDuration={150}
+                    swipeAnimationDuration={130}
                 />
             } else {
                 // this is for last card
@@ -561,7 +561,7 @@ export default class CardDeckNew extends Component {
                         disableBottomSwipe={true}
                         disableRightSwipe={true}
                         disableLeftSwipe={true}
-                        swipeAnimationDuration={150}
+                        swipeAnimationDuration={130}
 
                     />
                 } 
@@ -607,7 +607,7 @@ export default class CardDeckNew extends Component {
                 disableBottomSwipe={true}
                 disableRightSwipe={true}
                 disableLeftSwipe={true}
-                swipeAnimationDuration={150}
+                swipeAnimationDuration={130}
             />
         }
         return (
