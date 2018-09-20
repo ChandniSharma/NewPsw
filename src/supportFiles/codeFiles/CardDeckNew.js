@@ -660,7 +660,7 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 1
                     }} />:null}
 
-{/* For backbutton showing in circle  */}
+                        {/* For backbutton showing in circle  */}
                     {!isView?<ImageBackground style={{
                         left: '10%',
                         width: 80,
@@ -728,23 +728,15 @@ export default class CardDeckNew extends Component {
                                                       onPressIn={this.handlePressAudioIn}
                                                       onPressOut={this.handlePressAudioOut}>
                                 <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
-                                    {!this.state.isAudio?<ImageBackground style={[{
+                                   <ImageBackground style={[{
                                         width: 70,
                                         height: 70,
                                         alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                                     }]} source={require('./audio_circle.png')}>
 
-                                            <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
-                                    </ImageBackground>:<ImageBackground style={[{
-                                        width: 70,
-                                        height: 70,
-                                        alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                    }]} source={require('./audio_circle.png')}>
+                                        <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
+                                    </ImageBackground>
 
-                                        <Image source={require('./speaker.png')} style={{ width: 30,
-                                            height: 30,
-                                            alignSelf: 'center'}} />
-                                    </ImageBackground>}
                                 </Animated.View>
                             </TouchableWithoutFeedback>
                         </ImageBackground>
