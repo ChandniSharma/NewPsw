@@ -400,6 +400,10 @@ export default class CardDeckNew extends Component {
     playWordSound() {
         try {
             // play the file tone.mp3
+          //  SoundPlayer.playSoundFile((this.state.audio), 'mp3')
+
+            //SoundPlayer.playSoundFile((this.state.sentenceAudio), 'mp3')
+
             SoundPlayer.playSoundFile((this.state.isView?this.state.sentenceAudio:this.state.audio), 'mp3')
             // or play from url
         } catch (e) {
