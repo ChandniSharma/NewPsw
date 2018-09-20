@@ -654,17 +654,6 @@ export default class CardDeckNew extends Component {
 
                     </View>
 
-                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}
-
-                        {/* For backbutton showing in circle  */}
                     {!isView?<ImageBackground style={{
                         left: '10%',
                         width: 80,
@@ -679,26 +668,119 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 1
                     }} source={require('./circleGray.png')} ref={"back"}>
                         <TouchableWithoutFeedback onPress={() => this.setCardback()}
-                            onPressIn={this.handlePressIn}
-                        onPressOut={this.handlePressOut}>
+                                                  onPressIn={this.handlePressIn}
+                                                  onPressOut={this.handlePressOut}>
 
                             <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
                                 {!this.state.isBack?<ImageBackground  style={{
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} source={require('./circleBtnOutside.png')}>
+                                }} >
 
-                                    <Image source={require('./back_button.png')} style={styles.imageBackButton} />
+                                    <Image  style={styles.imageBackButton} />
+                                </ImageBackground>:<ImageBackground  style={{
+                                    width: 50,
+                                    height: 50,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }} >
+
+                                </ImageBackground>}
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
+                    </ImageBackground>:null}
+
+                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
+                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} />:null}
+
+                        {/* For backbutton showing in circle  */}
+
+                    {!isView?<ImageBackground style={{
+                        left: '10%',
+                        width: 80,
+                        height: 80, position: 'absolute', bottom: '5%',
+                        justifyContent: 'center', alignItems: 'center',
+                    }} source={require('./circleGray.png')} ref={"back1"}>
+                        <TouchableWithoutFeedback onPress={() => this.setCardback()}
+                                                  onPressIn={this.handlePressIn}
+                                                  onPressOut={this.handlePressOut}>
+
+                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
+                                {!this.state.isBack?<ImageBackground  style={{
+                                    width: 50,
+                                    height: 50,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }}  source={require('./circleBtnOutside.png')} >
+
+                                    <Image source={require('./back_button.png')}  style={styles.imageBackButton} />
                                 </ImageBackground>:<ImageBackground  style={{
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                                 }} source={require('./undo_red.png')}>
-
+                                    <Image   style={styles.imageBackButton} />
                                 </ImageBackground>}
                             </Animated.View>
                         </TouchableWithoutFeedback>
+                    </ImageBackground>:null}
+
+                    <ImageBackground style={{
+                        width: 100,
+                        height: 100,
+                        position: 'absolute', bottom: '4.5%',
+                        alignSelf:'center',
+                        justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
+                        shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }}   ref={"audio"}>
+
+                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}
+                                                  onPressIn={this.handlePressAudioIn}
+                                                  onPressOut={this.handlePressAudioOut}>
+                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
+                                <ImageBackground style={[{
+                                    width: 70,
+                                    height: 70,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }]} >
+
+                                    <Image  style={styles.imageSpeaker} />
+                                </ImageBackground>
+
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
+                    </ImageBackground>
+
+                    {!isView?<ImageBackground style={{
+                        right: '10%', width: 80,
+                        height: 80, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '5%',
+                        shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} source={require('./circleGray.png')}>
+                        <ImageBackground style={{
+                            width: 50,
+                            height: 50,
+                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                        }} source={require('./circleBtnOutside.png')}>
+                            <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
+                        </ImageBackground>
                     </ImageBackground>:null}
 
 
@@ -718,15 +800,8 @@ export default class CardDeckNew extends Component {
                             height: 100,
                             position: 'absolute', bottom: '4.5%',
                             alignSelf:'center',
-                             justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
-                            shadowOffset: {
-                                width: 0,
-                                height: 1
-                            },
-                            shadowOpacity: 0.5,
-
-                            shadowRadius: 1
-                        }} source={require('./circleGray.png')}  ref={"audio"}>
+                             justifyContent: 'center', alignItems: 'center'
+                        }} source={require('./circleGray.png')}  ref={"audio1"}>
 
                             <TouchableWithoutFeedback onPress={() => this.playWordSound()}
                                                       onPressIn={this.handlePressAudioIn}
@@ -749,14 +824,8 @@ export default class CardDeckNew extends Component {
 
                     {!isView?<ImageBackground style={{
                         right: '10%', width: 80,
-                        height: 80, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '5%',
-                        shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
+                        height: 80, justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: '5%',
 
-                        shadowRadius: 1
                     }} source={require('./circleGray.png')}>
                         <ImageBackground style={{
                             width: 50,
