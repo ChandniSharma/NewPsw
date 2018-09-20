@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -44,6 +45,7 @@
 		8288BDBF63754B4EBE724B87 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059F9C5D61EB490CB08EE75F /* Montserrat-Regular.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		88D4F6A546D84F4197919048 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7369D4FEFA004BDC8F773DA0 /* libRNSound.a */; };
+		991709622153821900D2A467 /* a_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 991709392153821900D2A467 /* a_sentence.mp3 */; };
 		9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D837213EA54F00A563EC /* Montserrat-Light.ttf */; };
 		9917D862213EA69F00A563EC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */; };
 		9917D864213EC4D100A563EC /* cardslidesound_Reduce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9917D863213EC4D100A563EC /* cardslidesound_Reduce.mp3 */; };
@@ -61,6 +63,17 @@
 		9961E4A8213FF5B900F9061D /* Ten.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9961E474213FF5B900F9061D /* Ten.mp3 */; };
 		9961E4A9213FF5B900F9061D /* Was.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9961E475213FF5B900F9061D /* Was.mp3 */; };
 		9961E4AA213FF5B900F9061D /* Up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9961E476213FF5B900F9061D /* Up.mp3 */; };
+		999C49552153897D0048DFFF /* come_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C49542153897D0048DFFF /* come_sentence.mp3 */; };
+		999C49572153898E0048DFFF /* on_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C49562153898E0048DFFF /* on_sentence.mp3 */; };
+		999C4959215389940048DFFF /* ran_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C4958215389940048DFFF /* ran_sentence.mp3 */; };
+		999C495B2153899B0048DFFF /* see_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C495A2153899B0048DFFF /* see_sentence.mp3 */; };
+		999C495D215389B90048DFFF /* ten_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C495C215389B90048DFFF /* ten_sentence.mp3 */; };
+		999C495F215389C00048DFFF /* two_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C495E215389C00048DFFF /* two_sentence.mp3 */; };
+		999C4961215389C60048DFFF /* up_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C4960215389C60048DFFF /* up_sentence.mp3 */; };
+		999C4963215389CD0048DFFF /* was_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C4962215389CD0048DFFF /* was_sentence.mp3 */; };
+		999C4965215389DB0048DFFF /* the_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C4964215389DB0048DFFF /* the_sentence.mp3 */; };
+		999C496721538A450048DFFF /* jump_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C496621538A450048DFFF /* jump_sentence.mp3 */; };
+		999C496921538A780048DFFF /* go_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C496821538A780048DFFF /* go_sentence.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
@@ -393,6 +406,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundPlayer.xcodeproj; path = "../node_modules/react-native-sound-player/ios/RNSoundPlayer.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		991709392153821900D2A467 /* a_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_sentence.mp3; sourceTree = "<group>"; };
 		9917D837213EA54F00A563EC /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		9917D863213EC4D100A563EC /* cardslidesound_Reduce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardslidesound_Reduce.mp3; sourceTree = "<group>"; };
@@ -410,6 +424,17 @@
 		9961E474213FF5B900F9061D /* Ten.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ten.mp3; sourceTree = "<group>"; };
 		9961E475213FF5B900F9061D /* Was.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Was.mp3; sourceTree = "<group>"; };
 		9961E476213FF5B900F9061D /* Up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Up.mp3; sourceTree = "<group>"; };
+		999C49542153897D0048DFFF /* come_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = come_sentence.mp3; path = ../../src/supportFiles/codeFiles/come_sentence.mp3; sourceTree = "<group>"; };
+		999C49562153898E0048DFFF /* on_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = on_sentence.mp3; path = ../../src/supportFiles/codeFiles/on_sentence.mp3; sourceTree = "<group>"; };
+		999C4958215389940048DFFF /* ran_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ran_sentence.mp3; path = ../../src/supportFiles/codeFiles/ran_sentence.mp3; sourceTree = "<group>"; };
+		999C495A2153899B0048DFFF /* see_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = see_sentence.mp3; path = ../../src/supportFiles/codeFiles/see_sentence.mp3; sourceTree = "<group>"; };
+		999C495C215389B90048DFFF /* ten_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ten_sentence.mp3; path = ../../src/supportFiles/codeFiles/ten_sentence.mp3; sourceTree = "<group>"; };
+		999C495E215389C00048DFFF /* two_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = two_sentence.mp3; path = ../../src/supportFiles/codeFiles/two_sentence.mp3; sourceTree = "<group>"; };
+		999C4960215389C60048DFFF /* up_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = up_sentence.mp3; path = ../../src/supportFiles/codeFiles/up_sentence.mp3; sourceTree = "<group>"; };
+		999C4962215389CD0048DFFF /* was_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = was_sentence.mp3; path = ../../src/supportFiles/codeFiles/was_sentence.mp3; sourceTree = "<group>"; };
+		999C4964215389DB0048DFFF /* the_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = the_sentence.mp3; path = ../../src/supportFiles/codeFiles/the_sentence.mp3; sourceTree = "<group>"; };
+		999C496621538A450048DFFF /* jump_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump_sentence.mp3; path = ../../src/supportFiles/codeFiles/jump_sentence.mp3; sourceTree = "<group>"; };
+		999C496821538A780048DFFF /* go_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = go_sentence.mp3; path = ../../src/supportFiles/codeFiles/go_sentence.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C3CCBF6AADB349AD87F45CF1 /* libRNPlayAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPlayAudio.a; sourceTree = "<group>"; };
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
@@ -715,7 +740,19 @@
 		9961E46A213FF5B800F9061D /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				991709392153821900D2A467 /* a_sentence.mp3 */,
+				999C495C215389B90048DFFF /* ten_sentence.mp3 */,
+				999C49562153898E0048DFFF /* on_sentence.mp3 */,
+				999C496621538A450048DFFF /* jump_sentence.mp3 */,
+				999C4958215389940048DFFF /* ran_sentence.mp3 */,
+				999C4964215389DB0048DFFF /* the_sentence.mp3 */,
+				999C496821538A780048DFFF /* go_sentence.mp3 */,
+				999C495E215389C00048DFFF /* two_sentence.mp3 */,
+				999C49542153897D0048DFFF /* come_sentence.mp3 */,
+				999C495A2153899B0048DFFF /* see_sentence.mp3 */,
+				999C4962215389CD0048DFFF /* was_sentence.mp3 */,
 				9961E46B213FF5B800F9061D /* A.mp3 */,
+				999C4960215389C60048DFFF /* up_sentence.mp3 */,
 				9961E46C213FF5B800F9061D /* The.mp3 */,
 				9961E46D213FF5B800F9061D /* Go.mp3 */,
 				9961E46E213FF5B800F9061D /* Ran.mp3 */,
@@ -1241,12 +1278,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999C496721538A450048DFFF /* jump_sentence.mp3 in Resources */,
 				9961E4A3213FF5B900F9061D /* Come.mp3 in Resources */,
+				999C49552153897D0048DFFF /* come_sentence.mp3 in Resources */,
 				9961E4AA213FF5B900F9061D /* Up.mp3 in Resources */,
 				9961E4A1213FF5B900F9061D /* Go.mp3 in Resources */,
 				9917D862213EA69F00A563EC /* Montserrat-Regular.ttf in Resources */,
 				99382C67212FE3F00000F829 /* cardslidesound.mp3 in Resources */,
+				999C496921538A780048DFFF /* go_sentence.mp3 in Resources */,
+				999C4961215389C60048DFFF /* up_sentence.mp3 in Resources */,
+				999C4965215389DB0048DFFF /* the_sentence.mp3 in Resources */,
+				999C495B2153899B0048DFFF /* see_sentence.mp3 in Resources */,
 				9961E4A8213FF5B900F9061D /* Ten.mp3 in Resources */,
+				999C495F215389C00048DFFF /* two_sentence.mp3 in Resources */,
+				999C4959215389940048DFFF /* ran_sentence.mp3 in Resources */,
+				999C495D215389B90048DFFF /* ten_sentence.mp3 in Resources */,
 				9961E4A0213FF5B900F9061D /* The.mp3 in Resources */,
 				9961E4A6213FF5B900F9061D /* On.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -1259,12 +1305,15 @@
 				9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */,
 				9961E4A5213FF5B900F9061D /* Two.mp3 in Resources */,
 				9961E4A4213FF5B900F9061D /* See.mp3 in Resources */,
+				999C49572153898E0048DFFF /* on_sentence.mp3 in Resources */,
 				9961E4A7213FF5B900F9061D /* Jump.mp3 in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
 				4F587238647649E78262AA54 /* comicsas.ttf in Resources */,
+				991709622153821900D2A467 /* a_sentence.mp3 in Resources */,
 				99382CA0212FF44A0000F829 /* comicsas.ttf in Resources */,
 				7A8862DA80554FC9B18C99FA /* Montserrat-Light.ttf in Resources */,
 				8288BDBF63754B4EBE724B87 /* Montserrat-Regular.ttf in Resources */,
+				999C4963215389CD0048DFFF /* was_sentence.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
