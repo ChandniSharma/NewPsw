@@ -59,6 +59,7 @@ export default class CardDeckNew extends Component {
                 currentCardNumber: 0,
                 cardCount: 1,
                 audio: 'A',
+                sentenceAudio:'a_sentence',
                 alpha: "a",
                 question1: 'I saw',
                 question2: "dog.",
@@ -81,7 +82,8 @@ export default class CardDeckNew extends Component {
                         sentence2: 'dog.',
                         backgndImage: require('./Dog_background.png'),
                         frontImage: require('./Dog_background.png'),
-                        audio: 'A'
+                        audio: 'A',
+                        sentenceAudio:'a_sentence',
                     },
                     {
                         index: 2,
@@ -90,6 +92,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'away.',
                         backgndImage: require('./Zebra_background.png'),
                         frontImage: require('./Zebra_background.png'),
+                        sentenceAudio:'ran_sentence',
                         audio: 'Ran'
                     },
                     {
@@ -99,6 +102,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'and see the rainbow.',
                         backgndImage: require('./Rainbow_background.png'),
                         frontImage: require('./Rainbow_background.png'),
+                        sentenceAudio:'come_sentence',
                         audio: 'Come'
                     },
                     {
@@ -108,6 +112,7 @@ export default class CardDeckNew extends Component {
                         sentence2: '.',
                         backgndImage: require('./up_color.png'),
                         frontImage: require('./up_color.png'),
+                        sentenceAudio:'up_sentence',
                         audio: 'Up'
                     },
                     {
@@ -117,6 +122,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'the boat.',
                         backgndImage: require('./Boat_background.png'),
                         frontImage: require('./Boat_background.png'),
+                        sentenceAudio:'see_sentence',
                         audio: 'See'
                     },
                     {
@@ -126,6 +132,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'sleeping.',
                         backgndImage: require('./Tiger_sleeping_background.png'),
                         frontImage: require('./Tiger_sleeping_background.png'),
+                        sentenceAudio:'was_sentence',
                         audio: 'Was'
                     },
 
@@ -136,6 +143,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'ball.',
                         backgndImage: require('./Beachball_background.png'),
                         frontImage: require('./Beachball_background.png'),
+                        sentenceAudio:'the_sentence',
                         audio: 'The'
                     },
                     {
@@ -145,6 +153,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'very high.',
                         backgndImage: require('./Leopard_background.png'),
                         frontImage: require('./Leopard_background.png'),
+                        sentenceAudio:'jump_sentence',
                         audio: 'Jump'
                     },
                     {
@@ -154,6 +163,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'the bike.',
                         backgndImage: require('./Bicycle_background.png'),
                         frontImage: require('./Bicycle_background.png'),
+                        sentenceAudio:'on_sentence',
                         audio: 'On'
                     },
                     {
@@ -163,6 +173,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'kangaroos.',
                         backgndImage: require('./Kangaroos_background.png'),
                         frontImage: require('./Kangaroos_background.png'),
+                        sentenceAudio:'ten_sentence',
                         audio: 'Ten'
                     },
 
@@ -173,6 +184,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'fishing.',
                         backgndImage: require('./Fishing_background.png'),
                         frontImage: require('./Fishing_background.png'),
+                        sentenceAudio:'go_sentence',
                         audio: 'Go'
                     },
                     {
@@ -182,6 +194,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'tigers at the zoo.',
                         backgndImage: require('./Tigercubs_background.png'),
                         frontImage: require('./Tigercubs_background.png'),
+                        sentenceAudio:'two_sentence',
                         audio: 'Two'
                     },
 
@@ -337,6 +350,7 @@ export default class CardDeckNew extends Component {
                 question2: renderArray[this.state.currentCardNumber - 1].sentence2,
                 alpha: renderArray[this.state.currentCardNumber - 1].word,
                 audio: renderArray[this.state.currentCardNumber - 1].audio,
+                sentenceAudio: renderArray[this.state.currentCardNumber - 1].sentenceAudio,
             })
         }
        
@@ -358,6 +372,7 @@ export default class CardDeckNew extends Component {
                 question2: renderArray[index + 1].sentence2,
                 alpha: renderArray[index + 1].word,
                 audio: renderArray[index + 1].audio,
+                sentenceAudio: renderArray[index + 1].sentenceAudio,
             }
         )
     };
@@ -391,7 +406,7 @@ export default class CardDeckNew extends Component {
     playWordSound() {
         try {
             // play the file tone.mp3
-            SoundPlayer.playSoundFile(this.state.audio, 'mp3')
+            SoundPlayer.playSoundFile((this.state.isView?this.state.sentenceAudio:this.state.audio), 'mp3')
             // or play from url
         } catch (e) {
             console.log(`cannot play the sound file`, e)

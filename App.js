@@ -369,9 +369,7 @@ position: 'absolute',
     fontWeight: '500',
     fontSize: 23,
     height: Platform.OS === 'ios' ? 30 : 50,
-    textShadowColor: 'rgb(0,0,0)',
-    textShadowOffset: { width: 1, height: 4 },
-    textShadowRadius: 5
+
   
   },
   
