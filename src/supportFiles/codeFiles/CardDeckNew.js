@@ -734,16 +734,16 @@ export default class CardDeckNew extends Component {
                     <ImageBackground style={{
                         width: 100,
                         height: 100,
-                        position: 'absolute', bottom: '4.5%',
+                        position: 'absolute', bottom: '3.5%',
                         alignSelf:'center',
                         justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
                         shadowOffset: {
                             width: 0,
                             height: 1
                         },
-                        shadowOpacity: 0.5,
+                        shadowOpacity: 0.8,
 
-                        shadowRadius: 1
+                        shadowRadius: 2
                     }}   ref={"audio"}>
 
                         <TouchableWithoutFeedback onPress={() => this.playWordSound()}
@@ -798,7 +798,7 @@ export default class CardDeckNew extends Component {
                         <ImageBackground style={{
                             width: 100,
                             height: 100,
-                            position: 'absolute', bottom: '4.5%',
+                            position: 'absolute', bottom: '3.5%',
                             alignSelf:'center',
                              justifyContent: 'center', alignItems: 'center'
                         }} source={require('./circleGray.png')}  ref={"audio1"}>
