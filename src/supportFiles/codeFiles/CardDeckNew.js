@@ -347,7 +347,7 @@ export default class CardDeckNew extends Component {
             })
         }
 
-        this.bounceInRight();
+
     }
 
 
