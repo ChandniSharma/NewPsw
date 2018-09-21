@@ -396,13 +396,14 @@ export default class CardDeckNew extends Component {
     }
 
     playWordSound() {
+        this.setState({
+            isAudio:true
+        })
         try {
-            // play the file tone.mp3
-          //  SoundPlayer.playSoundFile((this.state.audio), 'mp3')
 
-            //SoundPlayer.playSoundFile((this.state.sentenceAudio), 'mp3')
 
             SoundPlayer.playSoundFile((this.state.isView?this.state.sentenceAudio:this.state.audio), 'mp3')
+
             // or play from url
         } catch (e) {
             console.log(`cannot play the sound file`, e)
@@ -410,18 +411,12 @@ export default class CardDeckNew extends Component {
     }
     componentDidMount() {
 
-        // For animation 
 
-        // Animated.timing(                  // Animate over time
-        //     this.state.fadeAnim,            // The animated value to drive
-        //     {
-        //       toValue: 1,                   // Animate to opacity: 1 (opaque)
-        //       duration: 10000,              // Make it take a while
-        //     }
-        //   ).start();  
 
         SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
-            console.log('finished playing', success)
+            this.setState({
+                isAudio:false
+            })
         })
     }
     // unsubscribe when unmount
@@ -515,7 +510,7 @@ export default class CardDeckNew extends Component {
         
 
         const isView = this.state.isView;
-
+        const isAudio =this.state.isAudio;
         // For showing number 
 
         let temp;
@@ -584,28 +579,7 @@ export default class CardDeckNew extends Component {
 
                     />
                 } 
-                // else {
-                //     swiperStack = <Swiper
-                //         ref={swiper => {
-                //             this.swiper = swiper
-                //         }}
-                //         //onSwiped={this.onSwiped}
-                //         cards={renderArray}
-                //         cardIndex={this.state.cardIndex}
-                //         cardVerticalMargin={80}
-                //         renderCard={this.renderCard}
-                //         onSwipedLeft={this.swipeCard}
-                //         onSwipedRight={this.swipeCard}
-                //         stackSize={4}
-                //         backgroundColor={'transparent'}
-                //         stackSeparation={stackSepration}
-                //         disableTopSwipe={true}
-                //         disableBottomSwipe={true}
-                //         disableRightSwipe={true}
-                //         disableLeftSwipe={false}
-                //         swipeAnimationDuration={100}
-                //     />
-                // }
+
             }
         } else {
             swiperStack = <Swiper
@@ -628,6 +602,27 @@ export default class CardDeckNew extends Component {
                 disableLeftSwipe={true}
                 swipeAnimationDuration={130}
             />
+        }
+
+        let audioImage ;
+        if(!isAudio){
+            audioImage = <ImageBackground style={[{
+                width: 70,
+                height: 70,
+                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+            }]} source={require('./circleblack.png')}>
+
+                <Image source={require('./sound_icon.gif')}   style={styles.imageSpeaker} />
+            </ImageBackground>
+        }else if(isAudio){
+            audioImage = <ImageBackground style={[{
+                width: 70,
+                height: 70,
+                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+            }]} source={require('./circleblack.png')}>
+
+                <Image source={require('./running.gif')} style={styles.imageSpeaker} />
+            </ImageBackground>
         }
         return (
             <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
@@ -801,22 +796,15 @@ export default class CardDeckNew extends Component {
                             position: 'absolute', bottom: '3%',
                             alignSelf:'center',
                              justifyContent: 'center', alignItems: 'center'
-                        }} source={require('./circleGray.png')}  ref={"audio1"}>
+                        }} source={require('./circleblack.png')}  ref={"audio1"}>
 
-                            <TouchableWithoutFeedback onPress={() => this.playWordSound()}
-                                                      onPressIn={this.handlePressAudioIn}
-                                                      onPressOut={this.handlePressAudioOut}>
-                                <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
-                                   <ImageBackground style={[{
-                                        width: 70,
-                                        height: 70,
-                                        alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                    }]} source={require('./audio_circle.png')}>
+                            <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
+                                <View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}]}>
 
-                                        <Image source={require('./audio_off.png')} style={styles.imageSpeaker} />
-                                    </ImageBackground>
+                                    {audioImage}
 
-                                </Animated.View>
+
+                                </View>
                             </TouchableWithoutFeedback>
                         </ImageBackground>
 
@@ -982,18 +970,17 @@ textSentence:{
         alignSelf: 'center'
     },
     imageSpeaker: {
-
-        width: 20,
-        height: 30,
+        width: 40,
+        height: 40,
         alignSelf: 'center',
-        tintColor: 'rgb(211,215,218)',
+
     },
     imageBackButton: {
 
         alignItems: 'center',
         width: 22,
         height: 19,
-        tintColor: 'black',
+
         alignSelf: 'center',
         tintColor: 'rgb(211,215,218)',
     },
@@ -1001,7 +988,7 @@ textSentence:{
 
         width: 20,
         height: 16,
-        tintColor: 'black',
+
         alignSelf: 'center',
         tintColor: 'rgb(211,215,218)',
     },
