@@ -219,6 +219,10 @@ export default class CardDeckNew extends Component {
         this.pullUsers();
     }
 
+    bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
+    handleViewRef = ref => this.view = ref;
+
     handlePressIn(){
         this.setState({
             isBack : true
@@ -275,7 +279,7 @@ export default class CardDeckNew extends Component {
     }
 
     showViewPopup(card, index) {
-        console.log('showView popup: ', index, card, "\n", card.sentence);
+
         this['card' + index].flip();
 
         this.setState({
@@ -322,18 +326,12 @@ export default class CardDeckNew extends Component {
             }
 
         )
+
+
     };
 
     setCardback() {
 
-        Animated.spring(this.animatedCardValue,{
-            toValue: 1.2,
-        }).start(() => {
-            Animated.spring(this.animatedCardValue,{
-                toValue: 1,
-                
-            }).start();
-        });
 
         if (this.state.currentCardNumber > 0) {
             this.setState({
@@ -348,8 +346,8 @@ export default class CardDeckNew extends Component {
                 sentenceAudio: renderArray[this.state.currentCardNumber - 1].sentenceAudio,
             })
         }
-       
 
+        this.bounceInRight();
     }
 
 
@@ -470,7 +468,8 @@ export default class CardDeckNew extends Component {
         return (
             <CardFlip duration={370} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
-                <Animatable.View ref="viewCard" style={[styles.card1, animatedCardStyle]}>
+                <Animatable.View ref={this.handleViewRef}>
+                <View  style={[styles.card1]}>
 
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
                     this.setState({ isView: !this.state.isView }) }} >
@@ -479,9 +478,10 @@ export default class CardDeckNew extends Component {
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                     </TouchableOpacity>
 
+                </View>
                 </Animatable.View>
 
-                <Animated.View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
+                <View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
 
                     <View style={styles.card}>
                         <ImageBackground style={{ height: '80%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
@@ -498,7 +498,7 @@ export default class CardDeckNew extends Component {
                             {textTemp}
                         </View>
                     </View>
-                </Animated.View>
+                </View>
             </CardFlip>
         )
     };
@@ -798,7 +798,7 @@ export default class CardDeckNew extends Component {
                         <ImageBackground style={{
                             width: 100,
                             height: 100,
-                            position: 'absolute', bottom: '3.5%',
+                            position: 'absolute', bottom: '3%',
                             alignSelf:'center',
                              justifyContent: 'center', alignItems: 'center'
                         }} source={require('./circleGray.png')}  ref={"audio1"}>
