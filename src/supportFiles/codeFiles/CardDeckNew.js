@@ -20,7 +20,7 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 
-import AudioPlayer from 'react-native-play-audio';
+//import AudioPlayer from 'react-native-play-audio';
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
@@ -332,7 +332,7 @@ export default class CardDeckNew extends Component {
 
     setCardback() {
 
-
+        console.log('setCardback  setIsSwiping ');
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -352,8 +352,8 @@ export default class CardDeckNew extends Component {
 
 
     setIsSwiping = (index, isSwipingBack) => {
-
-        console.log("Index: ", index)
+       
+        console.log(" setIsSwiping Index: ", index)
         this.setState(
             {
                 isSwipingBack: isSwipingBack,
@@ -371,9 +371,10 @@ export default class CardDeckNew extends Component {
     };
 
     swipeCard = (index) => {
-        Animated.spring(this.animatedCardValue,{
-            toValue: 1,
-        }).start();
+        console.log(' Swipe card ',index);
+        // Animated.spring(this.animatedCardValue,{
+        //     toValue: 1,
+        // }).start();
 
         this.playCardSound();
         if (!this.state.isSwipingBack) {
@@ -401,7 +402,6 @@ export default class CardDeckNew extends Component {
         })
         try {
 
-
             SoundPlayer.playSoundFile((this.state.isView?this.state.sentenceAudio:this.state.audio), 'mp3')
 
             // or play from url
@@ -410,8 +410,6 @@ export default class CardDeckNew extends Component {
         }
     }
     componentDidMount() {
-
-
 
         SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
             this.setState({
@@ -524,40 +522,39 @@ export default class CardDeckNew extends Component {
             renderArray = this.state.arrayImages;
             renderCount++;
         }
-        // For disabling right swipe first card 
 
 
         console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
 
         let swiperStack;
         if (!isView) {
-            if (this.state.currentCardNumber + 1 < 12) {
 
-                swiperStack = <Swiper
-                    ref={swiper => {
-                        this.swiper = swiper
-                    }}
-                    //onSwiped={this.onSwiped}
-                    cards={renderArray}
-                    cardIndex={this.state.cardIndex}
-                    cardVerticalMargin={80}
-                    renderCard={this.renderCard}
-                    onSwipedLeft={this.swipeCard}
-                    onSwipedRight={this.swipeCard}
-                    stackSize={4}
-                    backgroundColor={'transparent'}
-                    stackSeparation={stackSepration}
-                    disableTopSwipe={true}
-                    disableBottomSwipe={true}
-                    disableRightSwipe={false}
-                    disableLeftSwipe={false}
-                    swipeAnimationDuration={130}
-                />
-            } else {
-                // this is for last card
-                if (this.state.currentCardNumber + 1 >= 11) {
+                    // this is for last card
+                    if (this.state.currentCardNumber == 11) {
 
-                    swiperStack = <Swiper
+                        swiperStack = <Swiper
+                            ref={swiper => {
+                                this.swiper = swiper
+                            }}
+                            //onSwiped={this.onSwiped}
+                            cards={renderArray}
+                            cardIndex={this.state.cardIndex}
+                            cardVerticalMargin={80}
+                            renderCard={this.renderCard}
+                            onSwipedLeft={this.swipeCard}
+                            onSwipedRight={this.swipeCard}
+                            stackSize={4}
+                            backgroundColor={'transparent'}
+                            stackSeparation={stackSepration}
+                            disableTopSwipe={true}
+                            disableBottomSwipe={true}
+                            disableRightSwipe={true}
+                            disableLeftSwipe={true}
+                            swipeAnimationDuration={100}
+
+                        />
+                    } else{
+                        swiperStack = <Swiper
                         ref={swiper => {
                             this.swiper = swiper
                         }}
@@ -573,15 +570,14 @@ export default class CardDeckNew extends Component {
                         stackSeparation={stackSepration}
                         disableTopSwipe={true}
                         disableBottomSwipe={true}
-                        disableRightSwipe={true}
-                        disableLeftSwipe={true}
-                        swipeAnimationDuration={130}
-
+                        disableRightSwipe={false}
+                        disableLeftSwipe={false}
+                        swipeAnimationDuration={100}
                     />
-                } 
-
-            }
+                    }
         } else {
+            // For showing sentence view and disable all directions swipe. 
+
             swiperStack = <Swiper
                 ref={swiper => {
                     this.swiper = swiper
@@ -600,7 +596,7 @@ export default class CardDeckNew extends Component {
                 disableBottomSwipe={true}
                 disableRightSwipe={true}
                 disableLeftSwipe={true}
-                swipeAnimationDuration={130}
+                swipeAnimationDuration={100}
             />
         }
 
@@ -803,11 +799,9 @@ export default class CardDeckNew extends Component {
 
                                     {audioImage}
 
-
                                 </View>
                             </TouchableWithoutFeedback>
                         </ImageBackground>
-
 
 
                     {!isView?<ImageBackground style={{
