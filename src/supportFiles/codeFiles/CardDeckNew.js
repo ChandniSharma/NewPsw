@@ -82,7 +82,7 @@ export default class CardDeckNew extends Component {
                         sentence2: 'dog.',
                         backgndImage: require('./Dog_background.png'),
                         frontImage: require('./Dog_background.png'),
-                        audio: 'A',
+                        audio: 'a_sound',
                         sentenceAudio:'a_sentence',
                     },
                     {
@@ -93,7 +93,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Zebra_background.png'),
                         frontImage: require('./Zebra_background.png'),
                         sentenceAudio:'ran_sentence',
-                        audio: 'Ran'
+                        audio: 'ran'
                     },
                     {
                         index: 3,
@@ -103,7 +103,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Rainbow_background.png'),
                         frontImage: require('./Rainbow_background.png'),
                         sentenceAudio:'come_sentence',
-                        audio: 'Come'
+                        audio: 'come'
                     },
                     {
                         index: 4,
@@ -113,7 +113,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./up_color.png'),
                         frontImage: require('./up_color.png'),
                         sentenceAudio:'up_sentence',
-                        audio: 'Up'
+                        audio: 'up'
                     },
                     {
                         index: 5,
@@ -123,7 +123,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Boat_background.png'),
                         frontImage: require('./Boat_background.png'),
                         sentenceAudio:'see_sentence',
-                        audio: 'See'
+                        audio: 'see'
                     },
                     {
                         index: 6,
@@ -133,7 +133,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Tiger_sleeping_background.png'),
                         frontImage: require('./Tiger_sleeping_background.png'),
                         sentenceAudio:'was_sentence',
-                        audio: 'Was'
+                        audio: 'was'
                     },
 
                     {
@@ -144,7 +144,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Beachball_background.png'),
                         frontImage: require('./Beachball_background.png'),
                         sentenceAudio:'the_sentence',
-                        audio: 'The'
+                        audio: 'the'
                     },
                     {
                         index: 8,
@@ -154,7 +154,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Leopard_background.png'),
                         frontImage: require('./Leopard_background.png'),
                         sentenceAudio:'jump_sentence',
-                        audio: 'Jump'
+                        audio: 'jump'
                     },
                     {
                         index: 9,
@@ -164,7 +164,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Bicycle_background.png'),
                         frontImage: require('./Bicycle_background.png'),
                         sentenceAudio:'on_sentence',
-                        audio: 'On'
+                        audio: 'on'
                     },
                     {
                         index: 10,
@@ -174,7 +174,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Kangaroos_background.png'),
                         frontImage: require('./Kangaroos_background.png'),
                         sentenceAudio:'ten_sentence',
-                        audio: 'Ten'
+                        audio: 'ten'
                     },
 
                     {
@@ -185,7 +185,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Fishing_background.png'),
                         frontImage: require('./Fishing_background.png'),
                         sentenceAudio:'go_sentence',
-                        audio: 'Go'
+                        audio: 'go'
                     },
                     {
                         index: 12,
@@ -195,7 +195,7 @@ export default class CardDeckNew extends Component {
                         backgndImage: require('./Tigercubs_background.png'),
                         frontImage: require('./Tigercubs_background.png'),
                         sentenceAudio:'two_sentence',
-                        audio: 'Two'
+                        audio: 'two'
                     },
 
 
@@ -389,7 +389,7 @@ export default class CardDeckNew extends Component {
     playCardSound() {
         try {
             // play the file tone.mp3
-            SoundPlayer.playSoundFile('cardslidesound_Reduce', 'mp3')
+            SoundPlayer.playSoundFile('cardslidesound_reduce', 'mp3')
             // or play from url
         } catch (e) {
             console.log(`cannot play the sound file`, e)
@@ -522,7 +522,6 @@ export default class CardDeckNew extends Component {
             renderArray = this.state.arrayImages;
             renderCount++;
         }
-
 
         console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
 
