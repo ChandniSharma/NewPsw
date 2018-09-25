@@ -465,7 +465,7 @@ export default class CardDeckNew extends Component {
                 <View  style={[styles.card1]}>
 
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
-                    this.setState({ isView: !this.state.isView }) }} >
+                    this.setState({ isView: true }) }} >
 
                         <Text style={styles.label}>{card.word}</Text>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
@@ -480,7 +480,7 @@ export default class CardDeckNew extends Component {
                         <ImageBackground style={{ height: '80%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
                             source={this.state.imageNameBackground}>
 
-                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: !this.state.isView }) }}>
+                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: false }) }}>
 
                                 <Image style={styles.imageCross} source={require('./close.png')} />
                             </TouchableOpacity>
@@ -550,7 +550,12 @@ export default class CardDeckNew extends Component {
                             disableBottomSwipe={true}
                             disableRightSwipe={true}
                             disableLeftSwipe={true}
+                            // For preventing hang condition
                             swipeAnimationDuration={100}
+                            stackAnimationFriction={2}
+                            stackAnimationTension={20}
+                            verticalThreshold={-400}
+                            horizontalThreshold={-400}
 
                         />
                     } else{
@@ -573,6 +578,10 @@ export default class CardDeckNew extends Component {
                         disableRightSwipe={false}
                         disableLeftSwipe={false}
                         swipeAnimationDuration={100}
+                        // stackAnimationFriction={2}
+                        // stackAnimationTension={20}
+                        // verticalThreshold={-200}
+                        // horizontalThreshold={-200}
                     />
                     }
         } else {
@@ -597,6 +606,9 @@ export default class CardDeckNew extends Component {
                 disableRightSwipe={true}
                 disableLeftSwipe={true}
                 swipeAnimationDuration={100}
+                stackAnimationFriction={2}
+                verticalThreshold={-400}
+                horizontalThreshold={-400}
             />
         }
 
@@ -655,7 +667,6 @@ export default class CardDeckNew extends Component {
                             height: 1
                         },
                         shadowOpacity: 0.5,
-
                         shadowRadius: 1
                     }} source={require('./circleGray.png')} ref={"back"}>
                         <TouchableWithoutFeedback onPress={() => this.setCardback()}
@@ -819,7 +830,6 @@ export default class CardDeckNew extends Component {
                     </ImageBackground>:null}
 
                 </ImageBackground>
-
 
             </ImageBackground>
 
