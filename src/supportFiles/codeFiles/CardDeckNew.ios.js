@@ -595,8 +595,8 @@ export default class CardDeckNew extends Component {
                 cardIndex={this.state.cardIndex}
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
-                onSwipedLeft={this.swipeCard}
-                onSwipedRight={this.swipeCard}
+                // onSwipedLeft={this.swipeCard}
+                // onSwipedRight={this.swipeCard}
                 stackSize={4}
                 backgroundColor={'transparent'}
                 stackSeparation={stackSepration}
@@ -871,8 +871,8 @@ textSentence:{
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        /// backgroundColor: 'transparent',
-        backgroundColor: 'green',
+         backgroundColor: 'transparent',
+        //backgroundColor: 'green',
     },
     flipCardSize: {
         width: '100%',
