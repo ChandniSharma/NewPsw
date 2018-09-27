@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import {
     View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
