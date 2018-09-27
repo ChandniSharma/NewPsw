@@ -97,7 +97,7 @@ class ThumbnailCarousel extends Component {
 
     }
 
-    bounceInUp = () => this.view.bounceInUp(2000).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+    fadeInUpBig = () => this.view.fadeInUpBig(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     handleViewRef = ref => this.view = ref;
 
@@ -105,7 +105,7 @@ class ThumbnailCarousel extends Component {
         
         // if (index>= 0 && index<= 5) {
 
-        this.bounceInUp()
+        this.fadeInUpBig()
         this.setState({numberValue: String(index + 1)});
         // }
     }
