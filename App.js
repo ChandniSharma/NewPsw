@@ -6,14 +6,14 @@ import {
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
-import HeaderLeft from './src/supportFiles/codeFiles/headerLeft';
+
 
 import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
-//import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
-// For not showing warning in the bottom
+import * as Animatable from 'react-native-animatable';
+
 console.disableYellowBox = true;
 
 class ThumbnailCarousel extends Component {
@@ -32,7 +32,7 @@ class ThumbnailCarousel extends Component {
     constructor(props) {
         super();
         this.state = {
-            numberValue: "01"
+            numberValue: "1"
         }
         this.state = {
             errors: []
@@ -97,10 +97,15 @@ class ThumbnailCarousel extends Component {
 
     }
 
+    bounceInUp = () => this.view.bounceInUp(2000).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
+    handleViewRef = ref => this.view = ref;
+
     handleSnapToItem(index) {
         
         // if (index>= 0 && index<= 5) {
 
+        this.bounceInUp()
         this.setState({numberValue: String(index + 1)});
         // }
     }
@@ -185,17 +190,29 @@ class ThumbnailCarousel extends Component {
 
           let temp;
         if (this.state.numberValue >= 0) {
-            temp = "0" + String(this.state.numberValue)
+            temp = String(this.state.numberValue)
         } else {
-            temp = "01"
+            temp = "1"
         }
         return (
             <View style={{flex: 1}}>
 
-           <HeaderCustom />
+                <HeaderCustom />
+
+                <View style={styleText.textTopNumber}>
+                    <TextInput editable={false} style={{ color: 'gray',
+                        fontWeight: '500',
+                        fontSize: 35  }} value={"0"}/>
+                    <Animatable.View style={{zIndex:9999}} ref={this.handleViewRef}>
+                        <TextInput editable={false} style={{ color: 'gray',
+                            fontWeight: '500',
+                            fontSize: 35}} value={temp}/>
+                    </Animatable.View>
+                </View>
             
                 <CarouselBackgroundView style={styles.content}>
-                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
+
+
                     <Carousel
                         ref={(c) => {
                             this._carousel = c;
@@ -355,12 +372,11 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    top: Platform.OS === 'ios' ? '4%' : '4%',
-    left: '11.5%',
-    color: 'gray',
-    fontWeight: '500',
-    fontSize: 35,
-position: 'absolute',
+      top: Platform.OS === 'ios' ? '9%' : '9%',
+      left: '11.5%',
+      flexDirection: "row",
+      position: 'absolute',
+      zIndex:99999,
    
   },
   textSightWordTitle: {
