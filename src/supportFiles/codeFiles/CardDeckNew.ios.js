@@ -20,15 +20,12 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 
-//import AudioPlayer from 'react-native-play-audio';
+
+
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
-//import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
-//import Sound from react-native-sound;
 
-// import {asset, NativeModules, VrButton} from 'react-360';
-// const {AudioModule} = NativeModules;
 import SoundPlayer from 'react-native-sound-player'
 
 let result = [];
@@ -299,7 +296,7 @@ export default class CardDeckNew extends Component {
 
     swipeBack = (index) => {
         this.playCardSound();
-        console.log("Swiping Back: ", this.state.isSwipingBack)
+
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeBack(() => {
@@ -347,13 +344,14 @@ export default class CardDeckNew extends Component {
             })
         }
 
-
     }
 
 
     setIsSwiping = (index, isSwipingBack) => {
+
        
         console.log(" setIsSwiping Index: ", index)
+
         this.setState(
             {
                 isSwipingBack: isSwipingBack,
@@ -392,7 +390,7 @@ export default class CardDeckNew extends Component {
             SoundPlayer.playSoundFile('cardslidesound_reduce', 'mp3')
             // or play from url
         } catch (e) {
-            console.log(`cannot play the sound file`, e)
+
         }
     }
 
@@ -406,7 +404,7 @@ export default class CardDeckNew extends Component {
 
             // or play from url
         } catch (e) {
-            console.log(`cannot play the sound file`, e)
+
         }
     }
     componentDidMount() {
@@ -429,11 +427,11 @@ export default class CardDeckNew extends Component {
 
         let { fadeAnim } = this.state;
         let { xPositionTemp } = this.state.xPosition  
-        console.log("Device width ", deviceWidth, "\n", "DeviceHeight", deviceHeight);
+
         let sentenceStr = this.state.question1 + " "+" "+this.state.question2;
        let viewMargin;
 
-       console.log("Sentence length === ",sentenceStr.length);
+
       if(sentenceStr.length<15){
                 viewMargin = '10%';
          }else
@@ -526,6 +524,7 @@ export default class CardDeckNew extends Component {
         console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
 
         let swiperStack;
+
         if (!isView) {
 
                     // this is for last card
@@ -577,10 +576,7 @@ export default class CardDeckNew extends Component {
                         disableRightSwipe={false}
                         disableLeftSwipe={false}
                         swipeAnimationDuration={100}
-                        // stackAnimationFriction={2}
-                        // stackAnimationTension={20}
-                        // verticalThreshold={-200}
-                        // horizontalThreshold={-200}
+
                     />
                     }
         } else {
@@ -595,19 +591,19 @@ export default class CardDeckNew extends Component {
                 cardIndex={this.state.cardIndex}
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
-                // onSwipedLeft={this.swipeCard}
-                // onSwipedRight={this.swipeCard}
+
+                onSwipedLeft={this.swipeCard}
+                onSwipedRight={this.swipeCard}
+
                 stackSize={4}
                 backgroundColor={'transparent'}
                 stackSeparation={stackSepration}
                 disableTopSwipe={true}
                 disableBottomSwipe={true}
-                disableRightSwipe={true}
-                disableLeftSwipe={true}
-                swipeAnimationDuration={100}
-                stackAnimationFriction={2}
-                verticalThreshold={-400}
-                horizontalThreshold={-400}
+
+                disableRightSwipe={false}
+                disableLeftSwipe={false}
+                swipeAnimationDuration={130}
             />
         }
 

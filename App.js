@@ -8,15 +8,66 @@ import * as Animatable from 'react-native-animatable';
 import styled from "styled-components/native"; // Version can be specified in package.json
 import Carousel from 'react-native-snap-carousel'; // Version can be specified in package.json
 import HeaderCustom from './src/supportFiles/codeFiles/headerCustom';
-import HeaderLeft from './src/supportFiles/codeFiles/headerLeft';
+
 
 import { createStackNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
 
 import CardDeckNew from './src/supportFiles/codeFiles/CardDeckNew';
-//import CardDeck from "./src/supportFiles/codeFiles/cardDeck";
-// For not showing warning in the bottom
+import {
+    Animated,
+    Easing
+} from 'react-native';
+
+
 console.disableYellowBox = true;
+
+const transitionConfig = () => {
+    return {
+        transitionSpec: {
+            duration: 750,
+            easing: Easing.out(Easing.poly(4)),
+            timing: Animated.timing,
+            useNativeDriver: true,
+        },
+        screenInterpolator: sceneProps => {
+            const { position, layout, scene, index, scenes } = sceneProps
+            const toIndex = index
+            const thisSceneIndex = scene.index
+            const height = layout.initHeight
+            const width = layout.initWidth
+
+            const translateX = position.interpolate({
+                inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
+                outputRange: [width, 0, 0]
+            })
+
+            // Since we want the card to take the same amount of time
+            // to animate downwards no matter if it's 3rd on the stack
+            // or 53rd, we interpolate over the entire range from 0 - thisSceneIndex
+            const translateY = position.interpolate({
+                inputRange: [0, thisSceneIndex],
+                outputRange: [height, 0]
+            })
+
+            const slideFromRight = { transform: [{ translateX }] }
+            const slideFromBottom = { transform: [{ translateY }] }
+
+            const lastSceneIndex = scenes[scenes.length - 1].index
+
+            // Test whether we're skipping back more than one screen
+            if (lastSceneIndex - toIndex > 1) {
+                // Do not transoform the screen being navigated to
+                if (scene.index === toIndex) return
+                // Hide all screens in between
+                if (scene.index !== lastSceneIndex) return { opacity: 0 }
+                // Slide top screen down
+                return slideFromBottom
+            }
+
+            return slideFromRight
+        },
+    }}
 
 class ThumbnailCarousel extends Component {
 
@@ -33,7 +84,7 @@ class ThumbnailCarousel extends Component {
     constructor(props) {
         super();
         this.state = {
-            numberValue: "01"
+            numberValue: "1"
         }
         this.state = {
             errors: []
@@ -101,6 +152,10 @@ class ThumbnailCarousel extends Component {
 
     }
 
+    fadeInUpBig = () => this.view.fadeInUpBig(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
+    handleViewRef = ref => this.view = ref;
+
     handleSnapToItem(index) {
        this.setState({numberValue: String(index + 1)});
     //    let temp;
@@ -112,12 +167,16 @@ class ThumbnailCarousel extends Component {
       
       // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
 
+        this.fadeInUpBig()
+        this.setState({numberValue: String(index + 1)});
+        // }
     }
 
     moveToNextView(index){
         
         
         if (index===1) {
+
             this.props.navigation.navigate('Details')
         } else {
             console.log('we will move user to lock features');
@@ -194,22 +253,29 @@ class ThumbnailCarousel extends Component {
 
           
         if (this.state.numberValue >= 0) {
-            this.textCombineValue = "0" + String(this.state.numberValue)
+            temp = String(this.state.numberValue)
         } else {
-            this.textCombineValue = "01"
+            temp = "1"
         }
         return (
             <View style={{flex: 1}}>
 
-           <HeaderCustom />
+                <HeaderCustom />
+
+                <View style={styleText.textTopNumber}>
+                    <TextInput editable={false} style={{ color: 'gray',
+                        fontWeight: '500',
+                        fontSize: 35  }} value={"0"}/>
+                    <Animatable.View style={{zIndex:9999}} ref={this.handleViewRef}>
+                        <TextInput editable={false} style={{ color: 'gray',
+                            fontWeight: '500',
+                            fontSize: 35}} value={temp}/>
+                    </Animatable.View>
+                </View>
             
                 <CarouselBackgroundView style={styles.content}>
-                <TouchableWithoutFeedback style={styleText.textTopNumber} onPress={() => this.text.transitionTo({ opacity: 0.2 })}>
-                        <Animatable.Text ref={this.handleTextRef}>Fade me!</Animatable.Text>
-                    </TouchableWithoutFeedback>
-                {/* <TextInput editable={false} style={styleText.textTopNumber} value={temp}/> */}
-                 {/* <Animatable.Text animation="fadeInUp" iterationCount="infinite" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>   */}
-                {/* // {this.textAnimated}  */}
+
+
                     <Carousel
                         ref={(c) => {
                             this._carousel = c;
@@ -369,12 +435,11 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-    top: Platform.OS === 'ios' ? '4%' : '4%',
-    left: '11.5%',
-    color: 'gray',
-    fontWeight: '500',
-    fontSize: 35,
-position: 'absolute',
+      top: Platform.OS === 'ios' ? '9%' : '9%',
+      left: '11.5%',
+      flexDirection: "row",
+      position: 'absolute',
+      zIndex:99999,
    
   },
   textSightWordTitle: {
