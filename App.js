@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import {
-    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar
+    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar,TouchableWithoutFeedback
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -20,7 +20,6 @@ console.disableYellowBox = true;
 
 class ThumbnailCarousel extends Component {
 
-    
     
     static navigationOptions =
         {
@@ -41,6 +40,9 @@ class ThumbnailCarousel extends Component {
         }
         this.props = props;
         this._carousel = {};
+     
+        this.textAnimated;
+         this.textCombineValue;
         this.init();
     }
 
@@ -100,11 +102,16 @@ class ThumbnailCarousel extends Component {
     }
 
     handleSnapToItem(index) {
-        
-        // if (index>= 0 && index<= 5) {
+       this.setState({numberValue: String(index + 1)});
+    //    let temp;
+    //    if (this.state.numberValue >= 0) {
+    //        temp = "0" + String(this.state.numberValue)
+    //    } else {
+    //        temp = "01"
+    //    }
+      
+      // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
 
-        this.setState({numberValue: String(index + 1)});
-        // }
     }
 
     moveToNextView(index){
@@ -181,15 +188,15 @@ class ThumbnailCarousel extends Component {
         );
 
     }
-
+    handleTextRef = ref => this.text = ref;
 
     render = () => {
 
-          let temp;
+          
         if (this.state.numberValue >= 0) {
-            temp = "0" + String(this.state.numberValue)
+            this.textCombineValue = "0" + String(this.state.numberValue)
         } else {
-            temp = "01"
+            this.textCombineValue = "01"
         }
         return (
             <View style={{flex: 1}}>
@@ -197,7 +204,12 @@ class ThumbnailCarousel extends Component {
            <HeaderCustom />
             
                 <CarouselBackgroundView style={styles.content}>
-                <TextInput editable={false} style={styleText.textTopNumber} value={temp}/>
+                <TouchableWithoutFeedback style={styleText.textTopNumber} onPress={() => this.text.transitionTo({ opacity: 0.2 })}>
+                        <Animatable.Text ref={this.handleTextRef}>Fade me!</Animatable.Text>
+                    </TouchableWithoutFeedback>
+                {/* <TextInput editable={false} style={styleText.textTopNumber} value={temp}/> */}
+                 {/* <Animatable.Text animation="fadeInUp" iterationCount="infinite" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>   */}
+                {/* // {this.textAnimated}  */}
                     <Carousel
                         ref={(c) => {
                             this._carousel = c;
