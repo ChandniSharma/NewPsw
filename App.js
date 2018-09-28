@@ -150,9 +150,18 @@ class ThumbnailCarousel extends Component {
 
         };
 
+        
+
     }
 
-    fadeInUpBig = () => this.view.fadeInUpBig(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+     
+
+    fadeInUp = () => {
+
+        //this.view.fadeInUpBig(200, toValues[[, 1500], easing])
+        this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+        
+    }
 
     handleViewRef = ref => this.view = ref;
 
@@ -167,13 +176,12 @@ class ThumbnailCarousel extends Component {
       
       // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
 
-        this.fadeInUpBig()
+        this.fadeInUp()
         this.setState({numberValue: String(index + 1)});
         // }
     }
-
+    
     moveToNextView(index){
-        
         
         if (index===1) {
 
@@ -265,11 +273,15 @@ class ThumbnailCarousel extends Component {
                 <View style={styleText.textTopNumber}>
                     <TextInput editable={false} style={{ color: 'gray',
                         fontWeight: '500',
-                        fontSize: 35  }} value={"0"}/>
-                    <Animatable.View style={{zIndex:9999}} ref={this.handleViewRef}>
+                        fontSize: 35,
+                        
+                          }} value={"0"}/>
+                    <Animatable.View ref={this.handleViewRef}>
                         <TextInput editable={false} style={{ color: 'gray',
                             fontWeight: '500',
-                            fontSize: 35}} value={temp}/>
+                            fontSize: 35,
+                            
+                            }} value={temp}/>
                     </Animatable.View>
                 </View>
             
@@ -439,7 +451,7 @@ const styleText = StyleSheet.create({
       left: '11.5%',
       flexDirection: "row",
       position: 'absolute',
-      zIndex:99999,
+     
    
   },
   textSightWordTitle: {
