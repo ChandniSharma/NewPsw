@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import {
-    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar
+    View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Platform, ImageBackground,StatusBar,TouchableWithoutFeedback
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -72,7 +72,6 @@ const transitionConfig = () => {
 class ThumbnailCarousel extends Component {
 
     
-    
     static navigationOptions =
         {
             title: 'Home',
@@ -92,6 +91,9 @@ class ThumbnailCarousel extends Component {
         }
         this.props = props;
         this._carousel = {};
+     
+        this.textAnimated;
+         this.textCombineValue;
         this.init();
     }
 
@@ -155,8 +157,15 @@ class ThumbnailCarousel extends Component {
     handleViewRef = ref => this.view = ref;
 
     handleSnapToItem(index) {
-        
-        // if (index>= 0 && index<= 5) {
+       this.setState({numberValue: String(index + 1)});
+    //    let temp;
+    //    if (this.state.numberValue >= 0) {
+    //        temp = "0" + String(this.state.numberValue)
+    //    } else {
+    //        temp = "01"
+    //    }
+      
+      // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
 
         this.fadeInUpBig()
         this.setState({numberValue: String(index + 1)});
@@ -238,11 +247,11 @@ class ThumbnailCarousel extends Component {
         );
 
     }
-
+    handleTextRef = ref => this.text = ref;
 
     render = () => {
 
-          let temp;
+          
         if (this.state.numberValue >= 0) {
             temp = String(this.state.numberValue)
         } else {

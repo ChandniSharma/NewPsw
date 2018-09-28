@@ -36,11 +36,8 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* NewPswTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NewPswTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		4F587238647649E78262AA54 /* comicsas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E30B840A67FE41558C0E1373 /* comicsas.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		7A8862DA80554FC9B18C99FA /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74EEF7885F9B444FB45CFBBD /* Montserrat-Light.ttf */; };
 		7B0CEAF9B36241178D279DCE /* libRNSoundPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 000E1E9BC14B498C9DCB6208 /* libRNSoundPlayer.a */; };
-		8288BDBF63754B4EBE724B87 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 059F9C5D61EB490CB08EE75F /* Montserrat-Regular.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		991709622153821900D2A467 /* a_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 991709392153821900D2A467 /* a_sentence.mp3 */; };
 		9917D860213EA54F00A563EC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9917D837213EA54F00A563EC /* Montserrat-Light.ttf */; };
@@ -367,7 +364,6 @@
 		00E356EE1AD99517003FC87E /* NewPswTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewPswTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* NewPswTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPswTests.m; sourceTree = "<group>"; };
-		059F9C5D61EB490CB08EE75F /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* NewPsw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewPsw.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,7 +378,6 @@
 		2D02E4901E0B4A5D006451C7 /* NewPsw-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NewPsw-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		74EEF7885F9B444FB45CFBBD /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundPlayer.xcodeproj; path = "../node_modules/react-native-sound-player/ios/RNSoundPlayer.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -416,7 +411,6 @@
 		99CDCD78215A3B18001338CC /* a_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_sound.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
-		E30B840A67FE41558C0E1373 /* comicsas.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = comicsas.ttf; path = ../assets/fonts/comicsas.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,9 +537,6 @@
 				9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */,
 				99382C77212FF44A0000F829 /* comicsas.ttf */,
 				E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */,
-				E30B840A67FE41558C0E1373 /* comicsas.ttf */,
-				74EEF7885F9B444FB45CFBBD /* Montserrat-Light.ttf */,
-				059F9C5D61EB490CB08EE75F /* Montserrat-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1235,11 +1226,8 @@
 				999C49572153898E0048DFFF /* on_sentence.mp3 in Resources */,
 				9961E4A7213FF5B900F9061D /* jump.mp3 in Resources */,
 				11D24511BACC4AB798B452E6 /* Jua-Regular.ttf in Resources */,
-				4F587238647649E78262AA54 /* comicsas.ttf in Resources */,
 				991709622153821900D2A467 /* a_sentence.mp3 in Resources */,
 				99382CA0212FF44A0000F829 /* comicsas.ttf in Resources */,
-				7A8862DA80554FC9B18C99FA /* Montserrat-Light.ttf in Resources */,
-				8288BDBF63754B4EBE724B87 /* Montserrat-Regular.ttf in Resources */,
 				999C4963215389CD0048DFFF /* was_sentence.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
