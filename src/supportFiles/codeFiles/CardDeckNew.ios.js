@@ -55,7 +55,7 @@ export default class CardDeckNew extends Component {
                 imageNameBackground: require('./Dog_background.png'),
                 currentCardNumber: 0,
                 cardCount: 1,
-                audio: 'A',
+                audio: 'a_sound',
                 sentenceAudio:'a_sentence',
                 alpha: "a",
                 question1: 'I saw',
@@ -613,18 +613,18 @@ export default class CardDeckNew extends Component {
                 width: 70,
                 height: 70,
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./circleblack.png')}>
+            }]} source={require('./audio_circle.png')}>
 
-                <Image source={require('./sound_icon.gif')}   style={styles.imageSpeaker} />
+                <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
             </ImageBackground>
         }else if(isAudio){
             audioImage = <ImageBackground style={[{
                 width: 70,
                 height: 70,
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./circleblack.png')}>
+            }]} source={require('./audio_circle.png')}>
 
-                <Image source={require('./running.gif')} style={styles.imageSpeaker} />
+                <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
             </ImageBackground>
         }
         return (
@@ -743,10 +743,8 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 2
                     }}   ref={"audio"}>
 
-                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}
-                                                  onPressIn={this.handlePressAudioIn}
-                                                  onPressOut={this.handlePressAudioOut}>
-                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
+                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
+                            <Animated.View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
                                 <ImageBackground style={[{
                                     width: 70,
                                     height: 70,
@@ -798,7 +796,7 @@ export default class CardDeckNew extends Component {
                             position: 'absolute', bottom: '3%',
                             alignSelf:'center',
                              justifyContent: 'center', alignItems: 'center'
-                        }} source={require('./circleblack.png')}  ref={"audio1"}>
+                        }} source={require('./circleGray.png')}  ref={"audio1"}>
 
                             <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
                                 <View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}]}>
