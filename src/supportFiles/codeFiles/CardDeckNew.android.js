@@ -24,12 +24,12 @@ import * as Animatable from 'react-native-animatable';
 import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
-//import { PlaySound, StopSound, PlaySoundRepeat, PlaySoundMusicVolume } from 'react-native-play-sound';
-//import Sound from react-native-sound;
-
-// import {asset, NativeModules, VrButton} from 'react-360';
-// const {AudioModule} = NativeModules;
 import SoundPlayer from 'react-native-sound-player'
+// For showing app properly on all devices.
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 let result = [];
 let count = 0;
@@ -591,7 +591,7 @@ export default class CardDeckNew extends Component {
                 // onSwipedRight={this.swipeCard}
                 stackSize={4}
                 backgroundColor={'transparent'}
-                //backgroundColor={'pink'}
+                backgroundColor={'pink'}
 
                 stackSeparation={stackSepration}
                 disableTopSwipe={true}
@@ -632,26 +632,25 @@ export default class CardDeckNew extends Component {
                         <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
                     </TouchableOpacity> :
                         <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
-
                         </TouchableOpacity>}
 
-                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
+                    <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
 
 
                     {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
                         <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%' }}></Text>}
 
 
-                    {!isView? <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-7%'}}>
+                    {!isView? <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-10%'}}>
 
                         {swiperStack}
 
-                    </View> : 
-                    <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-12%' }}>
+                        </View> : 
+                        <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-12%' }}>
 
                         {swiperStack}
 
-                    </View>} 
+                        </View>} 
 
                     {!isView?<ImageBackground style={{
                         left: '10%',
@@ -723,7 +722,7 @@ export default class CardDeckNew extends Component {
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
                                 }} source={require('./undo_red.png')}>
-                                    <Image   style={styles.imageBackButton} />
+                                    <Image style={styles.imageBackButton} />
                                 </ImageBackground>}
                             </Animated.View>
                         </TouchableWithoutFeedback>
@@ -744,10 +743,8 @@ export default class CardDeckNew extends Component {
                         shadowRadius: 2
                     }}   ref={"audio"}>
 
-                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}
-                                                  onPressIn={this.handlePressAudioIn}
-                                                  onPressOut={this.handlePressAudioOut}>
-                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedAudioStyle]}>
+                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
+                            <Animated.View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
                                 <ImageBackground style={[{
                                     width: 70,
                                     height: 70,
@@ -881,7 +878,7 @@ textSentence:{
         // overflow:'hidden',
         // marginTop: '10%',
         width: deviceWidth - 20,
-        height: 500, //(deviceHeight * 3) / 4,
+        height: (deviceHeight * 3) / 4,
         borderRadius: 12,
          backgroundColor: "#ffffff",
        //  backgroundColor: "yellow",
@@ -927,7 +924,6 @@ textSentence:{
         fontSize: 88,
         color: '#4a90e2',
         backgroundColor: 'transparent',
-        
     },
 
     footer: {
@@ -950,18 +946,17 @@ textSentence:{
     },
 
     buttonBack: {
+        height: verticalScale(52),
+        width: moderateScale(33),
         alignSelf: 'flex-start',
-       
+        zIndex: 80,
         marginTop: '7%',
         marginBottom: '10%',
         left: '5%',
         position: 'relative', // add if dont work with above
         justifyContent: 'center',
         alignItems: 'center',
-        // zIndex:50,
-        // marginTop:'5%',
-        // marginLeft:'2%',
-        // position:'relative',
+        
     },
 
     imageLeft: {

@@ -462,10 +462,11 @@ export default class CardDeckNew extends Component {
                 <Animatable.View ref={this.handleViewRef}>
                 <View  style={[styles.card1]}>
 
-                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
-                    this.setState({ isView: true }) }} >
+
 
                         <Text style={styles.label}>{card.word}</Text>
+                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip();
+                        this.setState({ isView: true }) }} >
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                     </TouchableOpacity>
 
@@ -541,19 +542,21 @@ export default class CardDeckNew extends Component {
                             renderCard={this.renderCard}
                             onSwipedLeft={this.swipeCard}
                             onSwipedRight={this.swipeCard}
-                            stackSize={4}
+                            stackSize={5}
                             backgroundColor={'transparent'}
                             stackSeparation={stackSepration}
                             disableTopSwipe={true}
                             disableBottomSwipe={true}
                             disableRightSwipe={true}
                             disableLeftSwipe={true}
+
                             // For preventing hang condition
                             swipeAnimationDuration={100}
                             stackAnimationFriction={2}
                             stackAnimationTension={20}
                             verticalThreshold={-400}
                             horizontalThreshold={-400}
+
 
                         />
                     } else{
@@ -568,7 +571,8 @@ export default class CardDeckNew extends Component {
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
                         onSwipedRight={this.swipeCard}
-                        stackSize={4}
+                        stackSize={5}
+
                         backgroundColor={'transparent'}
                         stackSeparation={stackSepration}
                         disableTopSwipe={true}
@@ -577,10 +581,11 @@ export default class CardDeckNew extends Component {
                         disableLeftSwipe={false}
                         swipeAnimationDuration={100}
 
+
                     />
                     }
         } else {
-            // For showing sentence view and disable all directions swipe. 
+            // For showing sentence view and disable all directions swipe.
 
             swiperStack = <Swiper
                 ref={swiper => {
@@ -595,7 +600,8 @@ export default class CardDeckNew extends Component {
                 onSwipedLeft={this.swipeCard}
                 onSwipedRight={this.swipeCard}
 
-                stackSize={4}
+                stackSize={5}
+
                 backgroundColor={'transparent'}
                 stackSeparation={stackSepration}
                 disableTopSwipe={true}
@@ -604,6 +610,7 @@ export default class CardDeckNew extends Component {
                 disableRightSwipe={true}
                 disableLeftSwipe={true}
                 swipeAnimationDuration={130}
+
             />
         }
 
@@ -639,11 +646,11 @@ export default class CardDeckNew extends Component {
 
                         </TouchableOpacity>}
 
-                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
+                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 0.5, height: 0.5 }, textShadowRadius: 0 }}>sightwords</Text>
 
 
-                    {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
-                        <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%' }}></Text>}
+                    {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
+                        <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%' }}></Text>}
 
 
                     <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center' }}>
@@ -654,8 +661,8 @@ export default class CardDeckNew extends Component {
 
                     {!isView?<ImageBackground style={{
                         left: '10%',
-                        width: 80,
-                        height: 80, position: 'absolute', bottom: '5%',
+                        width: 70,
+                        height: 70, position: 'absolute', bottom: '5%',
                         justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
                         shadowOffset: {
                             width: 0,
@@ -673,48 +680,7 @@ export default class CardDeckNew extends Component {
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} >
-
-                                    <Image  style={styles.imageBackButton} />
-                                </ImageBackground>:<ImageBackground  style={{
-                                    width: 50,
-                                    height: 50,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} >
-
-                                </ImageBackground>}
-                            </Animated.View>
-                        </TouchableWithoutFeedback>
-                    </ImageBackground>:null}
-
-                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}
-
-                        {/* For backbutton showing in circle  */}
-
-                    {!isView?<ImageBackground style={{
-                        left: '10%',
-                        width: 80,
-                        height: 80, position: 'absolute', bottom: '5%',
-                        justifyContent: 'center', alignItems: 'center',
-                    }} source={require('./circleGray.png')} ref={"back1"}>
-                        <TouchableWithoutFeedback onPress={() => this.setCardback()}
-                                                  onPressIn={this.handlePressIn}
-                                                  onPressOut={this.handlePressOut}>
-
-                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
-                                {!this.state.isBack?<ImageBackground  style={{
-                                    width: 50,
-                                    height: 50,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }}  source={require('./circleBtnOutside.png')} >
+                                }} source={require('./circleBtnOutside.png')} >
 
                                     <Image source={require('./back_button.png')}  style={styles.imageBackButton} />
                                 </ImageBackground>:<ImageBackground  style={{
@@ -727,6 +693,47 @@ export default class CardDeckNew extends Component {
                             </Animated.View>
                         </TouchableWithoutFeedback>
                     </ImageBackground>:null}
+
+                   {/* {!isView?<ImageBackground source={require('./rectangle.png')} style={{
+                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
+                            width: 0,
+                            height: 1
+                        },
+                        shadowOpacity: 0.5,
+
+                        shadowRadius: 1
+                    }} />:null}*/}
+
+                        {/* For backbutton showing in circle  */}
+
+                   {/* {!isView?<ImageBackground style={{
+                        left: '10%',
+                        width: 60,
+                        height: 60, position: 'absolute', bottom: '5%',
+                        justifyContent: 'center', alignItems: 'center',
+                    }} source={require('./circleGray.png')} ref={"back1"}>
+                        <TouchableWithoutFeedback onPress={() => this.setCardback()}
+                                                  onPressIn={this.handlePressIn}
+                                                  onPressOut={this.handlePressOut}>
+
+                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
+                                {!this.state.isBack?<ImageBackground  style={{
+                                    width: 40,
+                                    height: 40,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }}  source={require('./circleBtnOutside.png')} >
+
+                                    <Image source={require('./back_button.png')}  style={styles.imageBackButton} />
+                                </ImageBackground>:<ImageBackground  style={{
+                                    width: 40,
+                                    height: 40,
+                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                                }} source={require('./undo_red.png')}>
+                                    <Image   style={styles.imageBackButton} />
+                                </ImageBackground>}
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
+                    </ImageBackground>:null}*/}
 
                     <ImageBackground style={{
                         width: 100,
@@ -758,7 +765,7 @@ export default class CardDeckNew extends Component {
                         </TouchableWithoutFeedback>
                     </ImageBackground>
 
-                    {!isView?<ImageBackground style={{
+                    {/*{!isView?<ImageBackground style={{
                         right: '10%', width: 80,
                         height: 80, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '5%',
                         shadowOffset: {
@@ -776,10 +783,10 @@ export default class CardDeckNew extends Component {
                         }} source={require('./circleBtnOutside.png')}>
                             <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
                         </ImageBackground>
-                    </ImageBackground>:null}
+                    </ImageBackground>:null}*/}
 
 
-                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
+                   {/* {!isView?<ImageBackground source={require('./rectangle.png')} style={{
                         right: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
                             width: 0,
                             height: 1
@@ -787,7 +794,7 @@ export default class CardDeckNew extends Component {
                         shadowOpacity: 0.5,
 
                         shadowRadius: 1
-                    }} />:null}
+                    }} />:null}*/}
 
 
                         <ImageBackground style={{
@@ -808,7 +815,7 @@ export default class CardDeckNew extends Component {
                         </ImageBackground>
 
 
-                    {!isView?<ImageBackground style={{
+                    {/*{!isView?<ImageBackground style={{
                         right: '10%', width: 80,
                         height: 80, justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: '5%',
 
@@ -820,7 +827,7 @@ export default class CardDeckNew extends Component {
                         }} source={require('./circleBtnOutside.png')}>
                             <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
                         </ImageBackground>
-                    </ImageBackground>:null}
+                    </ImageBackground>:null}*/}
 
                 </ImageBackground>
 
@@ -895,7 +902,7 @@ textSentence:{
         top: "-10%",
         width: (deviceWidth - 82),
         height: (deviceHeight * 2.4) / 4,
-        borderRadius: 12,
+        borderRadius: 10,
         backgroundColor: "#ffffff",
         shadowColor: 'rgba(0,0,0,1)',
         shadowOffset: {
@@ -946,10 +953,7 @@ textSentence:{
         position: 'relative', // add if dont work with above
         justifyContent: 'center',
         alignItems: 'center',
-        // zIndex:50,
-        // marginTop:'5%',
-        // marginLeft:'2%',
-        // position:'relative',
+        
     },
 
     imageLeft: {
