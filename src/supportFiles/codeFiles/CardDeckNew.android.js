@@ -629,24 +629,24 @@ export default class CardDeckNew extends Component {
                 <ImageBackground style={{ width: "100%", height: "100%", backgroundColor: 'rgba(219,219,219,0.5)' }}>
 
                     {!isView ? <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
-                        <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
+                        <Image style={styles.imageLeft} source={require('./Icon_Home_Android.png')} />
                     </TouchableOpacity> :
                         <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
                         </TouchableOpacity>}
 
-                    <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
+                    <Text style={{ textAlign: 'center' , color: 'red',marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
 
 
                     {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
                         <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%' }}></Text>}
 
 
-                    {!isView? <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-10%'}}>
+                    {!isView? <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '5%'}}>
 
                         {swiperStack}
 
                         </View> : 
-                        <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '-12%' }}>
+                        <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center' }}>
 
                         {swiperStack}
 
@@ -902,14 +902,18 @@ textSentence:{
         height: (deviceHeight * 2.4) / 4,
         borderTopLeftRadius:12,
         borderTopRightRadius: 12,
-        borderLeftColor: 'red',
-        borderRightColor: 'green',
+        
         borderRadius: 12,
         backgroundColor: "#ffffff",
-        shadowColor: 'rgba(0,0,0,1)',
+       shadowColor: 'rgba(0,0,0,0.5)',
+
+        borderWidth: 1,
+       // backgroundColor: "green",
+        
+
         shadowOffset: {
-            width: 0,
-            height: 1
+            width: 5,
+            height: 10
         },
         shadowOpacity: 0.8,
     },
@@ -946,22 +950,21 @@ textSentence:{
     },
 
     buttonBack: {
-        height: verticalScale(52),
-        width: moderateScale(33),
+       
         alignSelf: 'flex-start',
         zIndex: 80,
-        marginTop: '7%',
-        marginBottom: '10%',
+        marginTop: '3%',
+        marginBottom: '5%',
         left: '5%',
-        position: 'relative', // add if dont work with above
+        
+        position: 'absolute', // add if dont work with above
         justifyContent: 'center',
         alignItems: 'center',
-        
     },
 
     imageLeft: {
-        width: 44,
-        height: 44,
+        width: moderateScale(30),
+        height: verticalScale(32),
     },
     imageBulb: {
         width: 32,
