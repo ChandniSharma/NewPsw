@@ -528,7 +528,7 @@ export default class CardDeckNew extends Component {
         if (!isView) {
 
                     // this is for last card
-                    if (this.state.currentCardNumber == 11) {
+                    if (this.state.currentCardNumber === 11) {
 
                         swiperStack = <Swiper
                             ref={swiper => {
@@ -601,8 +601,8 @@ export default class CardDeckNew extends Component {
                 disableTopSwipe={true}
                 disableBottomSwipe={true}
 
-                disableRightSwipe={false}
-                disableLeftSwipe={false}
+                disableRightSwipe={true}
+                disableLeftSwipe={true}
                 swipeAnimationDuration={130}
             />
         }

@@ -152,7 +152,7 @@ class ThumbnailCarousel extends Component {
 
     }
 
-    fadeInUpBig = () => this.view.fadeInUpBig(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+    fadeInUp = () => this.view.fadeInUp(700).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     handleViewRef = ref => this.view = ref;
 
@@ -167,7 +167,7 @@ class ThumbnailCarousel extends Component {
       
       // this.textAnimated = <Animatable.Text animation="fadeInUp" style={styleText.textTopNumber}> {this.textCombineValue} </Animatable.Text>
 
-        this.fadeInUpBig()
+        this.fadeInUp()
         this.setState({numberValue: String(index + 1)});
         // }
     }
@@ -284,6 +284,7 @@ class ThumbnailCarousel extends Component {
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
                         sliderWidth={deviceWidth}
+                        autoplay={false}
                         itemWidth={itemWidth} //256
                         layout={'default'}
                         firstItem={0}
@@ -409,7 +410,6 @@ const styles = StyleSheet.create({
     orange:{
         width:55,
         height:55,
-        borderWidth:6,
         borderColor:'rgb(246,190,66)',
         borderWidth:4,
         borderRadius:55,
@@ -439,7 +439,6 @@ const styleText = StyleSheet.create({
       left: '11.5%',
       flexDirection: "row",
       position: 'absolute',
-      zIndex:99999,
    
   },
   textSightWordTitle: {

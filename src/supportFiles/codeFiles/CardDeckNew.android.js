@@ -609,18 +609,18 @@ export default class CardDeckNew extends Component {
                 width: 70,
                 height: 70,
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./circleblack.png')}>
+            }]} source={require('./audio_circle.png')}>
 
-                <Image source={require('./sound_icon.gif')}   style={styles.imageSpeaker} />
+                <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
             </ImageBackground>
         }else if(isAudio){
             audioImage = <ImageBackground style={[{
                 width: 70,
                 height: 70,
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./circleblack.png')}>
+            }]} source={require('./audio_circle.png')}>
 
-                <Image source={require('./running.gif')} style={styles.imageSpeaker} />
+                <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
             </ImageBackground>
         }
         return (
@@ -799,7 +799,7 @@ export default class CardDeckNew extends Component {
                             position: 'absolute', bottom: '3%',
                             alignSelf:'center',
                              justifyContent: 'center', alignItems: 'center'
-                        }} source={require('./circleblack.png')}  ref={"audio1"}>
+                        }} source={require('./circleGray.png')}  ref={"audio1"}>
 
                             <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
                                 <View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}]}>
