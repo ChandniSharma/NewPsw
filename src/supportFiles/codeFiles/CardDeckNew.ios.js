@@ -946,10 +946,7 @@ textSentence:{
         position: 'relative', // add if dont work with above
         justifyContent: 'center',
         alignItems: 'center',
-        // zIndex:50,
-        // marginTop:'5%',
-        // marginLeft:'2%',
-        // position:'relative',
+        
     },
 
     imageLeft: {

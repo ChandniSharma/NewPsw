@@ -295,15 +295,15 @@ class ThumbnailCarousel extends Component {
 
                 <View style={styleText.textTopNumber}>
                     <TextInput editable={false} style={{ color: 'gray',
-                        fontWeight: '500',
+                        fontWeight: '450',
                         fontSize: 35,
                         
                           }} value={"0"}/>
                     <Animatable.View ref={this.handleViewRef}>
                         <TextInput editable={false} style={{ color: 'gray',
-                            fontWeight: '500',
+                            fontWeight: '450',
                             fontSize: 35,
-                            
+                            left:'-15%',
                             }} value={temp}/>
                     </Animatable.View>
                 </View>
@@ -471,12 +471,12 @@ const styles = StyleSheet.create({
 
 const styleText = StyleSheet.create({
   textTopNumber: {
-      top: Platform.OS === 'ios' ? '9%' : '9%',
-      left: '11.5%',
+      top: Platform.OS === 'ios' ? '9%' : '7%',
+      left:'11.5%',
       flexDirection: "row",
       position: 'absolute',
-     
-   
+     //backgroundColor: 'pink',
+   justifyContent:'flex-start'
   },
   textSightWordTitle: {
 
