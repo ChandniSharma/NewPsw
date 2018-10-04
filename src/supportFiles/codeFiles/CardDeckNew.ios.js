@@ -429,26 +429,30 @@ export default class CardDeckNew extends Component {
 
     renderCard = (card, index) => {
   ////*****/ For opacity 
-  let opacityOfCards;
+  let opacityOfCards,marginLeft;
 
   if (index === this.state.currentCardNumber) {
       opacityOfCards = 1;
-  } else {
-      if (index === this.state.currentCardNumber-1) {
-        opacityOfCards = 0.7;
-      }else{
-          if(index === this.state.currentCardNumber-2){
-            opacityOfCards = 0.6;
-          }else{
-              if(index === this.state.currentCardNumber-3){
-                opacityOfCards = 0.5;
-              }else{
-                opacityOfCards = 0.4;
-              }
-          }
-      }
+      marginLeft= deviceWidth-(82);
+
+  } else if (index === this.state.currentCardNumber+1) {
+      opacityOfCards = 1;
+      marginLeft = deviceWidth-(82+10);
+
+  }else if(index === this.state.currentCardNumber+2){
+      opacityOfCards = 0.6;
+      marginLeft= deviceWidth-(82+20);
+
+  }else if(index === this.state.currentCardNumber+3){
+      opacityOfCards = 0.5;
+      marginLeft= deviceWidth-(82+30);
+
+  }else if(index === this.state.currentCardNumber+4) {
+      opacityOfCards = 0.4;
+      marginLeft= deviceWidth-(82+40);
+
   }
-  this.setState({counterForOpacity:(this.state.counterForOpacity+1)});
+
 
   console.log( 'Opacity of card ----->',opacityOfCards);
    // Reset opacity
@@ -494,11 +498,11 @@ export default class CardDeckNew extends Component {
             <CardFlip duration={370} style={{ flex: 1, justifycounContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
                 <Animatable.View ref={this.handleViewRef}>
-                <View  style={[styles.card1,{opacity:opacityOfCards} ]}>
+                <View  style={[styles.card1,{opacity:opacityOfCards,width:marginLeft}]}>
 
 
 
-                        <Text style={styles.label}>{card.word}</Text>
+                        <Text style={[styles.label,{ textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 1 }]}>{card.word}</Text>
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip();
                         this.setState({ isView: true }) }} >
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
@@ -679,7 +683,7 @@ export default class CardDeckNew extends Component {
 
                         </TouchableOpacity>}
 
-                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 0.5, height: 0.5 }, textShadowRadius: 0 }}>sightwords</Text>
+                    <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular"}}>sightwords</Text>
 
 
                     {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
