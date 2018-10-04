@@ -161,14 +161,11 @@ class ThumbnailCarousel extends Component {
 
     }
 
+
+    fadeInUp = () => this.view.fadeInUp(700).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
      
 
-    fadeInUp = () => {
-
-        //this.view.fadeInUpBig(200, toValues[[, 1500], easing])
-        this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
-        
-    }
 
     handleViewRef = ref => this.view = ref;
 
@@ -295,13 +292,13 @@ class ThumbnailCarousel extends Component {
 
                 <View style={styleText.textTopNumber}>
                     <TextInput editable={false} style={{ color: 'gray',
-                        fontWeight: '450',
+                        fontWeight: '400',
                         fontSize: 35,
                         
                           }} value={"0"}/>
                     <Animatable.View ref={this.handleViewRef}>
                         <TextInput editable={false} style={{ color: 'gray',
-                            fontWeight: '450',
+                            fontWeight: '400',
                             fontSize: 35,
                             left:'-15%',
                             }} value={temp}/>
@@ -319,6 +316,7 @@ class ThumbnailCarousel extends Component {
                         renderItem={this._renderItem.bind(this)}
                         onSnapToItem={this.handleSnapToItem.bind(this)}
                         sliderWidth={deviceWidth}
+                        autoplay={false}
                         itemWidth={itemWidth} //256
                         layout={'default'}
                         firstItem={0}
@@ -445,7 +443,6 @@ const styles = StyleSheet.create({
     orange:{
         width:55,
         height:55,
-        borderWidth:6,
         borderColor:'rgb(246,190,66)',
         borderWidth:4,
         borderRadius:55,
@@ -475,8 +472,10 @@ const styleText = StyleSheet.create({
       left:'11.5%',
       flexDirection: "row",
       position: 'absolute',
+
      //backgroundColor: 'pink',
    justifyContent:'flex-start'
+
   },
   textSightWordTitle: {
 
