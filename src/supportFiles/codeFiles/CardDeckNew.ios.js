@@ -55,7 +55,6 @@ export default class CardDeckNew extends Component {
                 imageNameBackground: require('./Dog_background.png'),
                 currentCardNumber: 0,
                 cardCount: 1,
-                counterForOpacity:1,
                 audio: 'a_sound',
                 sentenceAudio:'a_sentence',
                 alpha: "a",
@@ -298,7 +297,7 @@ export default class CardDeckNew extends Component {
     swipeBack = (index) => {
 
         // Reset opacity
-        this.setState({counterForOpacity:1});
+       
         this.playCardSound();
 
         if (!this.state.isSwipingBack) {
@@ -373,8 +372,8 @@ export default class CardDeckNew extends Component {
     };
 
     swipeCard = (index) => {
-         // Reset opacity
-         this.setState({counterForOpacity:1});
+         
+        
 
         console.log(' Swipe card ',index);
         // Animated.spring(this.animatedCardValue,{
@@ -448,7 +447,6 @@ export default class CardDeckNew extends Component {
           }
       }
   }
-  this.setState({counterForOpacity:(this.state.counterForOpacity+1)});
 
   console.log( 'Opacity of card ----->',opacityOfCards);
    // Reset opacity

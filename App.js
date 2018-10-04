@@ -162,7 +162,7 @@ class ThumbnailCarousel extends Component {
     }
 
 
-    fadeInUp = () => this.view.fadeInUp(700).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+    fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
      
 
