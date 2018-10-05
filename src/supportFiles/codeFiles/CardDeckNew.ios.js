@@ -218,7 +218,7 @@ export default class CardDeckNew extends Component {
 
     bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
-    bounceIn = () => this.view.bounceIn(300).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+    bounceIn = () => this.refs.home.bounceIn(400).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
 
     fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -699,7 +699,7 @@ export default class CardDeckNew extends Component {
 
                     {!isView ?
                         <TouchableWithoutFeedback  onPress={() => {this.bounceIn()}}>
-                            <Animatable.View ref={this.handleViewButtonRef} style={[styles.buttonBack]}>
+                            <Animatable.View ref={"home"} style={[styles.buttonBack]}>
                                     <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
                             </Animatable.View>
                         </TouchableWithoutFeedback>
