@@ -291,13 +291,15 @@ class ThumbnailCarousel extends Component {
                 <HeaderCustom />
 
                 <View style={styleText.textTopNumber}>
-                    <TextInput editable={false} style={{ color: 'gray',
+                    <TextInput editable={false} style={{
+                        color: 'gray',
                         fontWeight: '400',
                         fontSize: 35,
                         
                           }} value={"0"}/>
                     <Animatable.View ref={this.handleViewRef}>
-                        <TextInput editable={false} style={{ color: 'gray',
+                        <TextInput editable={false} style={{
+                            color: 'gray',
                             fontWeight: '400',
                             fontSize: 35,
                             left:'-15%',

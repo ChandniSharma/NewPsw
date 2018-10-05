@@ -218,7 +218,17 @@ export default class CardDeckNew extends Component {
 
     bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
+    bounceIn = () => this.view.bounceIn(300).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+
+    fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
+    pulse = () => this.view.pulse(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+
     handleViewRef = ref => this.view = ref;
+
+    handleViewNumberRef = ref => this.view = ref;
+
+    handleViewButtonRef = ref => this.view = ref;
 
     handlePressIn(){
         this.setState({
@@ -308,6 +318,7 @@ export default class CardDeckNew extends Component {
             })
 
         }
+
     };
 
     setIsSwipingBack = (index, isSwipingBack) => {
@@ -332,7 +343,7 @@ export default class CardDeckNew extends Component {
 
     setCardback() {
 
-        console.log('setCardback  setIsSwiping ');
+
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -346,6 +357,8 @@ export default class CardDeckNew extends Component {
                 sentenceAudio: renderArray[this.state.currentCardNumber - 1].sentenceAudio,
             })
         }
+
+        this.fadeInUp();
 
     }
 
@@ -369,6 +382,8 @@ export default class CardDeckNew extends Component {
                 sentenceAudio: renderArray[index + 1].sentenceAudio,
             }
         )
+
+        this.fadeInUp();
     };
 
     swipeCard = (index) => {
@@ -496,19 +511,26 @@ export default class CardDeckNew extends Component {
         return (
             <CardFlip duration={370} style={{ flex: 1, justifycounContent: 'center', alignItems: 'center' }} key={index} ref={(card) => this['card' + index] = card}>
 
-                <Animatable.View ref={this.handleViewRef}>
+
                 <View  style={[styles.card1,{opacity:opacityOfCards,width:marginLeft}]}>
 
 
 
-                        <Text style={[styles.label,{ textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 1 }]}>{card.word}</Text>
+                        <Text style={[styles.label,{ shadowColor: 'rgba(0,0,0,1)',
+                            shadowOffset: {
+                                width: 2,
+                                height: 2
+                            },
+                            shadowOpacity: 0.8,
+
+                            shadowRadius: 2 }]}>{card.word}</Text>
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip();
                         this.setState({ isView: true }) }} >
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                     </TouchableOpacity>
 
                 </View>
-                </Animatable.View>
+
 
                 <View style={{ width: "100%", height: "100%", alignItems: 'center', top: '-31%' }}>
 
@@ -548,9 +570,9 @@ export default class CardDeckNew extends Component {
 
         let temp;
         if (this.state.cardCount >= 0) {
-            temp = String(this.state.cardCount) + ' | 220';
+            temp = ' | 220';
         } else {
-            temp = '1' + '| 220';
+            temp = ' | 220';
         }
 
         if (renderCount === 0) {
@@ -675,17 +697,36 @@ export default class CardDeckNew extends Component {
 
                 <ImageBackground style={{ width: "100%", height: "100%", backgroundColor: 'rgba(219,219,219,0.5)' }}>
 
-                    {!isView ? <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
-                        <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
-                    </TouchableOpacity> :
-                        <TouchableOpacity style={[styles.buttonBack]} onPress={() => this.props.navigation.navigate('Home')}>
+                    {!isView ?
+                        <TouchableWithoutFeedback  onPress={() => {this.bounceIn()}}>
+                            <Animatable.View ref={this.handleViewButtonRef} style={[styles.buttonBack]}>
+                                    <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
+                            </Animatable.View>
+                        </TouchableWithoutFeedback>
+                        :
+                        <TouchableOpacity style={[styles.buttonBack]} onPress={() => {this.props.navigation.navigate('Home')}}>
 
                         </TouchableOpacity>}
 
                     <Text style={{ textAlign: 'center', color: 'white', marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular"}}>sightwords</Text>
 
 
-                    {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
+                    {!isView ?
+
+                        <Animatable.View ref={this.handleViewNumberRef} style={{ marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', right: '15%' }}>
+                            <Text style={{ textAlign: 'center', fontSize: 15, color: '#ffffff', fontFamily: "Montserrat-Regular"}}>{String(this.state.cardCount)}</Text>
+                        </Animatable.View>
+                        :
+                        <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%' }}></Text>}
+
+
+                    {!isView ?
+
+
+                        <Text style={{ textAlign: 'center',fontSize: 15, color: '#ffffff',fontFamily: "Montserrat-Regular" ,marginTop: '5%', position: 'absolute',
+                            alignSelf: 'flex-end', marginRight: '10%' }}>{temp}</Text>
+
+                        :
                         <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%' }}></Text>}
 
 
