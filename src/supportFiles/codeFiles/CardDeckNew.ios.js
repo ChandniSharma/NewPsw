@@ -18,6 +18,7 @@ import {
 
 } from 'react-native';
 
+import RNSiriWaveView from 'react-native-siri-wave-view';
 import * as Animatable from 'react-native-animatable';
 
 
@@ -227,8 +228,6 @@ export default class CardDeckNew extends Component {
     handleViewRef = ref => this.view = ref;
 
     handleViewNumberRef = ref => this.view = ref;
-
-    handleViewButtonRef = ref => this.view = ref;
 
     handlePressIn(){
         this.setState({
@@ -675,22 +674,23 @@ export default class CardDeckNew extends Component {
         let audioImage ;
         if(!isAudio){
             audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
+                width: 102,
+                height: 102,
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
             }]} source={require('./audio_circle.png')}>
 
                 <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
             </ImageBackground>
         }else if(isAudio){
-            audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
-                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./audio_circle.png')}>
+            audioImage =
+                <ImageBackground style={[{
+                    width: 102,
+                    height: 102,
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
+                }]} source={require('./audio_circle.png')}>
+                    <RNSiriWaveView primaryWaveLineWidth={5} type={1} width={65} height={65} startAnimation={true} stopAnimation={this.state.stopAnimation} />
+                </ImageBackground>
 
-                <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
-            </ImageBackground>
         }
         return (
             <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
@@ -811,36 +811,6 @@ export default class CardDeckNew extends Component {
                             </Animated.View>
                         </TouchableWithoutFeedback>
                     </ImageBackground>:null}*/}
-
-                    <ImageBackground style={{
-                        width: 100,
-                        height: 100,
-                        position: 'absolute', bottom: '3.5%',
-                        alignSelf:'center',
-                        justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
-                        shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.8,
-
-                        shadowRadius: 2
-                    }}   ref={"audio"}>
-
-                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
-                            <Animated.View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
-                                <ImageBackground style={[{
-                                    width: 70,
-                                    height: 70,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }]} >
-
-                                    <Image  style={styles.imageSpeaker} />
-                                </ImageBackground>
-
-                            </Animated.View>
-                        </TouchableWithoutFeedback>
-                    </ImageBackground>
 
                     {/*{!isView?<ImageBackground style={{
                         right: '10%', width: 80,
