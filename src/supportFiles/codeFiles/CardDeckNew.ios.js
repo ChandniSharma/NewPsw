@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
+import RNSiriWaveView from 'react-native-siri-wave-view';
 
 
 
@@ -26,7 +27,8 @@ import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
 
-import SoundPlayer from 'react-native-sound-player'
+import SoundPlayer from 'react-native-sound-player';
+
 
 let result = [];
 let count = 0;
@@ -218,7 +220,7 @@ export default class CardDeckNew extends Component {
 
     bounceInRight = () => this.view.bounceInRight(30).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
 
-    bounceIn = () => this.view.bounceIn(300).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+    bounceIn = () => this.refs.home.bounceIn(400).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
 
     fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -416,6 +418,7 @@ export default class CardDeckNew extends Component {
     }
 
     playWordSound() {
+
         this.setState({
             isAudio:true
         })
@@ -538,7 +541,7 @@ export default class CardDeckNew extends Component {
                         <ImageBackground style={{ height: '80%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
                             source={this.state.imageNameBackground}>
 
-                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: false }) }}>
+                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: false })}}>
 
                                 <Image style={styles.imageCross} source={require('./close.png')} />
                             </TouchableOpacity>
@@ -689,7 +692,9 @@ export default class CardDeckNew extends Component {
                 alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
             }]} source={require('./audio_circle.png')}>
 
+<RNSiriWaveView type={0} width={70} height={70} startAnimation={this.state.startAnimation} stopAnimation={this.state.stopAnimation} />
                 <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
+
             </ImageBackground>
         }
         return (
@@ -698,8 +703,8 @@ export default class CardDeckNew extends Component {
                 <ImageBackground style={{ width: "100%", height: "100%", backgroundColor: 'rgba(219,219,219,0.5)' }}>
 
                     {!isView ?
-                        <TouchableWithoutFeedback  onPress={() => {this.bounceInRight()}}>
-                            <Animatable.View ref={this.handleViewButtonRef} style={[styles.buttonBack]}>
+                        <TouchableWithoutFeedback  onPress={() => {this.bounceIn()}}>
+                            <Animatable.View ref={"home"} style={[styles.buttonBack]}>
                                     <Image style={styles.imageLeft} source={require('./Icon_Home.png')} />
                             </Animatable.View>
                         </TouchableWithoutFeedback>
