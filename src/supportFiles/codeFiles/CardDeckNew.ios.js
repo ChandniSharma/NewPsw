@@ -694,27 +694,6 @@ let audioView;
                 }]} source={require('./audio_circle.png')}>
                 </Image>
         }
-
-
-        // if (isAudio) {
-            
-        //     audioImage =
-        //         <Image style={[{
-        //             width: 102,
-        //             height: 102,
-        //             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-34.5%'
-        //         }]} source={require('./audio_circle.png')}>
-        //         </Image>
-        // } else {
-        //     audioImage =
-        //         <Image style={[{
-        //             width: 102,
-        //             height: 102,
-        //             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-16.5%'
-        //         }]} source={require('./audio_circle.png')}>
-        //         </Image>
-        // }
-       
         
         speakerIcon =  <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
         siriWave = <ImageBackground style={[{
@@ -722,7 +701,7 @@ let audioView;
             height: 70,
             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
         }]}> 
-        <RNSiriWaveView primaryWaveLineWidth={5} type={1} width={65} height={65}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+        <RNSiriWaveView  secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={65} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
         </ImageBackground>
 
 
