@@ -702,7 +702,7 @@ export default class CardDeckNew extends Component {
             height: 70,
             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
         }]}> 
-        <RNSiriWaveView waveColor={'yellow'}  secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+        <RNSiriWaveView colors={["#0000FF", "#800080", "#ffffff"]}   secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
         </ImageBackground>
 
 

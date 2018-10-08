@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -68,7 +69,6 @@
 		999C496921538A780048DFFF /* go_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C496821538A780048DFFF /* go_sentence.mp3 */; };
 		99CDCD79215A3B18001338CC /* a_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99CDCD78215A3B18001338CC /* a_sound.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		6A9E3E72BE8F47FEB07A5CAF /* libRNSiriWaveView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A577D88235498B807E9C70 /* libRNSiriWaveView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +352,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNSoundPlayer;
 		};
+		99F2C567216B5EA600A3DF03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNSiriWaveView;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -391,6 +398,7 @@
 		7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSoundPlayer.xcodeproj; path = "../node_modules/react-native-sound-player/ios/RNSoundPlayer.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8E7FE6065BC8413E9E8ADA00 /* libRNSiriWaveView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSiriWaveView.a; sourceTree = "<group>"; };
+		953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSiriWaveView.xcodeproj; path = "../node_modules/react-native-siri-wave-view/ios/RNSiriWaveView.xcodeproj"; sourceTree = "<group>"; };
 		991709392153821900D2A467 /* a_sentence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_sentence.mp3; sourceTree = "<group>"; };
 		9917D837213EA54F00A563EC /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		9917D861213EA69F00A563EC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
@@ -421,8 +429,6 @@
 		99CDCD78215A3B18001338CC /* a_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_sound.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
-		953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */ = {isa = PBXFileReference; name = "RNSiriWaveView.xcodeproj"; path = "../node_modules/react-native-siri-wave-view/ios/RNSiriWaveView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		52A577D88235498B807E9C70 /* libRNSiriWaveView.a */ = {isa = PBXFileReference; name = "libRNSiriWaveView.a"; path = "libRNSiriWaveView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,11 +458,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				7B0CEAF9B36241178D279DCE /* libRNSoundPlayer.a in Frameworks */,
-<<<<<<< HEAD
 				0F1924EF630D49B1806EDA9A /* libRNSiriWaveView.a in Frameworks */,
-=======
-				6A9E3E72BE8F47FEB07A5CAF /* libRNSiriWaveView.a in Frameworks */,
->>>>>>> ce4e95ce94d6436e4fca0ab981a991ab0a6f7dbb
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,11 +668,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */,
-<<<<<<< HEAD
-				28005DAD2C144C83A4EF7031 /* RNSiriWaveView.xcodeproj */,
-=======
 				953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */,
->>>>>>> ce4e95ce94d6436e4fca0ab981a991ab0a6f7dbb
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -754,6 +752,14 @@
 			isa = PBXGroup;
 			children = (
 				997B4650213019F300710E28 /* libRNSoundPlayer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		99F2C53F216B5EA400A3DF03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				99F2C568216B5EA600A3DF03 /* libRNSiriWaveView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -932,6 +938,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 99F2C53F216B5EA400A3DF03 /* Products */;
+					ProjectRef = 953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */;
 				},
 				{
 					ProductGroup = 9948B26C2167767B00A5EF66 /* Products */;
@@ -1217,6 +1227,13 @@
 			fileType = archive.ar;
 			path = libRNSoundPlayer.a;
 			remoteRef = 997B464F213019F300710E28 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		99F2C568216B5EA600A3DF03 /* libRNSiriWaveView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSiriWaveView.a;
+			remoteRef = 99F2C567216B5EA600A3DF03 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
