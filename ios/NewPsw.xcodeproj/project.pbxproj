@@ -68,6 +68,7 @@
 		999C496921538A780048DFFF /* go_sentence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 999C496821538A780048DFFF /* go_sentence.mp3 */; };
 		99CDCD79215A3B18001338CC /* a_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99CDCD78215A3B18001338CC /* a_sound.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		6A9E3E72BE8F47FEB07A5CAF /* libRNSiriWaveView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A577D88235498B807E9C70 /* libRNSiriWaveView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -420,6 +421,8 @@
 		99CDCD78215A3B18001338CC /* a_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = a_sound.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		E26D620AE5F64E1A80BD87CB /* Jua-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jua-Regular.ttf"; path = "../assets/fonts/Jua-Regular.ttf"; sourceTree = "<group>"; };
+		953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */ = {isa = PBXFileReference; name = "RNSiriWaveView.xcodeproj"; path = "../node_modules/react-native-siri-wave-view/ios/RNSiriWaveView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		52A577D88235498B807E9C70 /* libRNSiriWaveView.a */ = {isa = PBXFileReference; name = "libRNSiriWaveView.a"; path = "libRNSiriWaveView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,7 +452,11 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				7B0CEAF9B36241178D279DCE /* libRNSoundPlayer.a in Frameworks */,
+<<<<<<< HEAD
 				0F1924EF630D49B1806EDA9A /* libRNSiriWaveView.a in Frameworks */,
+=======
+				6A9E3E72BE8F47FEB07A5CAF /* libRNSiriWaveView.a in Frameworks */,
+>>>>>>> ce4e95ce94d6436e4fca0ab981a991ab0a6f7dbb
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,7 +666,11 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				7D1D163CBE90484495420217 /* RNSoundPlayer.xcodeproj */,
+<<<<<<< HEAD
 				28005DAD2C144C83A4EF7031 /* RNSiriWaveView.xcodeproj */,
+=======
+				953FA3DAF0074AE7A7DFDB02 /* RNSiriWaveView.xcodeproj */,
+>>>>>>> ce4e95ce94d6436e4fca0ab981a991ab0a6f7dbb
 			);
 			name = Libraries;
 			sourceTree = "<group>";
