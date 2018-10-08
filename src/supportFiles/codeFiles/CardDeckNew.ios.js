@@ -18,8 +18,8 @@ import {
 
 } from 'react-native';
 
-import * as Animatable from 'react-native-animatable';
 import RNSiriWaveView from 'react-native-siri-wave-view';
+import * as Animatable from 'react-native-animatable';
 
 
 
@@ -27,8 +27,7 @@ import { Dimensions } from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import CardFlip from 'react-native-card-flip';
 
-import SoundPlayer from 'react-native-sound-player';
-
+import SoundPlayer from 'react-native-sound-player'
 
 let result = [];
 let count = 0;
@@ -218,7 +217,7 @@ export default class CardDeckNew extends Component {
         this.pullUsers();
     }
 
-    bounceInRight = () => this.view.bounceInRight(30).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+    bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     bounceIn = () => this.refs.home.bounceIn(400).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
 
@@ -229,8 +228,6 @@ export default class CardDeckNew extends Component {
     handleViewRef = ref => this.view = ref;
 
     handleViewNumberRef = ref => this.view = ref;
-
-    handleViewButtonRef = ref => this.view = ref;
 
     handlePressIn(){
         this.setState({
@@ -418,7 +415,6 @@ export default class CardDeckNew extends Component {
     }
 
     playWordSound() {
-
         this.setState({
             isAudio:true
         })
@@ -541,7 +537,7 @@ export default class CardDeckNew extends Component {
                         <ImageBackground style={{ height: '80%', width: '100%', borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden", top: '-1%' }}
                             source={this.state.imageNameBackground}>
 
-                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: false })}}>
+                            <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={() => { this['card' + index].flip(); this.setState({ isView: false }) }}>
 
                                 <Image style={styles.imageCross} source={require('./close.png')} />
                             </TouchableOpacity>
@@ -676,27 +672,60 @@ export default class CardDeckNew extends Component {
         }
 
         let audioImage ;
-        if(!isAudio){
-            audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
-                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./audio_circle.png')}>
+        let speakerIcon;
+        let siriWave;
+let audioView; 
 
-                <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
-            </ImageBackground>
-        }else if(isAudio){
-            audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
-                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./audio_circle.png')}>
-
-<RNSiriWaveView type={0} width={70} height={70} startAnimation={this.state.startAnimation} stopAnimation={this.state.stopAnimation} />
-                <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
-
-            </ImageBackground>
+        if (isAudio) {
+           audioView = <Animatable.View animation="flash" easing="ease-out" iterationCount={"infinite"} delay={0}>
+                                <Image style={[{
+                    width: 102,
+                    height: 102,
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-34.5%'
+                }]} source={require('./audio_circle.png')}>
+                </Image>
+              </Animatable.View>
+        } else {
+            audioImage =
+                <Image style={[{
+                    width: 102,
+                    height: 102,
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-16.5%'
+                }]} source={require('./audio_circle.png')}>
+                </Image>
         }
+
+
+        // if (isAudio) {
+            
+        //     audioImage =
+        //         <Image style={[{
+        //             width: 102,
+        //             height: 102,
+        //             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-34.5%'
+        //         }]} source={require('./audio_circle.png')}>
+        //         </Image>
+        // } else {
+        //     audioImage =
+        //         <Image style={[{
+        //             width: 102,
+        //             height: 102,
+        //             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-16.5%'
+        //         }]} source={require('./audio_circle.png')}>
+        //         </Image>
+        // }
+       
+        
+        speakerIcon =  <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
+        siriWave = <ImageBackground style={[{
+            width: 70,
+            height: 70,
+            alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
+        }]}> 
+        <RNSiriWaveView primaryWaveLineWidth={5} type={1} width={65} height={65}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+        </ImageBackground>
+
+
         return (
             <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
 
@@ -776,109 +805,6 @@ export default class CardDeckNew extends Component {
                         </TouchableWithoutFeedback>
                     </ImageBackground>:null}
 
-                   {/* {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}*/}
-
-                        {/* For backbutton showing in circle  */}
-
-                   {/* {!isView?<ImageBackground style={{
-                        left: '10%',
-                        width: 60,
-                        height: 60, position: 'absolute', bottom: '5%',
-                        justifyContent: 'center', alignItems: 'center',
-                    }} source={require('./circleGray.png')} ref={"back1"}>
-                        <TouchableWithoutFeedback onPress={() => this.setCardback()}
-                                                  onPressIn={this.handlePressIn}
-                                                  onPressOut={this.handlePressOut}>
-
-                            <Animated.View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'},animatedStyle]}>
-                                {!this.state.isBack?<ImageBackground  style={{
-                                    width: 40,
-                                    height: 40,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }}  source={require('./circleBtnOutside.png')} >
-
-                                    <Image source={require('./back_button.png')}  style={styles.imageBackButton} />
-                                </ImageBackground>:<ImageBackground  style={{
-                                    width: 40,
-                                    height: 40,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} source={require('./undo_red.png')}>
-                                    <Image   style={styles.imageBackButton} />
-                                </ImageBackground>}
-                            </Animated.View>
-                        </TouchableWithoutFeedback>
-                    </ImageBackground>:null}*/}
-
-                    <ImageBackground style={{
-                        width: 100,
-                        height: 100,
-                        position: 'absolute', bottom: '3.5%',
-                        alignSelf:'center',
-                        justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
-                        shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.8,
-
-                        shadowRadius: 2
-                    }}   ref={"audio"}>
-
-                        <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
-                            <Animated.View style={{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}}>
-                                <ImageBackground style={[{
-                                    width: 70,
-                                    height: 70,
-                                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }]} >
-
-                                    <Image  style={styles.imageSpeaker} />
-                                </ImageBackground>
-
-                            </Animated.View>
-                        </TouchableWithoutFeedback>
-                    </ImageBackground>
-
-                    {/*{!isView?<ImageBackground style={{
-                        right: '10%', width: 80,
-                        height: 80, justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)', position: 'absolute', bottom: '5%',
-                        shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} source={require('./circleGray.png')}>
-                        <ImageBackground style={{
-                            width: 50,
-                            height: 50,
-                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                        }} source={require('./circleBtnOutside.png')}>
-                            <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
-                        </ImageBackground>
-                    </ImageBackground>:null}*/}
-
-
-                   {/* {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        right: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}*/}
-
-
                         <ImageBackground style={{
                             width: 100,
                             height: 100,
@@ -889,27 +815,19 @@ export default class CardDeckNew extends Component {
 
                             <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
                                 <View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}]}>
+                              
+                              {isAudio?audioView:audioImage}  
 
-                                    {audioImage}
+                            
+
+                                {isAudio?siriWave:speakerIcon}
 
                                 </View>
                             </TouchableWithoutFeedback>
                         </ImageBackground>
 
 
-                    {/*{!isView?<ImageBackground style={{
-                        right: '10%', width: 80,
-                        height: 80, justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: '5%',
-
-                    }} source={require('./circleGray.png')}>
-                        <ImageBackground style={{
-                            width: 50,
-                            height: 50,
-                            alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                        }} source={require('./circleBtnOutside.png')}>
-                            <Image source={require('./Tick_off.png')} style={styles.imageTickButton} />
-                        </ImageBackground>
-                    </ImageBackground>:null}*/}
+                    
 
                 </ImageBackground>
 
@@ -1056,7 +974,7 @@ textSentence:{
         width: 40,
         height: 40,
         alignSelf: 'center',
-
+        bottom: '45%',
     },
     imageBackButton: {
 
