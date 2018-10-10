@@ -342,7 +342,6 @@ export default class CardDeckNew extends Component {
 
     setCardback() {
 
-
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -364,7 +363,6 @@ export default class CardDeckNew extends Component {
 
     setIsSwiping = (index, isSwipingBack) => {
 
-       
         console.log(" setIsSwiping Index: ", index)
 
         this.setState(

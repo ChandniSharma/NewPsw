@@ -27,6 +27,7 @@ import CardFlip from 'react-native-card-flip';
 import SoundPlayer from 'react-native-sound-player'
 // For showing app properly on all devices.
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import RNSiriWaveView from 'react-native-siri-wave-view';
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -604,25 +605,39 @@ export default class CardDeckNew extends Component {
         }
 
         let audioImage ;
-        if(!isAudio){
-            audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
-                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./audio_circle.png')}>
+        let speakerIcon;
+        let siriWave;
 
-                <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
-            </ImageBackground>
-        }else if(isAudio){
-            audioImage = <ImageBackground style={[{
-                width: 70,
-                height: 70,
-                alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-            }]} source={require('./audio_circle.png')}>
+        let audioView;
 
-                <Image source={require('./speak1.gif')} style={styles.imageSpeaker} />
-            </ImageBackground>
+        if (isAudio) {
+           audioView = <Animatable.View animation="flash" easing="ease-out" iterationCount={"infinite"} delay={2}>
+                                <Image style={[{
+                    width: 102,
+                    height: 102,
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-34.5%'
+                }]} source={require('./audio_circle.png')}>
+                </Image>
+              </Animatable.View>
+        } else {
+            audioImage =
+                <Image style={[{
+                    width: 102,
+                    height: 102,
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-16.5%'
+                }]} source={require('./audio_circle.png')}>
+                </Image>
         }
+        
+        speakerIcon =  <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
+        siriWave = <ImageBackground style={[{
+            width: 70,
+            height: 70,
+            alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
+        }]}> 
+        <RNSiriWaveView colors={["#0000FF", "#800080", "#ffffff"]}   secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+        </ImageBackground>
+       
         return (
             <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
 
@@ -801,7 +816,8 @@ export default class CardDeckNew extends Component {
                             <TouchableWithoutFeedback onPress={() => this.playWordSound()}>
                                 <View style={[{alignSelf: 'center', justifyContent: 'center', alignItems: 'center'}]}>
 
-                                    {audioImage}
+                                    {isAudio?audioView:audioImage}  
+                                    {isAudio?siriWave:speakerIcon}
 
                                 </View>
                             </TouchableWithoutFeedback>

@@ -138,16 +138,14 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-siri-wave-view')
-<<<<<<< HEAD
+
     compile project(':siriwaveview')
+    compile project(':react-native-siri-wave-view')
     compile fileTree(dir: "libs", include: ["*.jar"])
-=======
->>>>>>> ce4e95ce94d6436e4fca0ab981a991ab0a6f7dbb
-    compile project(':react-native-sound-player')
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
+    compile project(':react-native-sound-player')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile 'com.facebook.react:react-native:+'
     // From node_modules
