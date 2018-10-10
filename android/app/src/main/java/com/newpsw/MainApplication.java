@@ -3,8 +3,7 @@ package com.newpsw;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.alex.siriwaveview.RNSiriWaveViewPackage;
-
+import ui.siriwave.RNSiriWaveViewPackage;
 import rnsoundplayer.RNSoundPlayerPackage;
 
 import com.facebook.react.ReactNativeHost;
