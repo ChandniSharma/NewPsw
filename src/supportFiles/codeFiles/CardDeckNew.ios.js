@@ -515,12 +515,12 @@ export default class CardDeckNew extends Component {
 
                         <Text style={[styles.label,{ shadowColor: 'rgba(0,0,0,1)',
                             shadowOffset: {
-                                width: 2,
-                                height: 2
+                                width: 1,
+                                height: 1 
                             },
                             shadowOpacity: 0.8,
 
-                            shadowRadius: 2 }]}>{card.word}</Text>
+                            shadowRadius: 1 }]}>{card.word}</Text>
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip();
                         this.setState({ isView: true }) }} >
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
@@ -700,7 +700,7 @@ export default class CardDeckNew extends Component {
             height: 70,
             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
         }]}> 
-        <RNSiriWaveView colors={["#0000FF", "#800080", "#ffffff"]}   secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+        <RNSiriWaveView colors={["#0000FF", "#800080", "#ffffff"]}   secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={75} height={105}  backgroundColor={'transparent'} density={5}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
         </ImageBackground>
 
 
