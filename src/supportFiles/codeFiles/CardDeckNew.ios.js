@@ -235,7 +235,7 @@ export default class CardDeckNew extends Component {
             isBack : true
         })
         Animated.spring(this.animatedValue,{
-            toValue: 1.5
+            toValue: 1.1
         }).start();
     }
 
@@ -401,6 +401,17 @@ export default class CardDeckNew extends Component {
             })
 
         }
+    };
+
+    tapCard = (index) => {
+
+
+
+
+            this.swiper.swipeCard(() => {
+                this.setState({blurrBackground:5})
+            })
+
     };
 
     playCardSound() {
@@ -602,7 +613,7 @@ export default class CardDeckNew extends Component {
                             renderCard={this.renderCard}
                             onSwipedLeft={this.swipeCard}
                             onSwipedRight={this.swipeCard}
-                          //  onTapCard={this.setState({blurrBackground:5})}
+                            //onSwiping={this.tapCard}
                             // onSwipedAborted={this.setState({blurrBackground:15})}
                             stackSize={5}
                             backgroundColor={'transparent'}
@@ -634,7 +645,7 @@ export default class CardDeckNew extends Component {
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
                         onSwipedRight={this.swipeCard}
-                       // onTapCard={this.setState({blurrBackground:5})}
+                        //onSwiping={this.tapCard}
                             // onSwipedAborted={this.setState({blurrBackground:15})}
                         stackSize={5}
 
@@ -661,7 +672,8 @@ export default class CardDeckNew extends Component {
                 cardIndex={this.state.cardIndex}
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
-                //onTapCard={this.setState({blurrBackground:5})}
+                //onSwiping={this.tapCard}
+
                 // onSwiping={this.setState({blurrBackground:5})}
                 // onSwipedAborted={this.setState({blurrBackground:15})}
 
@@ -718,9 +730,9 @@ export default class CardDeckNew extends Component {
 
 
         return (
-            <ImageBackground style={{ width: "100%", height: "100%" }} blurRadius={15} source={this.state.imageNameBackground}>
+            <ImageBackground style={{ width: "100%", height: "100%" }}  source={this.state.imageNameBackground}>
 
-                <ImageBackground style={{ width: "100%", height: "100%", backgroundColor: 'rgba(219,219,219,0.5)' }}>
+                <ImageBackground style={{ width: "100%", height: "100%" }}>
 
                     {!isView ?
                         <TouchableWithoutFeedback  onPress={() => {this.bounceIn()}}>
@@ -762,9 +774,9 @@ export default class CardDeckNew extends Component {
                     </View>
 
                     {!isView?<ImageBackground style={{
-                        left: '10%',
-                        width: 70,
-                        height: 70, position: 'absolute', bottom: '5%',
+                        left: '12%',
+                        width: 50,
+                        height: 50, position: 'absolute', bottom: '6%',
                         justifyContent: 'center', alignItems: 'center', shadowColor: 'rgba(0,0,0,1)',
                         shadowOffset: {
                             width: 0,
@@ -789,8 +801,9 @@ export default class CardDeckNew extends Component {
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} >
-                                    <Image   style={styles.imageBackButton} />
+                                }} source={require('./circleBtnOutside.png')} >
+
+                                    <Image source={require('./back_button.png')}  style={styles.imageBackButton} />
                                 </ImageBackground>}
                             </Animated.View>
                         </TouchableWithoutFeedback>

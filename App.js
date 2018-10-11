@@ -243,7 +243,7 @@ class ThumbnailCarousel extends Component {
                     this.setState({numberValue: String(index + 1)});
 
                 }}>
-                    <TouchableOpacity
+                    <TouchableWithoutFeedback
                         onPress={() => this.moveToNextView(index)}>
                     <ImageBackground style={[styles.card]} source={item.thumbnail} resizeMode={'cover'}>
                         <View >
@@ -268,7 +268,7 @@ class ThumbnailCarousel extends Component {
                             </TouchableOpacity>
                         </View>
                     </ImageBackground>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                 </CurrentVideoTO>
 
                 {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}
