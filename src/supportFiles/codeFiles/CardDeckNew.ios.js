@@ -676,7 +676,7 @@ export default class CardDeckNew extends Component {
         let audioView;
 
         if (isAudio) {
-           audioView = <Animatable.View animation="flash" easing="ease-out" iterationCount={"infinite"} delay={2}>
+           audioView = <Animatable.View animation="" easing="ease-out" iterationCount={"infinite"} delay={2}>
                                 <Image style={[{
                     width: 102,
                     height: 102,
@@ -689,12 +689,12 @@ export default class CardDeckNew extends Component {
                 <Image style={[{
                     width: 102,
                     height: 102,
-                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-16.5%'
+                    alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'-12.2%'
                 }]} source={require('./audio_circle.png')}>
                 </Image>
         }
         
-        speakerIcon =  <Image source={require('./speaker.png')}   style={styles.imageSpeaker} />
+        speakerIcon =  <Image source={require('./wave_icon.png')}   style={styles.imageSpeaker} />
         siriWave = <ImageBackground style={[{
             width: 70,
             height: 70,
@@ -824,7 +824,7 @@ let stackSepration;
 if (deviceHeight > 736) {
     stackSepration = -25;
 } else {
-    stackSepration = -20;
+    stackSepration = -27;
 }
 
 
@@ -949,11 +949,11 @@ textSentence:{
         alignSelf: 'center'
     },
     imageSpeaker: {
-        width: 40,
-        height: 40,
+        width: 54,
+        height: 28,
         alignSelf: 'center',
-        bottom: '42%',
-        right:'2%'
+        bottom: '45%',
+        
     },
     imageBackButton: {
 
