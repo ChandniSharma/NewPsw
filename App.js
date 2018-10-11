@@ -121,19 +121,19 @@ class ThumbnailCarousel extends Component {
                 },
                 {
                     id: "WpIAc9by5iU",
-                    thumbnail: require('./blue.png'),
-                    detail: "These are the most common words found in children's books",
+                    thumbnail: require('./sight.png'),
+                    detail: "",
                     icon: require('./camera.png'),
-                    title: "sight words",
+                    title: "",
                     iconToMoveNextView: require('./arrownext.png')
 
                 },
                 {
                     id: "WpIAc9by5iU",
-                    thumbnail: require('./orange.png'),
-                    detail: "These words are used to describe an action",
+                    thumbnail: require('./verb.png'),
+                    detail: "",
                     icon: require('./verbs.png'),
-                    title: "verbs",
+                    title: "",
                     iconToMoveNextView: require('./lockSmall.png')
 
                 },
@@ -216,14 +216,14 @@ class ThumbnailCarousel extends Component {
         let titleText;
 
         if (index === 1) {
-            imageTitle = <Image source={require('./camera.png')} style={stylesImage.imageCamera}/>
-            imageBottom = <Image source={require('./arrownext.png')} style={stylesImage.imageBottomArrow}/>
+            imageTitle = <Image source={require('./camera.png')} style={[stylesImage.imageCamera,{display:'none'}]}/>
+            imageBottom = <Image source={require('./arrownext.png')} style={[stylesImage.imageBottomArrow,{display:'none'}]}/>
             titleText =  <TextInput marginTop={'5%'} editable={false} style={[styleText.textSightWordTitle,{textAlign:'center'}]}>{item.title}</TextInput>
 
 
         } else if (index === 2) {
-            imageTitle = <Image source={require('./verbs.png')} style={stylesImage.imageVerb}/>
-            imageBottom = <Image source={require('./lockSmall.png')} style={stylesImage.imageBottomLock}/>
+            imageTitle = <Image source={require('./verbs.png')} style={[stylesImage.imageVerb,{display:'none'}]}/>
+            imageBottom = <Image source={require('./lockSmall.png')} style={[stylesImage.imageBottomLock,{display:'none'}]}/>
             titleText =  <TextInput marginTop={'5%'} editable={false} style={[styleText.textCardTitle,{textAlign:'center'}]}>{item.title}</TextInput>
 
         } else {
@@ -243,6 +243,8 @@ class ThumbnailCarousel extends Component {
                     this.setState({numberValue: String(index + 1)});
 
                 }}>
+                    <TouchableOpacity
+                        onPress={() => this.moveToNextView(index)}>
                     <ImageBackground style={[styles.card]} source={item.thumbnail} resizeMode={'cover'}>
                         <View >
 
@@ -266,7 +268,7 @@ class ThumbnailCarousel extends Component {
                             </TouchableOpacity>
                         </View>
                     </ImageBackground>
-
+                    </TouchableOpacity>
                 </CurrentVideoTO>
 
                 {/*<NextVideoImage source={{ uri: this.state.currentVideo.nextVideoId }}/>*/}

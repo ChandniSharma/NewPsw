@@ -53,7 +53,8 @@ export default class CardDeckNew extends Component {
             this.state = {
                 flip: false,
                 isSwipingBack: false,
-                imageNameBackground: require('./Dog_background.png'),
+                blurrBackground:15,
+                imageNameBackground: require('./backgroundImages/Dog_background.png'),
                 currentCardNumber: 0,
                 cardCount: 1,
                 audio: 'a_sound',
@@ -78,8 +79,8 @@ export default class CardDeckNew extends Component {
                         word: 'a',
                         sentence1: 'I saw',
                         sentence2: 'dog.',
-                        backgndImage: require('./Dog_background.png'),
-                        frontImage: require('./Dog_background.png'),
+                        backgndImage: require('./backgroundImages/Dog_background.png'),
+                        frontImage: require('./backgroundImages/Dog_background.png'),
                         audio: 'a_sound',
                         sentenceAudio:'a_sentence',
                     },
@@ -88,8 +89,8 @@ export default class CardDeckNew extends Component {
                         word: 'ran',
                         sentence1: 'The zebra',
                         sentence2: 'away.',
-                        backgndImage: require('./Zebra_background.png'),
-                        frontImage: require('./Zebra_background.png'),
+                        backgndImage: require('./backgroundImages/Zebra_background.png'),
+                        frontImage: require('./backgroundImages/Zebra_background.png'),
                         sentenceAudio:'ran_sentence',
                         audio: 'ran'
                     },
@@ -98,8 +99,8 @@ export default class CardDeckNew extends Component {
                         word: 'come',
                         sentence1: 'Please',
                         sentence2: 'and see the rainbow.',
-                        backgndImage: require('./Rainbow_background.png'),
-                        frontImage: require('./Rainbow_background.png'),
+                        backgndImage: require('./backgroundImages/Rainbow_background.png'),
+                        frontImage: require('./backgroundImages/Rainbow_background.png'),
                         sentenceAudio:'come_sentence',
                         audio: 'come'
                     },
@@ -108,8 +109,8 @@ export default class CardDeckNew extends Component {
                         word: 'up',
                         sentence1: 'The tiger woke',
                         sentence2: '.',
-                        backgndImage: require('./up_color.png'),
-                        frontImage: require('./up_color.png'),
+                        backgndImage: require('./backgroundImages/up_color.png'),
+                        frontImage: require('./backgroundImages/up_color.png'),
                         sentenceAudio:'up_sentence',
                         audio: 'up'
                     },
@@ -118,8 +119,8 @@ export default class CardDeckNew extends Component {
                         word: 'see',
                         sentence1: 'I can',
                         sentence2: 'the boat.',
-                        backgndImage: require('./Boat_background.png'),
-                        frontImage: require('./Boat_background.png'),
+                        backgndImage: require('./backgroundImages/Boat_background.png'),
+                        frontImage: require('./backgroundImages/Boat_background.png'),
                         sentenceAudio:'see_sentence',
                         audio: 'see'
                     },
@@ -128,8 +129,8 @@ export default class CardDeckNew extends Component {
                         word: 'was',
                         sentence1: 'The tiger',
                         sentence2: 'sleeping.',
-                        backgndImage: require('./Tiger_sleeping_background.png'),
-                        frontImage: require('./Tiger_sleeping_background.png'),
+                        backgndImage: require('./backgroundImages/Tiger_sleeping_background.png'),
+                        frontImage: require('./backgroundImages/Tiger_sleeping_background.png'),
                         sentenceAudio:'was_sentence',
                         audio: 'was'
                     },
@@ -139,8 +140,8 @@ export default class CardDeckNew extends Component {
                         word: 'the',
                         sentence1: 'I can catch',
                         sentence2: 'ball.',
-                        backgndImage: require('./Beachball_background.png'),
-                        frontImage: require('./Beachball_background.png'),
+                        backgndImage: require('./backgroundImages/Beachball_background.png'),
+                        frontImage: require('./backgroundImages/Beachball_background.png'),
                         sentenceAudio:'the_sentence',
                         audio: 'the'
                     },
@@ -149,8 +150,8 @@ export default class CardDeckNew extends Component {
                         word: 'jump',
                         sentence1: 'The leopard can',
                         sentence2: 'very high.',
-                        backgndImage: require('./Leopard_background.png'),
-                        frontImage: require('./Leopard_background.png'),
+                        backgndImage: require('./backgroundImages/Leopard_background.png'),
+                        frontImage: require('./backgroundImages/Leopard_background.png'),
                         sentenceAudio:'jump_sentence',
                         audio: 'jump'
                     },
@@ -159,8 +160,8 @@ export default class CardDeckNew extends Component {
                         word: 'on',
                         sentence1: 'I sat',
                         sentence2: 'the bike.',
-                        backgndImage: require('./Bicycle_background.png'),
-                        frontImage: require('./Bicycle_background.png'),
+                        backgndImage: require('./backgroundImages/Bicycle_background.png'),
+                        frontImage: require('./backgroundImages/Bicycle_background.png'),
                         sentenceAudio:'on_sentence',
                         audio: 'on'
                     },
@@ -169,8 +170,8 @@ export default class CardDeckNew extends Component {
                         word: 'ten',
                         sentence1: 'I saw',
                         sentence2: 'kangaroos.',
-                        backgndImage: require('./Kangaroos_background.png'),
-                        frontImage: require('./Kangaroos_background.png'),
+                        backgndImage: require('./backgroundImages/Kangaroos_background.png'),
+                        frontImage: require('./backgroundImages/Kangaroos_background.png'),
                         sentenceAudio:'ten_sentence',
                         audio: 'ten'
                     },
@@ -180,8 +181,8 @@ export default class CardDeckNew extends Component {
                         word: 'go',
                         sentence1: 'Lets',
                         sentence2: 'fishing.',
-                        backgndImage: require('./Fishing_background.png'),
-                        frontImage: require('./Fishing_background.png'),
+                        backgndImage: require('./backgroundImages/Fishing_background.png'),
+                        frontImage: require('./backgroundImages/Fishing_background.png'),
                         sentenceAudio:'go_sentence',
                         audio: 'go'
                     },
@@ -190,8 +191,8 @@ export default class CardDeckNew extends Component {
                         word: 'two',
                         sentence1: 'There were',
                         sentence2: 'tigers at the zoo.',
-                        backgndImage: require('./Tigercubs_background.png'),
-                        frontImage: require('./Tigercubs_background.png'),
+                        backgndImage: require('./backgroundImages/Tigercubs_background.png'),
+                        frontImage: require('./backgroundImages/Tigercubs_background.png'),
                         sentenceAudio:'two_sentence',
                         audio: 'two'
                     },
@@ -307,7 +308,7 @@ export default class CardDeckNew extends Component {
 
         // Reset opacity
        
-        this.playCardSound();
+       // this.playCardSound();
 
         if (!this.state.isSwipingBack) {
 
@@ -392,7 +393,7 @@ export default class CardDeckNew extends Component {
         //     toValue: 1,
         // }).start();
 
-        this.playCardSound();
+        //this.playCardSound();
         if (!this.state.isSwipingBack) {
 
             this.swiper.swipeCard(() => {
@@ -551,6 +552,10 @@ export default class CardDeckNew extends Component {
         )
     };
 
+    onCardTap(){
+        this.setState({blurrBackground:10});
+    }
+
     render() {
         
 
@@ -597,6 +602,8 @@ export default class CardDeckNew extends Component {
                             renderCard={this.renderCard}
                             onSwipedLeft={this.swipeCard}
                             onSwipedRight={this.swipeCard}
+                          //  onTapCard={this.setState({blurrBackground:5})}
+                            // onSwipedAborted={this.setState({blurrBackground:15})}
                             stackSize={5}
                             backgroundColor={'transparent'}
                             stackSeparation={stackSepration}
@@ -604,6 +611,7 @@ export default class CardDeckNew extends Component {
                             disableBottomSwipe={true}
                             disableRightSwipe={true}
                             disableLeftSwipe={true}
+
 
                             // For preventing hang condition
                             swipeAnimationDuration={100}
@@ -626,6 +634,8 @@ export default class CardDeckNew extends Component {
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
                         onSwipedRight={this.swipeCard}
+                       // onTapCard={this.setState({blurrBackground:5})}
+                            // onSwipedAborted={this.setState({blurrBackground:15})}
                         stackSize={5}
 
                         backgroundColor={'transparent'}
@@ -651,6 +661,10 @@ export default class CardDeckNew extends Component {
                 cardIndex={this.state.cardIndex}
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
+                //onTapCard={this.setState({blurrBackground:5})}
+
+                // onSwiping={this.setState({blurrBackground:5})}
+                // onSwipedAborted={this.setState({blurrBackground:15})}
 
                 onSwipedLeft={this.swipeCard}
                 onSwipedRight={this.swipeCard}
