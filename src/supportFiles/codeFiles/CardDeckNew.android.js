@@ -420,6 +420,31 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard = (card, index) => {
+
+        ////*****/ For opacity 
+  let opacityOfCards,marginLeft;
+
+  if (index === this.state.currentCardNumber) {
+      opacityOfCards = 1;
+      marginLeft= deviceWidth-(82);
+
+  } else if (index === this.state.currentCardNumber+1) {
+      opacityOfCards = 1;
+      marginLeft = deviceWidth-(82+10);
+
+  }else if(index === this.state.currentCardNumber+2){
+      opacityOfCards = 0.6;
+      marginLeft= deviceWidth-(82+20);
+
+  }else if(index === this.state.currentCardNumber+3){
+      opacityOfCards = 0.5;
+      marginLeft= deviceWidth-(82+30);
+
+  }else if(index === this.state.currentCardNumber+4) {
+      opacityOfCards = 0.4;
+      marginLeft= deviceWidth-(82+40);
+
+  }
         const animatedCardStyle = {
             transform : [{scale: this.animatedCardValue}]
         };
@@ -464,7 +489,14 @@ export default class CardDeckNew extends Component {
                     <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '17%', alignSelf: 'center', top: '5%', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
                     this.setState({ isView: true }) }} >
 
-                        <Text style={styles.label}>{card.word}</Text>
+                        <Text style={[styles.label,{ shadowColor: 'rgba(0,0,0,1)',
+                            shadowOffset: {
+                                width: 2,
+                                height: 2
+                            },
+                            shadowOpacity: 0.8,
+
+                            shadowRadius: 2 }]}>{card.word}</Text>
                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                     </TouchableOpacity>
 
@@ -635,7 +667,9 @@ export default class CardDeckNew extends Component {
             height: 70,
             alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'36%'
         }]}> 
-        <RNSiriWaveView colors={["#0000FF", "#800080", "#ffffff"]}   secondaryWaveLineWidth= {15} primaryWaveLineWidth={10} type={1} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+
+        <RNSiriWaveView colors={["#0000FF", "#800080", "#FF0000"]} primaryWaveLineWidth={50} type={0} width={65} height={95}  backgroundColor={'transparent'} density={15}  startAnimation={true} stopAnimation={this.state.stopAnimation} />
+
         </ImageBackground>
        
         return (
@@ -652,9 +686,16 @@ export default class CardDeckNew extends Component {
                     <Text style={{ textAlign: 'center' , color: 'red',marginTop: '5%', position: 'absolute', fontSize: 15, alignSelf: "center", fontFamily: "Montserrat-Regular", textShadowColor: 'rgb(0,0,0)', textShadowOffset: { width: 1, height: 4 }, textShadowRadius: 5 }}>sightwords</Text>
 
 
-                    {!isView ? <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%', fontFamily: "Montserrat-Regular" }}>{temp}</Text> :
-                        <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '5%' }}></Text>}
+                    {!isView ?
 
+                    <Animatable.View ref={this.handleViewNumberRef} style={{ marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', right: '15%' }}>
+                        <Text style={{ textAlign: 'center', fontSize: 15, color: '#ffffff', fontFamily: "Montserrat-Regular"}}>{String(this.state.cardCount)}</Text>
+                    </Animatable.View>
+                    :
+                    <Text style={{ textAlign: 'center', marginTop: '5%', position: 'absolute', alignSelf: 'flex-end', fontSize: 15, color: '#ffffff', marginRight: '10%' }}></Text>}
+
+
+                    
 
                     {!isView? <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center', top: '5%'}}>
 
@@ -702,15 +743,6 @@ export default class CardDeckNew extends Component {
                         </TouchableWithoutFeedback>
                     </ImageBackground>:null}
 
-                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        left: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}
 
                         {/* For backbutton showing in circle  */}
 
@@ -794,16 +826,7 @@ export default class CardDeckNew extends Component {
                     </ImageBackground>:null}
 
 
-                    {!isView?<ImageBackground source={require('./rectangle.png')} style={{
-                        right: '22%', height: 50, width: 90, position: 'absolute', bottom: '7%', shadowColor: 'rgba(0,0,0,0.5)', shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowOpacity: 0.5,
-
-                        shadowRadius: 1
-                    }} />:null}
-
+                   
 
                         <ImageBackground style={{
                             width: 100,
@@ -996,6 +1019,7 @@ textSentence:{
         width: 40,
         height: 40,
         alignSelf: 'center',
+        top: '-40%'
 
     },
     imageBackButton: {
