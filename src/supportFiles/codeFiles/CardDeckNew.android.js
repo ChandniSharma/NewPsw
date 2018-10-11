@@ -111,8 +111,8 @@ export default class CardDeckNew extends Component {
                         word: 'up',
                         sentence1: 'The tiger woke',
                         sentence2: '.',
-                        backgndImage: require('./up_color.png'),
-                        frontImage: require('./up_color.png'),
+                        backgndImage: require('./backgroundImages/up_color.png'),
+                        frontImage: require('./backgroundImages/up_color.png'),
                         sentenceAudio:'up_sentence',
                         audio: 'up'
                     },
