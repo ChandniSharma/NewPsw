@@ -440,30 +440,30 @@ export default class CardDeckNew extends Component {
     }
 
     renderCard = (card, index) => {
-  ////*****/ For opacity 
-  let opacityOfCards,marginLeft;
+        ////*****/ For opacity 
+        let opacityOfCards,marginLeft;
 
-  if (index === this.state.currentCardNumber) {
-      opacityOfCards = 1;
-      marginLeft= deviceWidth-(82);
+        if (index === this.state.currentCardNumber) {
+            opacityOfCards = 1;
+            marginLeft= deviceWidth-(82);
 
-  } else if (index === this.state.currentCardNumber+1) {
-      opacityOfCards = 1;
-      marginLeft = deviceWidth-(82+10);
+        } else if (index === this.state.currentCardNumber+1) {
+            opacityOfCards = 1;
+            marginLeft = deviceWidth-(82+10);
 
-  }else if(index === this.state.currentCardNumber+2){
-      opacityOfCards = 0.6;
-      marginLeft= deviceWidth-(82+20);
+        }else if(index === this.state.currentCardNumber+2){
+            opacityOfCards = 0.6;
+            marginLeft= deviceWidth-(82+20);
 
-  }else if(index === this.state.currentCardNumber+3){
-      opacityOfCards = 0.5;
-      marginLeft= deviceWidth-(82+30);
+        }else if(index === this.state.currentCardNumber+3){
+            opacityOfCards = 0.5;
+            marginLeft= deviceWidth-(82+30);
 
-  }else if(index === this.state.currentCardNumber+4) {
-      opacityOfCards = 0.4;
-      marginLeft= deviceWidth-(82+40);
+        }else if(index === this.state.currentCardNumber+4) {
+            opacityOfCards = 0.4;
+            marginLeft= deviceWidth-(82+40);
 
-  }
+        }
 
 
   console.log( 'Opacity of card ----->',opacityOfCards);
@@ -662,7 +662,6 @@ export default class CardDeckNew extends Component {
                 cardVerticalMargin={80}
                 renderCard={this.renderCard}
                 //onTapCard={this.setState({blurrBackground:5})}
-
                 // onSwiping={this.setState({blurrBackground:5})}
                 // onSwipedAborted={this.setState({blurrBackground:15})}
 
@@ -790,7 +789,7 @@ export default class CardDeckNew extends Component {
                                     width: 50,
                                     height: 50,
                                     alignSelf: 'center', justifyContent: 'center', alignItems: 'center'
-                                }} source={require('./undo_red.png')}>
+                                }} >
                                     <Image   style={styles.imageBackButton} />
                                 </ImageBackground>}
                             </Animated.View>
