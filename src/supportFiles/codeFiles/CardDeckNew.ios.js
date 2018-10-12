@@ -73,6 +73,7 @@ export default class CardDeckNew extends Component {
                 fadeAnim: new Animated.Value(0),
                 errors: [],
                 xPosition: 0,
+                isShake:false,
                 arrayImages: [
                     {
                         index: 1,
@@ -220,7 +221,12 @@ export default class CardDeckNew extends Component {
 
     bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
-    bounceIn = () => this.refs.home.bounceIn(400).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+    //bounceIn = () => this.refs.home.shake(0).then(endState => console.log(endState.finished ? this.props.navigation.navigate('Home') : 'bounce cancelled'));
+
+    shake = () => this.refs.questionMark.shake(0).then(endState => console.log(endState.finished ? 'shaking' : 'shake cancelled'));
+
+    bounceIn = () => this.props.navigation.navigate('Home');
+
 
     fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -306,8 +312,8 @@ export default class CardDeckNew extends Component {
 
     swipeBack = (index) => {
 
+        
         // Reset opacity
-       
        // this.playCardSound();
 
         if (!this.state.isSwipingBack) {
@@ -343,6 +349,8 @@ export default class CardDeckNew extends Component {
 
     setCardback() {
 
+        
+
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -354,11 +362,12 @@ export default class CardDeckNew extends Component {
                 alpha: renderArray[this.state.currentCardNumber - 1].word,
                 audio: renderArray[this.state.currentCardNumber - 1].audio,
                 sentenceAudio: renderArray[this.state.currentCardNumber - 1].sentenceAudio,
+                isShake: true
+
             })
         }
 
         this.fadeInUp();
-
     }
 
 
@@ -384,9 +393,20 @@ export default class CardDeckNew extends Component {
         this.fadeInUp();
     };
 
+    shakeQuestionIcon=()=>{
+ 
+      let clearId =  setTimeout(function(){
+     
+        this.shake();
+     
+        }, 5000);
+        this.setState({ clearId: clearId});
+      }
+
     swipeCard = (index) => {
          
-        
+        this.clearTimeout (this.state.clearId)  
+
 
         console.log(' Swipe card ',index);
         // Animated.spring(this.animatedCardValue,{
@@ -404,9 +424,6 @@ export default class CardDeckNew extends Component {
     };
 
     tapCard = (index) => {
-
-
-
 
             this.swiper.swipeCard(() => {
                 this.setState({blurrBackground:5})
@@ -450,8 +467,10 @@ export default class CardDeckNew extends Component {
         SoundPlayer.unmount()
     }
 
+    //** For shaking question mark after 5 seconds */
+
     renderCard = (card, index) => {
-        ////*****/ For opacity 
+        ////** For opacity **//// 
         let opacityOfCards,marginLeft;
 
         if (index === this.state.currentCardNumber) {
@@ -475,7 +494,14 @@ export default class CardDeckNew extends Component {
             marginLeft= deviceWidth-(82+40);
 
         }
+let viewShake, viewNormal;
 
+//    if (this.state.isShake) {
+//        this.shake();
+//      viewShake =  
+//    } else {
+//      viewNormal = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+//    }
 
   console.log( 'Opacity of card ----->',opacityOfCards);
    // Reset opacity
@@ -523,21 +549,22 @@ export default class CardDeckNew extends Component {
 
                 <View  style={[styles.card1,{opacity:opacityOfCards,width:marginLeft}]}>
 
-
-
                         <Text style={[styles.label,{ shadowColor: 'rgba(0,0,0,1)',
                             shadowOffset: {
                                 width: 1,
                                 height: 1 
                             },
                             shadowOpacity: 0.8,
-
                             shadowRadius: 1 }]}>{card.word}</Text>
-                    <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip();
-                        this.setState({ isView: true }) }} >
-                        <Image source={require('./question.png')} style={styles.imageQuestionMark} />
-                    </TouchableOpacity>
-
+                           {/* // <Animatable.view ref={"questionMark"} > */}
+                                <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
+                    this.setState({ isView: true }) }}>
+                                    
+                                    <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+                                    
+                                {/* {this.state.isShake?this.shakeQuestionIcon:console.log("shaking not needed")} */}
+                                </TouchableOpacity>
+                {/* </Animatable.view> */}
                 </View>
 
 
