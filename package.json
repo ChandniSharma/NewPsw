@@ -25,6 +25,7 @@
     "react-native-sound-player": "^0.4.0",
     "react-native-swiper-animated": "^1.4.0",
     "react-navigation": "^2.9.3",
+    "react-timer-mixin": "^0.13.4",
     "rnpm": "^1.9.0",
     "styled-components": "^3.3.3"
   },

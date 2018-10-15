@@ -1,6 +1,4 @@
 
-
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -20,14 +18,12 @@ import {
 
 import RNSiriWaveView from 'react-native-siri-wave-view';
 import * as Animatable from 'react-native-animatable';
-
-
-
 import { Dimensions } from 'react-native';
-import Swiper from 'react-native-deck-swiper'
+import Swiper from 'react-native-deck-swiper';
 import CardFlip from 'react-native-card-flip';
-
 import SoundPlayer from 'react-native-sound-player'
+import TimerMixin from 'react-timer-mixin';
+
 
 let result = [];
 let count = 0;
@@ -35,6 +31,7 @@ let renderCount = 0;
 let renderArray = [];
 let DURATION = 10000;
 
+mixins: [TimerMixin];
 
 export default class CardDeckNew extends Component {
 
@@ -73,7 +70,7 @@ export default class CardDeckNew extends Component {
                 fadeAnim: new Animated.Value(0),
                 errors: [],
                 xPosition: 0,
-                isShake:false,
+                isShake:true,
                 arrayImages: [
                     {
                         index: 1,
@@ -218,6 +215,32 @@ export default class CardDeckNew extends Component {
 
         this.pullUsers();
     }
+    componentDidMount() {
+       
+        console.log("componentDidMount");
+        SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
+            this.setState({
+                isAudio:false
+            })
+        })
+       
+        this.interval = setInterval(() => {
+            console.log("Hi");
+            if (this.state.isShake) {
+                this.setState({isShake: false});
+            } else {
+                this.setState({isShake: true});
+            }
+           
+           
+        }, 6000); //6 seconds
+
+    }
+    // unsubscribe when unmount
+    componentWillUnmount() {
+        SoundPlayer.unmount()
+        //clearInterval(this.interval);
+    }
 
     bounceInRight = () => this.view.bounceInRight(1500).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -226,7 +249,6 @@ export default class CardDeckNew extends Component {
     shake = () => this.refs.questionMark.shake(0).then(endState => console.log(endState.finished ? 'shaking' : 'shake cancelled'));
 
     bounceIn = () => this.props.navigation.navigate('Home');
-
 
     fadeInUp = () => this.view.fadeInUp(300).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
@@ -349,8 +371,6 @@ export default class CardDeckNew extends Component {
 
     setCardback() {
 
-        
-
         if (this.state.currentCardNumber > 0) {
             this.setState({
                 currentCardNumber: this.state.currentCardNumber - 1,
@@ -362,7 +382,7 @@ export default class CardDeckNew extends Component {
                 alpha: renderArray[this.state.currentCardNumber - 1].word,
                 audio: renderArray[this.state.currentCardNumber - 1].audio,
                 sentenceAudio: renderArray[this.state.currentCardNumber - 1].sentenceAudio,
-                isShake: true
+               
 
             })
         }
@@ -393,19 +413,9 @@ export default class CardDeckNew extends Component {
         this.fadeInUp();
     };
 
-    shakeQuestionIcon=()=>{
- 
-      let clearId =  setTimeout(function(){
-     
-        this.shake();
-     
-        }, 5000);
-        this.setState({ clearId: clearId});
-      }
-
     swipeCard = (index) => {
          
-        this.clearTimeout (this.state.clearId)  
+        // this.clearTimeout (this.state.clearId)  
 
 
         console.log(' Swipe card ',index);
@@ -454,19 +464,7 @@ export default class CardDeckNew extends Component {
 
         }
     }
-    componentDidMount() {
-
-        SoundPlayer.onFinishedPlaying((success) => { // success is true when the sound is played
-            this.setState({
-                isAudio:false
-            })
-        })
-    }
-    // unsubscribe when unmount
-    componentWillUnmount() {
-        SoundPlayer.unmount()
-    }
-
+    
     //** For shaking question mark after 5 seconds */
 
     renderCard = (card, index) => {
@@ -496,16 +494,21 @@ export default class CardDeckNew extends Component {
         }
 let viewShake, viewNormal;
 
-//    if (this.state.isShake) {
-//        this.shake();
-//      viewShake =  
-//    } else {
-//      viewNormal = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
-//    }
+   if (this.state.isShake) {
+      viewShake = <Animatable.View animation="shake" easing="linear" iterationCount={"infinite"} iterationDelay={5} >
+                    <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+                  </Animatable.View>
+                  console.log("in shaking the view +++++++++++ ")
+
+   } else {
+    console.log("No shake *******")
+
+     viewNormal = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+   }
 
   console.log( 'Opacity of card ----->',opacityOfCards);
-   // Reset opacity
-
+   
+  // Reset opacity
 
         ///**** */
         const animatedCardStyle = {
@@ -556,15 +559,13 @@ let viewShake, viewNormal;
                             },
                             shadowOpacity: 0.8,
                             shadowRadius: 1 }]}>{card.word}</Text>
-                           {/* // <Animatable.view ref={"questionMark"} > */}
+                            {/* <Animatable.view ref={"questionMark"} > */}
                                 <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '10%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + index].flip(); 
                     this.setState({ isView: true }) }}>
-                                    
-                                    <Image source={require('./question.png')} style={styles.imageQuestionMark} />
-                                    
-                                {/* {this.state.isShake?this.shakeQuestionIcon:console.log("shaking not needed")} */}
+                                  
+                                {this.state.isShake?viewShake:viewNormal}
                                 </TouchableOpacity>
-                {/* </Animatable.view> */}
+                    {/* </Animatable.view> */}
                 </View>
 
 
@@ -596,14 +597,13 @@ let viewShake, viewNormal;
 
     render() {
         
-
         const animatedStyle = {
             transform : [{scale: this.animatedValue}]
         };
         const animatedAudioStyle = {
             transform : [{scale: this.animatedAudioValue}]
         };
-        
+         
         const isView = this.state.isView;
         const isAudio =this.state.isAudio;
         // For showing number 
@@ -619,8 +619,13 @@ let viewShake, viewNormal;
             renderArray = this.state.arrayImages;
             renderCount++;
         }
-
         console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
+
+        if (this.state.isShake) {
+            this.renderCard;
+        } else {
+            console.log(" no shaking condition");
+        }
 
         let swiperStack;
 
@@ -649,7 +654,6 @@ let viewShake, viewNormal;
                             disableBottomSwipe={true}
                             disableRightSwipe={true}
                             disableLeftSwipe={true}
-
 
                             // For preventing hang condition
                             swipeAnimationDuration={100}
@@ -849,9 +853,7 @@ let viewShake, viewNormal;
                               
                               {isAudio?audioView:audioImage}  
 
-                            
-
-                                {isAudio?siriWave:speakerIcon}
+                              {isAudio?siriWave:speakerIcon}
 
                                 </View>
                             </TouchableWithoutFeedback>
