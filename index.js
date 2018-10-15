@@ -12,20 +12,23 @@ import {
   TouchableOpacity,
   ScrollView,
   createClass,
-  Platform
+  Platform,
+  TouchableWithoutFeedback,
+  Animatable,
+  Easing
 } from 'react-native';
 
 import CardFlip from 'react-native-card-flip';
 // https://github.com/oblador/react-native-animatable
 class ExampleView extends Component {
-  handleViewRef = ref => this.view = ref;
+  handleViewRef1 = ref => this.view = ref;
   
-  bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
+  bounce = () => this.view.shake(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
   
   render() {
     return (
       <TouchableOpacity onPress={this.bounce}>
-        <Animatable.View ref={this.handleViewRef}>
+        <Animatable.View ref={this.handleViewRef1}>
           <Text>Bounce me!</Text>
         </Animatable.View>
       </TouchableOpacity>
