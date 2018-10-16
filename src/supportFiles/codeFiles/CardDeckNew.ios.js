@@ -70,7 +70,8 @@ export default class CardDeckNew extends Component {
                 fadeAnim: new Animated.Value(0),
                 errors: [],
                 xPosition: 0,
-                isShake:true,
+                isShake:false,
+                rotateAnim: new Animated.Value(0),
                 arrayImages: [
                     {
                         index: 1,
@@ -240,7 +241,7 @@ export default class CardDeckNew extends Component {
             })
         })
        
-       this.animateQuestionMark();
+       this.startShakeTimer();
 
     }
     // unsubscribe when unmount
@@ -249,20 +250,57 @@ export default class CardDeckNew extends Component {
         //clearInterval(this.interval);
     }
 
-    animateQuestionMark(){
+    startAnimation () {
+        this.state.rotateAnim.setValue(0)
+        Animated.timing(
+          this.state.rotateAnim,
+          {
+            toValue: 1,
+            duration: 800,
+            easing: Easing.linear
+          }
+        ).start(() => {
+          this.startAnimation()
+        })
+      }
+
+    startShakeTimer(){
         this.interval = setInterval(() => {
             console.log("Hi");
-           // this.shake();
 
+            if (this.state.isShake) {
+                this.setState({isShake:false});
+ 
+            } else {
+                this.setState({isShake:true});
 
-            // if (this.state.isShake) {
-            //     this.setState({isShake: false});
-            // } else {
-            //     this.setState({isShake: true});
-            // }
-          
+            }
+          // this.animateQuestionIcon();
+            
            
         }, 6000); //6 seconds
+    }
+
+    animateQuestionIcon(){
+        
+        let viewShake;
+
+          if (this.state.isShake) {
+           viewShake = <Animatable.View animation="shake" easing="ease-in-out" iterationDelay={5} iterationCount={2} delay={500} >
+                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+                       </Animatable.View>
+     
+        } else {
+         console.log("No shake *******");
+         viewShake = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+        }
+
+      return( viewShake );
+ 
+    }
+    
+    animateIcon(){
+
     }
 
     handlePressIn(){
@@ -475,6 +513,7 @@ export default class CardDeckNew extends Component {
     //** For shaking question mark after 5 seconds */
 
     renderCard = (card, index) => {
+
         ////** For opacity **//// 
         let opacityOfCards,marginLeft;
 
@@ -501,18 +540,19 @@ export default class CardDeckNew extends Component {
         }
 let viewShake, viewNormal;
 
-   if (this.state.isShake) {
-      viewShake = <Animatable.View animation="shake" easing="ease-out" iterationCount={"infinite"} delay={200} >
-                    <Image source={require('./question.png')} style={styles.imageQuestionMark} />
-                  </Animatable.View>
-                  console.log("in shaking the view +++++++++++ ")
+//    if (this.state.isShake) {
+//     console.log(" In shake *******");
+//       viewShake = <Animatable.View animation="shake" easing="ease-out" iterationCount={2} delay={2}>
+//                     <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+//                   </Animatable.View>
+//                   console.log("in shaking the view +++++++++++ ")
 
-   } else {
-    console.log("No shake *******");
-     viewNormal = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
-   }
+//    } else {
+//     console.log("No shake *******");
+//     viewNormal = <Image source={require('./question.png')} style={styles.imageQuestionMark} />
+//    }
 
-  console.log( 'Opacity of card ----->',opacityOfCards);
+ 
    
   // Reset opacity
 
@@ -571,7 +611,8 @@ let viewShake, viewNormal;
                                   {/* <Animatable.View ref={"question"}>
                                         <Image source={require('./question.png')} style={styles.imageQuestionMark} />
                                     </Animatable.View> */}
-{this.state.isShake?viewShake:viewNormal}
+                                    {/* {this.state.isShake?viewShake:viewNormal} */}
+                                {/* {this.animateQuestionIcon()} */}
                                 </TouchableOpacity>
                     {/* </Animatable.view> */}
                 </View>
@@ -614,6 +655,7 @@ let viewShake, viewNormal;
          
         const isView = this.state.isView;
         const isAudio =this.state.isAudio;
+        
         // For showing number 
 
         let temp;
@@ -629,11 +671,29 @@ let viewShake, viewNormal;
         }
         console.log("CurrentcardNumber Yeh wala: ", this.state.currentCardNumber);
 
-        // if (this.state.isShake) {
-        //     this.renderCard;
-        // } else {
-        //     console.log(" no shaking condition");
-        // }
+        let viewShake,viewNormal;
+
+        if (this.state.isShake) {
+            console.log("in render shake ")
+            
+
+            
+            {!isView?viewShake = <Animatable.View animation="shake" easing="ease-in-out" iterationDelay={5} iterationCount={2} delay={500} style={[{
+                width: 48,
+                height: 48,
+                alignSelf: 'center', justifyContent: 'center', alignItems: 'center',top:'2%'
+                  }]}>
+                   <Image  source={require('./question.png')} style={styles.imageQuestionMark} />
+                 </Animatable.View>:null}  
+   
+      } else {
+            console.log("No shake *******");
+           {!isView?viewNormal = <Image style={[{
+            width: 48,
+            height: 48,
+            alignSelf: 'center', justifyContent: 'center', alignItems: 'center',bottom:'0.2%'
+        }]} source={require('./question.png')} style={styles.imageQuestionMark} />:null} 
+      }
 
         let swiperStack;
 
@@ -653,7 +713,7 @@ let viewShake, viewNormal;
                             renderCard={this.renderCard}
                             onSwipedLeft={this.swipeCard}
                             onSwipedRight={this.swipeCard}
-                            onSwiped={this.animateQuestionMark}
+                           
                             // onSwipedAborted={this.setState({blurrBackground:15})}
                             stackSize={5}
                             backgroundColor={'transparent'}
@@ -684,7 +744,8 @@ let viewShake, viewNormal;
                         renderCard={this.renderCard}
                         onSwipedLeft={this.swipeCard}
                         onSwipedRight={this.swipeCard}
-                        onSwiped={this.animateQuestionMark}
+                        onTapCard= {this.renderCard}
+                        
                         //onSwiping={this.tapCard}
                             // onSwipedAborted={this.setState({blurrBackground:15})}
                         stackSize={5}
@@ -734,6 +795,7 @@ let viewShake, viewNormal;
             />
         }
 
+        
         let audioImage ;
         let speakerIcon;
         let siriWave;
@@ -810,6 +872,11 @@ let viewShake, viewNormal;
                     <View style={{ width: "100%", height: "100%", justifyContent: 'center', alignItems: 'center' }}>
 
                         {swiperStack}
+                        <TouchableOpacity style={[{ flexDirection: 'column', position: 'absolute', bottom: '40%', alignSelf: 'center', justifyContent: 'space-between', }]} onPress={() => { this['card' + this.state.cardIndex].flip(); 
+                        this.setState({ isView: true })}}>
+                        
+                                    {this.state.isShake?viewShake:viewNormal}
+                          </TouchableOpacity>
 
                     </View>
 
