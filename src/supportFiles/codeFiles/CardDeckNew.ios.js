@@ -247,23 +247,9 @@ export default class CardDeckNew extends Component {
     // unsubscribe when unmount
     componentWillUnmount() {
         SoundPlayer.unmount()
-        //clearInterval(this.interval);
+        clearInterval(this.interval);
     }
-
-    startAnimation () {
-        this.state.rotateAnim.setValue(0)
-        Animated.timing(
-          this.state.rotateAnim,
-          {
-            toValue: 1,
-            duration: 800,
-            easing: Easing.linear
-          }
-        ).start(() => {
-          this.startAnimation()
-        })
-      }
-
+    
     startShakeTimer(){
         this.interval = setInterval(() => {
             console.log("Hi");
@@ -275,8 +261,6 @@ export default class CardDeckNew extends Component {
                 this.setState({isShake:true});
 
             }
-          // this.animateQuestionIcon();
-            
            
         }, 6000); //6 seconds
     }
